@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "832908496471",
+    "project_id": "beaver-airlines",
+    "storage_bucket": "beaver-airlines.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832908496471:android:32df63bf484a44f1109d12",
+        "android_client_info": {
+          "package_name": "com.example.beaverairlines"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "832908496471-2fe75csf5nes3jhkbj89utlddoh2ptfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.beaverairlines",
+            "certificate_hash": "082c73cb0f95ed5b72cd2b0946df7ebdb92b106f"
+          }
+        },
+        {
+          "client_id": "832908496471-m1ubvtnmv2pb68hueo558ecneres3q3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA9YLcrRm2o2T7gtKhv861olR8qTA07CU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "832908496471-m1ubvtnmv2pb68hueo558ecneres3q3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

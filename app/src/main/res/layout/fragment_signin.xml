@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".auth.SigninLoginFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/signUp_background1_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/login_pic1" />
+
+            <TextView
+                android:id="@+id/signUp_welcome_tv"
+                android:layout_width="380dp"
+                android:layout_height="91dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="-20dp"
+                android:alpha="0.8"
+                android:fontFamily="@font/mayaregular"
+                android:text="Welcome"
+                android:textColor="#FFFFFF"
+                android:textSize="81dp"
+                app:layout_constraintEnd_toEndOf="@id/signUp_background2_iv"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/signUp_background2_iv"
+                app:layout_constraintTop_toTopOf="@+id/signUp_background2_iv" />
+
+            <TextView
+                android:id="@+id/signUp_aboard_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="83dp"
+                android:layout_marginTop="-20dp"
+                android:alpha="0.8"
+                android:fontFamily="@font/mayaregular"
+                android:text="aboard"
+                android:textColor="#FFFFFF"
+                android:textSize="45sp"
+                app:layout_constraintEnd_toEndOf="@+id/signUp_welcome_tv"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/signUp_welcome_tv"
+                app:layout_constraintTop_toBottomOf="@+id/signUp_welcome_tv" />
+
+            <ImageView
+                android:id="@+id/signUp_background2_iv"
+                android:layout_width="493dp"
+                android:layout_height="751dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/login_pic2" />
+
+            <FrameLayout
+                android:id="@+id/cardLayout"
+                android:transitionName="signUp_card"
+                android:layout_width="318dp"
+                android:layout_height="494dp"
+                android:layout_marginTop="110dp"
+                app:layout_constraintBottom_toTopOf="@+id/signUp_CardSwapFooter_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signUp_aboard_tv"
+                app:layout_constraintVertical_bias="0.0">
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/signUp_CardSwapFooter_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-15dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/gotic"
+                android:text="New to Beaver Airlines?"
+                android:textColor="#000000"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/cardLayout"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="@+id/cardLayout"
+                app:layout_constraintTop_toBottomOf="@+id/cardLayout" />
+
+            <TextView
+                android:id="@+id/signUp_cardSwap_bttn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/gotic"
+                android:text="REGISTER"
+                android:textColor="#AE313F"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/signUp_CardSwapFooter_tv"
+                app:layout_constraintStart_toEndOf="@+id/signUp_CardSwapFooter_tv"
+                app:layout_constraintTop_toTopOf="@+id/signUp_CardSwapFooter_tv"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

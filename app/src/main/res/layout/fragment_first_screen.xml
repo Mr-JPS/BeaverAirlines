@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".onboarding.screens.FirstScreen">
+
+    <TextView
+        android:id="@+id/OB_text1"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:fontFamily="@font/gotic"
+        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore"
+        android:textAlignment="center"
+        android:textColor="#462154"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/OB_bttn1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OB_title1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/OB_title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/mayaregular"
+        android:text="Book Your Flight With Us"
+        android:textAlignment="center"
+        android:textColor="#AE313F"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OB_picBackground1" />
+
+    <ImageButton
+        android:id="@+id/OB_bttn1"
+        android:layout_width="315dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="-13dp"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="fitXY"
+        android:src="@drawable/redplane"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/OB_picBackground1"
+        android:layout_width="310dp"
+        android:layout_height="437dp"
+        android:layout_marginTop="65dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/firstbackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/firstbackground" />
+
+    <ImageView
+        android:id="@+id/OB_pic1"
+        android:layout_width="341dp"
+        android:layout_height="385dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="3dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/firstpic"
+        app:layout_constraintBottom_toBottomOf="@+id/OB_picBackground1"
+        app:layout_constraintEnd_toEndOf="@+id/OB_picBackground1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/OB_picBackground1"
+        app:srcCompat="@drawable/firstpic" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardLayout_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:transitionName="login_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/login_card_iv"
+            android:layout_width="318dp"
+            android:layout_height="494dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/logincard" />
+
+        <Button
+            android:id="@+id/login_login_bttn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="#462154"
+            android:fontFamily="@font/mayaregular"
+            android:text="Login Now"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            app:cornerRadius="13dp"
+            app:layout_constraintEnd_toEndOf="@+id/login_purpleLine3_iv"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/login_purpleLine3_iv"
+            app:layout_constraintTop_toBottomOf="@+id/login_passwordInput_et" />
+
+        <EditText
+            android:id="@+id/login_clubNbrInput_et"
+            android:layout_width="247dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="150dp"
+            android:backgroundTint="#00FFFFFF"
+            android:ems="10"
+            android:fontFamily="@font/gotic"
+            android:hint="Enter your Mile High Club number"
+            android:inputType="textPersonName"
+            android:singleLine="false"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/login_purpleLine1_iv"
+            app:layout_constraintHorizontal_bias="0.7"
+            app:layout_constraintStart_toStartOf="@+id/login_purpleLine1_iv"
+            app:layout_constraintTop_toTopOf="@+id/login_card_iv"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <EditText
+            android:id="@+id/login_emaiInput_et"
+            android:layout_width="0dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="#00FFFFFF"
+            android:ems="10"
+            android:fontFamily="@font/gotic"
+            android:hint="Enter your email"
+            android:inputType="textEmailAddress"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/login_clubNbrInput_et"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/login_clubNbrInput_et"
+            app:layout_constraintTop_toBottomOf="@+id/login_clubNbrInput_et"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <EditText
+            android:id="@+id/login_passwordInput_et"
+            android:layout_width="0dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="115dp"
+            android:backgroundTint="#00FFFFFF"
+            android:ems="10"
+            android:fontFamily="@font/gotic"
+            android:hint="Enter your password"
+            android:inputType="textPassword"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/login_emaiInput_et"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/login_emaiInput_et"
+            app:layout_constraintTop_toBottomOf="@+id/login_emaiInput_et"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/login_purpleLine1_iv"
+            android:layout_width="258dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/login_clubNbrInput_et"
+            app:srcCompat="@drawable/purpleline" />
+
+        <ImageView
+            android:id="@+id/login_purpleLine2_iv"
+            android:layout_width="258dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/login_emaiInput_et"
+            app:srcCompat="@drawable/purpleline" />
+
+        <ImageView
+            android:id="@+id/login_purpleLine3_iv"
+            android:layout_width="258dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/login_passwordInput_et"
+            app:srcCompat="@drawable/purpleline" />
+
+        <TextView
+            android:id="@+id/login_or_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/gotic"
+            android:text="OR"
+            android:textColor="#462154"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/login_clubNbrInput_et"
+            app:layout_constraintTop_toBottomOf="@+id/login_clubNbrInput_et" />
+
+        <CheckBox
+            android:id="@+id/login_checkBox_bttn"
+            android:layout_width="101dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="7dp"
+            android:button="@drawable/plane_checkbox"
+            android:buttonTint="#AE313F"
+            android:checked="false"
+            android:fontFamily="@font/gotic"
+            android:text=" Remember me"
+            android:textColor="#AE313F"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@+id/login_emaiInput_et"
+            app:layout_constraintTop_toBottomOf="@+id/login_emaiInput_et"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

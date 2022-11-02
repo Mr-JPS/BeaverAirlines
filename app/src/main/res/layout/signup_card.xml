@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardLayout_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:transitionName="signUp_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/signUp_card_iv"
+            android:layout_width="318dp"
+            android:layout_height="494dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/registrationcard" />
+
+        <Button
+            android:id="@+id/signUp_signUp_bttn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="#AE313F"
+            android:fontFamily="@font/mayaregular"
+            android:text="Sign Up Now"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            app:cornerRadius="13dp"
+            app:layout_constraintEnd_toEndOf="@+id/signUp_redLine3_iv"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/signUp_redLine3_iv"
+            app:layout_constraintTop_toBottomOf="@+id/signUp_passwordInput_et" />
+
+        <EditText
+            android:id="@+id/signUp_nameInput_et"
+            android:layout_width="247dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="150dp"
+            android:backgroundTint="#00FFFFFF"
+            android:ems="10"
+            android:fontFamily="@font/gotic"
+            android:hint="Enter your name"
+            android:inputType="textPersonName"
+            android:singleLine="false"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/signUp_redLine1_iv"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toStartOf="@+id/signUp_redLine1_iv"
+            app:layout_constraintTop_toTopOf="@+id/signUp_card_iv"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <EditText
+            android:id="@+id/signUp_emaiInput_et"
+            android:layout_width="0dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="#00FFFFFF"
+            android:ems="10"
+            android:fontFamily="@font/gotic"
+            android:hint="Enter your email"
+            android:inputType="textEmailAddress"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/signUp_nameInput_et"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/signUp_nameInput_et"
+            app:layout_constraintTop_toBottomOf="@+id/signUp_nameInput_et"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <EditText
+            android:id="@+id/signUp_passwordInput_et"
+            android:layout_width="0dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="115dp"
+            android:backgroundTint="#00FFFFFF"
+            android:ems="10"
+            android:fontFamily="@font/gotic"
+            android:hint="Enter your password"
+            android:inputType="textPassword"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/signUp_emaiInput_et"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/signUp_emaiInput_et"
+            app:layout_constraintTop_toBottomOf="@+id/signUp_emaiInput_et"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/signUp_redLine1_iv"
+            android:layout_width="258dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/signUp_nameInput_et"
+            app:srcCompat="@drawable/redline" />
+
+        <ImageView
+            android:id="@+id/signUp_redLine2_iv"
+            android:layout_width="258dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/signUp_emaiInput_et"
+            app:srcCompat="@drawable/redline" />
+
+        <ImageView
+            android:id="@+id/signUp_redLine3_iv"
+            android:layout_width="258dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/signUp_passwordInput_et"
+            app:srcCompat="@drawable/redline" />
+
+        <TextView
+            android:id="@+id/signUp_terms_tv"
+            android:layout_width="187dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/gotic"
+            android:text="By selecting Sign Up &amp; continue below, I agree to Terms of Service and Privacy Policy"
+            android:textColor="#AE313F"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="@+id/signUp_redLine2_iv"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/signUp_redLine2_iv"
+            app:layout_constraintTop_toBottomOf="@+id/signUp_emaiInput_et" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
