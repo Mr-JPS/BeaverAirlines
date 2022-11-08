@@ -8,6 +8,7 @@ import android.transition.Scene
 import android.transition.Transition
 import android.transition.TransitionInflater
 import android.transition.TransitionManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -236,11 +237,14 @@ class SigninLoginFragment : Fragment() {
                         //val currentUser = auth.currentUser
                         Toast.makeText(getContext(), "You have successfully logged in!",
                             Toast.LENGTH_LONG).show()
-                        findNavController().navigate(R.id.action_signinFragment_to_homeFragment)
+                        findNavController().navigate(R.id.action_signinFragment_to_NavControllerFragment)
                     } else {
                         Toast.makeText(getContext(), "Login failed.",
                             Toast.LENGTH_SHORT).show()
                     }
+                }
+                .addOnFailureListener {
+                    Log.e("firebase login", it.message!! )
                 }
         }
     }

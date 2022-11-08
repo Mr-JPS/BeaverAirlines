@@ -6,34 +6,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.beaverairlines.R
-import com.example.beaverairlines.onboarding.screens.FirstScreen
-import com.example.beaverairlines.onboarding.screens.SecondScreen
-import com.example.beaverairlines.onboarding.screens.ThirdScreen
-import kotlinx.android.synthetic.main.fragment_view_pager.view.*
+import com.example.beaverairlines.onboarding.screens.Onboarding1
+import com.example.beaverairlines.onboarding.screens.Onboarding2
+import com.example.beaverairlines.onboarding.screens.Onboarding3
+import kotlinx.android.synthetic.main.fragment_onboarding.view.*
 
-class ViewPagerFragment : Fragment() {
+class OnboardingFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_view_pager, container, false)
+        val view = inflater.inflate(R.layout.fragment_onboarding, container, false)
 
         val fragmentList = arrayListOf<Fragment>(
-            FirstScreen(),
-            SecondScreen(),
-            ThirdScreen()
+            Onboarding1(),
+            Onboarding2(),
+            Onboarding3()
         )
 
-        val adapter = ViewPagerAdapter(
+        val adapter = OnboardingAdapter(
             fragmentList,
             requireActivity().supportFragmentManager,
             lifecycle
         )
 
 
-        view.viewPager.adapter = adapter
+        view.onboarding_viewPager.adapter = adapter
 
         return view
     }

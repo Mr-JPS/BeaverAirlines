@@ -11,7 +11,7 @@ import com.example.beaverairlines.R
 import kotlinx.android.synthetic.main.fragment_second_screen.view.*
 
 
-class SecondScreen : Fragment() {
+class Onboarding2 : Fragment() {
 
 
     override fun onCreateView(
@@ -33,7 +33,7 @@ class SecondScreen : Fragment() {
         view.OB_bttn2.startAnimation(slideInRight)
 
 
-        val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
+        val viewPager = activity?.findViewById<ViewPager2>(R.id.onboarding_viewPager)
 
         view.OB_bttn2.setOnClickListener {
             viewPager?.currentItem = 2

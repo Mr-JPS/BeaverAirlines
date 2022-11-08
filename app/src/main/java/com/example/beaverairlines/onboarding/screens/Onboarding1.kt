@@ -11,7 +11,7 @@ import com.example.beaverairlines.R
 import kotlinx.android.synthetic.main.fragment_first_screen.view.*
 
 
-class FirstScreen : Fragment() {
+class Onboarding1 : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +34,7 @@ class FirstScreen : Fragment() {
 
 
 
-        val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
+        val viewPager = activity?.findViewById<ViewPager2>(R.id.onboarding_viewPager)
 
         view.OB_bttn1.setOnClickListener {
             viewPager?.currentItem = 1

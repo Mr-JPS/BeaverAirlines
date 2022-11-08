@@ -12,7 +12,7 @@ import com.example.beaverairlines.R
 import kotlinx.android.synthetic.main.fragment_third_screen.view.*
 
 
-class ThirdScreen : Fragment() {
+class Onboarding3 : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
