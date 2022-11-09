@@ -6,24 +6,46 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/iv_plane2"
-        android:layout_width="565dp"
-        android:layout_height="496dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="55dp"
-        android:adjustViewBounds="true"
-        android:alpha="0.3"
-        android:rotation="-12"
-        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+        android:id="@+id/imageView11"
+        android:layout_width="480dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cloudsbackground5" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backgroundhello4" />
+
+    <ImageView
+        android:id="@+id/iv_plane2"
+        android:layout_width="843dp"
+        android:layout_height="590dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="-205dp"
+        android:adjustViewBounds="true"
+        android:rotation="4"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/home_plane" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="199dp"
         android:visibility="visible"
         app:cardBackgroundColor="#00FFFFFF"
         app:cardElevation="0dp"
@@ -52,41 +74,35 @@
                 app:srcCompat="@drawable/homeflightsearch" />
 
             <AutoCompleteTextView
-                android:id="@+id/dash_passengerSelect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="11dp"
-                android:fontFamily="@font/gotic"
-                android:text="Select Adults"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView7"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/OB_text13"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <AutoCompleteTextView
                 android:id="@+id/dash_travelSelect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="11dp"
                 android:fontFamily="@font/gotic"
                 android:text="Select Travel Dates"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="@+id/dash_passengerSelect"
-                app:layout_constraintStart_toEndOf="@+id/OB_text14"
-                app:layout_constraintTop_toTopOf="@+id/dash_passengerSelect"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+                app:layout_constraintEnd_toStartOf="@+id/imageView12"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/button3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/button3"
+                app:srcCompat="@drawable/whiteline" />
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="44dp"
-                android:layout_marginTop="-5dp"
+                android:layout_marginStart="9dp"
                 android:background="#00FFFFFF"
                 android:elevation="0dp"
                 android:fontFamily="@font/mayaregular"
@@ -97,39 +113,11 @@
                 app:cornerRadius="18dp"
                 app:iconPadding="5dp"
                 app:iconTint="#16FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <TextView
-                android:id="@+id/OB_text13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="49dp"
-                android:fontFamily="@font/gotic"
-                android:text="PASSENGERS:  "
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="8sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/dash_passengerSelect"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/dash_passengerSelect" />
-
-            <TextView
-                android:id="@+id/OB_text14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:fontFamily="@font/gotic"
-                android:text="TRAVEL DATES:  "
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="8sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/dash_travelSelect"
-                app:layout_constraintStart_toEndOf="@+id/dash_passengerSelect"
-                app:layout_constraintTop_toTopOf="@+id/dash_travelSelect" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView12"
+                app:layout_constraintTop_toTopOf="@+id/dash_travelSelect"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <ImageButton
                 android:id="@+id/imageButton"

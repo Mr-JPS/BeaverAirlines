@@ -13,13 +13,14 @@
         <action
             android:id="@+id/action_splashFragment_to_viewPagerFragment"
             app:destination="@id/viewPagerFragment"
+            app:enterAnim="@anim/slide_in_left_splash"
             app:popEnterAnim="@android:anim/fade_in"
             app:popUpTo="@id/splashFragment" />
         <action
             android:id="@+id/action_splashFragment_to_authFragment"
             app:destination="@id/authFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_left" />
+            app:enterAnim="@anim/slide_in_left_splash"
+            app:exitAnim="@anim/slide_out_left_splash" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"

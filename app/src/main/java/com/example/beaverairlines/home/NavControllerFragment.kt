@@ -8,15 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.example.beaverairlines.AuthViewModel
 import com.example.beaverairlines.R
+import com.example.beaverairlines.data.User
 import com.example.beaverairlines.databinding.FragmentNavControllerBinding
 import com.example.beaverairlines.home.childFragments.BookFragment
 import com.example.beaverairlines.home.childFragments.CheckinFragment
 import com.example.beaverairlines.home.childFragments.DashboardFragment
 import com.example.beaverairlines.home.childFragments.TripsFragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_nav_controller.*
 
 
@@ -25,6 +32,9 @@ class NavControllerFragment: Fragment() {
     private var _binding: FragmentNavControllerBinding? = null
     private val binding get() = _binding!!
 
+
+
+    private val viewModel: AuthViewModel by activityViewModels()
    // private lateinit var transition : Transition
     private var isBttnClicked = true
 
@@ -41,6 +51,7 @@ class NavControllerFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val slideInLeft = AnimationUtils.loadAnimation(
             requireContext(),
@@ -187,4 +198,6 @@ class NavControllerFragment: Fragment() {
 
         return animator
     }
+
+
 }

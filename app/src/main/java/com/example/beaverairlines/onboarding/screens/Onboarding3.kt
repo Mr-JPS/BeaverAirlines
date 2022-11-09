@@ -23,16 +23,11 @@ class Onboarding3 : Fragment() {
 
         val slideDown = AnimationUtils.loadAnimation(
             requireContext(),
-            androidx.appcompat.R.anim.abc_slide_in_top)
+            R.anim.slide_in_left)
 
         val slideInRight = AnimationUtils.loadAnimation(
             requireContext(),
-            com.google.android.material.R.anim.abc_fade_in)
-
-//        view.OB_pic3.animate().apply {
-//            duration = 1100
-//            rotationXBy(360f)
-//        }.start()
+            R.anim.slide_in_right)
 
         view.OB_pic3.startAnimation(slideDown)
         view.OB_bttn3.startAnimation(slideInRight)

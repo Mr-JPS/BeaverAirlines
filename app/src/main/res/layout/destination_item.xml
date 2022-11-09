@@ -1,119 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:cardBackgroundColor="#00FFFFFF"
-    app:cardElevation="0dp"
-    app:cardForegroundColor="#00FFFFFF"
-    app:checkedIconTint="#00FFFFFF">
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
         android:layout_width="match_parent"
-        android:layout_height="292dp"
-        android:backgroundTint="#E2143048">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginBottom="32dp"
+        app:cardBackgroundColor="#00FFFFFF"
+        app:cardCornerRadius="08dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/destinationCard_cv"
-            android:layout_width="0dp"
-            android:layout_height="153dp"
-            android:layout_marginTop="118dp"
-            android:visibility="gone"
-            app:cardBackgroundColor="#E7FFFFFF"
-            app:cardCornerRadius="30dp"
-            app:layout_constraintEnd_toEndOf="@+id/innerCard_cv"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/innerCard_cv"
-            app:layout_constraintTop_toTopOf="@+id/innerCard_cv">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/destinationcardbackground">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/mayabold"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/cv_innerCard"
+                app:layout_constraintTop_toBottomOf="@+id/cv_innerCard"
+                tools:text="New York City" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotic"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_location"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location"
+                tools:text="USA" />
 
-        </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="23dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="16dp"
+                android:alpha="0.7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location"
+                app:srcCompat="@drawable/ic_round_keyboard_arrow_down_24" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/innerCard_cv"
-            android:layout_width="135dp"
-            android:layout_height="222dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="24dp"
-            app:cardCornerRadius="40dp"
-            app:cardElevation="13dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_innerCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                app:cardCornerRadius="9dp"
+                app:cardElevation="13dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/destination_image"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:srcCompat="@drawable/amalficoastitaly" />
-
-                <ImageView
-                    android:id="@+id/flag_iv"
-                    android:layout_width="236dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="-2dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.507"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/flag3" />
-
-                <TextView
-                    android:id="@+id/location_tv"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="20dp"
-                    android:fontFamily="@font/mayabold"
-                    android:textColor="#AE313F"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="Amalfi Coast" />
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/moreDetails_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/gotic"
-                    android:text="MORE DETAILS"
-                    android:textColor="#AE313F"
-                    android:textSize="8sp"
-                    app:layout_constraintEnd_toEndOf="@+id/location_tv"
-                    app:layout_constraintTop_toBottomOf="@+id/location_tv" />
+                    <ImageView
+                        android:id="@+id/iv_destination"
+                        android:layout_width="117dp"
+                        android:layout_height="121dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@drawable/newyorkcityusa" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/iv_planeIcon"
+                        android:layout_width="18dp"
+                        android:layout_height="19dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_airplane_ticket_24" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    </androidx.cardview.widget.CardView>
 
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -16,10 +16,11 @@ class DestinationAdapter(
 ): RecyclerView.Adapter<DestinationAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(private val view: View): RecyclerView.ViewHolder(view){
-        val city: TextView = view.findViewById(R.id.location_tv)
-        val image: ImageView = view.findViewById(R.id.destination_image)
-        val moreDetails: TextView = view.findViewById(R.id.moreDetails_tv)
-        val destinationCard: CardView = view.findViewById(R.id.destinationCard_cv)
+        val city: TextView = view.findViewById(R.id.tv_location)
+        val country: TextView = view.findViewById(R.id.tv_country)
+        val image: ImageView = view.findViewById(R.id.iv_destination)
+        val moreDetails: TextView = view.findViewById(R.id.tv_country)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -33,16 +34,10 @@ class DestinationAdapter(
         val item = dataset[position]
 
         holder.city.text = item.city
+        holder.country.text = item.country
         holder.image.setImageResource(item.cityImage)
 
-        holder.moreDetails.setOnClickListener{
-            if (holder.destinationCard.visibility == View.INVISIBLE){
-                holder.destinationCard.visibility = View.VISIBLE
-                holder.destinationCard.visibility = View.VISIBLE
-            } else {
-                holder.destinationCard.visibility = View.INVISIBLE
-            }
-        }
+
     }
 
     override fun getItemCount(): Int {

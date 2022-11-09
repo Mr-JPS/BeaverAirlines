@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.beaverairlines.AuthViewModel
 import com.example.beaverairlines.R
@@ -27,6 +28,7 @@ import com.google.android.material.transition.MaterialElevationScale
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.login_card.view.*
 import kotlinx.android.synthetic.main.signup_card.view.*
+import java.security.AccessController.getContext
 
 
 class SigninLoginFragment : Fragment() {
@@ -34,12 +36,12 @@ class SigninLoginFragment : Fragment() {
     private lateinit var signup_card: Scene
     private lateinit var login_card: Scene
     private lateinit var currentScene: Scene
-    private var wasLoginClicked : Boolean = true
+    private var wasLoginClicked: Boolean = true
 
     private lateinit var transitionSignup2Login: Transition
     private lateinit var transitionLogin2Signup: Transition
 
-    private var firebaseAuth = FirebaseAuth.getInstance()
+    private var auth = FirebaseAuth.getInstance()
     private val viewModel: AuthViewModel by activityViewModels()
 
     private lateinit var binding: FragmentSigninBinding
@@ -57,7 +59,6 @@ class SigninLoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
 
         val transitionAnim = TransitionInflater.from(requireContext()).inflateTransition(
@@ -84,29 +85,37 @@ class SigninLoginFragment : Fragment() {
     }
 
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
+
 
         val wasLoginClicked = requireArguments().getBoolean("isLoginClicked", false)
 
 
-        signup_card = Scene.getSceneForLayout(binding.cardLayout, R.layout.signup_card, requireActivity())
-        login_card = Scene.getSceneForLayout(binding.cardLayout, R.layout.login_card, requireActivity())
+        signup_card =
+            Scene.getSceneForLayout(binding.cardLayout, R.layout.signup_card, requireActivity())
+        login_card =
+            Scene.getSceneForLayout(binding.cardLayout, R.layout.login_card, requireActivity())
 
 
 
-        if (wasLoginClicked){
+        if (wasLoginClicked) {
             login_card.enter()
             currentScene = login_card
             binding.signUpCardSwapFooterTv.text = getString(R.string.new_to_beaver_airlines)
             binding.signUpCardSwapBttn.text = getString(R.string.register)
 
-            binding.cardLayout.login_login_bttn.setOnClickListener{
-                    val email: String = binding.cardLayout.login_emaiInput_et.text.toString().trim {it <= ' '}
-                    val password: String = binding.cardLayout.login_passwordInput_et.text.toString().trim {it <= ' '}
+            binding.cardLayout.login_login_bttn.setOnClickListener {
+                val email: String =
+                    binding.cardLayout.login_emaiInput_et.text.toString().trim { it <= ' ' }
+                val password: String =
+                    binding.cardLayout.login_passwordInput_et.text.toString().trim { it <= ' ' }
                 loginUser(email, password)
+
+
             }
 
         } else {
@@ -116,9 +125,12 @@ class SigninLoginFragment : Fragment() {
             binding.signUpCardSwapBttn.text = getString(R.string.login)
 
             binding.cardLayout.signUp_signUp_bttn.setOnClickListener {
-                    val name: String = binding.cardLayout.signUp_nameInput_et.text.toString().trim {it <= ' '}
-                    val email: String = binding.cardLayout.signUp_emaiInput_et.text.toString().trim {it <= ' '}
-                    val password: String = binding.cardLayout.signUp_passwordInput_et.text.toString().trim {it <= ' '}
+                val name: String =
+                    binding.cardLayout.signUp_nameInput_et.text.toString().trim { it <= ' ' }
+                val email: String =
+                    binding.cardLayout.signUp_emaiInput_et.text.toString().trim { it <= ' ' }
+                val password: String =
+                    binding.cardLayout.signUp_passwordInput_et.text.toString().trim { it <= ' ' }
                 registerUser(name, email, password)
             }
         }
@@ -127,22 +139,26 @@ class SigninLoginFragment : Fragment() {
 
 
 
-        transitionSignup2Login = TransitionInflater.from(requireActivity()).inflateTransition(R.transition.card_change_signup2login)
-        transitionLogin2Signup = TransitionInflater.from(requireActivity()).inflateTransition(R.transition.card_change_login2signup)
+        transitionSignup2Login = TransitionInflater.from(requireActivity())
+            .inflateTransition(R.transition.card_change_signup2login)
+        transitionLogin2Signup = TransitionInflater.from(requireActivity())
+            .inflateTransition(R.transition.card_change_login2signup)
 
 
-        exitTransition = MaterialElevationScale( false)
+        exitTransition = MaterialElevationScale(false)
         reenterTransition = MaterialElevationScale(true)
 
 
         binding.signUpCardSwapBttn.setOnClickListener {
-            if(currentScene == signup_card) {
+            if (currentScene == signup_card) {
                 TransitionManager.go(login_card, transitionSignup2Login)
                 currentScene = login_card
 
-                binding.cardLayout.login_login_bttn.setOnClickListener{
-                    val email: String = binding.cardLayout.login_emaiInput_et.text.toString().trim {it <= ' '}
-                    val password: String = binding.cardLayout.login_passwordInput_et.text.toString().trim {it <= ' '}
+                binding.cardLayout.login_login_bttn.setOnClickListener {
+                    val email: String =
+                        binding.cardLayout.login_emaiInput_et.text.toString().trim { it <= ' ' }
+                    val password: String =
+                        binding.cardLayout.login_passwordInput_et.text.toString().trim { it <= ' ' }
                     loginUser(email, password)
                 }
 
@@ -154,9 +170,13 @@ class SigninLoginFragment : Fragment() {
                 currentScene = signup_card
 
                 binding.cardLayout.signUp_signUp_bttn.setOnClickListener {
-                    val name: String = binding.cardLayout.signUp_nameInput_et.text.toString().trim {it <= ' '}
-                    val email: String = binding.cardLayout.signUp_emaiInput_et.text.toString().trim {it <= ' '}
-                    val password: String = binding.cardLayout.signUp_passwordInput_et.text.toString().trim {it <= ' '}
+                    val name: String =
+                        binding.cardLayout.signUp_nameInput_et.text.toString().trim { it <= ' ' }
+                    val email: String =
+                        binding.cardLayout.signUp_emaiInput_et.text.toString().trim { it <= ' ' }
+                    val password: String =
+                        binding.cardLayout.signUp_passwordInput_et.text.toString()
+                            .trim { it <= ' ' }
                     registerUser(name, email, password)
                 }
 
@@ -165,13 +185,8 @@ class SigninLoginFragment : Fragment() {
             }
         }
 
-
-
-
-
-
-
     }
+
 
 
 
@@ -179,7 +194,7 @@ class SigninLoginFragment : Fragment() {
 
         if(validateRegistration(name, email, password)){
             Toast.makeText(getContext(), "Please wait...", Toast.LENGTH_SHORT).show()
-            firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
+            auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 //                      val firebaseUser: FirebaseUser = task.result!!.user!!
 //                    val registeredEmail = firebaseUser.email!!
@@ -230,10 +245,11 @@ class SigninLoginFragment : Fragment() {
 
         if(validateLogin(email, password)){
             Toast.makeText(getContext(), "Please wait...", Toast.LENGTH_SHORT).show()
-            firebaseAuth.signInWithEmailAndPassword(email, password)
+            auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        viewModel.currentUser = firebaseAuth.currentUser
+                        //viewModel.currentUser1 = auth.currentUser
+                        viewModel.currentUser = auth.currentUser
                         //val currentUser = auth.currentUser
                         Toast.makeText(getContext(), "You have successfully logged in!",
                             Toast.LENGTH_LONG).show()
@@ -283,6 +299,8 @@ class SigninLoginFragment : Fragment() {
         snackbar.show()
     }
 }
+
+
 
 
 
