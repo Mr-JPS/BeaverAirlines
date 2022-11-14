@@ -7,6 +7,19 @@
     tools:context=".onboarding.screens.Onboarding3">
 
 
+    <TextView
+        android:id="@+id/tv_getStarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gotic"
+        android:text="Get Started"
+        android:textAlignment="center"
+        android:textColor="#AE313F"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/OB_bttn3"
+        app:layout_constraintStart_toEndOf="@+id/OB_bttn3"
+        app:layout_constraintTop_toTopOf="@+id/OB_bttn3" />
 
     <TextView
         android:id="@+id/OB_text3"
@@ -14,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:fontFamily="@font/gotic"
-        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore"
+        android:text="The exclusive club membership offers you services that makes your journey smooth and comfortable"
         android:textAlignment="center"
         android:textColor="#462154"
         android:textSize="12sp"
@@ -31,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/mayaregular"
-        android:text="Join The Mile Hight Club"
+        android:text="Join The Mile-Hight Club"
         android:textAlignment="center"
         android:textColor="#AE313F"
         android:textSize="25sp"

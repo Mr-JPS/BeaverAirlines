@@ -5,18 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beaverairlines.R
 import com.example.beaverairlines.data.model.Destination
-import kotlinx.android.synthetic.main.destination_item.view.*
 
 class DestinationAdapter(
     private val dataset: List<Destination>
 ): RecyclerView.Adapter<DestinationAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(private val view: View): RecyclerView.ViewHolder(view){
-        val city: TextView = view.findViewById(R.id.tv_location)
+        val city: TextView = view.findViewById(R.id.tv_field1)
         val country: TextView = view.findViewById(R.id.tv_country)
         val image: ImageView = view.findViewById(R.id.iv_destination)
         val moreDetails: TextView = view.findViewById(R.id.tv_country)

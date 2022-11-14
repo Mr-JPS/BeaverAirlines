@@ -101,6 +101,9 @@ dependencies {
     implementation  'io.ak1:bubbletabbar:1.0.8'
 
 
+    implementation "com.amadeus:amadeus-java:6.4.0"
+
+
 
 
 

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:fontFamily="@font/gotic"
-        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore"
+        android:text="Booking Your flights was never easier. Get exact the experience You desire. Where ever you want - whenever you want"
         android:textAlignment="center"
         android:textColor="#462154"
         android:textSize="12sp"
@@ -79,5 +79,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/OB_picBackground1"
         app:srcCompat="@drawable/firstpic" />
+
+    <TextView
+        android:id="@+id/tv_swipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/gotic"
+        android:text="Please Swipe"
+        android:textAlignment="center"
+        android:textColor="#AE313F"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/OB_bttn1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/OB_bttn1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

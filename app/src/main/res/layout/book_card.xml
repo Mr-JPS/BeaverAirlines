@@ -11,13 +11,13 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="@+id/iv_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cloudsbackground5" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/iv_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
@@ -36,23 +36,22 @@
         android:rotation="4"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/home_plane" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/cv_bookField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="199dp"
+        android:layout_marginTop="200dp"
         android:visibility="visible"
         app:cardBackgroundColor="#00FFFFFF"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/cardView"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
@@ -61,48 +60,23 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="381dp"
-                android:layout_height="196dp"
+                android:id="@+id/iv_bookBackground"
+                android:layout_width="387dp"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/homeflightsearch" />
-
-            <AutoCompleteTextView
-                android:id="@+id/dash_travelSelect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="11dp"
-                android:fontFamily="@font/gotic"
-                android:text="Select Travel Dates"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView7"
-                app:layout_constraintEnd_toStartOf="@+id/imageView12"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <ImageView
-                android:id="@+id/imageView12"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/button3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/button3"
-                app:srcCompat="@drawable/whiteline" />
+                app:srcCompat="@drawable/bookcardnew1" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/bttn_search"
                 android:layout_width="wrap_content"
                 android:layout_height="44dp"
-                android:layout_marginStart="9dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="8dp"
                 android:background="#00FFFFFF"
                 android:elevation="0dp"
                 android:fontFamily="@font/mayaregular"
@@ -113,157 +87,125 @@
                 app:cornerRadius="18dp"
                 app:iconPadding="5dp"
                 app:iconTint="#16FFFFFF"
-                app:layout_constraintBottom_toBottomOf="@+id/dash_travelSelect"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_bookBackground"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView12"
-                app:layout_constraintTop_toTopOf="@+id/dash_travelSelect"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:id="@+id/bttn_plane"
+                android:layout_width="53dp"
+                android:layout_height="50dp"
                 android:layout_marginEnd="-27dp"
                 android:backgroundTint="#00FFFFFF"
                 android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="@+id/button3"
-                app:layout_constraintEnd_toStartOf="@+id/button3"
-                app:layout_constraintTop_toTopOf="@+id/button3"
+                app:layout_constraintBottom_toBottomOf="@+id/bttn_search"
+                app:layout_constraintEnd_toStartOf="@+id/bttn_search"
+                app:layout_constraintTop_toTopOf="@+id/bttn_search"
                 app:srcCompat="@drawable/reshot_icon_airplane_r8fnbxgpkm"
                 app:tint="#AE313F"
                 tools:ignore="SpeakableTextPresentCheck" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="#00FFFFFF"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardView2"
-        app:layout_constraintVertical_bias="0.0">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="379dp"
-                android:layout_height="142dp"
-                android:adjustViewBounds="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/homeflightcardcrop" />
-
-            <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/iv_bookIcon"
                 android:layout_width="60dp"
                 android:layout_height="95dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_bookBackground"
                 app:srcCompat="@drawable/homeflightlogo" />
 
             <TextView
-                android:id="@+id/dash_depIATA"
+                android:id="@+id/tv_IATAdeparture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="2dp"
                 android:fontFamily="@font/mayaregular"
                 android:text="BER"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="35sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-                app:layout_constraintEnd_toStartOf="@+id/imageView4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView4"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="@+id/tv_departText"
+                app:layout_constraintStart_toStartOf="@+id/tv_departText"
+                app:layout_constraintTop_toBottomOf="@+id/tv_departText" />
 
             <TextView
-                android:id="@+id/dash_arrIATA"
+                android:id="@+id/tv_IATAarrival"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="2dp"
                 android:fontFamily="@font/mayaregular"
-                android:text="LHR"
+                android:text="TO"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="35sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-                app:layout_constraintEnd_toEndOf="@+id/imageView2"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toTopOf="@+id/imageView4"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="@+id/tv_arrival"
+                app:layout_constraintStart_toStartOf="@+id/tv_arrival"
+                app:layout_constraintTop_toBottomOf="@+id/tv_arrival" />
 
             <TextView
-                android:id="@+id/OB_text"
+                android:id="@+id/tv_departText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/gotic"
                 android:text="DEPARTURE"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toTopOf="@+id/dash_depIATA"
-                app:layout_constraintEnd_toEndOf="@+id/dash_depIATA"
-                app:layout_constraintStart_toStartOf="@+id/dash_depIATA" />
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/iv_bookIcon"
+                app:layout_constraintStart_toStartOf="@+id/iv_bookBackground"
+                app:layout_constraintTop_toTopOf="@+id/iv_bookIcon" />
 
             <AutoCompleteTextView
-                android:id="@+id/dash_depCitySelect"
+                android:id="@+id/tv_arriveCitySelect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
                 android:fontFamily="@font/gotic"
                 android:text="Select Location"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-                app:layout_constraintEnd_toEndOf="@+id/dash_depIATA"
-                app:layout_constraintStart_toStartOf="@+id/dash_depIATA"
-                app:layout_constraintTop_toBottomOf="@+id/dash_depIATA"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_IATAarrival"
+                app:layout_constraintStart_toStartOf="@+id/tv_IATAarrival"
+                app:layout_constraintTop_toBottomOf="@+id/tv_IATAarrival"
                 tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
             <AutoCompleteTextView
-                android:id="@+id/dash_arrCitySelect"
+                android:id="@+id/tv_departCitySelect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
                 android:fontFamily="@font/gotic"
                 android:text="Select Location"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-                app:layout_constraintEnd_toEndOf="@+id/dash_arrIATA"
-                app:layout_constraintStart_toStartOf="@+id/dash_arrIATA"
-                app:layout_constraintTop_toBottomOf="@+id/dash_arrIATA"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_IATAdeparture"
+                app:layout_constraintStart_toStartOf="@+id/tv_IATAdeparture"
+                app:layout_constraintTop_toBottomOf="@+id/tv_IATAdeparture"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
-                android:id="@+id/OB_text4"
+                android:id="@+id/tv_arrival"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="15dp"
                 android:fontFamily="@font/gotic"
                 android:text="ARRIVAL"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="8sp"
-                app:layout_constraintBottom_toTopOf="@+id/dash_arrIATA"
-                app:layout_constraintEnd_toEndOf="@+id/dash_arrIATA"
-                app:layout_constraintStart_toStartOf="@+id/dash_arrIATA" />
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_bookBackground"
+                app:layout_constraintStart_toEndOf="@+id/iv_bookIcon"
+                app:layout_constraintTop_toTopOf="@+id/iv_bookIcon" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import com.example.beaverairlines.AuthViewModel
+import com.example.beaverairlines.R
 import com.example.beaverairlines.adapter.AdvertisingAdapter
 import com.example.beaverairlines.adapter.DestinationAdapter
 import com.example.beaverairlines.data.model.AdSource
@@ -43,9 +45,18 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val slideInRight = AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.slide_in_right)
+
+
+
         //binding.helloCard.tvUserName.setText("luca")
 
-        getCurrentUserName()
+        getUserName()
+
+        binding.cvBook.ivPlane2.startAnimation(slideInRight)
+
 
         val destinations = DestinationSource().loadDestination()
 
@@ -59,16 +70,19 @@ class DashboardFragment : Fragment() {
 
 //        val snapHelper: SnapHelper = PagerSnapHelper()
 //        snapHelper.attachToRecyclerView(binding.destinationRecycler)
+
     }
 
-    fun getCurrentUserName() {
+    fun getUserName() {
         db.collection("user").document(auth.currentUser!!.uid)
             .get()
             .addOnSuccessListener {
                 val userName = it.getString("fullName")
 
-                binding.helloCard.tvUserName.text = userName
+                binding.cvHello.tvUserName.text = userName
             }
     }
 }
+
+
 

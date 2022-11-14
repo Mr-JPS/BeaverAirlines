@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/expandCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-16dp"
+            android:visibility="visible"
+            app:cardCornerRadius="13dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="@+id/cv_bookField"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/cv_bookField"
+            app:layout_constraintTop_toBottomOf="@+id/cv_bookField">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bookbackground1">
+
+                <LinearLayout
+                    android:id="@+id/expandableLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/expandConstraint1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <ImageButton
+                            android:id="@+id/ib_arrow2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="#00FFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cv_contacts"
+                            app:srcCompat="@drawable/ic_round_keyboard_arrow_down_24"
+                            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_contacts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="#FFFFFF"
+                            app:cardBackgroundColor="#24EFECED"
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="335dp"
+                                android:layout_height="match_parent"
+                                android:background="#00FFFFFF">
+
+                                <TextView
+                                    android:id="@+id/tv_depDateText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="13dp"
+                                    android:fontFamily="@font/mayabold"
+                                    android:text="DEPARTURE DATE"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="8sp"
+                                    app:layout_constraintEnd_toStartOf="@+id/iv_3"
+                                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/tv_returnDateText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="13dp"
+                                    android:fontFamily="@font/mayabold"
+                                    android:text="RETURN DATE"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="8sp"
+                                    app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                                    app:layout_constraintStart_toEndOf="@+id/iv_3"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/iv_3"
+                                    android:layout_width="3dp"
+                                    android:layout_height="0dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/whiteline" />
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/tv_depDateSelect"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:fontFamily="@font/gotic"
+                                    android:text="Select Date"
+                                    android:textAlignment="center"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="10sp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/iv_3"
+                                    app:layout_constraintEnd_toEndOf="@+id/tv_depDateText"
+                                    app:layout_constraintStart_toStartOf="@+id/tv_depDateText"
+                                    app:layout_constraintTop_toBottomOf="@+id/tv_depDateText"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/tv_arriveDateSelect"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:fontFamily="@font/gotic"
+                                    android:text="Select Date"
+                                    android:textAlignment="center"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="10sp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/iv_3"
+                                    app:layout_constraintEnd_toEndOf="@+id/tv_returnDateText"
+                                    app:layout_constraintStart_toStartOf="@+id/tv_returnDateText"
+                                    app:layout_constraintTop_toBottomOf="@+id/tv_returnDateText"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                                <ImageView
+                                    android:id="@+id/imageView2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/ic_round_flight_takeoff_24" />
+
+                                <ImageView
+                                    android:id="@+id/imageView4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="8dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/ic_round_flight_land_24" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/expandConstraint2"
+                        android:layout_width="match_parent"
+                        android:layout_height="230dp"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_cabinClass"
+                            android:layout_width="343dp"
+                            android:layout_height="210dp"
+                            android:layoutAnimation="@anim/layout1_animation"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:itemCount="3"
+                            tools:listitem="@layout/cabin_class_card" />
+
+                        <ImageButton
+                            android:id="@+id/ib_arrow3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-15dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="#00FFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/rv_cabinClass"
+                            app:srcCompat="@drawable/ic_round_keyboard_arrow_down_24"
+                            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/expandConstraint3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <ImageButton
+                            android:id="@+id/ib_arrow4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="#00FFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cv_passenger"
+                            app:srcCompat="@drawable/ic_round_keyboard_arrow_down_24"
+                            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_passenger"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="16dp"
+                            android:background="#FFFFFF"
+                            app:cardBackgroundColor="#24EFECED"
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="335dp"
+                                android:layout_height="match_parent"
+                                android:background="#00FFFFFF">
+
+                                <TextView
+                                    android:id="@+id/tv_1.1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="13dp"
+                                    android:fontFamily="@font/mayabold"
+                                    android:text="ADULT PASSENGERS"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="8sp"
+                                    app:layout_constraintEnd_toStartOf="@+id/iv_3.1"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/tv_2.1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="13dp"
+                                    android:fontFamily="@font/mayabold"
+                                    android:text="INFANT PASSENGERS"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="8sp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/iv_3.1"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/iv_3.1"
+                                    android:layout_width="3dp"
+                                    android:layout_height="0dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/whiteline"
+                                    tools:ignore="DuplicateIds" />
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/tv_4.1"
+                                    android:layout_width="20dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="3dp"
+                                    android:fontFamily="@font/gotic"
+                                    android:text="1"
+                                    android:textAlignment="center"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="@+id/iv_3.1"
+                                    app:layout_constraintEnd_toEndOf="@+id/tv_1.1"
+                                    app:layout_constraintStart_toStartOf="@+id/tv_1.1"
+                                    app:layout_constraintTop_toBottomOf="@+id/tv_1.1"
+                                    tools:ignore="DuplicateIds,TouchTargetSizeCheck" />
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/tv_5.1"
+                                    android:layout_width="20dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="3dp"
+                                    android:fontFamily="@font/gotic"
+                                    android:text="0"
+                                    android:textAlignment="center"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="@+id/iv_3.1"
+                                    app:layout_constraintEnd_toEndOf="@+id/tv_2.1"
+                                    app:layout_constraintStart_toStartOf="@+id/tv_2.1"
+                                    app:layout_constraintTop_toBottomOf="@+id/tv_returnDateText"
+                                    app:layout_constraintVertical_bias="0.0"
+                                    tools:ignore="DuplicateIds,NotSibling,TouchTargetSizeCheck" />
+
+                                <ImageView
+                                    android:id="@+id/imageView16"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginEnd="8dp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tv_4.1"
+                                    app:layout_constraintEnd_toStartOf="@+id/tv_4.1"
+                                    app:layout_constraintTop_toTopOf="@+id/tv_4.1"
+                                    app:srcCompat="@drawable/remove"
+                                    tools:ignore="NotSibling" />
+
+                                <ImageView
+                                    android:id="@+id/imageView17"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginStart="8dp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tv_4.1"
+                                    app:layout_constraintStart_toEndOf="@+id/tv_4.1"
+                                    app:layout_constraintTop_toBottomOf="@+id/tv_1.1"
+                                    app:srcCompat="@drawable/add"
+                                    tools:ignore="NotSibling" />
+
+                                <ImageView
+                                    android:id="@+id/imageView18"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginStart="8dp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tv_5.1"
+                                    app:layout_constraintStart_toEndOf="@+id/tv_5.1"
+                                    app:layout_constraintTop_toTopOf="@+id/tv_5.1"
+                                    app:srcCompat="@drawable/add"
+                                    tools:ignore="NotSibling" />
+
+                                <ImageView
+                                    android:id="@+id/imageView19"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginEnd="8dp"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tv_5.1"
+                                    app:layout_constraintEnd_toStartOf="@+id/tv_5.1"
+                                    app:layout_constraintTop_toBottomOf="@+id/tv_2.1"
+                                    app:srcCompat="@drawable/remove"
+                                    tools:ignore="NotSibling" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/expandConstraint4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_extras"
+                            android:layout_width="333dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:background="#00FFFFFF"
+                            app:cardBackgroundColor="#00EFECED"
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="151dp"
+                                android:background="#00FFFFFF"
+                                android:visibility="visible">
+
+                                <RadioButton
+                                    android:id="@+id/radioButton"
+                                    android:layout_width="141dp"
+                                    android:layout_height="34dp"
+                                    android:button="@drawable/ic_outline_airplane_ticket_24"
+                                    android:buttonTint="#FFFFFF"
+                                    android:clickable="true"
+                                    android:fontFamily="@font/gotic"
+                                    android:text="   Use Your Mile-Highs"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="10sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="0.0"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                                <RadioButton
+                                    android:id="@+id/radioButton2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="34dp"
+                                    android:layout_marginTop="-3dp"
+                                    android:button="@drawable/ic_baseline_room_service_24"
+                                    android:buttonTint="#FFFFFF"
+                                    android:clickable="true"
+                                    android:fontFamily="@font/gotic"
+                                    android:text="   Book additional extras for this flight"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="10sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/radioButton"
+                                    app:layout_constraintTop_toBottomOf="@+id/radioButton"
+                                    app:layout_constraintVertical_bias="0.0"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                                <RadioButton
+                                    android:id="@+id/radioButton3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="34dp"
+                                    android:layout_marginTop="-3dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:button="@drawable/ic_baseline_auto_awesome_24"
+                                    android:buttonTint="#FFFFFF"
+                                    android:clickable="true"
+                                    android:fontFamily="@font/gotic"
+                                    android:text="   Do You have a promo code?"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="10sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.0"
+                                    app:layout_constraintStart_toStartOf="@+id/radioButton2"
+                                    app:layout_constraintTop_toBottomOf="@+id/radioButton2"
+                                    app:layout_constraintVertical_bias="0.0"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                                <Button
+                                    android:id="@+id/bttn_searchFlights"
+                                    android:layout_width="118dp"
+                                    android:layout_height="43dp"
+                                    android:layout_marginTop="28dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:backgroundTint="@color/red_700"
+                                    android:fontFamily="@font/mayaregular"
+                                    android:text="Let's Fly"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold"
+                                    app:cornerRadius="20dp"
+                                    app:icon="@drawable/ic_baseline_connecting_airports_24"
+                                    app:iconTint="#FFFFFF"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/radioButton3"
+                                    tools:ignore="TouchTargetSizeCheck" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.cardview.widget.CardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_bookField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:cardBackgroundColor="#00FFFFFF"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_bookBackground"
+                    android:layout_width="387dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/bookcardnew1" />
+
+                <ImageView
+                    android:id="@+id/iv_bookIcon"
+                    android:layout_width="60dp"
+                    android:layout_height="95dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_bookBackground"
+                    app:srcCompat="@drawable/homeflightlogo" />
+
+                <TextView
+                    android:id="@+id/tv_IATAdeparture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/mayaregular"
+                    android:text="BER"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="35sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_departText"
+                    app:layout_constraintStart_toStartOf="@+id/tv_departText"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_departText" />
+
+                <TextView
+                    android:id="@+id/tv_IATAarrival"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/mayaregular"
+                    android:text="TO"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="35sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_arrival"
+                    app:layout_constraintStart_toStartOf="@+id/tv_arrival"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_arrival" />
+
+                <TextView
+                    android:id="@+id/tv_departText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/gotic"
+                    android:text="DEPARTURE"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_bookIcon"
+                    app:layout_constraintStart_toStartOf="@+id/iv_bookBackground"
+                    app:layout_constraintTop_toTopOf="@+id/iv_bookIcon" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_arriveCitySelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/gotic"
+                    android:text="Select Location"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_IATAarrival"
+                    app:layout_constraintStart_toStartOf="@+id/tv_IATAarrival"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_IATAarrival"
+                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/tv_departCitySelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/gotic"
+                    android:text="Select Location"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_IATAdeparture"
+                    app:layout_constraintStart_toStartOf="@+id/tv_IATAdeparture"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_IATAdeparture"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tv_arrival"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:fontFamily="@font/gotic"
+                    android:text="ARRIVAL"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_bookBackground"
+                    app:layout_constraintStart_toEndOf="@+id/iv_bookIcon"
+                    app:layout_constraintTop_toTopOf="@+id/iv_bookIcon" />
+
+                <ImageButton
+                    android:id="@+id/ib_arrow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="#00FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_round_keyboard_arrow_down_24"
+                    tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                <ImageView
+                    android:id="@+id/iv_redlineIndicator"
+                    android:layout_width="55dp"
+                    android:layout_height="17dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_departCitySelect"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/tv_departCitySelect"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_bookIcon"
+                    app:srcCompat="@drawable/redline"
+                    tools:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/iv_redlineIndicator2"
+                    android:layout_width="66dp"
+                    android:layout_height="17dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_redlineIndicator"
+                    app:layout_constraintStart_toEndOf="@+id/iv_redlineIndicator"
+                    app:layout_constraintTop_toTopOf="@+id/iv_redlineIndicator"
+                    app:srcCompat="@drawable/redline"
+                    tools:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/iv_redlineIndicator3"
+                    android:layout_width="70dp"
+                    android:layout_height="17dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_redlineIndicator"
+                    app:layout_constraintStart_toEndOf="@+id/iv_redlineIndicator2"
+                    app:layout_constraintTop_toTopOf="@+id/iv_redlineIndicator"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/redline"
+                    tools:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/iv_redlineIndicator4"
+                    android:layout_width="70dp"
+                    android:layout_height="17dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_redlineIndicator"
+                    app:layout_constraintStart_toEndOf="@+id/iv_redlineIndicator3"
+                    app:layout_constraintTop_toTopOf="@+id/iv_redlineIndicator"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/redline"
+                    tools:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/iv_planeIndicator"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:rotation="45"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_redlineIndicator"
+                    app:layout_constraintStart_toStartOf="@+id/iv_redlineIndicator"
+                    app:layout_constraintTop_toTopOf="@+id/iv_redlineIndicator"
+                    app:srcCompat="@drawable/flugzeug2klein"
+                    tools:visibility="visible" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

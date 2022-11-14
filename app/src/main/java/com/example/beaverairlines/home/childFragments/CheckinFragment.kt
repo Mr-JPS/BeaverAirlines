@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import com.example.beaverairlines.R
 
 
+
+
 class CheckinFragment : Fragment() {
 
     override fun onCreateView(
@@ -20,5 +22,10 @@ class CheckinFragment : Fragment() {
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //val client: DuffelApiClient = ("duffel_test_VBLYDE4AS2Cg7SVBdEYFvrahFvhFqQo1HTygIv7FDje")
+    }
 
 }

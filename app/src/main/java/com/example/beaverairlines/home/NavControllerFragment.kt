@@ -148,9 +148,12 @@ class NavControllerFragment: Fragment() {
                 requireContext(),
                 R.anim.bttn_slide_in)
 
+            binding.navBackGround.startAnimation(slideIn)
             binding.bubbleTabBar.startAnimation(slideIn)
-
+            binding.navBackGround.visibility = View.VISIBLE
             binding.bubbleTabBar.visibility = View.VISIBLE
+
+
         } else {
             animator!!.reverse()
 
@@ -158,9 +161,16 @@ class NavControllerFragment: Fragment() {
                 requireContext(),
                 R.anim.bttn_slide_out)
 
-            binding.bubbleTabBar.startAnimation(slideOut)
+            val fastSlideOut = AnimationUtils.loadAnimation(
+                requireContext(),
+                R.anim.bttnbar_slide_out)
 
+            binding.navBackGround.startAnimation(fastSlideOut)
+            binding.bubbleTabBar.startAnimation(slideOut)
+            binding.navBackGround.visibility = View.INVISIBLE
             binding.bubbleTabBar.visibility = View.INVISIBLE
+
+
         }
     }
 

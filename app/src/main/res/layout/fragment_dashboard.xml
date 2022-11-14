@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ScrollView
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -31,10 +31,12 @@
                     android:orientation="vertical">
 
                     <include
-                        android:id="@+id/hello_card"
+                        android:id="@+id/cv_hello"
                         layout="@layout/hello_card" />
 
-                    <include layout="@layout/book_card" />
+                    <include
+                        android:id="@+id/cv_book"
+                        layout="@layout/book_card" />
 
 
 
@@ -80,9 +82,13 @@
 
                     </androidx.cardview.widget.CardView>
 
-                    <include layout="@layout/checkin_card" />
+                    <include
+                        android:id="@+id/cv_checkin"
+                        layout="@layout/checkin_card" />
 
-                    <include layout="@layout/google_card" />
+                    <include
+                        android:id="@+id/cv_heyGoogle"
+                        layout="@layout/google_card" />
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_destination"
@@ -126,8 +132,12 @@
 
                     </androidx.cardview.widget.CardView>
 
+                    <include
+                        android:id="@+id/cv_moreServices"
+                        layout="@layout/more_services" />
+
                 </LinearLayout>
-            </ScrollView>
+            </androidx.core.widget.NestedScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

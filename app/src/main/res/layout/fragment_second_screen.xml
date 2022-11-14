@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:fontFamily="@font/gotic"
-        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore"
+        android:text="The Beaver Check-In provides you a fast and easy way to get Your boarding card with all the unique additional services"
         android:textAlignment="center"
         android:textColor="#462154"
         android:textSize="12sp"
@@ -78,6 +78,23 @@
         app:layout_constraintStart_toStartOf="@+id/OB_picBackground2"
         app:layout_constraintTop_toTopOf="@+id/OB_picBackground2"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_swipe2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/gotic"
+        android:text="Please Swipe"
+        android:textAlignment="center"
+        android:textColor="#AE313F"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/OB_bttn2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/OB_bttn2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

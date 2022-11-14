@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="390dp"
+        android:layout_height="302dp"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cv_bookField"
+        app:layout_constraintStart_toStartOf="@+id/cv_bookField"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="384dp"
+                android:layout_height="251dp"
+                android:adjustViewBounds="true"
+                android:alpha="0.3"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.76"
+                app:srcCompat="@drawable/bookcardnew2" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="114dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:itemCount="3"
+                tools:listitem="@layout/cabin_class_card" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_bookField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:visibility="visible"
+        app:cardBackgroundColor="#00FFFFFF"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_bookBackground"
+                android:layout_width="387dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bookcardnew2" />
+
+            <TextView
+                android:id="@+id/tv_departure3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/gotic"
+                android:text="1 PASSENGER "
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+                app:layout_constraintStart_toEndOf="@+id/imageView7"
+                app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+            <TextView
+                android:id="@+id/tv_departure4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotic"
+                android:text="FIRST CLASS CABIN"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+                app:layout_constraintStart_toEndOf="@+id/imageView10"
+                app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+            <Button
+                android:id="@+id/bttn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="24dp"
+                android:background="#00FFFFFF"
+                android:elevation="0dp"
+                android:fontFamily="@font/mayaregular"
+                android:text="SEARCH NOW"
+                android:textAlignment="viewEnd"
+                android:textColor="#AE313F"
+                android:textSize="10sp"
+                app:cornerRadius="18dp"
+                app:iconPadding="5dp"
+                app:iconTint="#16FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_bookBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageButton
+                android:id="@+id/bttn_plane"
+                android:layout_width="53dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="-27dp"
+                android:backgroundTint="#00FFFFFF"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="@+id/bttn_search"
+                app:layout_constraintEnd_toStartOf="@+id/bttn_search"
+                app:layout_constraintTop_toTopOf="@+id/bttn_search"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/reshot_icon_airplane_r8fnbxgpkm"
+                app:tint="#AE313F"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/iv_bookIcon"
+                android:layout_width="60dp"
+                android:layout_height="95dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_bookBackground"
+                app:srcCompat="@drawable/homeflightlogo" />
+
+            <TextView
+                android:id="@+id/tv_IATAdeparture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/mayaregular"
+                android:text="BER"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_departText"
+                app:layout_constraintStart_toStartOf="@+id/tv_departText"
+                app:layout_constraintTop_toBottomOf="@+id/tv_departText" />
+
+            <TextView
+                android:id="@+id/tv_IATAarrival"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/mayaregular"
+                android:text="LHR"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_arrival"
+                app:layout_constraintStart_toStartOf="@+id/tv_arrival"
+                app:layout_constraintTop_toBottomOf="@+id/tv_arrival" />
+
+            <TextView
+                android:id="@+id/tv_departText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/gotic"
+                android:text="DEPARTURE"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@+id/iv_bookIcon"
+                app:layout_constraintStart_toStartOf="@+id/iv_bookBackground"
+                app:layout_constraintTop_toTopOf="@+id/iv_bookIcon" />
+
+            <AutoCompleteTextView
+                android:id="@+id/tv_arriveCitySelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/gotic"
+                android:text="Select Location"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_IATAarrival"
+                app:layout_constraintStart_toStartOf="@+id/tv_IATAarrival"
+                app:layout_constraintTop_toBottomOf="@+id/tv_IATAarrival"
+                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+            <AutoCompleteTextView
+                android:id="@+id/tv_departCitySelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/gotic"
+                android:text="Select Location"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_IATAdeparture"
+                app:layout_constraintStart_toStartOf="@+id/tv_IATAdeparture"
+                app:layout_constraintTop_toBottomOf="@+id/tv_IATAdeparture"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/tv_arrival"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/gotic"
+                android:text="ARRIVAL"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/iv_bookBackground"
+                app:layout_constraintStart_toEndOf="@+id/iv_bookIcon"
+                app:layout_constraintTop_toTopOf="@+id/iv_bookIcon" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_contacts"
+                android:layout_width="314dp"
+                android:layout_height="52dp"
+                android:background="#FFFFFF"
+                app:cardBackgroundColor="#24EFECED"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/iv_bookBackground"
+                app:layout_constraintStart_toStartOf="@+id/iv_bookBackground"
+                app:layout_constraintTop_toBottomOf="@+id/iv_bookIcon"
+                app:layout_constraintVertical_bias="0.41000003">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#00FFFFFF">
+
+                    <TextView
+                        android:id="@+id/tv_depDateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11dp"
+                        android:fontFamily="@font/mayabold"
+                        android:text="DEPARTURE DATE"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="8sp"
+                        app:layout_constraintEnd_toStartOf="@+id/iv_3"
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_returnDateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11dp"
+                        android:fontFamily="@font/mayabold"
+                        android:text="RETURN DATE"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="8sp"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                        app:layout_constraintStart_toEndOf="@+id/iv_3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/iv_3"
+                        android:layout_width="3dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/whiteline" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/tv_depDateSelect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/gotic"
+                        android:text="Select Date"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_3"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_depDateText"
+                        app:layout_constraintStart_toStartOf="@+id/tv_depDateText"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_depDateText"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/tv_arriveDateSelect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/gotic"
+                        android:text="Select Date"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_3"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_returnDateText"
+                        app:layout_constraintStart_toStartOf="@+id/tv_returnDateText"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_returnDateText"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_round_flight_takeoff_24" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_round_flight_land_24" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="@+id/cv_contacts"
+                app:layout_constraintTop_toBottomOf="@+id/cv_contacts"
+                app:srcCompat="@drawable/logo2" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+                app:layout_constraintStart_toEndOf="@+id/tv_departure3"
+                app:layout_constraintTop_toTopOf="@+id/imageView7"
+                app:srcCompat="@drawable/classes" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
