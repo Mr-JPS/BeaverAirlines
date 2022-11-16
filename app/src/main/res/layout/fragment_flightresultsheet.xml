@@ -42,9 +42,9 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="361dp"
-            android:layout_height="729dp"
+            android:id="@+id/rv_flightResultsList"
+            android:layout_width="0dp"
+            android:layout_height="719dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"

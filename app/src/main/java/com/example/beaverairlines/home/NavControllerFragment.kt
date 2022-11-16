@@ -7,15 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.beaverairlines.AuthViewModel
 import com.example.beaverairlines.R
+import com.example.beaverairlines.SwipeControlTouchListener
+import com.example.beaverairlines.SwipeDirection
 import com.example.beaverairlines.data.User
 import com.example.beaverairlines.databinding.FragmentNavControllerBinding
 import com.example.beaverairlines.home.childFragments.BookFragment
@@ -31,6 +35,10 @@ class NavControllerFragment: Fragment() {
 
     private var _binding: FragmentNavControllerBinding? = null
     private val binding get() = _binding!!
+
+    private val swipeControlTouchListener by lazy {
+        SwipeControlTouchListener()
+    }
 
 
 
@@ -70,6 +78,18 @@ class NavControllerFragment: Fragment() {
         val adapter = ViewPagerAdapter(this)
         binding.pager.adapter = adapter
 
+        //um das swipen im viewPager zu kontrollieren
+        val viewPager2recyclerView = binding.pager[0] as? RecyclerView
+        if(viewPager2recyclerView != null){
+            swipeControlTouchListener.setSwipeDirection(SwipeDirection.ALL)
+            viewPager2recyclerView.addOnItemTouchListener(swipeControlTouchListener)
+        }
+
+
+
+
+        //binding.pager.isUserInputEnabled(false)
+
         // page changes vom viewpager durch swipen auch in der bubble bar anzeigen
         binding.pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -77,6 +97,8 @@ class NavControllerFragment: Fragment() {
                 binding.bubbleTabBar.setSelected(position)
             }
         })
+
+
 
         // beim anklicken in der bubble bar page changes beim viewpager hervorrufen
         binding.bubbleTabBar.addBubbleListener { id ->

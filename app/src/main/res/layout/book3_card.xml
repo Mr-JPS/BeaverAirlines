@@ -115,32 +115,36 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:srcCompat="@drawable/whiteline" />
 
-                                <AutoCompleteTextView
+                                <TextView
                                     android:id="@+id/tv_depDateSelect"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="13dp"
                                     android:fontFamily="@font/gotic"
                                     android:text="Select Date"
                                     android:textAlignment="center"
                                     android:textColor="#FFFFFF"
                                     android:textSize="10sp"
+                                    android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="@+id/iv_3"
                                     app:layout_constraintEnd_toEndOf="@+id/tv_depDateText"
                                     app:layout_constraintStart_toStartOf="@+id/tv_depDateText"
                                     app:layout_constraintTop_toBottomOf="@+id/tv_depDateText"
                                     tools:ignore="TouchTargetSizeCheck" />
 
-                                <AutoCompleteTextView
+                                <TextView
                                     android:id="@+id/tv_arriveDateSelect"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="13dp"
                                     android:fontFamily="@font/gotic"
                                     android:text="Select Date"
                                     android:textAlignment="center"
                                     android:textColor="#FFFFFF"
                                     android:textSize="10sp"
+                                    android:textStyle="bold"
                                     app:layout_constraintBottom_toBottomOf="@+id/iv_3"
                                     app:layout_constraintEnd_toEndOf="@+id/tv_returnDateText"
                                     app:layout_constraintStart_toStartOf="@+id/tv_returnDateText"
@@ -177,17 +181,42 @@
                         android:visibility="gone"
                         tools:visibility="visible">
 
+                        <ImageView
+                            android:id="@+id/iv_cabinClassSeatIcon"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_marginStart="12dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/rv_cabinClass"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/classes" />
+
+                        <TextView
+                            android:id="@+id/tv_cabinSelectedText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/gotic"
+                            android:text="FIRST CLASS CABIN"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/iv_cabinClassSeatIcon"
+                            app:layout_constraintStart_toEndOf="@+id/iv_cabinClassSeatIcon"
+                            app:layout_constraintTop_toTopOf="@+id/iv_cabinClassSeatIcon" />
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_cabinClass"
-                            android:layout_width="343dp"
-                            android:layout_height="210dp"
+                            android:layout_width="348dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:layoutAnimation="@anim/layout1_animation"
                             android:orientation="horizontal"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_cabinClassSeatIcon"
                             app:layout_constraintVertical_bias="0.0"
                             tools:itemCount="3"
                             tools:listitem="@layout/cabin_class_card" />
@@ -196,13 +225,14 @@
                             android:id="@+id/ib_arrow3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="-15dp"
+                            android:layout_marginTop="16dp"
                             android:layout_marginBottom="8dp"
                             android:background="#00FFFFFF"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/rv_cabinClass"
+                            app:layout_constraintVertical_bias="0.0"
                             app:srcCompat="@drawable/ic_round_keyboard_arrow_down_24"
                             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -289,7 +319,7 @@
                                     tools:ignore="DuplicateIds" />
 
                                 <AutoCompleteTextView
-                                    android:id="@+id/tv_4.1"
+                                    android:id="@+id/tv_adultAmount"
                                     android:layout_width="20dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="3dp"
@@ -306,7 +336,7 @@
                                     tools:ignore="DuplicateIds,TouchTargetSizeCheck" />
 
                                 <AutoCompleteTextView
-                                    android:id="@+id/tv_5.1"
+                                    android:id="@+id/tv_infantAmount"
                                     android:layout_width="20dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="3dp"
@@ -324,45 +354,45 @@
                                     tools:ignore="DuplicateIds,NotSibling,TouchTargetSizeCheck" />
 
                                 <ImageView
-                                    android:id="@+id/imageView16"
+                                    android:id="@+id/bttn_adultMinus"
                                     android:layout_width="15dp"
                                     android:layout_height="15dp"
                                     android:layout_marginEnd="8dp"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_4.1"
-                                    app:layout_constraintEnd_toStartOf="@+id/tv_4.1"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_4.1"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tv_adultAmount"
+                                    app:layout_constraintEnd_toStartOf="@+id/tv_adultAmount"
+                                    app:layout_constraintTop_toTopOf="@+id/tv_adultAmount"
                                     app:srcCompat="@drawable/remove"
                                     tools:ignore="NotSibling" />
 
                                 <ImageView
-                                    android:id="@+id/imageView17"
+                                    android:id="@+id/bttn_adultPlus"
                                     android:layout_width="15dp"
                                     android:layout_height="15dp"
                                     android:layout_marginStart="8dp"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_4.1"
-                                    app:layout_constraintStart_toEndOf="@+id/tv_4.1"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tv_adultAmount"
+                                    app:layout_constraintStart_toEndOf="@+id/tv_adultAmount"
                                     app:layout_constraintTop_toBottomOf="@+id/tv_1.1"
                                     app:srcCompat="@drawable/add"
                                     tools:ignore="NotSibling" />
 
                                 <ImageView
-                                    android:id="@+id/imageView18"
+                                    android:id="@+id/bttn_infantPlus"
                                     android:layout_width="15dp"
                                     android:layout_height="15dp"
                                     android:layout_marginStart="8dp"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_5.1"
-                                    app:layout_constraintStart_toEndOf="@+id/tv_5.1"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_5.1"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tv_infantAmount"
+                                    app:layout_constraintStart_toEndOf="@+id/tv_infantAmount"
+                                    app:layout_constraintTop_toTopOf="@+id/tv_infantAmount"
                                     app:srcCompat="@drawable/add"
                                     tools:ignore="NotSibling" />
 
                                 <ImageView
-                                    android:id="@+id/imageView19"
+                                    android:id="@+id/bttn_infantMinus"
                                     android:layout_width="15dp"
                                     android:layout_height="15dp"
                                     android:layout_marginEnd="8dp"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_5.1"
-                                    app:layout_constraintEnd_toStartOf="@+id/tv_5.1"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tv_infantAmount"
+                                    app:layout_constraintEnd_toStartOf="@+id/tv_infantAmount"
                                     app:layout_constraintTop_toBottomOf="@+id/tv_2.1"
                                     app:srcCompat="@drawable/remove"
                                     tools:ignore="NotSibling" />
@@ -402,6 +432,7 @@
                                     android:id="@+id/radioButton"
                                     android:layout_width="141dp"
                                     android:layout_height="34dp"
+                                    android:layout_marginStart="9dp"
                                     android:button="@drawable/ic_outline_airplane_ticket_24"
                                     android:buttonTint="#FFFFFF"
                                     android:clickable="true"
@@ -573,10 +604,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/gotic"
-                    android:text="Select Location"
+                    android:hint="Select Location"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:completionThreshold="2"
                     android:textSize="10sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/tv_IATAarrival"
                     app:layout_constraintStart_toStartOf="@+id/tv_IATAarrival"
                     app:layout_constraintTop_toBottomOf="@+id/tv_IATAarrival"
@@ -588,10 +622,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/gotic"
-                    android:text="Select Location"
+                    android:hint="Select Location"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:completionThreshold="2"
                     android:textSize="10sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/tv_IATAdeparture"
                     app:layout_constraintStart_toStartOf="@+id/tv_IATAdeparture"
                     app:layout_constraintTop_toBottomOf="@+id/tv_IATAdeparture"

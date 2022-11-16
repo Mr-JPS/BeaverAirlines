@@ -30,7 +30,7 @@
                 android:background="@drawable/flightresultbackground">
 
                 <ImageView
-                    android:id="@+id/imageView20"
+                    android:id="@+id/iv_flightPathIcon"
                     android:layout_width="230dp"
                     android:layout_height="49dp"
                     android:layout_marginTop="16dp"

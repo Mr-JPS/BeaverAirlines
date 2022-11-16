@@ -26,14 +26,14 @@ class Repository() {
     val started: LiveData<Boolean>
         get() = _started
 
-    suspend fun getFlights(origin: String, destination: String, date: String) {
+    suspend fun getFlights(origin: String, destination: String, date: String, adults: Int) {
         _started.postValue(true)
         val flightOffersSearches =
             amadeus.shopping.flightOffersSearch[Params
                 .with("originLocationCode", origin)
                 .and("destinationLocationCode", destination)
                 .and("departureDate", date)
-                .and("adults", 1)
+                .and("adults", adults)
                 .and("max", 10)]
 
         parseFlightOffers(flightOffersSearches.toList())
