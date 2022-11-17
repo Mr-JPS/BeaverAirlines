@@ -1,6 +1,9 @@
 package com.example.beaverairlines.home.childFragments
 
 import android.app.DatePickerDialog
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.transition.AutoTransition
 import android.transition.TransitionManager
@@ -11,8 +14,11 @@ import android.view.animation.AnimationUtils
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ListAdapter
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.text.toLowerCase
+import androidx.compose.ui.window.Dialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -25,6 +31,8 @@ import com.example.beaverairlines.ViewModel
 import com.example.beaverairlines.adapter.AirportAdapter
 import com.example.beaverairlines.adapter.CabinClassAdapter
 import com.example.beaverairlines.adapter.IataAdapter
+import com.example.beaverairlines.adapter.IataArrayAdapter
+import com.example.beaverairlines.data.Iata
 import com.example.beaverairlines.data.model.CabinClass
 import com.example.beaverairlines.data.model.CabinClassSource
 import com.example.beaverairlines.databinding.FragmentBookBinding
@@ -33,9 +41,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firestore.admin.v1.Index
 import kotlinx.android.synthetic.main.book3_card.*
 import kotlinx.android.synthetic.main.book3_card.view.*
+import kotlinx.android.synthetic.main.diaolog_progress.view.*
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class BookFragment: Fragment() {
@@ -49,6 +59,8 @@ class BookFragment: Fragment() {
     private var adultCounter: Int = 1
     private var infantCounter: Int = 0
 
+    private lateinit var iataArrayList: ArrayList<Iata>
+    private lateinit var tempIataArrayList: ArrayList<Iata>
 
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
@@ -80,15 +92,104 @@ class BookFragment: Fragment() {
 
         val selectDepartureCity: AutoCompleteTextView = view.findViewById(R.id.tv_departCitySelect)
         val selectArrivalCity: AutoCompleteTextView = view.findViewById(R.id.tv_arriveCitySelect)
+        val arrivalIata: TextView = view.findViewById(R.id.tv_IATAarrival)
+        val departureIata: TextView = view.findViewById(R.id.tv_IATAdeparture)
 
+
+        tempIataArrayList = arrayListOf<Iata>()
 
 
         val iata = flightViewModel.iata
-        //val iataAdapter = IataAdapter(iata)
-        val iataAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, iata)
-        selectDepartureCity.setAdapter(iataAdapter)
-       // binding.bigBookCard.cvBookField.tv_departCitySelect.adapter= iataAdapter
+
+        tempIataArrayList.addAll(iata)
+
+        val iataAdapter = IataAdapter(iata)
+        //val iataAdapter2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, iata)
+        //selectArrivalCity.setAdapter(iataAdapter2)
+
+        context?.let { ctx ->
+            val iataArrayAdapter2 = IataArrayAdapter(ctx,R.layout.iata_item, iata)
+            selectDepartureCity.setAdapter(iataArrayAdapter2)
+            selectDepartureCity.setOnItemClickListener { parent, _, position, _ ->
+                val iata = iataArrayAdapter2.getItem(position) as Iata?
+                selectDepartureCity.setText(iata?.name)
+                departureIata.setText(iata?.iata)
+            }
+
+        }
+
+        context?.let { ctx ->
+            val iataArrayAdapter = IataArrayAdapter(ctx,R.layout.iata_item, iata)
+            selectArrivalCity.setAdapter(iataArrayAdapter)
+            selectArrivalCity.setOnItemClickListener { parent, _, position, _ ->
+                val iata = iataArrayAdapter.getItem(position) as Iata?
+                selectArrivalCity.setText(iata?.name)
+                arrivalIata.setText(iata?.iata)
+            }
+
+        }
+
+
+
+
+        //binding.bigBookCard.cvBookField.tv_arriveCitySelect.setadapter(ataAdapter2)
 //        selectDepartureCity.setOnItemClickListener { adapterView, view, i, l -> }
+/*
+        selectDepartureCity.setOnClickListener {
+
+            val slideInRight2 = AnimationUtils.loadAnimation(
+                requireContext(),
+                R.anim.slide_in_right)
+
+            val iataDialogBinding = layoutInflater.inflate(R.layout.diaolog_progress,null)
+
+            val iataDialog = Dialog(requireActivity())
+            iataDialog.setContentView(iataDialogBinding)
+
+            iataDialog.setCancelable(true)
+            iataDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            iataDialog.expandCard.startAnimation(slideInRight2)
+            iataDialog.show()
+
+            iataDialog.expandCard.rv_iataCodes.adapter = iataAdapter
+
+            iataDialog.expandCard.sv_search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                   return false
+
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                 tempIataArrayList.clear()
+                    val searchText = newText!!.lowercase(Locale.getDefault())
+                    if (searchText.isNotEmpty()){
+
+                        iata.forEach{
+                            if (it.name.lowercase(Locale.getDefault()).contains(searchText)){
+
+                                tempIataArrayList.add(it)
+                            }
+                        }
+
+                        iataAdapter.submitList(tempIataArrayList)
+
+
+                    } else {
+
+                        tempIataArrayList.clear()
+                        tempIataArrayList.addAll(iata)
+                        iataAdapter.submitList(tempIataArrayList)
+                    }
+
+                    return false
+                }
+
+            })
+        }
+
+ */
+
+
 
         departureDate = view.findViewById(R.id.tv_depDateSelect)
         returnDate = view.findViewById(R.id.tv_arriveDateSelect)
@@ -277,8 +378,8 @@ class BookFragment: Fragment() {
         binding.bigBookCard.bttnSearchFlights.setOnClickListener {
 
             flightViewModel.getFlights(
-                binding.bigBookCard.cvBookField.tv_departCitySelect.text.toString(),
-                binding.bigBookCard.cvBookField.tv_arriveCitySelect.text.toString(),
+                binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString(),
+                binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString(),
                 binding.bigBookCard.expandConstraint1.tv_depDateSelect.text.toString(),
                 adultCounter
             )

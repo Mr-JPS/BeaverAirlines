@@ -17,6 +17,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
     val iata = readCsv(R.raw.iata)
 
+/*
     fun readCsv(csv: Int): List<Iata> {
         val reader = getApplication<Application>().resources.openRawResource(csv).bufferedReader()
         val header = reader.readLine()
@@ -27,6 +28,22 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
                 Iata(iata.toString(), name.toString())
             }.toList()
     }
+
+ */
+
+
+    fun readCsv(csv: Int): ArrayList<Iata> {
+        val reader = getApplication<Application>().resources.openRawResource(csv).bufferedReader()
+        val header = reader.readLine()
+        return reader.lineSequence()
+            .filter { it.isNotBlank() }
+            .map {
+                val (iata, name) = it.split(',', ignoreCase = false, limit = 2)
+                Iata(iata.toString(), name.toString())
+            }.toList() as ArrayList<Iata>
+    }
+
+
 
     fun getFlights(origin: String, destination: String, date: String, adults: Int) {
         viewModelScope.launch(Dispatchers.IO) {

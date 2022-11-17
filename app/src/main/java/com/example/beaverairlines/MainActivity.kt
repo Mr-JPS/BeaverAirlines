@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         mProgressDialog.setContentView(R.layout.diaolog_progress)
 
         //xml muss ich noch stylen!!!
-        mProgressDialog.progress_text_tv.text = text
+        //mProgressDialog.progress_text_tv.text = text
 
         mProgressDialog.show()
     }

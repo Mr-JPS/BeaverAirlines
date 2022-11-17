@@ -25,6 +25,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beaverairlines.FlightResultSheetFragment
 import com.example.beaverairlines.R
+import com.example.beaverairlines.api.Repository
 import com.example.beaverairlines.data.FlightOffer
 import com.example.beaverairlines.data.model.Airport
 import kotlinx.android.synthetic.main.book3_card.*
@@ -53,8 +54,8 @@ class FlightOfferAdapter(
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val takeOff: TextView = view.findViewById(R.id.tv_takeoffTime)
         val landing: TextView = view.findViewById(R.id.tv_landingTime)
-        val departureCity: TextView = view.findViewById(R.id.tv_departureIATA)
-        val arrivalCity: TextView = view.findViewById(R.id.tv_arrivalIATA)
+        val departureIata: TextView = view.findViewById(R.id.tv_departureIATA)
+        val arrivalIata: TextView = view.findViewById(R.id.tv_arrivalIATA)
         val flightDuration1: TextView = view.findViewById(R.id.tv_duration)
         val flightDuration2: TextView = view.findViewById(R.id.tv_durationTime)
         val price2: TextView = view.findViewById(R.id.tv_price)
@@ -91,6 +92,7 @@ class FlightOfferAdapter(
         holder.landing.text = flights.arrivalTime.dropLast(3)
         holder.flightDuration1.text = flights.duration.drop(2)
         holder.flightDuration2.text = flights.duration.drop(2)
+        //holder.departureIata.text = Repository().offersParsed
         //holder.flightDuration1.text = SimpleDateFormat("HH:mm").format (Date (flights.duration))
         //holder.flightDuration2.text = SimpleDateFormat("mm:ss").format (Date (flights.duration.toLong()))
         holder.price1.text = price
