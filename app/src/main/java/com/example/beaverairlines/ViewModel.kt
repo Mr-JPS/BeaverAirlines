@@ -17,6 +17,9 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
     val iata = readCsv(R.raw.iata)
 
+    var depIata: String = ""
+    var ariIata: String = ""
+
 /*
     fun readCsv(csv: Int): List<Iata> {
         val reader = getApplication<Application>().resources.openRawResource(csv).bufferedReader()

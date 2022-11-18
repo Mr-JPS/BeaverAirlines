@@ -25,18 +25,25 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beaverairlines.FlightResultSheetFragment
 import com.example.beaverairlines.R
+import com.example.beaverairlines.ViewModel
 import com.example.beaverairlines.api.Repository
 import com.example.beaverairlines.data.FlightOffer
+import com.example.beaverairlines.data.Iata
 import com.example.beaverairlines.data.model.Airport
+import com.example.beaverairlines.home.childFragments.BookFragment
 import kotlinx.android.synthetic.main.book3_card.*
+import kotlinx.android.synthetic.main.book3_card.view.*
 
 import java.sql.Date
 
 
 
 class FlightOfferAdapter(
-    private var datasetFlights: List<FlightOffer>
+    private var datasetFlights: List<FlightOffer>,
+    private val depIata: String,
+    private val ariIata: String,
 ) : RecyclerView.Adapter<FlightOfferAdapter.ItemViewHolder>() {
+
 
 //    private var datasetAirports = listOf<Airport>()
     private var lastPosition: Int = -1
@@ -70,6 +77,7 @@ class FlightOfferAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
 
+
         // das itemLayout wird gebaut
         val adapterLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.flightresult_item, parent, false)
@@ -83,6 +91,7 @@ class FlightOfferAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val flights = datasetFlights[position]
 
+
 //        val parser = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 //        val formatter = SimpleDateFormat("HH:mm")
 
@@ -92,7 +101,8 @@ class FlightOfferAdapter(
         holder.landing.text = flights.arrivalTime.dropLast(3)
         holder.flightDuration1.text = flights.duration.drop(2)
         holder.flightDuration2.text = flights.duration.drop(2)
-        //holder.departureIata.text = Repository().offersParsed
+        holder.departureIata.text = depIata
+        holder.arrivalIata.text = ariIata
         //holder.flightDuration1.text = SimpleDateFormat("HH:mm").format (Date (flights.duration))
         //holder.flightDuration2.text = SimpleDateFormat("mm:ss").format (Date (flights.duration.toLong()))
         holder.price1.text = price

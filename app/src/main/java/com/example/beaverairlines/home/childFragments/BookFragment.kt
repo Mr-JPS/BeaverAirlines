@@ -1,10 +1,16 @@
 package com.example.beaverairlines.home.childFragments
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.graphics.Color
+import android.graphics.Path
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.transition.AutoTransition
 import android.transition.TransitionManager
 import android.view.LayoutInflater
@@ -42,6 +48,7 @@ import com.google.firestore.admin.v1.Index
 import kotlinx.android.synthetic.main.book3_card.*
 import kotlinx.android.synthetic.main.book3_card.view.*
 import kotlinx.android.synthetic.main.diaolog_progress.view.*
+import kotlinx.android.synthetic.main.fragment_book.view.*
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
@@ -103,7 +110,7 @@ class BookFragment: Fragment() {
 
         tempIataArrayList.addAll(iata)
 
-        val iataAdapter = IataAdapter(iata)
+        //val iataAdapter = IataAdapter(iata)
         //val iataAdapter2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, iata)
         //selectArrivalCity.setAdapter(iataAdapter2)
 
@@ -194,6 +201,7 @@ class BookFragment: Fragment() {
         departureDate = view.findViewById(R.id.tv_depDateSelect)
         returnDate = view.findViewById(R.id.tv_arriveDateSelect)
         val calender = Calendar.getInstance()
+
         val datePicker = DatePickerDialog.OnDateSetListener { view, year,month, dayOfMonth ->
             calender.set(Calendar.YEAR,year)
             calender.set(Calendar.MONTH, month)
@@ -356,15 +364,18 @@ class BookFragment: Fragment() {
             if (expandConstraint4.visibility == View.GONE){
                 TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
                 expandConstraint4.visibility = View.VISIBLE
+                //binding.constraintBigBookCard.bttn2.visibility = View.VISIBLE
                 ib_arrow4.animate().setDuration(2).rotationBy(108f).start()
                 ib_arrow4.visibility = View.GONE
                 iv_redlineIndicator4.visibility = View.VISIBLE
                 iv_redlineIndicator4.startAnimation(slideInRight)
                 iv_planeIndicator.startAnimation(slideInRight)
                 iv_planeIndicator.translationX = iv_planeIndicator.translationX + 230
+                //binding.constraintBigBookCard.bttn2.startAnimation(slideInRight)
             } else {
                 TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
                 expandConstraint4.visibility = View.GONE
+                //binding.constraintBigBookCard.bttn2.visibility = View.GONE
                 ib_arrow4.visibility = View.GONE
                 ib_arrow4.animate().setDuration(2).rotationBy(108f).start()
 
@@ -375,7 +386,10 @@ class BookFragment: Fragment() {
 
 
 
-        binding.bigBookCard.bttnSearchFlights.setOnClickListener {
+        binding.constraintBigBookCard.bttn_searchFlights.setOnClickListener {
+
+            flightViewModel.depIata =  binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
+            flightViewModel.ariIata =  binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
 
             flightViewModel.getFlights(
                 binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString(),
@@ -384,25 +398,163 @@ class BookFragment: Fragment() {
                 adultCounter
             )
 
-            flightViewModel.started.observe(
-                viewLifecycleOwner,
-                androidx.lifecycle.Observer {
-                    if (it){
-                        val flightResultBttnSheetFragment = FlightResultSheetFragment()
-                        flightResultBttnSheetFragment.show((activity as AppCompatActivity).supportFragmentManager,"bttmSheet")
-                    }
+
+            binding.constraintBigBookCard.bttn2.visibility = View.VISIBLE
+            val scaleBttnX = PropertyValuesHolder.ofFloat(View.SCALE_X, 10f)
+            val scaleBttnY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 13f)
+            val animatorBttn = ObjectAnimator.ofPropertyValuesHolder(binding.constraintBigBookCard.bttn2, scaleBttnX, scaleBttnY)
+            animatorBttn.duration = 300
+            //animatorS.repeatCount = 1
+            //animatorS.repeatMode = ObjectAnimator.REVERSE
+            //animatorS.interpolator = BounceInterpolator()
+            animatorBttn.start()
+
+
+/*
+            val layoutOut = AnimationUtils.loadAnimation(
+                requireContext(),
+                R.anim.bttn_slide_out)
+            binding.flightInputLayout.startAnimation(layoutOut)
+            binding.flightInputLayout.visibility = View.GONE
+
+ */
+
+            Handler().postDelayed({
+
+                val layoutIn = AnimationUtils.loadAnimation(
+                    requireContext(),
+                    R.anim.bttn_slide_in)
+                binding.loadingConstraint.visibility = View.VISIBLE
+                binding.loadingConstraint.startAnimation(layoutIn)
+
+                val earthIn = AnimationUtils.loadAnimation(
+                    requireContext(),
+                    R.anim.bttn_slide_in)
+                binding.pbEarth.visibility = View.VISIBLE
+
+                val animatorY = ObjectAnimator.ofFloat(binding.pbEarth, View.TRANSLATION_Y, -950f)
+                animatorY.duration = 2000
+
+                val animatorX = ObjectAnimator.ofFloat(binding.pbEarth, View.TRANSLATION_X, -300f)
+                animatorX.duration = 1000
+                animatorX.repeatCount = 1
+                animatorX.repeatMode = ObjectAnimator.REVERSE
+
+                var toAlpha = 1f
+                if (binding.pbEarth.alpha == 0f) {
+                    toAlpha = 1f
                 }
+
+                val animatorF = ObjectAnimator.ofFloat(binding.pbEarth, View.ALPHA, toAlpha)
+                animatorF.duration = 500
+                animatorF.start()
+
+
+                val scaleSX = PropertyValuesHolder.ofFloat(View.SCALE_X, 10f)
+                val scaleSY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 10f)
+                val animatorS =
+                    ObjectAnimator.ofPropertyValuesHolder(binding.pbEarth, scaleSX, scaleSY)
+                animatorS.duration = 1500
+                animatorS.start()
+
+
+                val set = AnimatorSet()
+                set.playTogether(animatorX, animatorY, animatorF, animatorS)
+                set.start()
+
+            },800
             )
+
+
+
+            //binding.pbEarth.startAnimation(earthIn)
+/*
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                val path = Path().apply {
+                    arcTo(0f, 0f, 1000f, 1000f, 270f, -180f, true)
+                }
+                val animator = ObjectAnimator.ofFloat(binding.pbEarth, View.X, View.Y, path).apply {
+                    duration = 2000
+                    start()
+                }
+            } else {
+                // Create animator without using curved path
+            }
+
+ */
+
+            val textIN = AnimationUtils.loadAnimation(
+                requireContext(),
+                R.anim.bttn_slide_in)
+            binding.tvLoadingDep.text = binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
+            binding.tvLoadingDep.visibility = View.VISIBLE
+            binding.tvLoadingDep.startAnimation(textIN)
+
+            binding.tvLoadingFrom.visibility = View.VISIBLE
+            binding.tvLoadingFrom.startAnimation(textIN)
+
+            binding.ivLoadingPlane.visibility = View.VISIBLE
+            binding.ivLoadingPlane.startAnimation(textIN)
+
+            binding.tvLoadingAri.text = binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
+            binding.tvLoadingAri.visibility = View.VISIBLE
+            binding.tvLoadingAri.startAnimation(textIN)
+
+            binding.tvLoadingTo.visibility = View.VISIBLE
+            binding.tvLoadingTo.startAnimation(textIN)
+
+
+            binding.ivLoadingBeaver.visibility = View.VISIBLE
+            binding.ivLoadingBeaver.animate().apply {
+                duration = 1100
+                rotationXBy(360f)
+            }.start()
+
+
+
+
+            Handler().postDelayed({
+                flightViewModel.status.observe(
+                    viewLifecycleOwner,
+                    androidx.lifecycle.Observer {
+                        if (it) {
+                            val beaverOut = AnimationUtils.loadAnimation(
+                                requireContext(),
+                                R.anim.bttn_slide_out)
+                            binding.ivLoadingBeaver.startAnimation(beaverOut)
+                            binding.ivLoadingBeaver.visibility = View.GONE
+                        }
+                    }
+                )
+
+                flightViewModel.started.observe(
+                    viewLifecycleOwner,
+                    androidx.lifecycle.Observer {
+                        if (it){
+                            val flightResultBttnSheetFragment = FlightResultSheetFragment()
+                            flightResultBttnSheetFragment.show((activity as AppCompatActivity).supportFragmentManager,"bttmSheet")
+                        }
+                    }
+                )
+
+
+            },
+                3800
+            )
+
+
+
+
+
+
+
+
+
+
+
+
         }
-
-
-
-
-
-
-
-
-        }
+    }
 
     private fun updatelabel2(calender: Calendar) {
         val myFormat = "yyyy-MM-dd"

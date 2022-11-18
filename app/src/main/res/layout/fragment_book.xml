@@ -9,10 +9,12 @@
         tools:context=".home.childFragments.BookFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintBigBookCard"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
@@ -20,11 +22,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="SpeakableTextPresentCheck">
+                tools:ignore="SpeakableTextPresentCheck"
+                tools:visibility="visible">
 
                 <LinearLayout
+                    android:id="@+id/flightInputLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:clickable="true"
                     android:orientation="vertical">
 
@@ -34,6 +38,124 @@
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
+
+            <ImageView
+                android:id="@+id/bttn2"
+                android:layout_width="83dp"
+                android:layout_height="107dp"
+                android:layout_marginBottom="280dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/cloudsbackground4"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/loadingConstraint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/pb_earth"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="72dp"
+                android:layout_height="80dp"
+                android:alpha="0.3"
+                android:indeterminateDrawable="@drawable/world_transparent_glass_3"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.68"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_loadingDep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mayaregular"
+                android:text="DEP"
+                android:textColor="@color/white"
+                android:textSize="60sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.11"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.060000002" />
+
+            <TextView
+                android:id="@+id/tv_loadingFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-5dp"
+                android:fontFamily="@font/mayaregular"
+                android:text="FROM"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/tv_loadingDep"
+                app:layout_constraintStart_toStartOf="@+id/tv_loadingDep" />
+
+            <TextView
+                android:id="@+id/tv_loadingTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-5dp"
+                android:fontFamily="@font/mayaregular"
+                android:text="TO"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/tv_loadingAri"
+                app:layout_constraintStart_toStartOf="@+id/tv_loadingAri" />
+
+            <TextView
+                android:id="@+id/tv_loadingAri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/mayaregular"
+                android:text="ARI"
+                android:textColor="@color/white"
+                android:textSize="60sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_loadingDep"
+                app:layout_constraintStart_toEndOf="@+id/iv_loadingPlane"
+                app:layout_constraintTop_toTopOf="@+id/tv_loadingDep"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/iv_loadingPlane"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:rotation="45"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_loadingDep"
+                app:layout_constraintStart_toEndOf="@+id/tv_loadingDep"
+                app:layout_constraintTop_toTopOf="@+id/tv_loadingDep"
+                app:srcCompat="@drawable/flugzeug2klein" />
+
+            <ImageView
+                android:id="@+id/iv_loadingBeaver"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="130dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_loadingDep"
+                app:srcCompat="@drawable/beaverbttn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>
