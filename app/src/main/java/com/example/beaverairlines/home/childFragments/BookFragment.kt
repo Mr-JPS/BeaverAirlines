@@ -16,6 +16,7 @@ import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -46,9 +47,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firestore.admin.v1.Index
 import kotlinx.android.synthetic.main.book3_card.*
+import kotlinx.android.synthetic.main.book3_card.expandCard
 import kotlinx.android.synthetic.main.book3_card.view.*
 import kotlinx.android.synthetic.main.diaolog_progress.view.*
+import kotlinx.android.synthetic.main.flightresult_item.*
+import kotlinx.android.synthetic.main.flightresult_item.view.*
 import kotlinx.android.synthetic.main.fragment_book.view.*
+import kotlinx.android.synthetic.main.fragment_flightresultsheet.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
@@ -403,7 +409,7 @@ class BookFragment: Fragment() {
             val scaleBttnX = PropertyValuesHolder.ofFloat(View.SCALE_X, 10f)
             val scaleBttnY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 13f)
             val animatorBttn = ObjectAnimator.ofPropertyValuesHolder(binding.constraintBigBookCard.bttn2, scaleBttnX, scaleBttnY)
-            animatorBttn.duration = 300
+            animatorBttn.duration = 200
             //animatorS.repeatCount = 1
             //animatorS.repeatMode = ObjectAnimator.REVERSE
             //animatorS.interpolator = BounceInterpolator()
@@ -419,7 +425,7 @@ class BookFragment: Fragment() {
 
  */
 
-            Handler().postDelayed({
+//            Handler().postDelayed({
 
                 val layoutIn = AnimationUtils.loadAnimation(
                     requireContext(),
@@ -432,10 +438,10 @@ class BookFragment: Fragment() {
                     R.anim.bttn_slide_in)
                 binding.pbEarth.visibility = View.VISIBLE
 
-                val animatorY = ObjectAnimator.ofFloat(binding.pbEarth, View.TRANSLATION_Y, -950f)
+                val animatorY = ObjectAnimator.ofFloat(binding.pbEarth, View.TRANSLATION_Y, -1050f)
                 animatorY.duration = 2000
 
-                val animatorX = ObjectAnimator.ofFloat(binding.pbEarth, View.TRANSLATION_X, -300f)
+                val animatorX = ObjectAnimator.ofFloat(binding.pbEarth, View.TRANSLATION_X, -400f)
                 animatorX.duration = 1000
                 animatorX.repeatCount = 1
                 animatorX.repeatMode = ObjectAnimator.REVERSE
@@ -459,11 +465,11 @@ class BookFragment: Fragment() {
 
 
                 val set = AnimatorSet()
-                set.playTogether(animatorX, animatorY, animatorF, animatorS)
+                set.playTogether(animatorX, animatorY, animatorS)
                 set.start()
 
-            },800
-            )
+//            },2000
+//            )
 
 
 
@@ -481,20 +487,40 @@ class BookFragment: Fragment() {
                 // Create animator without using curved path
             }
 
- */
 
             val textIN = AnimationUtils.loadAnimation(
                 requireContext(),
-                R.anim.bttn_slide_in)
-            binding.tvLoadingDep.text = binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
-            binding.tvLoadingDep.visibility = View.VISIBLE
-            binding.tvLoadingDep.startAnimation(textIN)
+                R.anim.text_slide_in)
+                textIN.duration = 1000
+
+            binding.tvLoadingFrom.visibility = View.VISIBLE
+            binding.tvLoadingFrom.startAnimation(textIN)
+            */
+
+
+            Handler().postDelayed({
+            val textIN = AnimationUtils.loadAnimation(
+                requireContext(),
+                R.anim.text_slide_in)
+                textIN.duration = 1000
+
+
 
             binding.tvLoadingFrom.visibility = View.VISIBLE
             binding.tvLoadingFrom.startAnimation(textIN)
 
+
+            binding.tvLoadingDep.text = binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
+            binding.tvLoadingDep.visibility = View.VISIBLE
+            binding.tvLoadingDep.startAnimation(textIN)
+
             binding.ivLoadingPlane.visibility = View.VISIBLE
             binding.ivLoadingPlane.startAnimation(textIN)
+
+
+/*
+            binding.tvLoadingTo.visibility = View.VISIBLE
+            binding.tvLoadingTo.startAnimation(textIN)
 
             binding.tvLoadingAri.text = binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
             binding.tvLoadingAri.visibility = View.VISIBLE
@@ -510,6 +536,43 @@ class BookFragment: Fragment() {
                 rotationXBy(360f)
             }.start()
 
+ */
+           },800)
+
+
+
+            Handler().postDelayed({
+                val textIN = AnimationUtils.loadAnimation(
+                    requireContext(),
+                    R.anim.text_slide_in)
+                textIN.duration = 1000
+
+
+                binding.tvLoadingTo.visibility = View.VISIBLE
+                binding.tvLoadingTo.startAnimation(textIN)
+
+                binding.tvLoadingAri.text = binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
+                binding.tvLoadingAri.visibility = View.VISIBLE
+                binding.tvLoadingAri.startAnimation(textIN)
+
+            },1000)
+
+
+
+            Handler().postDelayed({
+                val textIN = AnimationUtils.loadAnimation(
+                    requireContext(),
+                    R.anim.text_slide_in)
+                textIN.duration = 1000
+
+                binding.ivLoadingBeaver.visibility = View.VISIBLE
+                binding.ivLoadingBeaver.startAnimation(textIN)
+                binding.ivLoadingBeaver.animate().apply {
+                    duration = 1100
+                    rotationXBy(360f)
+                }.start()
+
+            },800)
 
 
 
@@ -526,21 +589,31 @@ class BookFragment: Fragment() {
                         }
                     }
                 )
+            },3800)
 
+
+            Handler().postDelayed({
                 flightViewModel.started.observe(
                     viewLifecycleOwner,
                     androidx.lifecycle.Observer {
-                        if (it){
+                        if (it) {
                             val flightResultBttnSheetFragment = FlightResultSheetFragment()
-                            flightResultBttnSheetFragment.show((activity as AppCompatActivity).supportFragmentManager,"bttmSheet")
+                            flightResultBttnSheetFragment.show((activity as AppCompatActivity).supportFragmentManager,
+                                "bttmSheet")
+
                         }
                     }
                 )
+            },3800)
+
+//            flightResultBttnSheetFragment.bttn_letsFly.setOnClickListener{
+//                if (flightResultBttnSheetFragment !=null){
+//                    flightResultBttnSheetFragment.dismiss()
+//                }
+//            }
 
 
-            },
-                3800
-            )
+
 
 
 

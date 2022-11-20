@@ -15,7 +15,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.beaverairlines.adapter.FlightOfferAdapter
 import com.example.beaverairlines.databinding.FragmentFlightresultsheetBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.destination_item.view.*
+import kotlinx.android.synthetic.main.flightresult_item.view.*
 import kotlinx.android.synthetic.main.fragment_splash.view.*
 
 
@@ -25,12 +28,16 @@ class FlightResultSheetFragment: BottomSheetDialogFragment() {
 
     private val flightViewModel: ViewModel by activityViewModels()
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val bottomSheet = (requireView().parent as View)
         bottomSheet.backgroundTintMode = PorterDuff.Mode.CLEAR
         bottomSheet.backgroundTintList = ColorStateList.valueOf(Color.TRANSPARENT)
         bottomSheet.setBackgroundColor(Color.TRANSPARENT)
+
+
+
     }
 
     /*
@@ -56,7 +63,7 @@ class FlightResultSheetFragment: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
+/*
         flightViewModel.status.observe(
             viewLifecycleOwner,
             Observer {
@@ -71,6 +78,8 @@ class FlightResultSheetFragment: BottomSheetDialogFragment() {
             }
         )
 
+ */
+
 
         //hier die func für die flugergebnisse
         flightViewModel.resetAllValues()
@@ -80,10 +89,20 @@ class FlightResultSheetFragment: BottomSheetDialogFragment() {
                 if (it != null){
                     val flightSerachAdapter: FlightOfferAdapter = FlightOfferAdapter(it, flightViewModel.depIata,  flightViewModel.ariIata)
                     binding.rvFlightResultsList.adapter = flightSerachAdapter
+
+
+//                    binding.rvFlightResultsList.InnerCard.expandCard.bttn_price.setOnClickListener {
+//                        Toast.makeText(context,"bttm sheet open", Toast.LENGTH_SHORT).show()
+//                    }
+
                 }
             }
         )
         //Toast.makeText(context,"bttm sheet open", Toast.LENGTH_SHORT).show()
+
+
+       //dismiss()
+
 
 
 

@@ -14,14 +14,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beaverairlines.FlightResultSheetFragment
 import com.example.beaverairlines.R
@@ -72,6 +70,7 @@ class FlightOfferAdapter(
         val price1: Button = view.findViewById(R.id.bttn_price)
         val whiteLine: ImageView = view.findViewById(R.id.iv_whiteLineFlightResult)
         val outerCard: ConstraintLayout = view.findViewById(R.id.OuterCard)
+        val selectFlight: Button = view.findViewById(R.id.bttn_letsFly)
 
     }
 
@@ -137,6 +136,9 @@ class FlightOfferAdapter(
 
         }
 
+        holder.selectFlight.setOnClickListener {
+
+        }
 
 //        val airports: Airport =  datasetAirports[position]
 //        holder.departureCity.text = airports.iata_code
