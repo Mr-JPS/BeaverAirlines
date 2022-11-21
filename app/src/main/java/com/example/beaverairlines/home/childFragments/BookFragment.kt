@@ -41,7 +41,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class BookFragment: Fragment(),BookInterface {
+class BookFragment : Fragment(), BookInterface {
 
     private lateinit var binding: FragmentBookBinding
 
@@ -82,7 +82,6 @@ class BookFragment: Fragment(),BookInterface {
         super.onViewCreated(view, savedInstanceState)
 
 
-
         val airportAdapter = AirportAdapter()
         //val departureAirport = binding.bigBookCard.cvBookField.tv_departCitySelect.setAdapter(airportAdapter)
 
@@ -104,7 +103,7 @@ class BookFragment: Fragment(),BookInterface {
         //selectArrivalCity.setAdapter(iataAdapter2)
 
         context?.let { ctx ->
-            val iataArrayAdapter2 = IataArrayAdapter(ctx,R.layout.iata_item, iata)
+            val iataArrayAdapter2 = IataArrayAdapter(ctx, R.layout.iata_item, iata)
             selectDepartureCity.setAdapter(iataArrayAdapter2)
             selectDepartureCity.setOnItemClickListener { parent, _, position, _ ->
                 val iata = iataArrayAdapter2.getItem(position) as Iata?
@@ -115,7 +114,7 @@ class BookFragment: Fragment(),BookInterface {
         }
 
         context?.let { ctx ->
-            val iataArrayAdapter = IataArrayAdapter(ctx,R.layout.iata_item, iata)
+            val iataArrayAdapter = IataArrayAdapter(ctx, R.layout.iata_item, iata)
             selectArrivalCity.setAdapter(iataArrayAdapter)
             selectArrivalCity.setOnItemClickListener { parent, _, position, _ ->
                 val iata = iataArrayAdapter.getItem(position) as Iata?
@@ -124,8 +123,6 @@ class BookFragment: Fragment(),BookInterface {
             }
 
         }
-
-
 
 
         //binding.bigBookCard.cvBookField.tv_arriveCitySelect.setadapter(ataAdapter2)
@@ -191,27 +188,33 @@ class BookFragment: Fragment(),BookInterface {
         returnDate = view.findViewById(R.id.tv_arriveDateSelect)
         val calender = Calendar.getInstance()
 
-        val datePicker = DatePickerDialog.OnDateSetListener { view, year,month, dayOfMonth ->
-            calender.set(Calendar.YEAR,year)
+        val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            calender.set(Calendar.YEAR, year)
             calender.set(Calendar.MONTH, month)
             calender.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updatelabel(calender)
         }
 
-        val datePicker2 = DatePickerDialog.OnDateSetListener { view, year,month, dayOfMonth ->
-            calender.set(Calendar.YEAR,year)
+        val datePicker2 = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            calender.set(Calendar.YEAR, year)
             calender.set(Calendar.MONTH, month)
             calender.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updatelabel2(calender)
         }
 
         departureDate.setOnClickListener {
-            DatePickerDialog(requireContext(), datePicker, calender.get(Calendar.YEAR),calender.get(Calendar.MONTH),
-            calender.get(Calendar.DAY_OF_MONTH)).show()
+            DatePickerDialog(requireContext(),
+                datePicker,
+                calender.get(Calendar.YEAR),
+                calender.get(Calendar.MONTH),
+                calender.get(Calendar.DAY_OF_MONTH)).show()
         }
 
         returnDate.setOnClickListener {
-            DatePickerDialog(requireContext(), datePicker2, calender.get(Calendar.YEAR),calender.get(Calendar.MONTH),
+            DatePickerDialog(requireContext(),
+                datePicker2,
+                calender.get(Calendar.YEAR),
+                calender.get(Calendar.MONTH),
                 calender.get(Calendar.DAY_OF_MONTH)).show()
         }
 
@@ -239,11 +242,12 @@ class BookFragment: Fragment(),BookInterface {
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.bigBookCard.rvCabinClass)
 
-        binding.bigBookCard.expandConstraint2.tv_cabinSelectedText.text = "Please select a Cabin Class"
+        binding.bigBookCard.expandConstraint2.tv_cabinSelectedText.text =
+            "Please select a Cabin Class"
 
         //Hier wird der die vom ccAdapter übergebende "Cabin Class"- Unit aufgerufen:
         ccAdapter.setOnItemClickListener {
-           binding.bigBookCard.expandConstraint2.tv_cabinSelectedText.text = it.title
+            binding.bigBookCard.expandConstraint2.tv_cabinSelectedText.text = it.title
         }
 
 
@@ -254,33 +258,30 @@ class BookFragment: Fragment(),BookInterface {
         infantPassengers.text = infantCounter.toString()
 
         binding.bigBookCard.expandConstraint3.bttn_adultPlus.setOnClickListener {
-            adultCounter ++
+            adultCounter++
             adultPassengers.text = adultCounter.toString()
         }
 
         binding.bigBookCard.expandConstraint3.bttn_adultMinus.setOnClickListener {
-            adultCounter --
-            if (adultCounter < 0) {adultCounter = 0}
+            adultCounter--
+            if (adultCounter < 0) {
+                adultCounter = 0
+            }
             adultPassengers.text = adultCounter.toString()
         }
 
         binding.bigBookCard.expandConstraint3.bttn_infantPlus.setOnClickListener {
-            infantCounter ++
+            infantCounter++
             infantPassengers.text = infantCounter.toString()
         }
 
         binding.bigBookCard.expandConstraint3.bttn_infantMinus.setOnClickListener {
-            infantCounter --
-            if (infantCounter < 0) {infantCounter = 0}
+            infantCounter--
+            if (infantCounter < 0) {
+                infantCounter = 0
+            }
             infantPassengers.text = infantCounter.toString()
         }
-
-
-
-
-
-
-
 
 
         val slideInRight = AnimationUtils.loadAnimation(
@@ -289,7 +290,7 @@ class BookFragment: Fragment(),BookInterface {
 
 
         binding.bigBookCard.ibArrow1.setOnClickListener {
-            if (expandConstraint1.visibility == View.GONE){
+            if (expandConstraint1.visibility == View.GONE) {
                 TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
                 expandConstraint1.visibility = View.VISIBLE
                 iv_planeIndicator.visibility = View.VISIBLE
@@ -308,7 +309,7 @@ class BookFragment: Fragment(),BookInterface {
         }
 
         binding.bigBookCard.ibArrow2.setOnClickListener {
-            if (expandConstraint2.visibility == View.GONE){
+            if (expandConstraint2.visibility == View.GONE) {
                 TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
                 expandConstraint2.visibility = View.VISIBLE
                 ib_arrow2.animate().setDuration(2).rotationBy(108f).start()
@@ -327,7 +328,7 @@ class BookFragment: Fragment(),BookInterface {
         }
 
         binding.bigBookCard.ibArrow3.setOnClickListener {
-            if (expandConstraint3.visibility == View.GONE){
+            if (expandConstraint3.visibility == View.GONE) {
                 TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
                 expandConstraint3.visibility = View.VISIBLE
                 ib_arrow3.animate().setDuration(2).rotationBy(108f).start()
@@ -346,7 +347,7 @@ class BookFragment: Fragment(),BookInterface {
         }
 
         binding.bigBookCard.ibArrow4.setOnClickListener {
-            if (expandConstraint4.visibility == View.GONE){
+            if (expandConstraint4.visibility == View.GONE) {
                 TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
                 expandConstraint4.visibility = View.VISIBLE
                 //binding.constraintBigBookCard.bttn2.visibility = View.VISIBLE
@@ -437,7 +438,7 @@ class BookFragment: Fragment(),BookInterface {
                 ObjectAnimator.ofPropertyValuesHolder(binding.selectFlightsCard.pbEarth,
                     scaleSX,
                     scaleSY)
-            animatorS.duration = 1500
+            animatorS.duration = 1000
             animatorS.start()
 
 
@@ -445,28 +446,6 @@ class BookFragment: Fragment(),BookInterface {
             set.playTogether(animatorX, animatorY, animatorS)
             set.start()
 
-
-            Handler().postDelayed({
-                val textIN = AnimationUtils.loadAnimation(
-                    requireContext(),
-                    R.anim.text_slide_in)
-                textIN.duration = 1000
-
-
-
-                binding.selectFlightsCard.tvLoadingFrom.visibility = View.VISIBLE
-                binding.selectFlightsCard.tvLoadingFrom.startAnimation(textIN)
-
-
-                binding.selectFlightsCard.tvLoadingDep.text =
-                    binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
-                binding.selectFlightsCard.tvLoadingDep.visibility = View.VISIBLE
-                binding.selectFlightsCard.tvLoadingDep.startAnimation(textIN)
-
-                binding.selectFlightsCard.ivLoadingPlane.visibility = View.VISIBLE
-                binding.selectFlightsCard.ivLoadingPlane.startAnimation(textIN)
-
-            }, 800)
 
 
 
@@ -505,7 +484,6 @@ class BookFragment: Fragment(),BookInterface {
             }, 800)
 
 
-
 /*
 //            Handler().postDelayed({
                 flightViewModel.started.observe(
@@ -525,8 +503,135 @@ class BookFragment: Fragment(),BookInterface {
 
  */
 
-            openFlight()
 
+            Handler().postDelayed({
+                flightViewModel.status.observe(
+                    viewLifecycleOwner,
+                    androidx.lifecycle.Observer {
+                        if (it) {
+
+
+                            val beaverOut = AnimationUtils.loadAnimation(
+                                requireContext(),
+                                R.anim.fade_out)
+//                            beaverOut.duration = 5000
+                            binding.selectFlightsCard.ivLoadingBeaver.startAnimation(beaverOut)
+                            binding.selectFlightsCard.ivLoadingBeaver.visibility = View.GONE
+
+                            val resultsIN = AnimationUtils.loadAnimation(
+                                requireContext(),
+                                R.anim.text_slide_in_from_bttm)
+                            //resultsIN.duration = 1000
+                            binding.selectFlightsCard.cvResultsFirst.visibility = View.VISIBLE
+                            binding.selectFlightsCard.cvResultsFirst.startAnimation(
+                                resultsIN)
+                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.visibility =
+                                View.VISIBLE
+                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.startAnimation(
+                                resultsIN)
+
+
+                        }
+                    }
+                )
+            }, 3800)
+
+            flightViewModel.started.observe(
+                viewLifecycleOwner,
+                androidx.lifecycle.Observer {
+                    if (it) {
+                        val resultsOUT = AnimationUtils.loadAnimation(
+                            requireContext(),
+                            R.anim.fade_out)
+
+
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(
+                            resultsOUT)
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility =
+                            View.INVISIBLE
+
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(
+                            resultsOUT)
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.visibility =
+                            View.INVISIBLE
+
+                        val resultsIN = AnimationUtils.loadAnimation(
+                            requireContext(),
+                            R.anim.text_slide_in)
+                        if (isReturnFlight){
+
+
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingDep.text = flightViewModel.ariIata
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingAri.text = flightViewModel.depIata
+
+
+                        }else {
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingDep.text = flightViewModel.depIata
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingAri.text = flightViewModel.ariIata
+                        }
+
+                        val textIN = AnimationUtils.loadAnimation(
+                            requireContext(),
+                            R.anim.text_slide_in)
+                        textIN.duration = 1000
+                        binding.selectFlightsCard.tvLoadingFrom.visibility = View.VISIBLE
+                        binding.selectFlightsCard.tvLoadingFrom.startAnimation(textIN)
+
+
+
+                        binding.selectFlightsCard.tvLoadingDep.visibility = View.VISIBLE
+                        binding.selectFlightsCard.tvLoadingDep.startAnimation(textIN)
+
+                        binding.selectFlightsCard.ivLoadingPlane.visibility = View.VISIBLE
+                        binding.selectFlightsCard.ivLoadingPlane.startAnimation(textIN)
+
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.visibility = View.VISIBLE
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility = View.VISIBLE
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(resultsIN)
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(resultsIN)
+
+
+
+                        binding.selectFlightsCard.cvResultsFirst.visibility = View.GONE
+                        binding.selectFlightsCard.cvResultsFirst.startAnimation(
+                            resultsOUT)
+                        binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.visibility =
+                            View.GONE
+                        binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.startAnimation(
+                            resultsOUT)
+                    }
+                }
+            )
+
+            flightViewModel.offers.observe(
+                viewLifecycleOwner,
+                androidx.lifecycle.Observer {
+                    if (it != null) {
+                        if (isReturnFlight) {
+                            val flightReturnAdapter: FlightReturnAdapter =
+                                FlightReturnAdapter(it,
+                                    flightViewModel.ariIata,
+                                    flightViewModel.depIata,
+                                    this)
+                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.adapter =
+                                flightReturnAdapter
+                        } else {
+                            val flightSerachAdapter: FlightOfferAdapter =
+                                FlightOfferAdapter(it,
+                                    flightViewModel.depIata,
+                                    flightViewModel.ariIata,
+                                    this)
+                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.adapter =
+                                flightSerachAdapter
+                        }
+
+
+                    }
+                }
+            )
+
+
+            openFlight()
 
 
 //            flightResultBttnSheetFragment.bttn_letsFly.setOnClickListener{
@@ -538,6 +643,7 @@ class BookFragment: Fragment(),BookInterface {
 
         }
     }
+
     private fun updatelabel2(calender: Calendar) {
         val myFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
@@ -552,82 +658,38 @@ class BookFragment: Fragment(),BookInterface {
 
     }
 
-     override fun openFlight() {
+    override fun openFlight() {
+
+        isReturnFlight = false
+        flightViewModel.resetAllValues()
+
+        val resultsIN = AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.text_slide_in)
 
 
-         Handler().postDelayed({
-             flightViewModel.status.observe(
-                 viewLifecycleOwner,
-                 androidx.lifecycle.Observer {
-                     if (it) {
-                         val beaverOut = AnimationUtils.loadAnimation(
-                             requireContext(),
-                             R.anim.fade_out)
-                         binding.selectFlightsCard.ivLoadingBeaver.startAnimation(beaverOut)
-                         binding.selectFlightsCard.ivLoadingBeaver.visibility = View.GONE
 
 
-                         flightViewModel.started.observe(
-                             viewLifecycleOwner,
-                             androidx.lifecycle.Observer {
-                                 if (it) {
-                                     val resultsIN = AnimationUtils.loadAnimation(
-                                         requireContext(),
-                                         R.anim.text_slide_in_from_bttm)
-                                     //resultsIN.duration = 1000
-                                     binding.selectFlightsCard.cvResultsFirst.visibility = View.VISIBLE
-                                     binding.selectFlightsCard.cvResultsFirst.startAnimation(
-                                         resultsIN)
-                                 }
-                             }
-                         )
-
-                     }
-                 }
-             )
-         }, 3800)
+        flightViewModel.getFlights(
+            binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString(),
+            binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString(),
+            binding.bigBookCard.expandConstraint1.tv_depDateSelect.text.toString(),
+            adultCounter
+        )
 
 
-         flightViewModel.getFlights(
-             binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString(),
-             binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString(),
-             binding.bigBookCard.expandConstraint1.tv_depDateSelect.text.toString(),
-             adultCounter
-         )
-
-         val resultsIN = AnimationUtils.loadAnimation(
-             requireContext(),
-             R.anim.text_slide_in)
-         binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.visibility =
-             View.VISIBLE
-         binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.startAnimation(
-             resultsIN)
-
-         flightViewModel.resetAllValues()
-         flightViewModel.offers.observe(
-             viewLifecycleOwner,
-             androidx.lifecycle.Observer {
-                 if (it != null) {
 
 
-                     val flightSerachAdapter: FlightOfferAdapter =
-                         FlightOfferAdapter(it, flightViewModel.depIata, flightViewModel.ariIata, this)
-                     binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.adapter =
-                         flightSerachAdapter
-
-                 }
-             }
-         )
-
-
-     }
+    }
 
     override fun openReturnFlight(flight: FlightOffer, bookingNbr: String) {
+        flightViewModel.resetAllValues()
+        isReturnFlight = true
+
+
 /*
         Handler().postDelayed({
-        val resultsOUT = AnimationUtils.loadAnimation(
-            requireContext(),
-            R.anim.fade_out)
+
 
         binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.startAnimation(
             resultsOUT)
@@ -667,37 +729,7 @@ class BookFragment: Fragment(),BookInterface {
 
 
 
-        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.text = binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
-        //binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(resultsIN)
 
-        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.text = binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
-        //binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(resultsIN)
-
-        flightViewModel.resetAllValues()
-        flightViewModel.offers.observe(
-            viewLifecycleOwner,
-            androidx.lifecycle.Observer {
-                if (it != null) {
-
-                    val flightReturnAdapter: FlightReturnAdapter =
-                        FlightReturnAdapter(it, flightViewModel.depIata, flightViewModel.ariIata, this)
-                    binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.adapter =
-                        flightReturnAdapter
-/*
-                    val resultsIN = AnimationUtils.loadAnimation(
-                        requireContext(),
-                        R.anim.slide_up)
-                    binding.selectFlightsCard.cvResultsFirst.visibility =
-                        View.VISIBLE
-                    binding.selectFlightsCard.cvResultsFirst.startAnimation(
-                        resultsIN)
-
- */
-
-
-                }
-            }
-        )
 
     }
 

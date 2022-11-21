@@ -84,8 +84,8 @@ class FlightReturnAdapter(
         holder.landing.text = flights.arrivalTime.dropLast(3)
         holder.flightDuration1.text = flights.duration.drop(2)
         holder.flightDuration2.text = flights.duration.drop(2)
-        holder.departureIata.text = ariIata
-        holder.arrivalIata.text = depIata
+        holder.departureIata.text = depIata
+        holder.arrivalIata.text = ariIata
         //holder.flightDuration1.text = SimpleDateFormat("HH:mm").format (Date (flights.duration))
         //holder.flightDuration2.text = SimpleDateFormat("mm:ss").format (Date (flights.duration.toLong()))
         holder.price1.text = price
