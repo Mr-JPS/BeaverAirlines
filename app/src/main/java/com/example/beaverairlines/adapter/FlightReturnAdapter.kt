@@ -19,12 +19,12 @@ import kotlinx.android.synthetic.main.fragment_book.*
 import kotlinx.android.synthetic.main.fragment_flightresultsheet.view.*
 
 
-class FlightOfferAdapter(
+class FlightReturnAdapter(
     private var datasetFlights: List<FlightOffer>,
     private val depIata: String,
     private val ariIata: String,
     private val bookInterface: BookInterface
-) : RecyclerView.Adapter<FlightOfferAdapter.ItemViewHolder>() {
+) : RecyclerView.Adapter<FlightReturnAdapter.ItemViewHolder>() {
 
 
 //    private var datasetAirports = listOf<Airport>()
@@ -84,8 +84,8 @@ class FlightOfferAdapter(
         holder.landing.text = flights.arrivalTime.dropLast(3)
         holder.flightDuration1.text = flights.duration.drop(2)
         holder.flightDuration2.text = flights.duration.drop(2)
-        holder.departureIata.text = depIata
-        holder.arrivalIata.text = ariIata
+        holder.departureIata.text = ariIata
+        holder.arrivalIata.text = depIata
         //holder.flightDuration1.text = SimpleDateFormat("HH:mm").format (Date (flights.duration))
         //holder.flightDuration2.text = SimpleDateFormat("mm:ss").format (Date (flights.duration.toLong()))
         holder.price1.text = price
@@ -123,7 +123,6 @@ class FlightOfferAdapter(
         holder.selectFlight.setOnClickListener {
 
 
-            bookInterface.openReturnFlight(flights, holder.flightNbr.text.toString())
         }
 
 //        val airports: Airport =  datasetAirports[position]

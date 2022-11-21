@@ -11,7 +11,7 @@ import com.example.beaverairlines.data.FlightOffer
 class Repository() {
 
     private val amadeus: Amadeus = Amadeus
-        .builder("GJMHOYBG3VfDhFPxaTEGCtWUjFaAtWGc", "AS8otbw4sjUL7etG")
+        .builder("tUPGrbmz5jnpKGmjCREKHejJs6QhyzJF", "IoXiiCPJ4FdSoePy")
         .build()
 
     private val _offersParsed = MutableLiveData<MutableList<FlightOffer>>()

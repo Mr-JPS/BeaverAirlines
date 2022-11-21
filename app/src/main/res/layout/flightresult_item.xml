@@ -577,7 +577,7 @@
 
                         <Button
                             android:id="@+id/bttn_price"
-                            android:layout_width="91dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="32dp"
                             android:layout_marginTop="2dp"
                             android:backgroundTint="#80AE313F"

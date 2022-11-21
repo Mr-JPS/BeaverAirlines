@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3F51B5">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_payFlight"
+        android:layout_width="0dp"
+        android:layout_height="890dp"
+        android:layout_marginTop="120dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="#00FFFFFF"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/firstFlightConstraint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:visibility="visible">
+
+            <ImageView
+                android:id="@+id/iv_payFlight_backgroundBttnSheet"
+                android:layout_width="411dp"
+                android:layout_height="856dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/flightresult_dialog_bg"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_selectYourFlight2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/gotic"
+                android:text="FLIGHT DETAILS"
+                android:textColor="@color/purple_700"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/iv_takeoffPlane"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_takeoffPlane"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity2"
+                app:layout_constraintEnd_toStartOf="@+id/tv_fromCity2"
+                app:layout_constraintTop_toTopOf="@+id/tv_fromCity2"
+                app:srcCompat="@drawable/ic_round_flight_takeoff_24"
+                app:tint="@color/purple_700" />
+
+            <TextView
+                android:id="@+id/tv_fromCity2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/mayabold"
+                android:text="Berlin"
+                android:textColor="@color/red_700"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_selectYourFlight2" />
+
+            <TextView
+                android:id="@+id/tv_fromCity4"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:fontFamily="@font/mayabold"
+                android:text="Berlin"
+                android:textColor="@color/red_700"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_fromCity3"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity3" />
+
+            <TextView
+                android:id="@+id/tv_fromCity8"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:fontFamily="@font/mayabold"
+                android:text="Berlin"
+                android:textColor="@color/red_700"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_fromCity7"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity7" />
+
+            <TextView
+                android:id="@+id/tv_fromCity6"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:fontFamily="@font/mayabold"
+                android:text="London"
+                android:textColor="@color/red_700"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_fromCity5"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity5" />
+
+            <TextView
+                android:id="@+id/tv_fromCity3"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/mayabold"
+                android:text="BER"
+                android:textColor="@color/red_700"
+                android:textSize="48sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_flightNbr2" />
+
+            <TextView
+                android:id="@+id/tv_fromCity7"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="144dp"
+                android:fontFamily="@font/mayabold"
+                android:text="BER"
+                android:textColor="@color/red_700"
+                android:textSize="48sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_fromCity5"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity5" />
+
+            <TextView
+                android:id="@+id/tv_fromCity5"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="124dp"
+                android:fontFamily="@font/mayabold"
+                android:text="LDN"
+                android:textColor="@color/red_700"
+                android:textSize="48sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_fromCity3"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity3" />
+
+            <ImageView
+                android:id="@+id/iv_arrowSmall3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity2"
+                app:layout_constraintStart_toEndOf="@+id/tv_fromCity2"
+                app:layout_constraintTop_toTopOf="@+id/tv_fromCity2"
+                app:srcCompat="@drawable/ic_round_arrow_right_alt_24" />
+
+            <TextView
+                android:id="@+id/tv_toCity2"
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/mayabold"
+                android:text="London"
+                android:textColor="@color/red_700"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity2"
+                app:layout_constraintStart_toEndOf="@+id/iv_arrowSmall3"
+                app:layout_constraintTop_toTopOf="@+id/tv_fromCity2" />
+
+            <TextView
+                android:id="@+id/tv_flightNbr1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/gotic"
+                android:text="FLIGHT NUMBER"
+                android:textColor="@color/purple_700"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_fromCity2"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity2" />
+
+            <TextView
+                android:id="@+id/tv_flightNbr2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/gotic"
+                android:text="FLIGHT NUMBER"
+                android:textColor="@color/purple_700"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_returnFromCity2"
+                app:layout_constraintTop_toBottomOf="@+id/tv_returnFromCity2" />
+
+            <ImageView
+                android:id="@+id/iv_landingPlane"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:rotationY="180"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_returnFromCity2"
+                app:layout_constraintEnd_toStartOf="@+id/tv_returnFromCity2"
+                app:layout_constraintTop_toTopOf="@+id/tv_returnFromCity2"
+                app:srcCompat="@drawable/ic_round_flight_takeoff_24"
+                app:tint="@color/purple_700" />
+
+            <TextView
+                android:id="@+id/tv_returnFromCity2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="52dp"
+                android:fontFamily="@font/mayabold"
+                android:text="London"
+                android:textColor="@color/red_700"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_fromCity2"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity2" />
+
+            <ImageView
+                android:id="@+id/iv_arrowSmall4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_returnFromCity2"
+                app:layout_constraintStart_toEndOf="@+id/tv_returnFromCity2"
+                app:layout_constraintTop_toTopOf="@+id/tv_returnFromCity2"
+                app:srcCompat="@drawable/ic_round_arrow_right_alt_24" />
+
+            <TextView
+                android:id="@+id/tv_returnToCity2"
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/mayabold"
+                android:text="Berlin"
+                android:textColor="@color/red_700"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_returnFromCity2"
+                app:layout_constraintStart_toEndOf="@+id/iv_arrowSmall4"
+                app:layout_constraintTop_toTopOf="@+id/tv_returnFromCity2"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/imageView19"
+                android:layout_width="34dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="104dp"
+                android:rotation="180"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_fromCity3"
+                app:srcCompat="@drawable/ic_baseline_airplanemode_active_24"
+                app:tint="@color/purple_700" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

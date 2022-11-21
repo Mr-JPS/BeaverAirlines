@@ -53,122 +53,14 @@
                 app:srcCompat="@drawable/cloudsbackground3"
                 tools:visibility="visible" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/loadingConstraint"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
+            <include
+                android:id="@+id/selectFlightsCard"
+                layout="@layout/select_flights"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="visible">
-
-                <ProgressBar
-                    android:id="@+id/pb_earth"
-                    style="?android:attr/progressBarStyleLarge"
-                    android:layout_width="79dp"
-                    android:layout_height="79dp"
-                    android:layout_marginEnd="-35dp"
-                    android:alpha="0.2"
-                    android:indeterminateDrawable="@drawable/world_transparent_glass_3"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.65"
-                    tools:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/tv_loadingDep"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mayaregular"
-                    android:text="DEP"
-                    android:textColor="@color/red_700"
-                    android:textSize="60sp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.11"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.060000002"
-                    tools:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/tv_loadingFrom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginBottom="-5dp"
-                    android:fontFamily="@font/mayaregular"
-                    android:text="FROM"
-                    android:textColor="@color/red_700"
-                    android:textSize="20sp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_loadingDep"
-                    app:layout_constraintStart_toStartOf="@+id/tv_loadingDep"
-                    tools:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/tv_loadingTo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="-5dp"
-                    android:fontFamily="@font/mayaregular"
-                    android:text="TO"
-                    android:textColor="@color/red_700"
-                    android:textSize="20sp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_loadingAri"
-                    app:layout_constraintStart_toStartOf="@+id/tv_loadingAri"
-                    tools:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/tv_loadingAri"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:fontFamily="@font/mayaregular"
-                    android:text="ARI"
-                    android:textColor="@color/red_700"
-                    android:textSize="60sp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_loadingDep"
-                    app:layout_constraintStart_toEndOf="@+id/iv_loadingPlane"
-                    app:layout_constraintTop_toTopOf="@+id/tv_loadingDep"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:visibility="visible" />
-
-                <ImageView
-                    android:id="@+id/iv_loadingPlane"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="20dp"
-                    android:rotation="45"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_loadingDep"
-                    app:layout_constraintStart_toEndOf="@+id/tv_loadingDep"
-                    app:layout_constraintTop_toTopOf="@+id/tv_loadingDep"
-                    app:srcCompat="@drawable/flugzeug2klein"
-                    tools:visibility="visible" />
-
-                <ImageView
-                    android:id="@+id/iv_loadingBeaver"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/tv_loadingDep"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_loadingDep"
-                    app:srcCompat="@drawable/beaverbttn"
-                    tools:visibility="visible" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
