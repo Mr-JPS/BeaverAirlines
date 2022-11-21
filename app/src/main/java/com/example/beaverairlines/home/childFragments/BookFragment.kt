@@ -448,23 +448,30 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
-
+/*
             Handler().postDelayed({
                 val textIN = AnimationUtils.loadAnimation(
                     requireContext(),
                     R.anim.text_slide_in)
-                textIN.duration = 1000
+                    textIN.duration = 1000
 
 
-                binding.selectFlightsCard.tvLoadingTo.visibility = View.VISIBLE
+                binding.selectFlightsCard.tvLoadingFrom.startAnimation(textIN)
+                binding.selectFlightsCard.tvLoadingFrom.visibility = View.VISIBLE
+
+
+
                 binding.selectFlightsCard.tvLoadingTo.startAnimation(textIN)
+                binding.selectFlightsCard.tvLoadingTo.visibility = View.VISIBLE
 
                 binding.selectFlightsCard.tvLoadingAri.text =
-                    binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
+                binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
                 binding.selectFlightsCard.tvLoadingAri.visibility = View.VISIBLE
                 binding.selectFlightsCard.tvLoadingAri.startAnimation(textIN)
 
             }, 1000)
+
+ */
 
 
 
@@ -513,7 +520,7 @@ class BookFragment : Fragment(), BookInterface {
 
                             val beaverOut = AnimationUtils.loadAnimation(
                                 requireContext(),
-                                R.anim.fade_out)
+                                R.anim.bottom_close)
 //                            beaverOut.duration = 5000
                             binding.selectFlightsCard.ivLoadingBeaver.startAnimation(beaverOut)
                             binding.selectFlightsCard.ivLoadingBeaver.visibility = View.GONE
@@ -542,25 +549,22 @@ class BookFragment : Fragment(), BookInterface {
                     if (it) {
                         val resultsOUT = AnimationUtils.loadAnimation(
                             requireContext(),
-                            R.anim.fade_out)
+                            R.anim.bttnbar_slide_out)
 
-
-                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(
-                            resultsOUT)
-                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility =
-                            View.INVISIBLE
-
-                        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(
-                            resultsOUT)
-                        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.visibility =
-                            View.INVISIBLE
-
-                        val resultsIN = AnimationUtils.loadAnimation(
+                        val textIN = AnimationUtils.loadAnimation(
                             requireContext(),
                             R.anim.text_slide_in)
+                        textIN.duration = 1000
+
+
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(resultsOUT)
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility = View.INVISIBLE
+
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(resultsOUT)
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.visibility = View.INVISIBLE
+
+
                         if (isReturnFlight){
-
-
                             binding.selectFlightsCard.loadingConstraint.tv_loadingDep.text = flightViewModel.ariIata
                             binding.selectFlightsCard.loadingConstraint.tv_loadingAri.text = flightViewModel.depIata
 
@@ -570,35 +574,40 @@ class BookFragment : Fragment(), BookInterface {
                             binding.selectFlightsCard.loadingConstraint.tv_loadingAri.text = flightViewModel.ariIata
                         }
 
-                        val textIN = AnimationUtils.loadAnimation(
-                            requireContext(),
-                            R.anim.text_slide_in)
-                        textIN.duration = 1000
-                        binding.selectFlightsCard.tvLoadingFrom.visibility = View.VISIBLE
-                        binding.selectFlightsCard.tvLoadingFrom.startAnimation(textIN)
 
 
 
-                        binding.selectFlightsCard.tvLoadingDep.visibility = View.VISIBLE
-                        binding.selectFlightsCard.tvLoadingDep.startAnimation(textIN)
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingFrom.visibility = View.VISIBLE
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingFrom.startAnimation(textIN)
 
-                        binding.selectFlightsCard.ivLoadingPlane.visibility = View.VISIBLE
-                        binding.selectFlightsCard.ivLoadingPlane.startAnimation(textIN)
+
+
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility = View.VISIBLE
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(textIN)
+
+
+
+                        binding.selectFlightsCard.loadingConstraint.iv_loadingPlane.visibility = View.VISIBLE
+                        binding.selectFlightsCard.loadingConstraint.iv_loadingPlane.startAnimation(textIN)
+
+
+
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingTo.visibility = View.VISIBLE
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingTo.startAnimation(textIN)
+
+
 
                         binding.selectFlightsCard.loadingConstraint.tv_loadingAri.visibility = View.VISIBLE
-                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility = View.VISIBLE
-                        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(resultsIN)
-                        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(resultsIN)
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(textIN)
+
 
 
 
                         binding.selectFlightsCard.cvResultsFirst.visibility = View.GONE
-                        binding.selectFlightsCard.cvResultsFirst.startAnimation(
-                            resultsOUT)
-                        binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.visibility =
-                            View.GONE
-                        binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.startAnimation(
-                            resultsOUT)
+                        binding.selectFlightsCard.cvResultsFirst.startAnimation(resultsOUT)
+
+                        binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.visibility = View.GONE
+                        binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.startAnimation(resultsOUT)
                     }
                 }
             )
