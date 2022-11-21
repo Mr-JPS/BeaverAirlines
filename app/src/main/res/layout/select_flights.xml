@@ -110,8 +110,8 @@
 
         <ImageView
             android:id="@+id/iv_loadingBeaver"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -119,6 +119,21 @@
             app:layout_constraintStart_toStartOf="@+id/tv_loadingDep"
             app:layout_constraintTop_toBottomOf="@+id/tv_loadingDep"
             app:srcCompat="@drawable/beaverbttn"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_loadingSearchText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/gotic"
+            android:text="SEARCHING FOR FLIGHTS..."
+            android:textColor="@color/red_700"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/tv_loadingDep"
+            app:layout_constraintTop_toBottomOf="@+id/tv_loadingDep"
             tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

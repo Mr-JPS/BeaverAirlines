@@ -33,8 +33,6 @@ import kotlinx.android.synthetic.main.book3_card.*
 import kotlinx.android.synthetic.main.book3_card.expandCard
 import kotlinx.android.synthetic.main.book3_card.view.*
 import kotlinx.android.synthetic.main.fragment_book.view.*
-import kotlinx.android.synthetic.main.fragment_flightresultsheet.view.*
-import kotlinx.android.synthetic.main.fragment_flightresultsheet.view.rv_returnFlightResultsList
 import kotlinx.android.synthetic.main.select_flights.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -445,6 +443,28 @@ class BookFragment : Fragment(), BookInterface {
             val set = AnimatorSet()
             set.playTogether(animatorX, animatorY, animatorS)
             set.start()
+/*
+            Handler().postDelayed({
+                val fadeIN = AnimationUtils.loadAnimation(
+                    requireContext(),
+                    R.anim.fade_in)
+            //binding.selectFlightsCard.ivLoadingBeaver.visibility = View.VISIBLE
+            //binding.selectFlightsCard.ivLoadingBeaver.startAnimation(fadeIN)
+                binding.selectFlightsCard.tvLoadingSearchText.startAnimation(fadeIN)
+                binding.selectFlightsCard.tvLoadingSearchText.visibility = View.VISIBLE
+            }, 800)
+
+            Handler().postDelayed({
+            binding.selectFlightsCard.ivLoadingBeaver.animate().apply {
+                duration = 1100
+                rotationXBy(360f)
+            }.start()
+
+            }, 1800)
+
+
+ */
+
 
 
 
@@ -475,20 +495,7 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
-            Handler().postDelayed({
-                val textIN = AnimationUtils.loadAnimation(
-                    requireContext(),
-                    R.anim.text_slide_in)
-                textIN.duration = 1000
 
-                binding.selectFlightsCard.ivLoadingBeaver.visibility = View.VISIBLE
-                binding.selectFlightsCard.ivLoadingBeaver.startAnimation(textIN)
-                binding.selectFlightsCard.ivLoadingBeaver.animate().apply {
-                    duration = 1100
-                    rotationXBy(360f)
-                }.start()
-
-            }, 800)
 
 
 /*
@@ -515,15 +522,18 @@ class BookFragment : Fragment(), BookInterface {
                 flightViewModel.status.observe(
                     viewLifecycleOwner,
                     androidx.lifecycle.Observer {
-                        if (it) {
 
+                        if (it) {
 
                             val beaverOut = AnimationUtils.loadAnimation(
                                 requireContext(),
-                                R.anim.bottom_close)
-//                            beaverOut.duration = 5000
-                            binding.selectFlightsCard.ivLoadingBeaver.startAnimation(beaverOut)
-                            binding.selectFlightsCard.ivLoadingBeaver.visibility = View.GONE
+                                R.anim.fade_out)
+                            //beaverOut.duration = 300
+                            //binding.selectFlightsCard.ivLoadingBeaver.startAnimation(beaverOut)
+                            binding.selectFlightsCard.tvLoadingSearchText.startAnimation(beaverOut)
+
+                            //binding.selectFlightsCard.ivLoadingBeaver.visibility = View.GONE
+                            binding.selectFlightsCard.tvLoadingSearchText.visibility = View.GONE
 
                             val resultsIN = AnimationUtils.loadAnimation(
                                 requireContext(),
@@ -538,10 +548,11 @@ class BookFragment : Fragment(), BookInterface {
                                 resultsIN)
 
 
+
                         }
                     }
                 )
-            }, 3800)
+            }, 800)
 
             flightViewModel.started.observe(
                 viewLifecycleOwner,
@@ -563,6 +574,9 @@ class BookFragment : Fragment(), BookInterface {
                         binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(resultsOUT)
                         binding.selectFlightsCard.loadingConstraint.tv_loadingAri.visibility = View.INVISIBLE
 
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.visibility = View.INVISIBLE
+                        binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.startAnimation(resultsOUT)
+
 
                         if (isReturnFlight){
                             binding.selectFlightsCard.loadingConstraint.tv_loadingDep.text = flightViewModel.ariIata
@@ -575,12 +589,8 @@ class BookFragment : Fragment(), BookInterface {
                         }
 
 
-
-
                         binding.selectFlightsCard.loadingConstraint.tv_loadingFrom.visibility = View.VISIBLE
                         binding.selectFlightsCard.loadingConstraint.tv_loadingFrom.startAnimation(textIN)
-
-
 
                         binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility = View.VISIBLE
                         binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(textIN)
@@ -601,6 +611,11 @@ class BookFragment : Fragment(), BookInterface {
                         binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(textIN)
 
 
+                        //Handler().postDelayed({
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.visibility = View.VISIBLE
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.startAnimation(textIN)
+
+                        //}, 800)
 
 
                         binding.selectFlightsCard.cvResultsFirst.visibility = View.GONE
