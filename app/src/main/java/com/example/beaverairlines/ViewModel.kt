@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.beaverairlines.api.Repository
+import com.example.beaverairlines.data.FlightOffer
 import com.example.beaverairlines.data.Iata
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,6 +20,10 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
     var depIata: String = ""
     var ariIata: String = ""
+
+    var flight1 : FlightOffer? = null
+    var flight2 : FlightOffer? = null
+
 
 /*
     fun readCsv(csv: Int): List<Iata> {

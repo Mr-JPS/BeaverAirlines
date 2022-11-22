@@ -122,6 +122,7 @@ class FlightReturnAdapter(
 
         holder.selectFlight.setOnClickListener {
 
+            bookInterface.openPayment(depIata, ariIata, flights, holder.flightNbr.text.toString() )
 
         }
 
