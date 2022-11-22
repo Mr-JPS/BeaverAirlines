@@ -129,7 +129,7 @@
             android:fontFamily="@font/gotic"
             android:text="SEARCHING FOR FLIGHTS..."
             android:textColor="@color/red_700"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/tv_loadingDep"
@@ -152,7 +152,7 @@
         tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/firstFlightConstraint"
+            android:id="@+id/payCARDConstraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:visibility="visible">
