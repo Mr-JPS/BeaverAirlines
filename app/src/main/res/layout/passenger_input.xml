@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_cabinCrewPAS"
+        android:layout_width="409dp"
+        android:layout_height="346dp"
+        android:adjustViewBounds="true"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cabincrew"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/iv_cabinCrewCloudPAS"
+        android:layout_width="850dp"
+        android:layout_height="276dp"
+        android:layout_marginBottom="-180dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_cabinCrewPAS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/clouds"
+        tools:visibility="visible" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_passengerCARD"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:cardBackgroundColor="#00FFFFFF"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_backgroundPAS"
+                android:layout_width="411dp"
+                android:layout_height="600dp"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/flightresult_dialog_bg"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_header1PAS"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="48dp"
+                android:alpha="0.3"
+                android:fontFamily="@font/gotic"
+                android:text="PASSENGER"
+                android:textColor="@color/purple_700"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_backgroundPAS"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_header2PAS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.3"
+                android:fontFamily="@font/gotic"
+                android:text="DETAILS"
+                android:textAlignment="center"
+                android:textColor="@color/purple_700"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/tv_header1PAS"
+                app:layout_constraintStart_toStartOf="@+id/tv_header1PAS"
+                app:layout_constraintTop_toBottomOf="@+id/tv_header1PAS"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_headerLogoPAS"
+                android:layout_width="46dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="-5dp"
+                android:layout_marginTop="-10dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/tv_header1PAS"
+                app:layout_constraintTop_toTopOf="@+id/tv_header1PAS"
+                app:srcCompat="@drawable/b_logo"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_pasIcon"
+                android:layout_width="28dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="3dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/tv_header3PAS"
+                app:layout_constraintStart_toStartOf="@+id/tv_header3PAS"
+                app:srcCompat="@drawable/ic_baseline_airline_seat_recline_extra_24"
+                app:tint="@color/red_700"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_header3PAS"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="90dp"
+                android:fontFamily="@font/gotic"
+                android:text="ENTER TRAVELERS"
+                android:textColor="@color/red_700"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_header2PAS"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_header4PAS"
+                android:layout_width="182dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/gotic"
+                android:text="Each passenger's name must match the name on the identification that they will be required to provide at the airport when they pass the security controll before their flight."
+                android:textColor="@color/purple_700"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/tv_header3PAS"
+                app:layout_constraintStart_toStartOf="@+id/tv_header3PAS"
+                app:layout_constraintTop_toBottomOf="@+id/tv_header3PAS"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_pasNo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotic"
+                android:text="Adult Passenger No.1"
+                android:textAlignment="center"
+                android:textColor="@color/red_700"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_passportCover"
+                app:layout_constraintStart_toStartOf="@+id/tv_header4PAS"
+                app:layout_constraintTop_toBottomOf="@+id/tv_header4PAS"
+                app:layout_constraintVertical_bias="0.0"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_pasArrow"
+                android:layout_width="14dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="5dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_pasNo1"
+                app:layout_constraintStart_toEndOf="@+id/tv_pasNo1"
+                app:layout_constraintTop_toTopOf="@+id/tv_pasNo1"
+                app:srcCompat="@drawable/ic_round_arrow_right_alt_24"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_passportCover"
+                android:layout_width="137dp"
+                android:layout_height="174dp"
+                android:layout_marginStart="38dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/iv_backgroundPAS"
+                app:layout_constraintTop_toTopOf="@+id/iv_pasIcon"
+                app:srcCompat="@drawable/passcover"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/bttn_proceedToCheckout"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/purple_700"
+                android:fontFamily="@font/mayaregular"
+                android:text="Proceed to checkout"
+                android:textColor="@color/white"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:cornerRadius="20dp"
+                app:iconTint="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/tv_header4PAS"
+                app:layout_constraintStart_toStartOf="@+id/iv_passportCover"
+                app:layout_constraintTop_toBottomOf="@+id/iv_passportCover"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:visibility="visible" />
+
+            <CheckBox
+                android:id="@+id/bttn_savePassport"
+                android:layout_width="101dp"
+                android:layout_height="22dp"
+                android:button="@drawable/plane_checkbox"
+                android:buttonTint="@color/purple_700"
+                android:checked="false"
+                android:fontFamily="@font/gotic"
+                android:text="  Save Passport"
+                android:textColor="@color/purple_700"
+                android:textSize="10sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/bttn_proceedToCheckout"
+                app:layout_constraintStart_toStartOf="@+id/bttn_proceedToCheckout"
+                app:layout_constraintTop_toBottomOf="@+id/bttn_proceedToCheckout"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_footPAS"
+                android:layout_width="328dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="45dp"
+                android:fontFamily="@font/gotic"
+                android:text="Carriage in international air transport is subject to the provisions of the Montreal Convention or the Warsaw Convention with regard to liability in the event of death or personal injury to passengers, delays to passengers and/or luggage and destruction, loss or damage to luggage. Which of the agreements applies under which conditions depends on which states have signed and ratified the agreements."
+                android:textColor="@color/purple_700"
+                android:textSize="5sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_header4PAS"
+                app:layout_constraintStart_toStartOf="@+id/iv_passportCover"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/passportCARD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:cardBackgroundColor="#00FFFFFF"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cv_passengerCARD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_cabinCrewPAS"
+        tools:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_passportInside"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/newpassportinside" />
+
+            <EditText
+                android:id="@+id/tv_pasSurname"
+                android:layout_width="202dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="92dp"
+                android:layout_marginTop="383dp"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:hint="Enter your Surname"
+                android:inputType="textPersonName"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:singleLine="false"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_passportInside"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/tv_pasName"
+                android:layout_width="202dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:hint="Enter your Given Name"
+                android:inputType="textPersonName"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:singleLine="false"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pasSurname"
+                app:layout_constraintStart_toStartOf="@+id/tv_pasSurname"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pasSurname"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/tv_pasNationality"
+                android:layout_width="84dp"
+                android:layout_height="17dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:hint="Nationality"
+                android:inputType="textPersonName"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:singleLine="false"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_pasName"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pasName"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/tv_pasBirthday"
+                android:layout_width="84dp"
+                android:layout_height="17dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:hint="Year.Month.Day"
+                android:inputType="textPersonName"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:singleLine="false"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_pasNationality"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pasNationality"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/tv_pasBirthCity"
+                android:layout_width="84dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="37dp"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:hint="City"
+                android:inputType="textPersonName"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:singleLine="false"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_pasBirthday"
+                app:layout_constraintStart_toEndOf="@+id/tv_pasBirthday"
+                app:layout_constraintTop_toTopOf="@+id/tv_pasBirthday"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/tv_pasGender"
+                android:layout_width="43dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:hint="F/M/D"
+                android:inputType="textPersonName"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:singleLine="false"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_pasBirthday"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pasBirthday"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/tv_pasCountry"
+                android:layout_width="43dp"
+                android:layout_height="15dp"
+                android:layout_marginBottom="19dp"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:hint="CC"
+                android:inputType="textPersonName"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:singleLine="false"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_pasSurname"
+                app:layout_constraintStart_toStartOf="@+id/tv_pasSurname"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/tv_pasPassportNbr1"
+                android:layout_width="83dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="78dp"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:hint="B05X0003B0B "
+                android:inputType="textPersonName"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:singleLine="false"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_pasCountry"
+                app:layout_constraintStart_toEndOf="@+id/tv_pasCountry"
+                app:layout_constraintTop_toTopOf="@+id/tv_pasCountry"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/tv_pasPassportNbr2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-111dp"
+                android:layout_marginTop="7dp"
+                android:alpha="0.6"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:rotation="-90"
+                android:singleLine="false"
+                android:text="B05X0003B0B "
+                android:textColor="@color/purple_700"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_passportInside"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/tv_pasPassportFoot"
+                android:layout_width="296dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:alpha="0.6"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:singleLine="false"
+                android:text="<<<B05X0003B0B<<<SURNAME<<<GIVENNAME<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+                android:textColor="@color/purple_700"
+                android:textSize="9sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pasBirthCity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pasGender"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/bttn_inputDone"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:backgroundTint="@color/purple_700"
+                android:fontFamily="@font/mayaregular"
+                android:text="Done"
+                android:textColor="@color/white"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:cornerRadius="20dp"
+                app:iconTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/iv_passportInside"
+                app:layout_constraintTop_toBottomOf="@+id/iv_passportInside"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

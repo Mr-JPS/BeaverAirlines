@@ -74,6 +74,29 @@
                     app:layout_constraintStart_toEndOf="@+id/imageView16"
                     app:layout_constraintTop_toBottomOf="@+id/tv_selectYourFlight" />
 
+                <ImageView
+                    android:id="@+id/iv_arrowSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity"
+                    app:layout_constraintStart_toEndOf="@+id/tv_fromCity"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fromCity"
+                    app:srcCompat="@drawable/ic_round_arrow_right_alt_24" />
+
+                <TextView
+                    android:id="@+id/tv_toCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/mayabold"
+                    android:text="London"
+                    android:textColor="@color/red_700"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity"
+                    app:layout_constraintStart_toEndOf="@+id/iv_arrowSmall"
+                    app:layout_constraintTop_toTopOf="@+id/tv_fromCity" />
+
                 <TextView
                     android:id="@+id/tv_returnFromCity"
                     android:layout_width="wrap_content"
@@ -99,19 +122,6 @@
                     app:layout_constraintTop_toTopOf="@+id/tv_returnFromCity" />
 
                 <TextView
-                    android:id="@+id/tv_toCity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/mayabold"
-                    android:text="London"
-                    android:textColor="@color/red_700"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity"
-                    app:layout_constraintStart_toEndOf="@+id/iv_arrowSmall"
-                    app:layout_constraintTop_toTopOf="@+id/tv_fromCity" />
-
-                <TextView
                     android:id="@+id/tv_selectYourFlight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -124,16 +134,6 @@
                     app:layout_constraintStart_toStartOf="@+id/tv_fromCity"
                     app:layout_constraintTop_toTopOf="@+id/iv_backgroundBttnSheet"
                     app:layout_constraintVertical_bias="0.0" />
-
-                <ImageView
-                    android:id="@+id/iv_arrowSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity"
-                    app:layout_constraintStart_toEndOf="@+id/tv_fromCity"
-                    app:layout_constraintTop_toTopOf="@+id/tv_fromCity"
-                    app:srcCompat="@drawable/ic_round_arrow_right_alt_24" />
 
                 <ImageView
                     android:id="@+id/iv_arrowSmall2"

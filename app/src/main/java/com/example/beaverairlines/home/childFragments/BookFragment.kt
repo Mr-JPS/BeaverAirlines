@@ -7,6 +7,7 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.os.Handler
 import android.transition.AutoTransition
+import android.transition.Transition
 import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
@@ -33,8 +34,27 @@ import kotlinx.android.synthetic.main.book3_card.*
 import kotlinx.android.synthetic.main.book3_card.expandCard
 import kotlinx.android.synthetic.main.book3_card.view.*
 import kotlinx.android.synthetic.main.fragment_book.view.*
-import kotlinx.android.synthetic.main.pay_flights.*
+import kotlinx.android.synthetic.main.passenger_input.view.*
 import kotlinx.android.synthetic.main.pay_flights.view.*
+import kotlinx.android.synthetic.main.pay_flights.view.iv_headerLogo1
+import kotlinx.android.synthetic.main.pay_flights.view.iv_payFlight_backgroundBttnSheet
+import kotlinx.android.synthetic.main.pay_flights.view.tv_Date1
+import kotlinx.android.synthetic.main.pay_flights.view.tv_Date2
+import kotlinx.android.synthetic.main.pay_flights.view.tv_Date3
+import kotlinx.android.synthetic.main.pay_flights.view.tv_Date4
+import kotlinx.android.synthetic.main.pay_flights.view.tv_Time1
+import kotlinx.android.synthetic.main.pay_flights.view.tv_Time2
+import kotlinx.android.synthetic.main.pay_flights.view.tv_Time3
+import kotlinx.android.synthetic.main.pay_flights.view.tv_Time4
+import kotlinx.android.synthetic.main.pay_flights.view.tv_adult1
+import kotlinx.android.synthetic.main.pay_flights.view.tv_adult2
+import kotlinx.android.synthetic.main.pay_flights.view.tv_cabinClass1
+import kotlinx.android.synthetic.main.pay_flights.view.tv_cabinClass2
+import kotlinx.android.synthetic.main.pay_flights.view.tv_flightNbr1
+import kotlinx.android.synthetic.main.pay_flights.view.tv_flightNbr2
+import kotlinx.android.synthetic.main.pay_flights.view.tv_price1
+import kotlinx.android.synthetic.main.pay_flights.view.tv_price2
+import kotlinx.android.synthetic.main.payment_procedure.view.*
 import kotlinx.android.synthetic.main.select_flights.view.*
 import kotlinx.android.synthetic.main.select_flights.view.payCARDConstraint
 import java.text.SimpleDateFormat
@@ -56,6 +76,8 @@ class BookFragment : Fragment(), BookInterface {
 
     private lateinit var iataArrayList: ArrayList<Iata>
     private lateinit var tempIataArrayList: ArrayList<Iata>
+
+    private lateinit var paymentCardTransition: Transition
 
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
@@ -109,9 +131,10 @@ class BookFragment : Fragment(), BookInterface {
             val iataArrayAdapter2 = IataArrayAdapter(ctx, R.layout.iata_item, iata)
             selectDepartureCity.setAdapter(iataArrayAdapter2)
             selectDepartureCity.setOnItemClickListener { parent, _, position, _ ->
-                val iata = iataArrayAdapter2.getItem(position) as Iata?
-                selectDepartureCity.setText(iata?.name)
-                departureIata.setText(iata?.iata)
+                val iata2 = iataArrayAdapter2.getItem(position) as Iata?
+                selectDepartureCity.setText(iata2?.name)
+                flightViewModel.depCity = (iata2?.name.toString())
+                departureIata.setText(iata2?.iata)
             }
 
         }
@@ -122,6 +145,7 @@ class BookFragment : Fragment(), BookInterface {
             selectArrivalCity.setOnItemClickListener { parent, _, position, _ ->
                 val iata = iataArrayAdapter.getItem(position) as Iata?
                 selectArrivalCity.setText(iata?.name)
+                flightViewModel.ariCity = (iata?.name.toString())
                 arrivalIata.setText(iata?.iata)
             }
 
@@ -211,6 +235,7 @@ class BookFragment : Fragment(), BookInterface {
                 calender.get(Calendar.YEAR),
                 calender.get(Calendar.MONTH),
                 calender.get(Calendar.DAY_OF_MONTH)).show()
+
         }
 
         returnDate.setOnClickListener {
@@ -378,8 +403,7 @@ class BookFragment : Fragment(), BookInterface {
 
         binding.constraintBigBookCard.bttn_searchFlights.setOnClickListener {
 
-            flightViewModel.depIata =
-                binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
+            flightViewModel.depIata = binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
             flightViewModel.ariIata = binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
 
 
@@ -806,6 +830,9 @@ class BookFragment : Fragment(), BookInterface {
         )
 
 
+        flightViewModel.departureDATE = binding.bigBookCard.expandConstraint1.tv_depDateSelect.text.toString()
+
+
 
 
     }
@@ -815,6 +842,7 @@ class BookFragment : Fragment(), BookInterface {
         isReturnFlight = true
 
         flightViewModel.flight1 = flight
+        flightViewModel.bookingNbr1 = bookingNbr
 
 /*
         Handler().postDelayed({
@@ -843,7 +871,11 @@ class BookFragment : Fragment(), BookInterface {
             binding.bigBookCard.expandConstraint1.tv_arriveDateSelect.text.toString(),
             adultCounter
         )
+
+        flightViewModel.arrivalDATE = binding.bigBookCard.expandConstraint1.tv_arriveDateSelect.text.toString()
+        flightViewModel.adultPassenger= adultCounter.toString()
 /*
+
         val resultsOUT = AnimationUtils.loadAnimation(
             requireContext(),
             R.anim.slide_down)
@@ -859,31 +891,43 @@ class BookFragment : Fragment(), BookInterface {
 
     override fun openPayment(depIata: String, ariIata: String, returnFlight: FlightOffer, returnBookingNbr: String) {
 
+        val flight1 = flightViewModel.flight1
+
+        flightViewModel.flight2 = returnFlight
+        flightViewModel.bookingNbr2 = returnBookingNbr
+
         binding.payCard.cvPayCARD.payCARDConstraint.tv_departIATA.text = ariIata
-        binding.payCard.cvPayCARD.payCARDConstraint.tv_departCity.text
+        binding.payCard.cvPayCARD.payCARDConstraint.tv_departCity.setText(flightViewModel.depCity.toString())
 
         binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalIATA1.text = depIata
-        binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalCity1.text
+        binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalCity1.text = flightViewModel.ariCity
 
         binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalIATA2.text = ariIata
-        binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalCity2.text
+        binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalCity2.text = flightViewModel.depCity
 
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_flightNbr1.text
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_adult1.text = "1 Adult"
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_flightNbr1.text = flightViewModel.bookingNbr1
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_adult1.text = "${flightViewModel.adultPassenger} Adult"
         binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_cabinClass1.text = "First Class"
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Date1.text = "DATE"
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Time1.text = "TIME"
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Date2.text = "DATE"
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Time2.text = "TIME"
-        binding.payCard.cvPayCARD.payCARDConstraint.tv_price1.text = "PRICE"
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Date1.text = flightViewModel.departureDATE
+
+        if (flight1 != null) {
+            binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Time1.text = flight1.departureTime
+        }
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Date2.text = flightViewModel.departureDATE
+        if (flight1 != null) {
+            binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Time2.text = flight1.arrivalTime
+        }
+        if (flight1 != null) {
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_price1.text = "EUR ${flight1.price}"
+        }
 
         binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_flightNbr2.text = returnBookingNbr
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_adult2.text = "1 Adult"
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_adult2.text = "${flightViewModel.adultPassenger} Adult"
         binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_cabinClass2.text = "First Class"
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Date3.text = returnFlight.departureTime
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Time3.text = "TIME"
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Date4.text = returnFlight.arrivalTime
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Time4.text = "TIME"
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Date3.text = flightViewModel.arrivalDATE
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Time3.text = returnFlight.departureTime
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Date4.text = flightViewModel.arrivalDATE
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Time4.text = returnFlight.arrivalTime
         binding.payCard.cvPayCARD.payCARDConstraint.tv_price2.text = "EUR ${returnFlight.price}"
 
 
@@ -931,6 +975,11 @@ class BookFragment : Fragment(), BookInterface {
         Handler().postDelayed({
             binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight.visibility = View.VISIBLE
             binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight.startAnimation(resultsIN)
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight2.visibility = View.VISIBLE
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight2.startAnimation(resultsIN)
+            binding.payCard.cvPayCARD.payCARDConstraint.iv_headerLogo1.visibility = View.VISIBLE
+            binding.payCard.cvPayCARD.payCARDConstraint.iv_headerLogo1.startAnimation(resultsIN)
+
 
         binding.payCard.cvPayCARD.payCARDConstraint.tv_departIATA.visibility = View.VISIBLE
         val cityAnimator1 = ObjectAnimator.ofFloat(
@@ -1043,11 +1092,17 @@ class BookFragment : Fragment(), BookInterface {
             set5.start()
 
             Handler().postDelayed({
-            binding.payCard.cvPayCARD.payCARDConstraint.bttn_proceedPayment.startAnimation(resultsIN)
-            binding.payCard.cvPayCARD.payCARDConstraint.bttn_proceedPayment.visibility = View.VISIBLE
-
+            binding.payCard.cvPayCARD.payCARDConstraint.bttn_proceedToPasDetails.startAnimation(resultsIN)
+            binding.payCard.cvPayCARD.payCARDConstraint.bttn_proceedToPasDetails.visibility = View.VISIBLE
+/*
             binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight.startAnimation(resultsOUT)
             binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight.visibility = View.GONE
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight2.startAnimation(resultsOUT)
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight2.visibility = View.GONE
+            binding.payCard.cvPayCARD.payCARDConstraint.iv_headerLogo1.startAnimation(resultsOUT)
+            binding.payCard.cvPayCARD.payCARDConstraint.iv_headerLogo1.visibility = View.GONE
+
+ */
 
             binding.payCard.cvPayCARD.payCARDConstraint.tv_price1.startAnimation(resultsIN)
             binding.payCard.cvPayCARD.payCARDConstraint.tv_price1.visibility = View.VISIBLE
@@ -1059,6 +1114,269 @@ class BookFragment : Fragment(), BookInterface {
         }, 3800)
 
 
+
+        binding.payCard.cvPayCARD.payCARDConstraint.bttn_proceedToPasDetails.setOnClickListener {
+
+            val payCard = binding.payCard.cvPayCARD
+
+            val passengerInputCard = binding.passengerInputCard
+            val pasBackground =  binding.passengerInputCard.cvPassengerCARD.iv_backgroundPAS
+            val pasHeader1 = binding.passengerInputCard.cvPassengerCARD.tv_header1PAS
+            val pasHeader2 = binding.passengerInputCard.cvPassengerCARD.tv_header2PAS
+            val pasHeader3 = binding.passengerInputCard.cvPassengerCARD.iv_headerLogoPAS
+            val pasHeader4 = binding.passengerInputCard.cvPassengerCARD.iv_pasIcon
+            val pasHeader5 = binding.passengerInputCard.cvPassengerCARD.tv_header3PAS
+            val pasHeader6 = binding.passengerInputCard.cvPassengerCARD.tv_header4PAS
+            val pasAdult = binding.passengerInputCard.cvPassengerCARD.tv_pasNo1
+            val pasArrow = binding.passengerInputCard.cvPassengerCARD.iv_pasArrow
+            val passportCover = binding.passengerInputCard.cvPassengerCARD.iv_passportCover
+            val bttnProceed = binding.passengerInputCard.cvPassengerCARD.bttn_proceedToCheckout
+            val savePassport = binding.passengerInputCard.cvPassengerCARD.bttn_savePassport
+            val footer = binding.passengerInputCard.cvPassengerCARD.tv_footPAS
+
+
+
+
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight.startAnimation(resultsOUT)
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight.visibility = View.GONE
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight2.startAnimation(resultsOUT)
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight2.visibility = View.GONE
+            binding.payCard.cvPayCARD.payCARDConstraint.iv_headerLogo1.startAnimation(resultsOUT)
+            binding.payCard.cvPayCARD.payCARDConstraint.iv_headerLogo1.visibility = View.GONE
+            payCard.startAnimation(resultsOUT)
+            payCard.visibility = View.GONE
+
+
+        }
+
+
+        binding.payCard.cvPayCARD.payCARDConstraint.bttn_proceedToPasDetails.setOnClickListener {
+
+            val flightOne = flightViewModel.flight1
+            val flightOneBookingNbr = flightViewModel.bookingNbr1
+
+            val flightTwo = flightViewModel.flight2
+            val flightTwoBookingNbr = flightViewModel.bookingNbr2
+
+            val fadeIN = AnimationUtils.loadAnimation(
+                requireContext(),
+                R.anim.fade_in)
+                fadeIN.duration = 2000
+
+
+            val paymentSummaryCard = binding.paymentSummaryCard
+            val background = binding.paymentSummaryCard.cvPayCARD.iv_payFlight_backgroundBttnSheet
+            val paymentCard = binding.paymentSummaryCard.cvPayCARD
+            val header1 = binding.paymentSummaryCard.cvPayCARD.tv_header1
+            val header2 = binding.paymentSummaryCard.cvPayCARD.tv_header2
+            val headerLogo = binding.paymentSummaryCard.cvPayCARD.iv_headerLogo1
+
+            val flight1From = binding.paymentSummaryCard.cvPayCARD.tv_fromCity1
+            val flight1To = binding.paymentSummaryCard.cvPayCARD.tv_toCity1
+            val flight1 = binding.paymentSummaryCard.cvPayCARD.cv_flight3
+            val flight1Bg = binding.paymentSummaryCard.cvPayCARD.iv_background3
+            val flightNbr1 = binding.paymentSummaryCard.cvPayCARD.tv_flightNbr3
+            val adults1 = binding.paymentSummaryCard.cvPayCARD.tv_adult3
+            val plane1One = binding.paymentSummaryCard.cvPayCARD.iv_PlaneICON3
+            val date1One = binding.paymentSummaryCard.cvPayCARD.tv_date3
+            val time1One = binding.paymentSummaryCard.cvPayCARD.tv_time3
+            val plane1Two = binding.paymentSummaryCard.cvPayCARD.iv_PlaneICON3two
+            val date1Two = binding.paymentSummaryCard.cvPayCARD.tv_date3two
+            val time1Two = binding.paymentSummaryCard.cvPayCARD.tv_time3two
+            val cabin1 = binding.paymentSummaryCard.cvPayCARD.tv_cabinClass3
+            val flight1dep = binding.paymentSummaryCard.cvPayCARD.tv_fromCity1
+            val arrow1 = binding.paymentSummaryCard.cvPayCARD.iv_arrowSmall3
+            val flight1ari = binding.paymentSummaryCard.cvPayCARD.tv_toCity1
+            val price1 = binding.paymentSummaryCard.cvPayCARD.tv_price1
+
+            val flight2From = binding.paymentSummaryCard.cvPayCARD.tv_fromCity2
+            val flight2To = binding.paymentSummaryCard.cvPayCARD.tv_toCity2
+            val flight2 = binding.paymentSummaryCard.cvPayCARD.cv_flight4
+            val flight2Bg = binding.paymentSummaryCard.cvPayCARD.iv_background4
+            val flightNbr2 = binding.paymentSummaryCard.cvPayCARD.tv_flightNbr4
+            val adults2 = binding.paymentSummaryCard.cvPayCARD.tv_adult4
+            val plane2One = binding.paymentSummaryCard.cvPayCARD.iv_PlaneICON4
+            val date2One = binding.paymentSummaryCard.cvPayCARD.tv_date4
+            val time2One = binding.paymentSummaryCard.cvPayCARD.tv_time4
+            val plane2Two = binding.paymentSummaryCard.cvPayCARD.iv_PlaneICON4two
+            val date2Two = binding.paymentSummaryCard.cvPayCARD.tv_date4two
+            val time2Two = binding.paymentSummaryCard.cvPayCARD.tv_time4two
+            val cabin2 = binding.paymentSummaryCard.cvPayCARD.tv_cabinClass4
+            val flight2dep = binding.paymentSummaryCard.cvPayCARD.tv_fromCity2
+            val arrow2 = binding.paymentSummaryCard.cvPayCARD.iv_arrowSmall4
+            val flight2ari = binding.paymentSummaryCard.cvPayCARD.tv_toCity2
+            val price2 = binding.paymentSummaryCard.cvPayCARD.tv_price2
+
+            val line1 = binding.paymentSummaryCard.cvPayCARD.iv_fineLine1
+            val line2 = binding.paymentSummaryCard.cvPayCARD.iv_fineLine2
+            val charges1 = binding.paymentSummaryCard.cvPayCARD.tv_charge1
+            val charges1Price = binding.paymentSummaryCard.cvPayCARD.tv_chargePrice1
+            val charges2 = binding.paymentSummaryCard.cvPayCARD.tv_charge2
+            val charges2Price = binding.paymentSummaryCard.cvPayCARD.tv_chargePrice2
+            val grandTotal = binding.paymentSummaryCard.cvPayCARD.tv_grandTotal
+            val grandTotalPrice = binding.paymentSummaryCard.cvPayCARD.tv_grandTotalPrice
+            val frame = binding.paymentSummaryCard.cvPayCARD.iv_frame
+            val proceedBttn = binding.paymentSummaryCard.cvPayCARD.bttn_proceedPayment2
+
+
+            flight1From.text = flightViewModel.depCity
+            flight1To.text = flightViewModel.ariCity
+            price1.text = "EUR ${flightOne?.price}"
+            flightNbr1.text = flightOneBookingNbr
+            adults1.text = "${flightViewModel.adultPassenger} Adult"
+            date1One.text = flightViewModel.departureDATE
+            time1One.text = flightOne?.departureTime
+            date1Two.text = flightViewModel.departureDATE
+            time1Two.text = flightOne?.arrivalTime
+            cabin1.text = "First Class"
+
+            flight2From.text = flightViewModel.ariCity
+            flight2To.text = flightViewModel.depCity
+            price2.text = "EUR ${flightTwo?.price}"
+            flightNbr2.text = flightTwoBookingNbr
+            adults2.text = "${flightViewModel.adultPassenger} Adult"
+            date2One.text = flightViewModel.arrivalDATE
+            time2One.text = flightTwo?.arrivalTime
+            date2Two.text = flightViewModel.arrivalDATE
+            time2Two.text = flightTwo?.departureTime
+            cabin2.text = "First Class"
+
+            val charge1CalcA = (flightOne?.price)?.toDouble()
+            val charge1CalcB = (flightTwo?.price)?.toDouble()
+            val charge1CalcResult = (charge1CalcA!!.plus(charge1CalcB!!))
+            charges1Price.text = "EUR ${charge1CalcResult.toString()}"
+
+            val charge2Calc = charge1CalcResult * 0.13
+            charges2Price.text = "EUR ${charge2Calc.toString()}"
+
+            val totalCalc = charge1CalcResult + charge2Calc
+            grandTotalPrice.text = "EUR ${totalCalc.toString()}"
+
+/*
+
+HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
+
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight.startAnimation(resultsOUT)
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight.visibility = View.GONE
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight2.startAnimation(resultsOUT)
+            binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight2.visibility = View.GONE
+            binding.payCard.cvPayCARD.payCARDConstraint.iv_headerLogo1.startAnimation(resultsOUT)
+            binding.payCard.cvPayCARD.payCARDConstraint.iv_headerLogo1.visibility = View.GONE
+            payCard.startAnimation(resultsOUT)
+            payCard.visibility = View.GONE
+
+ */
+
+            background.visibility = View.VISIBLE
+            background.startAnimation(resultsIN)
+            paymentCard.visibility = View.VISIBLE
+            paymentCard.startAnimation(resultsIN)
+
+/*
+            paymentCardTransition = TransitionInflater.from(requireActivity())
+                .inflateTransition(R.transition.paymentcard_trans)
+
+            val constraintSet = ConstraintSet()
+            constraintSet.clone(requireContext(), R.layout.pay_flights )
+
+            TransitionManager.beginDelayedTransition(transitionConstraint1)
+
+            constraintSet.applyTo(transitionConstraint1)
+
+ */
+
+            header1.visibility = View.VISIBLE
+            header1.startAnimation(resultsIN)
+            header2.visibility = View.VISIBLE
+            header2.startAnimation(resultsIN)
+            headerLogo.visibility = View.VISIBLE
+            headerLogo.startAnimation(resultsIN)
+
+            flight1.visibility = View.VISIBLE
+            price1.visibility = View.VISIBLE
+            flight2.visibility = View.VISIBLE
+            price2.visibility = View.VISIBLE
+
+
+
+
+
+
+
+            val flight1Animator = ObjectAnimator.ofFloat(
+                flight1,
+                View.ROTATION_Y,
+                0f, 360f)
+
+            val price1Animator = ObjectAnimator.ofFloat(
+                price1,
+                View.ROTATION_Y,
+                0f, 360f)
+
+            val flight1Set = AnimatorSet()
+            flight1Set.playSequentially(flight1Animator, price1Animator)
+            flight1Set.start()
+
+            flight1dep.visibility = View.VISIBLE
+            flight1dep.startAnimation(resultsIN)
+            arrow1.visibility = View.VISIBLE
+            arrow1.startAnimation(resultsIN)
+            flight1ari.visibility = View.VISIBLE
+            flight1ari.startAnimation(resultsIN)
+
+            flight2.visibility = View.VISIBLE
+            price2.visibility = View.VISIBLE
+
+            val flight2Animator = ObjectAnimator.ofFloat(
+                flight2,
+                View.ROTATION_Y,
+                0f, 360f)
+
+            val price2Animator = ObjectAnimator.ofFloat(
+                price2,
+                View.ROTATION_Y,
+                0f, 360f)
+
+            val flight2Set = AnimatorSet()
+            flight2Set.playSequentially(flight2Animator, price2Animator)
+            flight2Set.start()
+
+            flight2dep.visibility = View.VISIBLE
+            flight2dep.startAnimation(resultsIN)
+            arrow2.visibility = View.VISIBLE
+            arrow2.startAnimation(resultsIN)
+            flight2ari.visibility = View.VISIBLE
+            flight2ari.startAnimation(resultsIN)
+
+            line1.visibility = View.VISIBLE
+            line1.startAnimation(resultsIN)
+
+            charges1.visibility = View.VISIBLE
+            charges1.startAnimation(resultsIN)
+            charges1Price.visibility = View.VISIBLE
+            charges1Price.startAnimation(resultsIN)
+
+            charges2.visibility = View.VISIBLE
+            charges2.startAnimation(resultsIN)
+            charges2Price.visibility = View.VISIBLE
+            charges2Price.startAnimation(resultsIN)
+
+            grandTotal.visibility = View.VISIBLE
+            grandTotal.startAnimation(resultsIN)
+            grandTotalPrice.visibility = View.VISIBLE
+            grandTotalPrice.startAnimation(resultsIN)
+
+            line2.visibility = View.VISIBLE
+            line2.startAnimation(resultsIN)
+
+            frame.visibility = View.VISIBLE
+            frame.startAnimation(fadeIN)
+            proceedBttn.visibility = View.VISIBLE
+            proceedBttn.startAnimation(fadeIN)
+
+
+
+        }
 
 
 

@@ -19,11 +19,22 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     val iata = readCsv(R.raw.iata)
 
     var depIata: String = ""
+    var depCity: String = ""
+
     var ariIata: String = ""
+    var ariCity: String = ""
 
-    var flight1 : FlightOffer? = null
-    var flight2 : FlightOffer? = null
+    var departureDATE: String = ""
+    var arrivalDATE: String  = ""
 
+    var adultPassenger: String = ""
+
+    var flight1: FlightOffer? = null
+    var bookingNbr1: String = ""
+
+
+    var flight2: FlightOffer? = null
+    var bookingNbr2: String = ""
 
 /*
     fun readCsv(csv: Int): List<Iata> {

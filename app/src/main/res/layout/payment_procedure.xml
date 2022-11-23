@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_cabinCrew"
+        android:layout_width="409dp"
+        android:layout_height="346dp"
+        android:adjustViewBounds="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cabincrew"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/iv_cabinCrewCloud"
+        android:layout_width="850dp"
+        android:layout_height="276dp"
+        android:layout_marginBottom="-180dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_cabinCrew"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_cabinCrew"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/clouds"
+        tools:visibility="gone" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_payCARD"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:cardBackgroundColor="#00FFFFFF"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_cabinCrew"
+        app:layout_constraintVertical_bias="0.68"
+        tools:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_payFlight_backgroundBttnSheet"
+                android:layout_width="429dp"
+                android:layout_height="737dp"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/receiptbg"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_frame"
+                android:layout_width="278dp"
+                android:layout_height="490dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_header2"
+                app:srcCompat="@drawable/frameline"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/bttn_proceedPayment2"
+                android:layout_width="0dp"
+                android:layout_height="43dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/purple_700"
+                android:fontFamily="@font/mayaregular"
+                android:text="Proceed to payment"
+                android:textColor="@color/white"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:cornerRadius="20dp"
+                app:iconTint="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/tv_grandTotalPrice"
+                app:layout_constraintStart_toStartOf="@+id/tv_grandTotal"
+                app:layout_constraintTop_toBottomOf="@+id/tv_grandTotal"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_fromCity1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/mayabold"
+                android:text="Berlin"
+                android:textColor="@color/red_700"
+                android:textSize="10sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/cv_flight3"
+                app:layout_constraintTop_toTopOf="@+id/iv_frame"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_arrowSmall3"
+                android:layout_width="14dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="8dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity1"
+                app:layout_constraintStart_toEndOf="@+id/tv_fromCity1"
+                app:layout_constraintTop_toTopOf="@+id/tv_fromCity1"
+                app:srcCompat="@drawable/ic_round_arrow_right_alt_24"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_toCity1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/mayabold"
+                android:text="London"
+                android:textColor="@color/red_700"
+                android:textSize="10sp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity1"
+                app:layout_constraintStart_toEndOf="@+id/iv_arrowSmall3"
+                app:layout_constraintTop_toTopOf="@+id/tv_fromCity1"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_fromCity2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/mayabold"
+                android:text="London"
+                android:textColor="@color/red_700"
+                android:textSize="10sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/cv_flight4"
+                app:layout_constraintTop_toBottomOf="@+id/tv_price1"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_arrowSmall4"
+                android:layout_width="14dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="8dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity2"
+                app:layout_constraintStart_toEndOf="@+id/tv_fromCity2"
+                app:layout_constraintTop_toTopOf="@+id/tv_fromCity2"
+                app:srcCompat="@drawable/ic_round_arrow_right_alt_24"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_toCity2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/mayabold"
+                android:text="Berlin"
+                android:textColor="@color/red_700"
+                android:textSize="10sp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_arrowSmall4"
+                app:layout_constraintStart_toEndOf="@+id/iv_arrowSmall4"
+                app:layout_constraintTop_toTopOf="@+id/iv_arrowSmall4"
+                tools:visibility="visible" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_flight3"
+                android:layout_width="227dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="5dp"
+                android:visibility="invisible"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity1"
+                tools:visibility="visible">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_background3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.2"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/destinationbackgroundlight" />
+
+                    <TextView
+                        android:id="@+id/tv_flightNbr3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/gotic"
+                        android:text="BA - 3333"
+                        android:textColor="@color/purple_700"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/iv_background3" />
+
+                    <TextView
+                        android:id="@+id/tv_adult3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gotic"
+                        android:text="1 Adult"
+                        android:textColor="@color/purple_700"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_PlaneICON3two"
+                        app:layout_constraintStart_toStartOf="@+id/tv_flightNbr3"
+                        app:layout_constraintTop_toTopOf="@+id/iv_PlaneICON3two" />
+
+                    <ImageView
+                        android:id="@+id/iv_PlaneICON3"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginStart="48dp"
+                        android:alpha="0.5"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_flightNbr3"
+                        app:layout_constraintStart_toEndOf="@+id/tv_flightNbr3"
+                        app:layout_constraintTop_toTopOf="@+id/tv_flightNbr3"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_round_flight_takeoff_24"
+                        app:tint="@color/purple_700" />
+
+                    <TextView
+                        android:id="@+id/tv_date3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/gotic"
+                        android:text="2022-11-22"
+                        android:textColor="@color/purple_700"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_PlaneICON3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/iv_PlaneICON3"
+                        app:layout_constraintTop_toTopOf="@+id/iv_PlaneICON3" />
+
+                    <TextView
+                        android:id="@+id/tv_time3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gotic"
+                        android:text="15:15"
+                        android:textColor="@color/purple_700"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/tv_date3"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_date3" />
+
+                    <ImageView
+                        android:id="@+id/iv_PlaneICON3two"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="3dp"
+                        android:alpha="0.5"
+                        app:layout_constraintEnd_toEndOf="@+id/iv_PlaneICON3"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/iv_PlaneICON3"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_time3"
+                        app:srcCompat="@drawable/ic_round_flight_land_24"
+                        app:tint="@color/purple_700" />
+
+                    <TextView
+                        android:id="@+id/tv_date3two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gotic"
+                        android:text="2022-11-22"
+                        android:textColor="@color/purple_700"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_PlaneICON3two"
+                        app:layout_constraintStart_toStartOf="@+id/tv_date3"
+                        app:layout_constraintTop_toTopOf="@+id/iv_PlaneICON3two" />
+
+                    <TextView
+                        android:id="@+id/tv_time3two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gotic"
+                        android:text="15:15"
+                        android:textColor="@color/purple_700"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/tv_date3two"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_date3two" />
+
+                    <TextView
+                        android:id="@+id/tv_cabinClass3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/gotic"
+                        android:text="ECO Premium"
+                        android:textColor="@color/purple_700"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/tv_adult3"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_adult3" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_flight4"
+                android:layout_width="wrap_content"
+                android:layout_height="74dp"
+                android:layout_marginTop="5dp"
+                android:visibility="invisible"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="@+id/cv_flight3"
+                app:layout_constraintStart_toStartOf="@+id/cv_flight3"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity2"
+                tools:visibility="visible">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_background4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.2"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/destinationbackgroundlight" />
+
+                    <TextView
+                        android:id="@+id/tv_flightNbr4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/gotic"
+                        android:text="BA - 3333"
+                        android:textColor="@color/purple_700"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/iv_background4" />
+
+                    <TextView
+                        android:id="@+id/tv_adult4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gotic"
+                        android:text="1 Adult"
+                        android:textColor="@color/purple_700"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_PlaneICON4two"
+                        app:layout_constraintStart_toStartOf="@+id/tv_flightNbr4"
+                        app:layout_constraintTop_toTopOf="@+id/iv_PlaneICON4two" />
+
+                    <ImageView
+                        android:id="@+id/iv_PlaneICON4"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginStart="48dp"
+                        android:alpha="0.5"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_flightNbr4"
+                        app:layout_constraintStart_toEndOf="@+id/tv_flightNbr4"
+                        app:layout_constraintTop_toTopOf="@+id/tv_flightNbr4"
+                        app:srcCompat="@drawable/ic_round_flight_takeoff_24"
+                        app:tint="@color/purple_700" />
+
+                    <TextView
+                        android:id="@+id/tv_date4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/gotic"
+                        android:text="2022-11-22"
+                        android:textColor="@color/purple_700"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_PlaneICON4"
+                        app:layout_constraintStart_toEndOf="@+id/iv_PlaneICON4"
+                        app:layout_constraintTop_toTopOf="@+id/iv_PlaneICON4" />
+
+                    <TextView
+                        android:id="@+id/tv_time4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gotic"
+                        android:text="15:15"
+                        android:textColor="@color/purple_700"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tv_date4two"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_date4two"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageView
+                        android:id="@+id/iv_PlaneICON4two"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="3dp"
+                        android:alpha="0.5"
+                        app:layout_constraintEnd_toEndOf="@+id/iv_PlaneICON4"
+                        app:layout_constraintStart_toStartOf="@+id/iv_PlaneICON4"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_time4two"
+                        app:srcCompat="@drawable/ic_round_flight_land_24"
+                        app:tint="@color/purple_700" />
+
+                    <TextView
+                        android:id="@+id/tv_date4two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/gotic"
+                        android:text="2022-11-22"
+                        android:textColor="@color/purple_700"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_PlaneICON4two"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/tv_date4"
+                        app:layout_constraintTop_toTopOf="@+id/iv_PlaneICON4two" />
+
+                    <TextView
+                        android:id="@+id/tv_time4two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gotic"
+                        android:text="15:15"
+                        android:textColor="@color/purple_700"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/tv_date4"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_date4" />
+
+                    <TextView
+                        android:id="@+id/tv_cabinClass4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/gotic"
+                        android:text="ECO Premium"
+                        android:textColor="@color/purple_700"
+                        android:textSize="8sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/tv_adult4"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_adult4" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_price1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/gotic"
+                android:text="EUR 155.33"
+                android:textColor="@color/red_700"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/cv_flight3"
+                app:layout_constraintTop_toBottomOf="@+id/cv_flight3"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_price2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/gotic"
+                android:text="EUR 155.33"
+                android:textColor="@color/red_700"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/cv_flight4"
+                app:layout_constraintTop_toBottomOf="@+id/cv_flight4"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_fineLine1"
+                android:layout_width="237dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="32dp"
+                android:rotationX="-180"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/cv_flight4"
+                app:layout_constraintStart_toStartOf="@+id/cv_flight4"
+                app:layout_constraintTop_toBottomOf="@+id/tv_price2"
+                app:srcCompat="@drawable/purpleline3"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_fineLine2"
+                android:layout_width="237dp"
+                android:layout_height="21dp"
+                android:layout_marginTop="20dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/cv_flight4"
+                app:layout_constraintStart_toStartOf="@+id/cv_flight4"
+                app:layout_constraintTop_toBottomOf="@+id/tv_charge2"
+                app:srcCompat="@drawable/purpleline3"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_charge1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/gotic"
+                android:text="Air Transportation Charge"
+                android:textColor="@color/purple_700"
+                android:textSize="10sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/iv_fineLine1"
+                app:layout_constraintTop_toBottomOf="@+id/iv_fineLine1"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_chargePrice1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="1dp"
+                android:fontFamily="@font/gotic"
+                android:text="EUR 355.00"
+                android:textColor="@color/purple_700"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_charge1"
+                app:layout_constraintEnd_toEndOf="@+id/iv_fineLine1"
+                app:layout_constraintTop_toTopOf="@+id/tv_charge1"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_charge2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/gotic"
+                android:text="Taxes, Beaver Charges"
+                android:textColor="@color/purple_700"
+                android:textSize="10sp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/tv_charge1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_charge1"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_chargePrice2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/gotic"
+                android:text="EUR 355.00"
+                android:textColor="@color/purple_700"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_charge2"
+                app:layout_constraintEnd_toEndOf="@+id/tv_chargePrice1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_charge1"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_grandTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/gotic"
+                android:text="GRAND TOTAL:"
+                android:textColor="@color/purple_700"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/tv_charge2"
+                app:layout_constraintTop_toBottomOf="@+id/iv_fineLine2"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_grandTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotic"
+                android:text="EUR 355.00"
+                android:textColor="@color/red_700"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_grandTotal"
+                app:layout_constraintEnd_toEndOf="@+id/tv_chargePrice2"
+                app:layout_constraintTop_toTopOf="@+id/tv_grandTotal"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_header1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:alpha="0.3"
+                android:fontFamily="@font/gotic"
+                android:text="CHECK"
+                android:textAlignment="center"
+                android:textColor="@color/purple_700"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/cv_flight3"
+                app:layout_constraintStart_toStartOf="@+id/cv_flight3"
+                app:layout_constraintTop_toTopOf="@+id/iv_payFlight_backgroundBttnSheet"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_header2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="-9dp"
+                android:alpha="0.3"
+                android:fontFamily="@font/gotic"
+                android:text="OUT"
+                android:textColor="@color/purple_700"
+                android:textSize="44sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/tv_header1"
+                app:layout_constraintStart_toStartOf="@+id/tv_header1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_header1"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_headerLogo1"
+                android:layout_width="46dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="-5dp"
+                android:layout_marginTop="-10dp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/tv_header1"
+                app:layout_constraintTop_toTopOf="@+id/tv_header1"
+                app:srcCompat="@drawable/b_logo"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

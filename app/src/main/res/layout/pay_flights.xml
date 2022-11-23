@@ -32,12 +32,12 @@
         app:layout_constraintTop_toTopOf="@+id/iv_cabinCrew"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/clouds"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_payCARD"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="700dp"
         android:visibility="gone"
         app:cardBackgroundColor="#00FFFFFF"
         app:cardCornerRadius="0dp"
@@ -54,33 +54,63 @@
 
             <ImageView
                 android:id="@+id/iv_payFlight_backgroundBttnSheet"
-                android:layout_width="411dp"
-                android:layout_height="656dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/flightresult_dialog_bg"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_headerLogo1"
+                android:layout_width="46dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="-5dp"
+                android:layout_marginTop="-10dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/tv_checkYourFlight"
+                app:layout_constraintTop_toTopOf="@+id/tv_checkYourFlight"
+                app:srcCompat="@drawable/b_logo"
                 tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/tv_checkYourFlight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
+                android:alpha="0.3"
                 android:fontFamily="@font/gotic"
-                android:text="CHECK YOUR FLIGHTS "
+                android:text="CHECK"
+                android:textAlignment="center"
                 android:textColor="@color/purple_700"
-                android:textSize="20sp"
+                android:textSize="34sp"
                 android:textStyle="bold"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@+id/cv_flight1"
-                app:layout_constraintStart_toStartOf="@+id/tv_departIATA"
-                app:layout_constraintTop_toBottomOf="@+id/bttn_proceedPayment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_payFlight_backgroundBttnSheet"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_checkYourFlight2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="-5dp"
+                android:alpha="0.3"
+                android:fontFamily="@font/gotic"
+                android:text="YOUR FLIGHTS"
+                android:textColor="@color/purple_700"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/tv_checkYourFlight"
+                app:layout_constraintHorizontal_bias="0.375"
+                app:layout_constraintStart_toStartOf="@+id/tv_checkYourFlight"
+                app:layout_constraintTop_toBottomOf="@+id/tv_checkYourFlight"
                 tools:visibility="visible" />
 
             <TextView
@@ -88,14 +118,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="32dp"
                 android:fontFamily="@font/mayaregular"
                 android:text="BER"
                 android:textColor="@color/red_700"
-                android:textSize="60sp"
+                android:textSize="48sp"
                 android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_checkYourFlight"
+                app:layout_constraintTop_toBottomOf="@+id/tv_checkYourFlight2"
                 tools:visibility="visible" />
 
             <TextView
@@ -121,7 +151,7 @@
                 android:fontFamily="@font/mayaregular"
                 android:text="LDN"
                 android:textColor="@color/red_700"
-                android:textSize="60sp"
+                android:textSize="48sp"
                 android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="@+id/tv_departIATA"
                 app:layout_constraintTop_toBottomOf="@+id/tv_departIATA"
@@ -150,7 +180,7 @@
                 android:fontFamily="@font/mayaregular"
                 android:text="BER"
                 android:textColor="@color/red_700"
-                android:textSize="60sp"
+                android:textSize="48sp"
                 android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="@+id/tv_arrivalIATA1"
                 app:layout_constraintTop_toBottomOf="@+id/tv_arrivalIATA1"
@@ -174,7 +204,7 @@
             <ImageView
                 android:id="@+id/iv_dotLine1"
                 android:layout_width="5dp"
-                android:layout_height="238dp"
+                android:layout_height="215dp"
                 android:layout_marginTop="10dp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toStartOf="@+id/tv_departIATA"
@@ -186,7 +216,7 @@
             <ImageView
                 android:id="@+id/iv_dotLine2"
                 android:layout_width="4dp"
-                android:layout_height="258dp"
+                android:layout_height="228dp"
                 android:layout_marginTop="6dp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/iv_dotLine1"
@@ -200,12 +230,12 @@
                 android:layout_width="34dp"
                 android:layout_height="31dp"
                 android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
                 android:rotation="180"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/cv_flight1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/cv_flight1"
-                app:layout_constraintVertical_bias="0.507"
                 app:srcCompat="@drawable/ic_baseline_airplanemode_active_24"
                 app:tint="@color/purple_700"
                 tools:visibility="visible" />
@@ -214,24 +244,25 @@
                 android:id="@+id/iv_dotPlane2"
                 android:layout_width="34dp"
                 android:layout_height="31dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
                 android:rotation="180"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/cv_flight2"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/iv_dotPlane1"
+                app:layout_constraintStart_toStartOf="@+id/iv_dotPlane1"
                 app:layout_constraintTop_toTopOf="@+id/cv_flight2"
                 app:srcCompat="@drawable/ic_baseline_airplanemode_active_24"
                 app:tint="@color/purple_700"
                 tools:visibility="visible" />
 
             <Button
-                android:id="@+id/bttn_proceedPayment"
+                android:id="@+id/bttn_proceedToPasDetails"
                 android:layout_width="wrap_content"
-                android:layout_height="43dp"
+                android:layout_height="44dp"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/purple_700"
                 android:fontFamily="@font/mayaregular"
-                android:text="Proceed to payment"
+                android:text="Proceed to Passenger Details"
                 android:textColor="@color/white"
                 android:textSize="8sp"
                 android:textStyle="bold"
@@ -240,10 +271,11 @@
                 app:iconTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_arrivalCity2"
                 app:strokeColor="@color/white"
                 app:strokeWidth="2dp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck"
+                tools:visibility="visible" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_flight1"
@@ -256,6 +288,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/tv_arrivalIATA1"
                 app:layout_constraintStart_toEndOf="@+id/iv_dotPlane1"
                 app:layout_constraintTop_toBottomOf="@+id/tv_departCity"
+                app:layout_constraintVertical_bias="0.0"
                 tools:visibility="visible">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -406,6 +439,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/cv_flight1"
                 app:layout_constraintStart_toStartOf="@+id/cv_flight1"
                 app:layout_constraintTop_toBottomOf="@+id/tv_arrivalCity1"
+                app:layout_constraintVertical_bias="0.0"
                 tools:visibility="visible">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -553,12 +587,11 @@
                 android:id="@+id/tv_price1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/gotic"
                 android:text="EUR 155.33"
                 android:textColor="@color/red_700"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:textStyle="bold"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/cv_flight1"
@@ -569,12 +602,11 @@
                 android:id="@+id/tv_price2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/gotic"
                 android:text="EUR 155.33"
                 android:textColor="@color/red_700"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:textStyle="bold"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="@+id/cv_flight2"
