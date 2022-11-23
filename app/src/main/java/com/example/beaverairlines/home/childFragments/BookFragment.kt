@@ -1156,7 +1156,7 @@ class BookFragment : Fragment(), BookInterface {
             payCard.visibility = View.GONE
 
 
-            val passengerInputCard = binding.passengerInputCard
+            val passengerInputCard = binding.passengerInputCard.cvPassengerCARD
             val pasBackground = binding.passengerInputCard.cvPassengerCARD.iv_backgroundPAS
             val pasHeader1 = binding.passengerInputCard.cvPassengerCARD.tv_header1PAS
             val pasHeader2 = binding.passengerInputCard.cvPassengerCARD.tv_header2PAS
@@ -1188,6 +1188,8 @@ class BookFragment : Fragment(), BookInterface {
             val bttnInputDone = binding.passengerInputCard.passportCARD.bttn_inputDone
 
 
+            passengerInputCard.visibility = View.VISIBLE
+            passengerInputCard.startAnimation(resultsIN)
             pasBackground.visibility = View.VISIBLE
             pasBackground.startAnimation(resultsIN)
             pasHeader1.visibility = View.VISIBLE
