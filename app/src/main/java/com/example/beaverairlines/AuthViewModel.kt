@@ -47,14 +47,62 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     var currentUser: FirebaseUser? = null
        get() = auth.currentUser
 
-    fun setUser(user: User) {
-        db.collection("user").document(auth.currentUser!!.uid)
-            .set(user)
-            .addOnFailureListener {
-                Log.w(TAG, "Error writing document: $it")
+        fun setUser(user: User) {
+            db.collection("user").document(auth.currentUser!!.uid)
+                .set(user)
+                .addOnFailureListener {
+                    Log.w(TAG, "Error writing document: $it")
             }
+        }
 
-        fun getCurrentUserDetails(user: User) {
+
+        fun updateUser(user: User) {
+            db.collection("user").document(auth.currentUser!!.uid)
+                .set(user)
+                .addOnFailureListener {
+                    Log.w(TAG, "Error writing document: $it")
+                }
+        }
+
+    fun userIdGenerator(): String {
+        val nbr1 = (0..9).random()
+        val nbr2 = (0..9).random()
+        val nbr3 = (0..9).random()
+        val nbr4 = (0..9).random()
+        val nbr5 = (0..9).random()
+        val nbr6 = (0..9).random()
+        val nbr7 = (0..9).random()
+        val nbr8 = (0..9).random()
+
+        return "BA22-$nbr1$nbr2$nbr3$nbr4$nbr5$nbr6$nbr7$nbr8"
+    }
+
+    fun mileHighGenerator(): String {
+        val nbr1 = (0..9).random()
+        val nbr2 = (0..9).random()
+        val nbr3 = (0..9).random()
+        val nbr4 = (0..9).random()
+        val nbr5 = (0..9).random()
+        val nbr6 = (0..9).random()
+        val nbr7 = (0..9).random()
+        val nbr8 = (0..9).random()
+
+        return "BMH$nbr1$nbr2$nbr3$nbr4$nbr5$nbr6$nbr7$nbr8-Y22"
+
+    }
+
+
+
+    fun getUserName() {
+            db.collection("user").document(auth.currentUser!!.uid)
+                .get()
+                .addOnSuccessListener {
+                    val userName = it.getString("fullName")
+                }
+        }
+
+
+        fun getCurrentUserDetails() {
             db.collection("user").document(auth.currentUser!!.uid)
                 .get()
                 .addOnSuccessListener {
@@ -67,7 +115,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
         }
     }
-}
+
 
 /*
     fun registerUser(name: String, email: String, password: String) {

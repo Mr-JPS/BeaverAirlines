@@ -33,15 +33,16 @@
 
     <TextView
         android:id="@+id/tv_userName"
-        android:layout_width="wrap_content"
+        android:layout_width="226dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="-25dp"
         android:fontFamily="@font/mayathin"
         android:text="User Name"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColor="#FFFFFF"
         android:textSize="44sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_hello2"
         app:layout_constraintStart_toStartOf="@+id/tv_hello2"
         app:layout_constraintTop_toBottomOf="@+id/tv_hello2" />
 

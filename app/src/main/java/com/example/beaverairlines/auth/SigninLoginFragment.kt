@@ -89,9 +89,6 @@ class SigninLoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-
-
         val wasLoginClicked = requireArguments().getBoolean("isLoginClicked", false)
 
 
@@ -188,22 +185,22 @@ class SigninLoginFragment : Fragment() {
     }
 
 
-
-
     private fun registerUser(name: String, email: String, password: String) {
 
-        if(validateRegistration(name, email, password)){
+        if (validateRegistration(name, email, password)) {
             Toast.makeText(getContext(), "Please wait...", Toast.LENGTH_SHORT).show()
-            auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task ->
+            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 //                      val firebaseUser: FirebaseUser = task.result!!.user!!
 //                    val registeredEmail = firebaseUser.email!!
+
                     val newUser = User(
-                        fullName =  name,
+                        userId = viewModel.userIdGenerator(),
+                        fullName = name,
                         email = email
                     )
                     viewModel.setUser(newUser)
-                    loginUser(email,password)
+                    loginUser(email, password)
 //                  viewModel.currentUser = firebaseAuth.currentUser
 
 //                    Toast.makeText(getContext(), "$name, you have successfully registered Your email $registeredEmail",
@@ -212,7 +209,8 @@ class SigninLoginFragment : Fragment() {
 //
 
                 } else {
-                    Toast.makeText(getContext(), task.exception!!.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(getContext(), task.exception!!.message, Toast.LENGTH_SHORT)
+                        .show()
 
                 }
             }
@@ -220,30 +218,33 @@ class SigninLoginFragment : Fragment() {
     }
 
 
-    private fun validateRegistration(name: String, email: String, password: String) : Boolean {
+    private fun validateRegistration(name: String, email: String, password: String): Boolean {
 
-    return when {
-        TextUtils.isEmpty(name) ->{
-            showErrorSnackBar("Please enter your name")
-            //Toast.makeText(getContext(), "Please enter your name", Toast.LENGTH_SHORT).show()
-            false
-        } TextUtils.isEmpty(email) ->{
-            showErrorSnackBar("Please enter your email address")
-            //Toast.makeText(getContext(), "Please enter your email address", Toast.LENGTH_SHORT).show()
-            false
-        } TextUtils.isEmpty(password) ->{
-            showErrorSnackBar("Please enter a password")
-            //Toast.makeText(getContext(), "Please enter a password", Toast.LENGTH_SHORT).show()
-            false
-        } else -> {
-            true
+        return when {
+            TextUtils.isEmpty(name) -> {
+                showErrorSnackBar("Please enter your name")
+                //Toast.makeText(getContext(), "Please enter your name", Toast.LENGTH_SHORT).show()
+                false
+            }
+            TextUtils.isEmpty(email) -> {
+                showErrorSnackBar("Please enter your email address")
+                //Toast.makeText(getContext(), "Please enter your email address", Toast.LENGTH_SHORT).show()
+                false
+            }
+            TextUtils.isEmpty(password) -> {
+                showErrorSnackBar("Please enter a password")
+                //Toast.makeText(getContext(), "Please enter a password", Toast.LENGTH_SHORT).show()
+                false
+            }
+            else -> {
+                true
+            }
         }
     }
-}
 
-    private fun loginUser(email: String, password: String){
+    private fun loginUser(email: String, password: String) {
 
-        if(validateLogin(email, password)){
+        if (validateLogin(email, password)) {
             Toast.makeText(getContext(), "Please wait...", Toast.LENGTH_SHORT).show()
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
@@ -252,7 +253,7 @@ class SigninLoginFragment : Fragment() {
                         viewModel.currentUser = auth.currentUser
                         //val currentUser = auth.currentUser
                         Toast.makeText(getContext(), "You have successfully logged in!",
-                            Toast.LENGTH_LONG).show()
+                            Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_signinFragment_to_NavControllerFragment)
                     } else {
                         Toast.makeText(getContext(), "Login failed.",
@@ -260,24 +261,26 @@ class SigninLoginFragment : Fragment() {
                     }
                 }
                 .addOnFailureListener {
-                    Log.e("firebase login", it.message!! )
+                    Log.e("firebase login", it.message!!)
                 }
         }
     }
 
 
-    private fun validateLogin(email: String, password: String) : Boolean {
+    private fun validateLogin(email: String, password: String): Boolean {
 
         return when {
-            TextUtils.isEmpty(email) ->{
+            TextUtils.isEmpty(email) -> {
                 showErrorSnackBar("Please enter your email address")
                 //Toast.makeText(getContext(), "Please enter your email address", Toast.LENGTH_SHORT).show()
                 false
-            } TextUtils.isEmpty(password) ->{
+            }
+            TextUtils.isEmpty(password) -> {
                 showErrorSnackBar("Please enter your password")
                 //Toast.makeText(getContext(), "Please enter a password", Toast.LENGTH_SHORT).show()
                 false
-            } else -> {
+            }
+            else -> {
                 true
             }
         }
@@ -289,7 +292,7 @@ class SigninLoginFragment : Fragment() {
 //    }
 
 
-    fun showErrorSnackBar(message :String){
+    fun showErrorSnackBar(message: String) {
         val snackbar = Snackbar.make(requireActivity().findViewById(android.R.id.content), message,
             Snackbar.LENGTH_LONG)
 
@@ -298,6 +301,8 @@ class SigninLoginFragment : Fragment() {
 
         snackbar.show()
     }
+
+
 }
 
 

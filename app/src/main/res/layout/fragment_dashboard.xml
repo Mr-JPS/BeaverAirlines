@@ -39,7 +39,6 @@
                         layout="@layout/book_card" />
 
 
-
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_advertising"
                         android:layout_width="match_parent"

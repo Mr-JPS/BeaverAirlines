@@ -9,12 +9,12 @@ data class User (
     val firstName : String = "",
     val lastName : String = " ",
     val email : String = " ",
-    val birthdate: String = " ",
-    val street: String = " ",
-    val houseNbr: String = " ",
-    val zipCode: String = " ",
-    val city: String = " ",
+    val birthDate: String = " ",
+    val birthPlace: String = " ",
+    val gender: String = " ",
+    val nationality: String = " ",
     val country: String = " ",
     val passportNbr: String = " ",
     val mileHighClubNbr : String = " "
 )
+

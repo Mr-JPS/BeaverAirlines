@@ -24,7 +24,7 @@
         android:layout_marginBottom="-180dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/iv_cabinCrewPAS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.66"
@@ -271,7 +271,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iv_cabinCrewPAS"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -288,6 +288,45 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/newpassportinside" />
+
+            <EditText
+                android:id="@+id/tv_pasCountry"
+                android:layout_width="43dp"
+                android:layout_height="15dp"
+                android:layout_marginBottom="19dp"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:hint="CC"
+                android:inputType="textPersonName"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:singleLine="false"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_pasSurname"
+                app:layout_constraintStart_toStartOf="@+id/tv_pasSurname"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <EditText
+                android:id="@+id/tv_pasPassportNbr1"
+                android:layout_width="83dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="78dp"
+                android:backgroundTint="#00FFFFFF"
+                android:ems="10"
+                android:fontFamily="@font/gotic"
+                android:hint="B05X0003B0B "
+                android:inputType="textPersonName"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:singleLine="false"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_pasCountry"
+                app:layout_constraintStart_toEndOf="@+id/tv_pasCountry"
+                app:layout_constraintTop_toTopOf="@+id/tv_pasCountry"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
                 android:id="@+id/tv_pasSurname"
@@ -407,45 +446,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_pasBirthday"
                 tools:ignore="TouchTargetSizeCheck" />
 
-            <EditText
-                android:id="@+id/tv_pasCountry"
-                android:layout_width="43dp"
-                android:layout_height="15dp"
-                android:layout_marginBottom="19dp"
-                android:backgroundTint="#00FFFFFF"
-                android:ems="10"
-                android:fontFamily="@font/gotic"
-                android:hint="CC"
-                android:inputType="textPersonName"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:singleLine="false"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/tv_pasSurname"
-                app:layout_constraintStart_toStartOf="@+id/tv_pasSurname"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <EditText
-                android:id="@+id/tv_pasPassportNbr1"
-                android:layout_width="83dp"
-                android:layout_height="14dp"
-                android:layout_marginStart="78dp"
-                android:backgroundTint="#00FFFFFF"
-                android:ems="10"
-                android:fontFamily="@font/gotic"
-                android:hint="B05X0003B0B "
-                android:inputType="textPersonName"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:singleLine="false"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_pasCountry"
-                app:layout_constraintStart_toEndOf="@+id/tv_pasCountry"
-                app:layout_constraintTop_toTopOf="@+id/tv_pasCountry"
-                tools:ignore="TouchTargetSizeCheck" />
-
             <TextView
                 android:id="@+id/tv_pasPassportNbr2"
                 android:layout_width="wrap_content"
@@ -482,7 +482,7 @@
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
                 android:singleLine="false"
-                android:text="<<<B05X0003B0B<<<SURNAME<<<GIVENNAME<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+                android:text="***B05X0003B0B***SURNAME***GIVENNAME*******************************************************************************************************"
                 android:textColor="@color/purple_700"
                 android:textSize="9sp"
                 android:textStyle="normal"
