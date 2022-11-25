@@ -34,6 +34,7 @@ class Repository() {
                 .and("destinationLocationCode", destination)
                 .and("departureDate", date)
                 .and("adults", adults)
+                .and ("travelClass", "ECONOMY")
                 .and("max", 10)]
 
         parseFlightOffers(flightOffersSearches.toList())

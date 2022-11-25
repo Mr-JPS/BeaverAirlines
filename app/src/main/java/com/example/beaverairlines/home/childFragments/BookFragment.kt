@@ -1,9 +1,13 @@
 package com.example.beaverairlines.home.childFragments
 
+import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.text.TextUtils
@@ -14,16 +18,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.annotation.RequiresApi
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.example.beaverairlines.AuthViewModel
+import com.example.beaverairlines.MainActivity
 
 import com.example.beaverairlines.R
 import com.example.beaverairlines.ViewModel
@@ -97,6 +105,7 @@ class BookFragment : Fragment(), BookInterface {
         super.onCreate(savedInstanceState)
 
 
+
     }
 
     override fun onCreateView(
@@ -113,6 +122,7 @@ class BookFragment : Fragment(), BookInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
 
         val airportAdapter = AirportAdapter()
@@ -804,6 +814,15 @@ class BookFragment : Fragment(), BookInterface {
         }
     }
 
+    private fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }
+    private fun View.showKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+    }
+
     private fun updatelabel2(calender: Calendar) {
         val myFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
@@ -829,6 +848,7 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
+       // val direct = flightViewModel.offers.value!!.filter { it.stops == 0 }
 
         flightViewModel.getFlights(
             binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString(),
@@ -897,6 +917,8 @@ class BookFragment : Fragment(), BookInterface {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SetTextI18n")
     override fun openPayment(depIata: String, ariIata: String, returnFlight: FlightOffer, returnBookingNbr: String) {
 
         val flight1 = flightViewModel.flight1
@@ -1165,12 +1187,14 @@ class BookFragment : Fragment(), BookInterface {
             val pasHeader5 = binding.passengerInputCard.cvPassengerCARD.tv_header3PAS
             val pasHeader6 = binding.passengerInputCard.cvPassengerCARD.tv_header4PAS
             val pasAdult = binding.passengerInputCard.cvPassengerCARD.tv_pasNo1
+            val pasAdultName = binding.passengerInputCard.cvPassengerCARD.tv_pasNo1Name
             val pasArrow = binding.passengerInputCard.cvPassengerCARD.iv_pasArrow
             val passportCover = binding.passengerInputCard.cvPassengerCARD.iv_passportCover
-            val bttnProceedToCheckout =
-                binding.passengerInputCard.cvPassengerCARD.bttn_proceedToCheckout
+            val passportCoverPasId = binding.passengerInputCard.cvPassengerCARD.tv_passportCoverPASid
+            val bttnProceedToCheckout = binding.passengerInputCard.cvPassengerCARD.bttn_proceedToCheckout
             val savePassport = binding.passengerInputCard.cvPassengerCARD.bttn_savePassport
             val footer = binding.passengerInputCard.cvPassengerCARD.tv_footPAS
+
 
 
             val passportCard = binding.passengerInputCard.passportCARD
@@ -1186,7 +1210,7 @@ class BookFragment : Fragment(), BookInterface {
             var passportNbr2 = binding.passengerInputCard.passportCARD.tv_pasPassportNbr2
             val passportFooter = binding.passengerInputCard.passportCARD.tv_pasPassportFoot
             val bttnInputDone = binding.passengerInputCard.passportCARD.bttn_inputDone
-
+            val visaStamp = binding.passengerInputCard.passportCARD.iv_visaStamp
 
             passengerInputCard.visibility = View.VISIBLE
             passengerInputCard.startAnimation(resultsIN)
@@ -1234,70 +1258,137 @@ class BookFragment : Fragment(), BookInterface {
 
 
             pasAdult.setOnClickListener {
+
+                val fadeOUT = AnimationUtils.loadAnimation(
+                    requireContext(),
+                    R.anim.fade_out_fast)
+                passportCover.startAnimation(fadeOUT)
+                passportCover.visibility = View.INVISIBLE
+/*
+                val passportAnimator1 = ObjectAnimator.ofFloat(passportCover,
+                    View.ROTATION,
+                    -90f)
+
+                val passportAnimator2 = ObjectAnimator.ofFloat(passportCover,
+                    View.TRANSLATION_X,
+                    30f)
+
+                val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 3f)
+                val scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 3f)
+
+                val passportAnimator3 =
+                    ObjectAnimator.ofPropertyValuesHolder(passportCover,
+                        scaleX,
+                        scaleY)
+
+
+                val passportCoverAnimset = AnimatorSet()
+                    passportCoverAnimset.playTogether(passportAnimator1,
+                    passportAnimator2,
+                    passportAnimator3)
+                    passportCoverAnimset.start()
+
+
+ */
+
                 passportCard.visibility = View.VISIBLE
                 passportCard.startAnimation(resultsIN)
                 passportBackground.visibility = View.VISIBLE
                 passportBackground.startAnimation(resultsIN)
+                passportNbr2.visibility = View.INVISIBLE
+                passportNbr2.text = ""
+                passportFooter.text = ""
+                pasAdult.visibility = View.INVISIBLE
+                pasArrow.visibility = View.INVISIBLE
+                pasHeader6.visibility = View.INVISIBLE
+
+                Handler().postDelayed({
+                val passportCardAnim = ObjectAnimator.ofFloat(passportCard, View.TRANSLATION_Y,
+                    -640f)
+                passportCardAnim.duration = 800
+                passportCardAnim.start()
+                it.showKeyboard()
+
+                }, 800)
 
 
 
-                if (!TextUtils.isEmpty(passportNbr.toString())) {
-                    passportNbr2.text = passportNbr.toString()
-                    passportNbr2.visibility = View.VISIBLE
-                    passportNbr2.startAnimation(slideINFade)
-                }
+                bttnInputDone.setOnClickListener {
+                    if (validatePasInput(name,
+                            surname,
+                            passportNbr,
+                            country,
+                            nationality,
+                            birthday,
+                            birthCity,
+                            gender))
+                    {
 
 
-                if (!TextUtils.isEmpty(name.toString())
-                    && !TextUtils.isEmpty(surname.toString())
-                    && !TextUtils.isEmpty(passportNbr.toString())
-                ) {
-                    passportFooter.text =
-                        "***${passportNbr}***${surname}***${name}***" +
-                                "***********************************************************************"
-                    passportFooter.visibility = View.VISIBLE
-                    passportFooter.startAnimation(slideINFade)
-                }
+                        val fadeINfast = AnimationUtils.loadAnimation(
+                            requireContext(),
+                            R.anim.fade_in_fast)
 
-                if (!TextUtils.isEmpty(country.toString())
-                    && !TextUtils.isEmpty(passportNbr.toString())
-                    && !TextUtils.isEmpty(surname.toString())
-                    && !TextUtils.isEmpty(name.toString())
-                    && !TextUtils.isEmpty(nationality.toString())
-                    && !TextUtils.isEmpty(birthday.toString())
-                    && !TextUtils.isEmpty(birthCity.toString())
-                    && !TextUtils.isEmpty(gender.toString())
-                ) {
+                        visaStamp.visibility = View.VISIBLE
+                        visaStamp.startAnimation(fadeINfast)
 
-                    bttnInputDone.visibility = View.VISIBLE
-                    bttnInputDone.startAnimation(resultsIN)
-                    bttnInputDone.setOnClickListener {
+                        passportNbr2.text = passportNbr.text.toString()
+                        passportNbr2.visibility = View.VISIBLE
 
-                        passportCard.startAnimation(resultsOUT)
-                        passportBackground.startAnimation(resultsOUT)
-                        passportBackground.visibility = View.GONE
-                        passportCard.visibility = View.GONE
+                        passportFooter.text =
+                            "***${passportNbr.text.toString()}***${surname.text.toString()}***${name.text.toString()}***" +
+                                    "***********************************************************************"
+                        passportFooter.visibility = View.VISIBLE
 
-                        bttnProceedToCheckout.visibility = View.VISIBLE
-                        bttnProceedToCheckout.startAnimation(resultsIN)
-                        savePassport.visibility = View.VISIBLE
-                        savePassport.startAnimation(resultsIN)
+
+
+
+                        Handler().postDelayed({
+                           val passportCardAnim2 = ObjectAnimator.ofFloat(passportCard, View.TRANSLATION_Y,
+                               +640f)
+                           passportCardAnim2.duration = 200
+                           passportCardAnim2.start()
+
+                            passportCard.startAnimation(resultsOUT)
+                            passportBackground.startAnimation(resultsOUT)
+                            passportBackground.visibility = View.GONE
+                            passportCard.visibility = View.GONE
+
+                            passportCover.startAnimation(resultsIN)
+                            passportCover.visibility = View.VISIBLE
+                            pasHeader6.visibility = View.VISIBLE
+                            pasArrow.startAnimation(resultsOUT)
+                            pasArrow.visibility = View.INVISIBLE
+                            pasAdultName.text = "${name.text} ${surname.text}"
+                            pasAdultName.startAnimation(resultsIN)
+                            pasAdultName.visibility = View.VISIBLE
+                            passportCoverPasId.text = "${name.text.take(1)} ${surname.text.take(1)} | ${passportNbr.text}"
+                            passportCoverPasId.visibility = View.VISIBLE
+                            pasAdult.visibility = View.VISIBLE
+                            bttnProceedToCheckout.visibility = View.VISIBLE
+                            bttnProceedToCheckout.startAnimation(resultsIN)
+                            savePassport.visibility = View.VISIBLE
+                            savePassport.startAnimation(resultsIN)
+                        }, 2000)
+
+
 
 
                         if (savePassport.isChecked) {
                             val updateUser = User(
-                                fullName = "$name $surname",
-                                firstName = name.toString(),
-                                lastName = surname.toString(),
-                                birthDate = birthday.toString(),
-                                birthPlace = birthCity.toString(),
-                                gender = gender.toString(),
-                                nationality = nationality.toString(),
-                                country = country.toString(),
-                                passportNbr = passportNbr.toString()
-                            )
+                                fullName = "${name.text} ${surname.text}",
+                                firstName = name.text.toString(),
+                                lastName = surname.text.toString(),
+                                birthDate = birthday.text.toString(),
+                                birthPlace = birthCity.text.toString(),
+                                gender = gender.text.toString(),
+                                nationality = nationality.text.toString(),
+                                country = country.text.toString(),
+                                passportNbr = passportNbr.text.toString())
+
                             authViewModel.updateUser(updateUser)
                         }
+
 
 
                         bttnProceedToCheckout.setOnClickListener {
@@ -1308,7 +1399,13 @@ class BookFragment : Fragment(), BookInterface {
                             pasHeader4.startAnimation(resultsOUT)
                             pasHeader5.startAnimation(resultsOUT)
                             pasHeader6.startAnimation(resultsOUT)
+                            pasAdult.startAnimation(resultsOUT)
+                            pasArrow.startAnimation(resultsOUT)
+                            passportCover.startAnimation(resultsOUT)
+                            bttnProceedToCheckout.startAnimation(resultsOUT)
+                            savePassport.startAnimation(resultsOUT)
                             footer.startAnimation(resultsOUT)
+
 
                             pasBackground.visibility = View.GONE
                             pasHeader1.visibility = View.GONE
@@ -1317,6 +1414,11 @@ class BookFragment : Fragment(), BookInterface {
                             pasHeader4.visibility = View.GONE
                             pasHeader5.visibility = View.GONE
                             pasHeader6.visibility = View.GONE
+                            pasAdult.visibility = View.GONE
+                            pasArrow.visibility = View.GONE
+                            passportCover.visibility = View.GONE
+                            bttnProceedToCheckout.visibility = View.GONE
+                            savePassport.visibility = View.GONE
                             footer.visibility = View.GONE
 
 
@@ -1326,14 +1428,71 @@ class BookFragment : Fragment(), BookInterface {
                             openCheckout()
                         }
 
+                    } else {
+                        showErrorSnackBar("Please provide all fields to continue the booking reservation")
                     }
-                } else {
-                    showErrorSnackBar("Please provide all fields to continue the booking reservation")
                 }
-
             }
-
         }
+    }
+
+    private fun validatePasInput(
+        name: EditText?,
+        surname: EditText?,
+        passportNbr: EditText?,
+        country: EditText?,
+        nationality: EditText?,
+        birthday: EditText?,
+        birthCity: EditText?,
+        gender: EditText?
+    ): Boolean {
+
+        return when {
+            TextUtils.isEmpty(name?.text.toString()) -> {
+                showErrorSnackBar("Please enter your first name")
+
+                false
+            }
+            TextUtils.isEmpty(surname?.text.toString()) -> {
+                showErrorSnackBar("Please enter your surname")
+
+                false
+            }
+            TextUtils.isEmpty(passportNbr?.text.toString()) -> {
+                showErrorSnackBar("Please enter your passport number ")
+
+                false
+            }
+            TextUtils.isEmpty(country?.text.toString()) -> {
+                showErrorSnackBar("Please enter your origin country")
+
+                false
+            }
+            TextUtils.isEmpty(nationality?.text.toString()) -> {
+                showErrorSnackBar("Please enter your nationality")
+
+                false
+            }
+            TextUtils.isEmpty(birthday?.text.toString()) -> {
+                showErrorSnackBar("Please enter your day of birth")
+
+                false
+            }
+            TextUtils.isEmpty(birthCity?.text.toString()) -> {
+                showErrorSnackBar("Please enter your city of birth")
+
+                false
+            }
+            TextUtils.isEmpty(gender?.text.toString()) -> {
+                showErrorSnackBar("Please enter your gender")
+
+                false
+            }
+            else -> {
+                true
+            }
+        }
+
     }
 
 
@@ -1349,6 +1508,7 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
+    @SuppressLint("SetTextI18n")
     private fun openCheckout() {
 
         val flightOne = flightViewModel.flight1
@@ -1367,11 +1527,17 @@ class BookFragment : Fragment(), BookInterface {
             requireContext(),
             R.anim.text_slide_in)
 
+        val resultsOUT = AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.bttnbar_slide_out)
 
+
+        val surname = binding.passengerInputCard.passportCARD.tv_pasSurname
+        val name = binding.passengerInputCard.passportCARD.tv_pasName
+        val passportNbr = binding.passengerInputCard.passportCARD.tv_pasPassportNbr1
 
         val paymentSummaryCard = binding.paymentSummaryCard
-        val background =
-            binding.paymentSummaryCard.cvPayCARD.iv_payFlight_backgroundBttnSheet
+        val background = binding.paymentSummaryCard.cvPayCARD.iv_payFlight_backgroundBttnSheet
         val paymentCard = binding.paymentSummaryCard.cvPayCARD
         val header1 = binding.paymentSummaryCard.cvPayCARD.tv_header1
         val header2 = binding.paymentSummaryCard.cvPayCARD.tv_header2
@@ -1413,6 +1579,7 @@ class BookFragment : Fragment(), BookInterface {
         val flight2ari = binding.paymentSummaryCard.cvPayCARD.tv_toCity2
         val price2 = binding.paymentSummaryCard.cvPayCARD.tv_price2
 
+        val totalOverview = binding.paymentSummaryCard.cvPayCARD.cv_totalCost
         val line1 = binding.paymentSummaryCard.cvPayCARD.iv_fineLine1
         val line2 = binding.paymentSummaryCard.cvPayCARD.iv_fineLine2
         val charges1 = binding.paymentSummaryCard.cvPayCARD.tv_charge1
@@ -1423,6 +1590,40 @@ class BookFragment : Fragment(), BookInterface {
         val grandTotalPrice = binding.paymentSummaryCard.cvPayCARD.tv_grandTotalPrice
         val frame = binding.paymentSummaryCard.cvPayCARD.iv_frame
         val proceedBttn = binding.paymentSummaryCard.cvPayCARD.bttn_proceedPayment2
+
+        val payExpand1 = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment
+        val header3 = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment.tv_header3
+        val passengerDetailCard = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment.cv_pasDetail
+        val passengerDetailName = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment.cv_pasDetail.tv_pasDetailName
+        val passengerDetailArrow1 = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment.cv_pasDetail.ib_pasDetailArrow
+        val header4 = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment.cv_pasDetail.tv_pasDetails2
+        val passengerDetailPassportNbr = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment.cv_pasDetail.tv_pasDetails3
+
+        val payExpand2 = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment
+        val header5 = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment.tv_header4
+        val header6 = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment.tv_header5
+        val passengerDetailArrow2 = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.ib_pasDetailArrow2
+        val passengerCCCard = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2
+        val ccBack = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardBack
+        val ccBackBackground = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardBack.iv_ccBack
+        val ccBackCardNbr = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardBack.tv_ccNbrBack
+        val ccBackCvv = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardBack.tv_ccCvvBack
+        val ccBackCvvLine = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardBack.iv_ccLine1
+        val ccBackHolder = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardBack.tv_ccHolderBack
+        val ccBackHolderLine = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardBack.iv_ccLine2
+        val ccBackValid = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardBack.tv_ccValidBack
+        val ccBackValidLine = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardBack.iv_ccLine3
+        val ccFront = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardFront
+        val ccFrontBackground = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardFront.iv_ccFront
+        val ccFrontCardNbr = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardFront.tv_ccNbrFront
+        val ccFrontHolder = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardFront.tv_ccHolderFront
+        val ccFrontValid = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardFront.tv_ccValidFront
+        val ccInputDone = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.bttn_inputCCdone
+
+        val payExpand3 = binding.paymentSummaryCard.cvPayCARD.expandConstraint3Payment
+        val ticketReservationNbr = binding.paymentSummaryCard.cvPayCARD.expandConstraint3Payment.tv_ticketReservationNbr
+        val footer = binding.paymentSummaryCard.cvPayCARD.expandConstraint3Payment.tv_footerPayment
+        val finalPay = binding.paymentSummaryCard.cvPayCARD.expandConstraint3Payment.bttn_finalPay
 
 
         flight1From.text = flightViewModel.depCity
@@ -1447,16 +1648,24 @@ class BookFragment : Fragment(), BookInterface {
         time2Two.text = flightTwo?.departureTime
         cabin2.text = "First Class"
 
+        fun roundCharges (doubleNbr: Double): String {
+            return "%.2f".format(doubleNbr)
+        }
         val charge1CalcA = (flightOne?.price)?.toDouble()
         val charge1CalcB = (flightTwo?.price)?.toDouble()
         val charge1CalcResult = (charge1CalcA!!.plus(charge1CalcB!!))
-        charges1Price.text = "EUR ${charge1CalcResult.toString()}"
+        charges1Price.text = "EUR ${roundCharges(charge1CalcResult)}"
+        //charges1Price.text = "EUR ${charge1CalcResult.toString()}"
 
         val charge2Calc = charge1CalcResult * 0.13
-        charges2Price.text = "EUR ${charge2Calc.toString()}"
+
+        charges2Price.text = "EUR ${roundCharges(charge2Calc)}"
+        //charges2Price.text = "EUR ${charge2Calc.toString()}"
 
         val totalCalc = charge1CalcResult + charge2Calc
-        grandTotalPrice.text = "EUR ${totalCalc.toString()}"
+
+        grandTotalPrice.text = "EUR ${roundCharges(totalCalc)}"
+        //grandTotalPrice.text = "EUR ${totalCalc.toString()}"
 
 /*
 
@@ -1575,7 +1784,180 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
         proceedBttn.visibility = View.VISIBLE
         proceedBttn.startAnimation(fadeIN)
 
+
+        proceedBttn.setOnClickListener {
+            proceedBttn.visibility = View.GONE
+            frame.visibility = View.GONE
+
+            flight1From.visibility = View.GONE
+            arrow1.visibility = View.GONE
+            flight1To.visibility = View.GONE
+            flight1.visibility = View.GONE
+            price1.visibility = View.GONE
+
+            flight2From.visibility = View.GONE
+            arrow2.visibility = View.GONE
+            flight2To.visibility = View.GONE
+            flight2.visibility = View.GONE
+            price2.visibility = View.GONE
+
+            header3.visibility = View.VISIBLE
+            header3.startAnimation(resultsIN)
+
+            passengerDetailCard.visibility = View.VISIBLE
+            passengerDetailName.text = "${name.text} ${surname.text}"
+            passengerDetailPassportNbr.text = passportNbr.toString()
+            ticketReservationNbr.text = "${flightOneBookingNbr}/${flightTwoBookingNbr.drop(3)}"
+
+            passengerDetailArrow1.setOnClickListener {
+                val arrowRotator = ObjectAnimator.ofFloat(
+                    passengerDetailArrow1,
+                    View.ROTATION_X,
+                    180f)
+                arrowRotator.duration = 2000
+
+                if (header4.visibility == View.GONE) {
+                    TransitionManager.beginDelayedTransition(passengerDetailCard, AutoTransition())
+                    arrowRotator.start()
+                    header4.visibility = View.VISIBLE
+                    passengerDetailPassportNbr.visibility = View.VISIBLE
+            } else {
+                    TransitionManager.beginDelayedTransition(passengerDetailCard, AutoTransition())
+                    arrowRotator.start()
+                    header4.visibility = View.GONE
+                    passengerDetailPassportNbr.visibility = View.GONE
+                }
+             }
+
+            header5.visibility = View.VISIBLE
+            header5.startAnimation(resultsIN)
+
+            passengerCCCard.visibility = View.VISIBLE
+            header6.visibility = View.VISIBLE
+
+
+
+            passengerDetailArrow2.setOnClickListener {
+                val arrowRotator2 = ObjectAnimator.ofFloat(
+                    passengerDetailArrow2,
+                    View.ROTATION_X,
+                    180f)
+                arrowRotator2.duration = 2000
+
+                if (ccBackBackground.visibility == View.GONE) {
+                    TransitionManager.beginDelayedTransition(passengerCCCard, AutoTransition())
+                    arrowRotator2.start()
+                    ccBackBackground.visibility = View.VISIBLE
+                    ccInputDone.visibility = View.VISIBLE
+
+                    ccInputDone.setOnClickListener {
+                        if (checkCCinput(ccBackCardNbr,ccBackCvv, ccBackHolder, ccBackValid)){
+                            ccFrontCardNbr.text = ccBackCardNbr.toString()
+                            //HIER NOCH EINBAUEN DASS DIE ZAHLEN MIT ABSTAND ANGEZEIGT WERDEN!!
+                            ccFrontHolder.text = ccBackHolder.toString()
+                            ccFrontValid.text = ccBackValid.toString()
+
+                            ccFlipAnim(ccFront,ccBack,ccInputDone)
+
+                            if (ccInputDone.text == "Change Credit Card"){
+                               payExpand3.visibility = View.VISIBLE
+                               payExpand3.startAnimation(resultsIN)
+                            } else {
+                                payExpand3.startAnimation(resultsOUT)
+                                payExpand3.visibility = View.GONE
+                            }
+
+
+
+                        }else {
+                            showErrorSnackBar("Please provide all fields to continue the payment procedure")
+                        }
+                    }
+
+
+                } else {
+                    TransitionManager.beginDelayedTransition(passengerCCCard, AutoTransition())
+                    arrowRotator2.start()
+                    header4.visibility = View.GONE
+                    passengerDetailPassportNbr.visibility = View.GONE
+                }
+
+            }
+
+            ccBack.visibility = View.VISIBLE
+
+        }
+
     }
+
+    private fun ccFlipAnim(ccFront: CardView, ccBack: CardView, ccInputDone: Button) {
+        var front_anim: AnimatorSet
+        var back_anim: AnimatorSet
+        var isFront = true
+        val scaleCam: Float = requireContext().resources.displayMetrics.density
+
+        ccFront.cameraDistance = 8000 * scaleCam
+        ccBack.cameraDistance = 8000 * scaleCam
+
+        front_anim = AnimatorInflater.loadAnimator(requireContext(), R.animator.card_front_anim) as AnimatorSet
+        back_anim = AnimatorInflater.loadAnimator(requireContext(), R.animator.card_back_anim) as AnimatorSet
+
+        ccInputDone.setOnClickListener {
+            if(isFront){
+                front_anim.setTarget(ccFront)
+                back_anim.setTarget(ccBack)
+                front_anim.start()
+                back_anim.start()
+                isFront = false
+                ccInputDone.text = "Change Credit Card"
+            } else {
+                front_anim.setTarget(ccBack)
+                back_anim.setTarget(ccFront)
+                back_anim.start()
+                front_anim.start()
+                isFront = true
+                ccInputDone.text = "Done"
+            }
+        }
+    }
+
+    private fun checkCCinput( ccBackCardNbr: EditText?,
+                              ccBackCvv: EditText?,
+                              ccBackHolder: EditText?,
+                              ccBackValid: EditText?
+    ): Boolean {
+
+        return when {
+            TextUtils.isEmpty(ccBackCardNbr?.text.toString()) -> {
+                showErrorSnackBar("Please enter a credit card number")
+
+                false
+            }
+            TextUtils.isEmpty(ccBackCvv?.text.toString()) -> {
+                showErrorSnackBar("Please enter the credit card's CVV code")
+
+                false
+            }
+            TextUtils.isEmpty(ccBackHolder?.text.toString()) -> {
+                showErrorSnackBar("Please enter the credit card's holder name")
+
+                false
+            }
+            TextUtils.isEmpty(ccBackValid?.text.toString()) -> {
+                showErrorSnackBar("Please enter the credit card's expiration date")
+
+                false
+            } else -> {
+                true
+            }
+        }
+    }
+
+
+
+
+
+
 
 }
 
