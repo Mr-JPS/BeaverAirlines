@@ -71,7 +71,7 @@
                 android:id="@+id/tv_header1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="48dp"
                 android:alpha="0.3"
                 android:fontFamily="@font/gotic"
                 android:text="CHECK"
@@ -115,6 +115,140 @@
                 app:srcCompat="@drawable/b_logo"
                 tools:visibility="visible" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/paymentDONEConstraint"
+                android:layout_width="306dp"
+                android:layout_height="517dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_header2"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_bookingDone1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:fontFamily="@font/mayabold"
+                    android:text="PAYMENT DONE"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/purple_700"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_doneIcon"
+                    android:layout_width="32dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="3dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_bookingDone1"
+                    app:layout_constraintStart_toStartOf="@+id/tv_bookingDone1"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_bookingDone1"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_24"
+                    app:tint="@color/red_700" />
+
+                <TextView
+                    android:id="@+id/tv_bookingDone2"
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/gotic"
+                    android:text="Thank you for choosing to fly Beaver Airlines"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/red_700"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/cardView"
+                    app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+                <TextView
+                    android:id="@+id/tv_bookingDone3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/gotic"
+                    android:text="The world's most experienced airline"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/purple_700"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/cardView"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_bookingDone2"
+                    app:layout_constraintStart_toStartOf="@+id/tv_bookingDone2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_bookingDone2"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/tv_bookingDone4"
+                    android:layout_width="219dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="130dp"
+                    android:fontFamily="@font/gotic"
+                    android:text="Fact is, we don't make the same mistake more then three times... \n\nMaybe four."
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_700"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_bookingDone1"
+                    app:layout_constraintStart_toStartOf="@+id/tv_bookingDone1"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+                <Button
+                    android:id="@+id/bttn_goToMyBookings"
+                    android:layout_width="219dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="@color/purple_700"
+                    android:fontFamily="@font/mayaregular"
+                    android:text="See your Booking"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="20dp"
+                    app:iconTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_bookingDone4"
+                    app:layout_constraintStart_toStartOf="@+id/tv_bookingDone4"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_bookingDone4"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp"
+                    tools:ignore="TouchTargetSizeCheck,DuplicateClickableBoundsCheck" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="40dp"
+                    app:cardBackgroundColor="#2EFFFFFF"
+                    app:cardCornerRadius="80dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_doneIcon">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <VideoView
+                            android:id="@+id/paymentDoneVideo"
+                            android:layout_width="103dp"
+                            android:layout_height="131dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/expandCardPayment"
                 android:layout_width="wrap_content"
@@ -142,23 +276,23 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/expandConstraint0Payment"
                             android:layout_width="match_parent"
-                            android:layout_height="139dp"
-                            android:visibility="gone"
-                            tools:visibility="visible">
+                            android:layout_height="wrap_content"
+                            tools:visibility="gone">
 
                             <ImageView
                                 android:id="@+id/iv_frame"
                                 android:layout_width="278dp"
-                                android:layout_height="490dp"
+                                android:layout_height="450dp"
                                 android:layout_marginBottom="20dp"
                                 android:scaleType="fitXY"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.59000003"
-                                app:srcCompat="@drawable/frameline" />
+                                app:layout_constraintVertical_bias="0.00999999"
+                                app:srcCompat="@drawable/frameline"
+                                tools:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_fromCity1"
@@ -170,20 +304,22 @@
                                 android:text="Berlin"
                                 android:textColor="@color/red_700"
                                 android:textSize="10sp"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:layout_constraintStart_toStartOf="@+id/cv_flight3"
-                                app:layout_constraintTop_toTopOf="@+id/iv_frame" />
+                                app:layout_constraintTop_toTopOf="@+id/iv_frame"
+                                tools:visibility="gone" />
 
                             <ImageView
                                 android:id="@+id/iv_arrowSmall3"
                                 android:layout_width="14dp"
                                 android:layout_height="16dp"
                                 android:layout_marginStart="8dp"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity1"
                                 app:layout_constraintStart_toEndOf="@+id/tv_fromCity1"
                                 app:layout_constraintTop_toTopOf="@+id/tv_fromCity1"
-                                app:srcCompat="@drawable/ic_round_arrow_right_alt_24" />
+                                app:srcCompat="@drawable/ic_round_arrow_right_alt_24"
+                                tools:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_toCity1"
@@ -194,10 +330,11 @@
                                 android:text="London"
                                 android:textColor="@color/red_700"
                                 android:textSize="10sp"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity1"
                                 app:layout_constraintStart_toEndOf="@+id/iv_arrowSmall3"
-                                app:layout_constraintTop_toTopOf="@+id/tv_fromCity1" />
+                                app:layout_constraintTop_toTopOf="@+id/tv_fromCity1"
+                                tools:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_fromCity2"
@@ -209,9 +346,10 @@
                                 android:text="London"
                                 android:textColor="@color/red_700"
                                 android:textSize="10sp"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:layout_constraintStart_toStartOf="@+id/cv_flight4"
-                                app:layout_constraintTop_toBottomOf="@+id/tv_price1" />
+                                app:layout_constraintTop_toBottomOf="@+id/tv_price1"
+                                tools:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_toCity2"
@@ -222,21 +360,23 @@
                                 android:text="Berlin"
                                 android:textColor="@color/red_700"
                                 android:textSize="10sp"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity2"
                                 app:layout_constraintStart_toEndOf="@+id/iv_arrowSmall4"
-                                app:layout_constraintTop_toTopOf="@+id/tv_fromCity2" />
+                                app:layout_constraintTop_toTopOf="@+id/tv_fromCity2"
+                                tools:visibility="gone" />
 
                             <ImageView
                                 android:id="@+id/iv_arrowSmall4"
                                 android:layout_width="14dp"
                                 android:layout_height="16dp"
                                 android:layout_marginStart="8dp"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:layout_constraintBottom_toBottomOf="@+id/tv_fromCity2"
                                 app:layout_constraintStart_toEndOf="@+id/tv_fromCity2"
                                 app:layout_constraintTop_toTopOf="@+id/tv_fromCity2"
-                                app:srcCompat="@drawable/ic_round_arrow_right_alt_24" />
+                                app:srcCompat="@drawable/ic_round_arrow_right_alt_24"
+                                tools:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_price1"
@@ -248,9 +388,10 @@
                                 android:textColor="@color/red_700"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:layout_constraintEnd_toEndOf="@+id/cv_flight3"
-                                app:layout_constraintTop_toBottomOf="@+id/cv_flight3" />
+                                app:layout_constraintTop_toBottomOf="@+id/cv_flight3"
+                                tools:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tv_price2"
@@ -263,22 +404,23 @@
                                 android:textColor="@color/red_700"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:layout_constraintEnd_toEndOf="@+id/cv_flight4"
-                                app:layout_constraintTop_toBottomOf="@+id/cv_flight4" />
+                                app:layout_constraintTop_toBottomOf="@+id/cv_flight4"
+                                tools:visibility="gone" />
 
                             <Button
                                 android:id="@+id/bttn_proceedPayment2"
                                 android:layout_width="0dp"
                                 android:layout_height="43dp"
-                                android:layout_marginTop="32dp"
+                                android:layout_marginTop="8dp"
                                 android:backgroundTint="@color/purple_700"
                                 android:fontFamily="@font/mayaregular"
                                 android:text="Proceed to payment"
                                 android:textColor="@color/white"
                                 android:textSize="8sp"
                                 android:textStyle="bold"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:cornerRadius="20dp"
                                 app:iconTint="@color/white"
                                 app:layout_constraintEnd_toEndOf="@+id/cv_totalCost"
@@ -286,19 +428,21 @@
                                 app:layout_constraintTop_toBottomOf="@+id/cv_totalCost"
                                 app:strokeColor="@color/white"
                                 app:strokeWidth="2dp"
-                                tools:ignore="TouchTargetSizeCheck" />
+                                tools:ignore="TouchTargetSizeCheck"
+                                tools:visibility="gone" />
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/cv_flight3"
                                 android:layout_width="227dp"
                                 android:layout_height="74dp"
                                 android:layout_marginTop="5dp"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:cardCornerRadius="8dp"
                                 app:cardElevation="0dp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity1">
+                                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity1"
+                                tools:visibility="gone">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
@@ -444,12 +588,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="74dp"
                                 android:layout_marginTop="5dp"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:cardCornerRadius="8dp"
                                 app:cardElevation="0dp"
                                 app:layout_constraintEnd_toEndOf="@+id/cv_flight3"
                                 app:layout_constraintStart_toStartOf="@+id/cv_flight3"
-                                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity2">
+                                app:layout_constraintTop_toBottomOf="@+id/tv_fromCity2"
+                                tools:visibility="gone">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="wrap_content"
@@ -596,13 +741,12 @@
                                 android:id="@+id/cv_totalCost"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="48dp"
                                 app:cardBackgroundColor="#00FFFFFF"
                                 app:cardElevation="0dp"
-                                app:layout_constraintBottom_toBottomOf="@+id/iv_frame"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="@+id/iv_frame"
-                                app:layout_constraintStart_toStartOf="@+id/iv_frame"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0">
+                                app:layout_constraintStart_toStartOf="@+id/iv_frame">
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="wrap_content"
@@ -613,14 +757,13 @@
                                         android:layout_width="237dp"
                                         android:layout_height="20dp"
                                         android:rotationX="-180"
-                                        android:visibility="invisible"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintHorizontal_bias="0.0"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:layout_constraintVertical_bias="0.0"
-                                        app:srcCompat="@drawable/purpleline3"
-                                        tools:visibility="visible" />
+                                        app:srcCompat="@drawable/purpleline3" />
 
                                     <TextView
                                         android:id="@+id/tv_charge2"
@@ -630,10 +773,8 @@
                                         android:text="Taxes, Beaver Charges"
                                         android:textColor="@color/purple_700"
                                         android:textSize="10sp"
-                                        android:visibility="invisible"
                                         app:layout_constraintStart_toStartOf="@+id/tv_charge1"
-                                        app:layout_constraintTop_toBottomOf="@+id/tv_charge1"
-                                        tools:visibility="visible" />
+                                        app:layout_constraintTop_toBottomOf="@+id/tv_charge1" />
 
                                     <TextView
                                         android:id="@+id/tv_charge1"
@@ -645,10 +786,8 @@
                                         android:text="Air Transportation Charge"
                                         android:textColor="@color/purple_700"
                                         android:textSize="10sp"
-                                        android:visibility="invisible"
                                         app:layout_constraintStart_toStartOf="@+id/iv_fineLine1"
-                                        app:layout_constraintTop_toBottomOf="@+id/iv_fineLine1"
-                                        tools:visibility="visible" />
+                                        app:layout_constraintTop_toBottomOf="@+id/iv_fineLine1" />
 
                                     <TextView
                                         android:id="@+id/tv_grandTotalPrice"
@@ -659,23 +798,20 @@
                                         android:textColor="@color/red_700"
                                         android:textSize="16sp"
                                         android:textStyle="bold"
-                                        android:visibility="invisible"
                                         app:layout_constraintBottom_toBottomOf="@+id/tv_grandTotal"
                                         app:layout_constraintEnd_toEndOf="@+id/tv_chargePrice2"
-                                        app:layout_constraintTop_toTopOf="@+id/tv_grandTotal"
-                                        tools:visibility="visible" />
+                                        app:layout_constraintTop_toTopOf="@+id/tv_grandTotal" />
 
                                     <ImageView
                                         android:id="@+id/iv_fineLine2"
                                         android:layout_width="237dp"
                                         android:layout_height="21dp"
-                                        android:layout_marginTop="8dp"
-                                        android:visibility="invisible"
+                                        android:layout_marginTop="4dp"
                                         app:layout_constraintEnd_toEndOf="@+id/iv_fineLine1"
+                                        app:layout_constraintHorizontal_bias="0.0"
                                         app:layout_constraintStart_toStartOf="@+id/iv_fineLine1"
                                         app:layout_constraintTop_toBottomOf="@+id/tv_charge2"
-                                        app:srcCompat="@drawable/purpleline3"
-                                        tools:visibility="visible" />
+                                        app:srcCompat="@drawable/purpleline3" />
 
                                     <TextView
                                         android:id="@+id/tv_chargePrice1"
@@ -687,11 +823,9 @@
                                         android:textColor="@color/purple_700"
                                         android:textSize="10sp"
                                         android:textStyle="bold"
-                                        android:visibility="invisible"
                                         app:layout_constraintBottom_toBottomOf="@+id/tv_charge1"
                                         app:layout_constraintEnd_toEndOf="@+id/iv_fineLine1"
-                                        app:layout_constraintTop_toTopOf="@+id/tv_charge1"
-                                        tools:visibility="visible" />
+                                        app:layout_constraintTop_toTopOf="@+id/tv_charge1" />
 
                                     <TextView
                                         android:id="@+id/tv_chargePrice2"
@@ -702,11 +836,9 @@
                                         android:textColor="@color/purple_700"
                                         android:textSize="10sp"
                                         android:textStyle="bold"
-                                        android:visibility="invisible"
                                         app:layout_constraintBottom_toBottomOf="@+id/tv_charge2"
                                         app:layout_constraintEnd_toEndOf="@+id/tv_chargePrice1"
-                                        app:layout_constraintTop_toBottomOf="@+id/tv_charge1"
-                                        tools:visibility="visible" />
+                                        app:layout_constraintTop_toBottomOf="@+id/tv_charge1" />
 
                                     <TextView
                                         android:id="@+id/tv_grandTotal"
@@ -718,10 +850,8 @@
                                         android:textColor="@color/purple_700"
                                         android:textSize="16sp"
                                         android:textStyle="bold"
-                                        android:visibility="invisible"
                                         app:layout_constraintStart_toStartOf="@+id/tv_charge2"
-                                        app:layout_constraintTop_toBottomOf="@+id/iv_fineLine2"
-                                        tools:visibility="visible" />
+                                        app:layout_constraintTop_toBottomOf="@+id/iv_fineLine2" />
                                 </androidx.constraintlayout.widget.ConstraintLayout>
                             </androidx.cardview.widget.CardView>
 
@@ -730,14 +860,15 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/expandConstraint1Payment"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:visibility="gone"
+                            tools:visibility="gone">
 
                             <TextView
                                 android:id="@+id/tv_header3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
-                                android:layout_marginTop="8dp"
                                 android:fontFamily="@font/gotic"
                                 android:text="PASSENGER"
                                 android:textColor="@color/red_700"
@@ -750,7 +881,7 @@
                                 android:id="@+id/cv_pasDetail"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_marginTop="24dp"
+                                android:layout_marginTop="16dp"
                                 android:layout_marginBottom="16dp"
                                 android:background="#00FFFFFF"
                                 app:cardBackgroundColor="#24EFECED"
@@ -833,14 +964,14 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/expandConstraint2Payment"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:visibility="gone">
 
                             <TextView
                                 android:id="@+id/tv_header4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
-                                android:layout_marginTop="8dp"
                                 android:fontFamily="@font/gotic"
                                 android:text="CREDIT CARD DETAILS"
                                 android:textColor="@color/red_700"
@@ -853,7 +984,7 @@
                                 android:id="@+id/cv_pasDetail2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_marginTop="24dp"
+                                android:layout_marginTop="16dp"
                                 android:background="#00FFFFFF"
                                 app:cardBackgroundColor="#24EFECED"
                                 app:cardCornerRadius="5dp"
@@ -886,6 +1017,22 @@
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:layout_constraintVertical_bias="0.0" />
 
+                                    <ImageView
+                                        android:id="@+id/iv_ccFront2"
+                                        android:layout_width="60dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_marginBottom="16dp"
+                                        android:adjustViewBounds="true"
+                                        android:scaleType="fitCenter"
+                                        android:visibility="gone"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintStart_toStartOf="@+id/tv_header5"
+                                        app:layout_constraintTop_toBottomOf="@+id/tv_header5"
+                                        app:layout_constraintVertical_bias="0.0"
+                                        app:srcCompat="@drawable/ccfront"
+                                        tools:visibility="visible" />
+
                                     <ImageButton
                                         android:id="@+id/ib_pasDetailArrow2"
                                         android:layout_width="wrap_content"
@@ -899,175 +1046,18 @@
                                         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                                     <androidx.cardview.widget.CardView
-                                        android:id="@+id/creditcardBack"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="16dp"
-                                        android:visibility="visible"
-                                        app:cardBackgroundColor="#00FFFFFF"
-                                        app:cardElevation="0dp"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/tv_header5">
-
-                                        <androidx.constraintlayout.widget.ConstraintLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content">
-
-                                            <ImageView
-                                                android:id="@+id/iv_ccBack"
-                                                android:layout_width="256dp"
-                                                android:layout_height="162dp"
-                                                android:scaleType="fitCenter"
-                                                app:layout_constraintBottom_toBottomOf="parent"
-                                                app:layout_constraintEnd_toEndOf="parent"
-                                                app:layout_constraintHorizontal_bias="0.0"
-                                                app:layout_constraintStart_toStartOf="parent"
-                                                app:layout_constraintTop_toTopOf="parent"
-                                                app:layout_constraintVertical_bias="0.0"
-                                                app:srcCompat="@drawable/ccback" />
-
-                                            <EditText
-                                                android:id="@+id/tv_ccNbrBack"
-                                                android:layout_width="232dp"
-                                                android:layout_height="28dp"
-                                                android:layout_marginTop="31dp"
-                                                android:layout_marginBottom="16dp"
-                                                android:backgroundTint="#00FFFFFF"
-                                                android:ems="10"
-                                                android:fontFamily="@font/gotic"
-                                                android:hint="0000    0000    0000    0000"
-                                                android:inputType="textPersonName"
-                                                android:paddingTop="2dp"
-                                                android:paddingBottom="2dp"
-                                                android:singleLine="false"
-                                                android:textAlignment="center"
-                                                android:textColor="@color/purple_700"
-                                                android:textColorHint="@color/white"
-                                                android:textSize="17sp"
-                                                android:textStyle="normal"
-                                                app:layout_constraintBottom_toBottomOf="parent"
-                                                app:layout_constraintEnd_toEndOf="parent"
-                                                app:layout_constraintStart_toStartOf="parent"
-                                                app:layout_constraintTop_toTopOf="@+id/iv_ccBack"
-                                                app:layout_constraintVertical_bias="0.0"
-                                                tools:ignore="TouchTargetSizeCheck" />
-
-                                            <EditText
-                                                android:id="@+id/tv_ccCvvBack"
-                                                android:layout_width="36dp"
-                                                android:layout_height="19dp"
-                                                android:layout_marginTop="5dp"
-                                                android:backgroundTint="#00FFFFFF"
-                                                android:ems="10"
-                                                android:fontFamily="@font/gotic"
-                                                android:hint="CVV"
-                                                android:inputType="text"
-                                                android:paddingTop="2dp"
-                                                android:paddingBottom="2dp"
-                                                android:singleLine="true"
-                                                android:textAlignment="textEnd"
-                                                android:textColor="@color/purple_700"
-                                                android:textColorHint="@color/white"
-                                                android:textSize="11sp"
-                                                android:textStyle="normal"
-                                                app:layout_constraintEnd_toEndOf="@+id/tv_ccHolderBack"
-                                                app:layout_constraintTop_toBottomOf="@+id/tv_ccNbrBack"
-                                                tools:ignore="TouchTargetSizeCheck" />
-
-                                            <ImageView
-                                                android:id="@+id/iv_ccLine1"
-                                                android:layout_width="0dp"
-                                                android:layout_height="3dp"
-                                                android:scaleType="fitXY"
-                                                app:layout_constraintEnd_toEndOf="@+id/tv_ccCvvBack"
-                                                app:layout_constraintStart_toStartOf="@+id/tv_ccCvvBack"
-                                                app:layout_constraintTop_toBottomOf="@+id/tv_ccCvvBack"
-                                                app:srcCompat="@drawable/whitelineshort" />
-
-                                            <EditText
-                                                android:id="@+id/tv_ccHolderBack"
-                                                android:layout_width="220dp"
-                                                android:layout_height="18dp"
-                                                android:layout_marginStart="3dp"
-                                                android:layout_marginTop="100dp"
-                                                android:backgroundTint="#00FFFFFF"
-                                                android:ems="10"
-                                                android:fontFamily="@font/gotic"
-                                                android:hint="Card holder's Name"
-                                                android:inputType="textPersonName"
-                                                android:paddingTop="2dp"
-                                                android:paddingBottom="2dp"
-                                                android:textColor="@color/purple_700"
-                                                android:textColorHint="@color/white"
-                                                android:textSize="11sp"
-                                                android:textStyle="normal"
-                                                app:guidelineUseRtl="false"
-                                                app:layout_constraintEnd_toEndOf="@+id/tv_ccNbrBack"
-                                                app:layout_constraintHorizontal_bias="0.0"
-                                                app:layout_constraintStart_toStartOf="@+id/tv_ccNbrBack"
-                                                app:layout_constraintTop_toTopOf="@+id/iv_ccBack"
-                                                tools:ignore="TouchTargetSizeCheck" />
-
-                                            <ImageView
-                                                android:id="@+id/iv_ccLine2"
-                                                android:layout_width="0dp"
-                                                android:layout_height="3dp"
-                                                android:layout_marginStart="2dp"
-                                                android:scaleType="fitXY"
-                                                app:layout_constraintEnd_toEndOf="@+id/tv_ccHolderBack"
-                                                app:layout_constraintStart_toStartOf="@+id/tv_ccHolderBack"
-                                                app:layout_constraintTop_toBottomOf="@+id/tv_ccHolderBack"
-                                                app:srcCompat="@drawable/whitelineshort" />
-
-                                            <EditText
-                                                android:id="@+id/tv_ccValidBack"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="18dp"
-                                                android:layout_marginTop="8dp"
-                                                android:backgroundTint="#00FFFFFF"
-                                                android:ems="10"
-                                                android:fontFamily="@font/gotic"
-                                                android:hint="Valid Thru"
-                                                android:inputType="date"
-                                                android:paddingTop="2dp"
-                                                android:paddingBottom="2dp"
-                                                android:singleLine="true"
-                                                android:textColor="@color/purple_700"
-                                                android:textColorHint="@color/white"
-                                                android:textSize="11sp"
-                                                android:textStyle="normal"
-                                                app:layout_constraintStart_toStartOf="@+id/tv_ccHolderBack"
-                                                app:layout_constraintTop_toBottomOf="@+id/tv_ccHolderBack"
-                                                tools:ignore="TouchTargetSizeCheck" />
-
-                                            <ImageView
-                                                android:id="@+id/iv_ccLine3"
-                                                android:layout_width="66dp"
-                                                android:layout_height="3dp"
-                                                android:layout_marginStart="2dp"
-                                                android:scaleType="fitXY"
-                                                app:layout_constraintEnd_toEndOf="@+id/tv_ccValidBack"
-                                                app:layout_constraintHorizontal_bias="0.0"
-                                                app:layout_constraintStart_toStartOf="@+id/tv_ccValidBack"
-                                                app:layout_constraintTop_toBottomOf="@+id/tv_ccValidBack"
-                                                app:srcCompat="@drawable/whitelineshort" />
-
-                                        </androidx.constraintlayout.widget.ConstraintLayout>
-                                    </androidx.cardview.widget.CardView>
-
-                                    <androidx.cardview.widget.CardView
                                         android:id="@+id/creditcardFront"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginStart="-4dp"
                                         android:layout_marginTop="16dp"
                                         android:visibility="gone"
                                         app:cardBackgroundColor="#00FFFFFF"
                                         app:cardElevation="0dp"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/tv_header5"
-                                        tools:visibility="visible">
+                                        app:layout_constraintEnd_toEndOf="@+id/tv_header5"
+                                        app:layout_constraintHorizontal_bias="0.0"
+                                        app:layout_constraintStart_toStartOf="@+id/tv_header5"
+                                        app:layout_constraintTop_toBottomOf="@+id/tv_header5">
 
                                         <androidx.constraintlayout.widget.ConstraintLayout
                                             android:layout_width="wrap_content"
@@ -1103,31 +1093,218 @@
                                                 android:id="@+id/tv_ccHolderFront"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:layout_marginTop="8dp"
+                                                android:layout_marginStart="28dp"
+                                                android:layout_marginBottom="24dp"
                                                 android:fontFamily="@font/ccfont"
                                                 android:text="LUCA BEAVERHAUSEN"
                                                 android:textColor="#C8C3C3"
                                                 android:textSize="10sp"
                                                 android:textStyle="normal"
-                                                app:layout_constraintStart_toStartOf="@+id/tv_ccNbrFront"
-                                                app:layout_constraintTop_toBottomOf="@+id/tv_ccNbrFront" />
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintStart_toStartOf="parent" />
 
                                             <TextView
                                                 android:id="@+id/tv_ccValidFront"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="3dp"
+                                                android:layout_marginEnd="28dp"
                                                 android:fontFamily="@font/ccfont"
                                                 android:text="10/25"
                                                 android:textColor="#C8C3C3"
                                                 android:textSize="7sp"
                                                 android:textStyle="normal"
                                                 app:layout_constraintBottom_toBottomOf="@+id/tv_ccHolderFront"
-                                                app:layout_constraintEnd_toEndOf="@+id/tv_ccNbrFront"
-                                                app:layout_constraintTop_toTopOf="@+id/tv_ccHolderFront" />
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintTop_toTopOf="@+id/tv_ccHolderFront"
+                                                app:layout_constraintVertical_bias="1.0" />
 
                                         </androidx.constraintlayout.widget.ConstraintLayout>
                                     </androidx.cardview.widget.CardView>
+
+                                    <androidx.cardview.widget.CardView
+                                        android:id="@+id/creditcardBack"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="-4dp"
+                                        android:layout_marginTop="16dp"
+                                        android:visibility="gone"
+                                        app:cardBackgroundColor="#00FFFFFF"
+                                        app:cardElevation="0dp"
+                                        app:layout_constraintEnd_toEndOf="@+id/tv_header5"
+                                        app:layout_constraintHorizontal_bias="0.0"
+                                        app:layout_constraintStart_toStartOf="@+id/tv_header5"
+                                        app:layout_constraintTop_toBottomOf="@+id/tv_header5">
+
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content">
+
+                                            <ImageView
+                                                android:id="@+id/iv_ccBack"
+                                                android:layout_width="256dp"
+                                                android:layout_height="162dp"
+                                                android:scaleType="fitCenter"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintHorizontal_bias="0.0"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                app:layout_constraintVertical_bias="0.0"
+                                                app:srcCompat="@drawable/ccback" />
+
+                                            <EditText
+                                                android:id="@+id/tv_ccNbrBack"
+                                                android:layout_width="232dp"
+                                                android:layout_height="28dp"
+                                                android:layout_marginTop="31dp"
+                                                android:layout_marginBottom="16dp"
+                                                android:backgroundTint="#00FFFFFF"
+                                                android:ems="10"
+                                                android:fontFamily="@font/gotic"
+                                                android:hint="0000    0000    0000    0000"
+                                                android:inputType="text"
+                                                android:paddingTop="2dp"
+                                                android:paddingBottom="2dp"
+                                                android:singleLine="false"
+                                                android:textAlignment="center"
+                                                android:textColor="@color/white"
+                                                android:textColorHint="@color/white"
+                                                android:textSize="17sp"
+                                                android:textStyle="normal"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="@+id/iv_ccBack"
+                                                app:layout_constraintVertical_bias="0.0"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                            <EditText
+                                                android:id="@+id/tv_ccCvvBack"
+                                                android:layout_width="36dp"
+                                                android:layout_height="19dp"
+                                                android:layout_marginTop="5dp"
+                                                android:backgroundTint="#00FFFFFF"
+                                                android:ems="10"
+                                                android:fontFamily="@font/gotic"
+                                                android:hint="CVV"
+                                                android:inputType="text"
+                                                android:paddingTop="2dp"
+                                                android:paddingBottom="2dp"
+                                                android:singleLine="true"
+                                                android:textAlignment="textEnd"
+                                                android:textColor="@color/white"
+                                                android:textColorHint="@color/white"
+                                                android:textSize="11sp"
+                                                android:textStyle="normal"
+                                                app:layout_constraintEnd_toEndOf="@+id/tv_ccHolderBack"
+                                                app:layout_constraintTop_toBottomOf="@+id/tv_ccNbrBack"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                            <ImageView
+                                                android:id="@+id/iv_ccLine1"
+                                                android:layout_width="0dp"
+                                                android:layout_height="3dp"
+                                                android:scaleType="fitXY"
+                                                app:layout_constraintEnd_toEndOf="@+id/tv_ccCvvBack"
+                                                app:layout_constraintStart_toStartOf="@+id/tv_ccCvvBack"
+                                                app:layout_constraintTop_toBottomOf="@+id/tv_ccCvvBack"
+                                                app:srcCompat="@drawable/whitelineshort" />
+
+                                            <EditText
+                                                android:id="@+id/tv_ccHolderBack"
+                                                android:layout_width="220dp"
+                                                android:layout_height="18dp"
+                                                android:layout_marginStart="3dp"
+                                                android:layout_marginTop="100dp"
+                                                android:backgroundTint="#00FFFFFF"
+                                                android:ems="10"
+                                                android:fontFamily="@font/gotic"
+                                                android:hint="Card holder's Name"
+                                                android:inputType="text|textCapWords"
+                                                android:paddingTop="2dp"
+                                                android:paddingBottom="2dp"
+                                                android:textColor="@color/white"
+                                                android:textColorHint="@color/white"
+                                                android:textSize="11sp"
+                                                android:textStyle="normal"
+                                                app:guidelineUseRtl="false"
+                                                app:layout_constraintEnd_toEndOf="@+id/tv_ccNbrBack"
+                                                app:layout_constraintHorizontal_bias="0.0"
+                                                app:layout_constraintStart_toStartOf="@+id/tv_ccNbrBack"
+                                                app:layout_constraintTop_toTopOf="@+id/iv_ccBack"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                            <ImageView
+                                                android:id="@+id/iv_ccLine2"
+                                                android:layout_width="0dp"
+                                                android:layout_height="3dp"
+                                                android:layout_marginStart="2dp"
+                                                android:scaleType="fitXY"
+                                                app:layout_constraintEnd_toEndOf="@+id/tv_ccHolderBack"
+                                                app:layout_constraintStart_toStartOf="@+id/tv_ccHolderBack"
+                                                app:layout_constraintTop_toBottomOf="@+id/tv_ccHolderBack"
+                                                app:srcCompat="@drawable/whitelineshort" />
+
+                                            <EditText
+                                                android:id="@+id/tv_ccValidBack"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="18dp"
+                                                android:layout_marginTop="8dp"
+                                                android:backgroundTint="#00FFFFFF"
+                                                android:ems="10"
+                                                android:fontFamily="@font/gotic"
+                                                android:hint="Valid Thru"
+                                                android:inputType="text"
+                                                android:paddingTop="2dp"
+                                                android:paddingBottom="2dp"
+                                                android:singleLine="true"
+                                                android:textColor="@color/white"
+                                                android:textColorHint="@color/white"
+                                                android:textSize="11sp"
+                                                android:textStyle="normal"
+                                                app:layout_constraintStart_toStartOf="@+id/tv_ccHolderBack"
+                                                app:layout_constraintTop_toBottomOf="@+id/tv_ccHolderBack"
+                                                tools:ignore="TouchTargetSizeCheck" />
+
+                                            <ImageView
+                                                android:id="@+id/iv_ccLine3"
+                                                android:layout_width="66dp"
+                                                android:layout_height="3dp"
+                                                android:layout_marginStart="2dp"
+                                                android:scaleType="fitXY"
+                                                app:layout_constraintEnd_toEndOf="@+id/tv_ccValidBack"
+                                                app:layout_constraintHorizontal_bias="0.0"
+                                                app:layout_constraintStart_toStartOf="@+id/tv_ccValidBack"
+                                                app:layout_constraintTop_toBottomOf="@+id/tv_ccValidBack"
+                                                app:srcCompat="@drawable/whitelineshort" />
+
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+                                    </androidx.cardview.widget.CardView>
+
+                                    <Button
+                                        android:id="@+id/bttn_inputCCcontinue"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="44dp"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_marginBottom="16dp"
+                                        android:backgroundTint="@color/purple_700"
+                                        android:fontFamily="@font/mayaregular"
+                                        android:text="Continue"
+                                        android:textColor="@color/white"
+                                        android:textSize="10sp"
+                                        android:textStyle="bold"
+                                        android:visibility="gone"
+                                        app:cornerRadius="20dp"
+                                        app:iconTint="@color/white"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="@+id/creditcardFront"
+                                        app:layout_constraintStart_toStartOf="@+id/creditcardFront"
+                                        app:layout_constraintTop_toBottomOf="@+id/creditcardBack"
+                                        app:layout_constraintVertical_bias="0.0"
+                                        app:strokeColor="@color/white"
+                                        app:strokeWidth="1dp"
+                                        tools:ignore="TouchTargetSizeCheck,DuplicateClickableBoundsCheck" />
 
                                     <Button
                                         android:id="@+id/bttn_inputCCdone"
@@ -1151,8 +1328,7 @@
                                         app:layout_constraintVertical_bias="0.0"
                                         app:strokeColor="@color/white"
                                         app:strokeWidth="1dp"
-                                        tools:ignore="TouchTargetSizeCheck,DuplicateClickableBoundsCheck"
-                                        tools:visibility="visible" />
+                                        tools:ignore="TouchTargetSizeCheck,DuplicateClickableBoundsCheck" />
 
                                 </androidx.constraintlayout.widget.ConstraintLayout>
                             </androidx.cardview.widget.CardView>
@@ -1162,8 +1338,7 @@
                             android:id="@+id/expandConstraint3Payment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            tools:visibility="visible">
+                            android:visibility="gone">
 
                             <TextView
                                 android:id="@+id/tv_footerPayment"
@@ -1213,7 +1388,9 @@
                                 app:strokeWidth="1dp"
                                 tools:ignore="TouchTargetSizeCheck" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </LinearLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 

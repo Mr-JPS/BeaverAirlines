@@ -7,6 +7,7 @@ import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -17,21 +18,19 @@ import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.example.beaverairlines.AuthViewModel
-import com.example.beaverairlines.MainActivity
 
 import com.example.beaverairlines.R
 import com.example.beaverairlines.ViewModel
@@ -69,6 +68,7 @@ import kotlinx.android.synthetic.main.pay_flights.view.tv_flightNbr1
 import kotlinx.android.synthetic.main.pay_flights.view.tv_flightNbr2
 import kotlinx.android.synthetic.main.pay_flights.view.tv_price1
 import kotlinx.android.synthetic.main.pay_flights.view.tv_price2
+import kotlinx.android.synthetic.main.payment_procedure.*
 import kotlinx.android.synthetic.main.payment_procedure.view.*
 import kotlinx.android.synthetic.main.select_flights.view.*
 import kotlinx.android.synthetic.main.select_flights.view.payCARDConstraint
@@ -1536,6 +1536,7 @@ class BookFragment : Fragment(), BookInterface {
         val name = binding.passengerInputCard.passportCARD.tv_pasName
         val passportNbr = binding.passengerInputCard.passportCARD.tv_pasPassportNbr1
 
+        val pasExpand = binding.paymentSummaryCard.cvPayCARD.expandLayoutPayment
         val paymentSummaryCard = binding.paymentSummaryCard
         val background = binding.paymentSummaryCard.cvPayCARD.iv_payFlight_backgroundBttnSheet
         val paymentCard = binding.paymentSummaryCard.cvPayCARD
@@ -1600,8 +1601,8 @@ class BookFragment : Fragment(), BookInterface {
         val passengerDetailPassportNbr = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment.cv_pasDetail.tv_pasDetails3
 
         val payExpand2 = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment
-        val header5 = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment.tv_header4
-        val header6 = binding.paymentSummaryCard.cvPayCARD.expandConstraint1Payment.tv_header5
+        val header5 = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.tv_header4
+        val header6 = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.tv_header5
         val passengerDetailArrow2 = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.ib_pasDetailArrow2
         val passengerCCCard = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2
         val ccBack = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardBack
@@ -1615,16 +1616,22 @@ class BookFragment : Fragment(), BookInterface {
         val ccBackValidLine = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardBack.iv_ccLine3
         val ccFront = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardFront
         val ccFrontBackground = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardFront.iv_ccFront
+        val ccFrontBackground2 = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.iv_ccFront2
         val ccFrontCardNbr = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardFront.tv_ccNbrFront
         val ccFrontHolder = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardFront.tv_ccHolderFront
         val ccFrontValid = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.creditcardFront.tv_ccValidFront
         val ccInputDone = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.bttn_inputCCdone
+        val ccInputContinue = binding.paymentSummaryCard.cvPayCARD.expandConstraint2Payment.cv_pasDetail2.bttn_inputCCcontinue
 
         val payExpand3 = binding.paymentSummaryCard.cvPayCARD.expandConstraint3Payment
         val ticketReservationNbr = binding.paymentSummaryCard.cvPayCARD.expandConstraint3Payment.tv_ticketReservationNbr
         val footer = binding.paymentSummaryCard.cvPayCARD.expandConstraint3Payment.tv_footerPayment
-        val finalPay = binding.paymentSummaryCard.cvPayCARD.expandConstraint3Payment.bttn_finalPay
+        val payNowBttn = binding.paymentSummaryCard.cvPayCARD.expandConstraint3Payment.bttn_finalPay
 
+
+        val paymentDoneConstraint = binding.paymentSummaryCard.cvPayCARD.paymentDONEConstraint
+        val paymentDoneVideo =  binding.paymentSummaryCard.cvPayCARD.paymentDONEConstraint.paymentDoneVideo
+        val goToBookingBttn = binding.paymentSummaryCard.cvPayCARD.paymentDONEConstraint.bttn_goToMyBookings
 
         flight1From.text = flightViewModel.depCity
         flight1To.text = flightViewModel.ariCity
@@ -1786,6 +1793,7 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
 
 
         proceedBttn.setOnClickListener {
+            TransitionManager.beginDelayedTransition(pasExpand, AutoTransition())
             proceedBttn.visibility = View.GONE
             frame.visibility = View.GONE
 
@@ -1801,69 +1809,148 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
             flight2.visibility = View.GONE
             price2.visibility = View.GONE
 
-            header3.visibility = View.VISIBLE
-            header3.startAnimation(resultsIN)
+            payExpand1.visibility = View.VISIBLE
+//            payExpand1.startAnimation(resultsIN)
+            payExpand2.visibility = View.VISIBLE
+//            payExpand2.startAnimation(resultsIN)
 
-            passengerDetailCard.visibility = View.VISIBLE
+//            ccBack.visibility = View.GONE
+//            ccFront.visibility = View.GONE
+//            ccInputDone.visibility = View.GONE
+
+//            passengerDetailCard.visibility = View.VISIBLE
             passengerDetailName.text = "${name.text} ${surname.text}"
-            passengerDetailPassportNbr.text = passportNbr.toString()
+            passengerDetailPassportNbr.text = passportNbr.text.toString()
             ticketReservationNbr.text = "${flightOneBookingNbr}/${flightTwoBookingNbr.drop(3)}"
 
             passengerDetailArrow1.setOnClickListener {
-                val arrowRotator = ObjectAnimator.ofFloat(
+                val arrowRotatorUP = ObjectAnimator.ofFloat(
                     passengerDetailArrow1,
-                    View.ROTATION_X,
+                    View.ROTATION,
                     180f)
-                arrowRotator.duration = 2000
+//                arrowRotatorUP.duration = 2000
+
+                val arrowRotatorDOWN = ObjectAnimator.ofFloat(
+                    passengerDetailArrow1,
+                    View.ROTATION,
+                    -90f)
+//                arrowRotatorDOWN.duration = 2000
 
                 if (header4.visibility == View.GONE) {
                     TransitionManager.beginDelayedTransition(passengerDetailCard, AutoTransition())
-                    arrowRotator.start()
+                    arrowRotatorUP.start()
                     header4.visibility = View.VISIBLE
                     passengerDetailPassportNbr.visibility = View.VISIBLE
+                    TransitionManager.beginDelayedTransition(payExpand2, AutoTransition())
+                    ccBack.visibility = View.GONE
+                    ccFront.visibility = View.GONE
+                    ccInputDone.visibility = View.GONE
+
             } else {
-                    TransitionManager.beginDelayedTransition(passengerDetailCard, AutoTransition())
-                    arrowRotator.start()
                     header4.visibility = View.GONE
+                    TransitionManager.beginDelayedTransition(passengerDetailCard, AutoTransition())
+                    arrowRotatorDOWN.start()
                     passengerDetailPassportNbr.visibility = View.GONE
                 }
              }
 
-            header5.visibility = View.VISIBLE
-            header5.startAnimation(resultsIN)
+
 
             passengerCCCard.visibility = View.VISIBLE
-            header6.visibility = View.VISIBLE
+//            header6.visibility = View.VISIBLE
 
 
 
             passengerDetailArrow2.setOnClickListener {
-                val arrowRotator2 = ObjectAnimator.ofFloat(
+                val arrowRotatorUP2 = ObjectAnimator.ofFloat(
                     passengerDetailArrow2,
-                    View.ROTATION_X,
+                    View.ROTATION,
                     180f)
-                arrowRotator2.duration = 2000
+//                arrowRotatorUP2.duration = 2000
 
-                if (ccBackBackground.visibility == View.GONE) {
+                val arrowRotatorDOWN2 = ObjectAnimator.ofFloat(
+                    passengerDetailArrow2,
+                    View.ROTATION,
+                    -90f)
+//                arrowRotatorDOWN2.duration = 2000
+
+
+                if (ccBack.visibility == View.GONE) {
                     TransitionManager.beginDelayedTransition(passengerCCCard, AutoTransition())
-                    arrowRotator2.start()
-                    ccBackBackground.visibility = View.VISIBLE
+                    arrowRotatorUP2.start()
+                    ccFront.visibility = View.VISIBLE
+                    ccBack.visibility = View.VISIBLE
+//                    ccBack.visibility = View.VISIBLE
+//                    ccFront.visibility = View.VISIBLE
                     ccInputDone.visibility = View.VISIBLE
+                    header4.visibility = View.GONE
+                    passengerDetailPassportNbr.visibility = View.GONE
 
                     ccInputDone.setOnClickListener {
                         if (checkCCinput(ccBackCardNbr,ccBackCvv, ccBackHolder, ccBackValid)){
-                            ccFrontCardNbr.text = ccBackCardNbr.toString()
-                            //HIER NOCH EINBAUEN DASS DIE ZAHLEN MIT ABSTAND ANGEZEIGT WERDEN!!
-                            ccFrontHolder.text = ccBackHolder.toString()
-                            ccFrontValid.text = ccBackValid.toString()
 
-                            ccFlipAnim(ccFront,ccBack,ccInputDone)
+                            ccFrontCardNbr.setText(ccBackCardNbr.text)
+                            //HIER NOCH EINBAUEN DASS DIE ZAHLEN MIT ABSTAND ANGEZEIGT WERDEN!!
+
+                            val cardHolderName = ccBackHolder.text
+                            ccFrontHolder.setText(cardHolderName)
+                            ccFrontValid.setText(ccBackValid.text)
+
+
+                            var front_anim: AnimatorSet
+                            var back_anim: AnimatorSet
+                            var bttnFront_anim: AnimatorSet
+                            var bttnBack_anim: AnimatorSet
+                            var isFront = false
+                            val scaleCam: Float = requireContext().resources.displayMetrics.density
+
+                            ccFront.cameraDistance = 8000 * scaleCam
+                            ccBack.cameraDistance = 8000 * scaleCam
+
+                            front_anim = AnimatorInflater.loadAnimator(requireContext(), R.animator.card_front_anim) as AnimatorSet
+                            back_anim = AnimatorInflater.loadAnimator(requireContext(), R.animator.card_back_anim) as AnimatorSet
+
+                            bttnFront_anim = AnimatorInflater.loadAnimator(requireContext(), R.animator.card_front_anim) as AnimatorSet
+                            bttnBack_anim = AnimatorInflater.loadAnimator(requireContext(), R.animator.card_back_anim) as AnimatorSet
+
+                                if(isFront){
+                                    front_anim.setTarget(ccFront)
+                                    back_anim.setTarget(ccBack)
+                                    front_anim.start()
+                                    back_anim.start()
+
+                                    bttnFront_anim.setTarget(ccInputContinue)
+                                    bttnBack_anim.setTarget(ccInputDone)
+                                    bttnBack_anim.start()
+                                    ccInputContinue.visibility = View.GONE
+                                    bttnFront_anim.start()
+                                    ccInputDone.visibility = View.VISIBLE
+                                    isFront = false
+
+                                } else {
+                                    front_anim.setTarget(ccBack)
+                                    back_anim.setTarget(ccFront)
+                                    back_anim.start()
+                                    front_anim.start()
+
+                                    bttnFront_anim.setTarget(ccInputDone)
+                                    bttnBack_anim.setTarget(ccInputContinue)
+                                    bttnBack_anim.start()
+                                    ccInputDone.visibility = View.GONE
+                                    bttnFront_anim.start()
+                                    ccInputContinue.visibility = View.VISIBLE
+                                    isFront = true
+
+                                }
+
 
                             if (ccInputDone.text == "Change Credit Card"){
-                               payExpand3.visibility = View.VISIBLE
-                               payExpand3.startAnimation(resultsIN)
+                                TransitionManager.beginDelayedTransition(pasExpand, AutoTransition())
+                                payExpand3.visibility = View.VISIBLE
+//                                payExpand3.startAnimation(resultsIN)
                             } else {
-                                payExpand3.startAnimation(resultsOUT)
+//                                payExpand3.startAnimation(resultsOUT)
+                                TransitionManager.beginDelayedTransition(pasExpand, AutoTransition())
                                 payExpand3.visibility = View.GONE
                             }
 
@@ -1877,16 +1964,105 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
 
                 } else {
                     TransitionManager.beginDelayedTransition(passengerCCCard, AutoTransition())
-                    arrowRotator2.start()
-                    header4.visibility = View.GONE
-                    passengerDetailPassportNbr.visibility = View.GONE
+                    arrowRotatorDOWN2.start()
+                    ccFront.visibility = View.GONE
+                    ccBack.visibility = View.GONE
+//                    ccBack.visibility = View.VISIBLE
+//                    ccFront.visibility = View.VISIBLE
+                    ccInputDone.visibility = View.GONE
+                    ccInputContinue.visibility = View.GONE
+                    TransitionManager.beginDelayedTransition(passengerCCCard, AutoTransition())
+                    payExpand3.visibility = View.GONE
+
+                }
+
+                ccInputContinue.setOnClickListener {
+                    TransitionManager.beginDelayedTransition(passengerCCCard, AutoTransition())
+                    arrowRotatorDOWN2.start()
+
+                    ccFront.visibility = View.GONE
+                    ccBack.visibility = View.GONE
+//                    ccBack.visibility = View.VISIBLE
+//                    ccFront.visibility = View.VISIBLE
+                    ccInputDone.visibility = View.GONE
+                    ccInputContinue.visibility = View.GONE
+
+                    ccFrontBackground2.visibility = View.VISIBLE
+
+
+
+//                    val params: LayoutParams = ccFrontBackground.getLayoutParams()
+//                    params.height = 50
+//                    params.width = 100
+//                    ccFrontBackground.setLayoutParams(params)
+
+//                    ccFrontBackground.getLayoutParams().height = 10
+//                    ccFrontBackground.getLayoutParams().width = 10
+//                    ccFrontBackground.requestLayout()
+//                    ccFrontBackground.setScaleType(ImageView.ScaleType.CENTER_INSIDE)
+
+
+
+
+
+                    /*
+                    val scaleCardX = PropertyValuesHolder.ofFloat(View.SCALE_X, -5f)
+                    val scaleCardY = PropertyValuesHolder.ofFloat(View.SCALE_Y, -5f)
+                    val animatorCard =
+                        ObjectAnimator.ofPropertyValuesHolder(ccFront, scaleCardX, scaleCardY)
+                    animatorCard.duration = 200
+                    //animatorS.repeatCount = 1
+                    //animatorS.repeatMode = ObjectAnimator.REVERSE
+                    //animatorS.interpolator = BounceInterpolator()
+                    animatorCard.start()
+
+                     */
+
+
+
+//                    TransitionManager.beginDelayedTransition(pasExpand, AutoTransition())
+
+//                    ccFrontBackground.visibility = View.GONE
+//                    ccFrontCardNbr.visibility = View.GONE
+//                    ccFrontHolder.visibility = View.GONE
+//                    ccFrontValid.visibility = View.GONE
+                    payExpand3.visibility = View.VISIBLE
+
+                    payNowBttn.setOnClickListener {
+                        TransitionManager.beginDelayedTransition(pasExpand, AutoTransition())
+                        pasExpand.visibility = View.GONE
+
+                        paymentDoneConstraint.visibility = View.VISIBLE
+                        paymentDoneConstraint.startAnimation(resultsIN)
+
+
+                        setUpRawVideo(paymentDoneVideo)
+
+
+
+                        goToBookingBttn.setOnClickListener {
+                            findNavController().navigate(R.id.action_NavControllerFragment_to_tripsFragment)
+                        }
+
+                    }
+
                 }
 
             }
 
-            ccBack.visibility = View.VISIBLE
-
         }
+
+    }
+
+    private fun setUpRawVideo(paymentDoneVideo: VideoView) {
+        val mediaController = MediaController(requireContext())
+        val videoContent : Uri = Uri.parse("android.resource://" + requireActivity().packageName + "/"+ R.raw.target_transfer)
+
+        paymentDoneVideo.setVideoURI(videoContent)
+        paymentDoneVideo.setMediaController(mediaController)
+        mediaController.setAnchorView(paymentDoneVideo)
+        paymentDoneVideo.requestFocus()
+        paymentDoneVideo.start()
 
     }
 
@@ -1921,29 +2097,29 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
         }
     }
 
-    private fun checkCCinput( ccBackCardNbr: EditText?,
-                              ccBackCvv: EditText?,
-                              ccBackHolder: EditText?,
-                              ccBackValid: EditText?
+    private fun checkCCinput( ccBackCardNbr: EditText,
+                              ccBackCvv: EditText,
+                              ccBackHolder: EditText,
+                              ccBackValid: EditText
     ): Boolean {
 
         return when {
-            TextUtils.isEmpty(ccBackCardNbr?.text.toString()) -> {
+            TextUtils.isEmpty(ccBackCardNbr.text.toString()) -> {
                 showErrorSnackBar("Please enter a credit card number")
 
                 false
             }
-            TextUtils.isEmpty(ccBackCvv?.text.toString()) -> {
+            TextUtils.isEmpty(ccBackCvv.text.toString()) -> {
                 showErrorSnackBar("Please enter the credit card's CVV code")
 
                 false
             }
-            TextUtils.isEmpty(ccBackHolder?.text.toString()) -> {
+            TextUtils.isEmpty(ccBackHolder.text.toString()) -> {
                 showErrorSnackBar("Please enter the credit card's holder name")
 
                 false
             }
-            TextUtils.isEmpty(ccBackValid?.text.toString()) -> {
+            TextUtils.isEmpty(ccBackValid.text.toString()) -> {
                 showErrorSnackBar("Please enter the credit card's expiration date")
 
                 false

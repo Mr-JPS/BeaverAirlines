@@ -56,5 +56,13 @@
     <fragment
         android:id="@+id/NavControllerFragment"
         android:name="com.example.beaverairlines.home.NavControllerFragment"
-        android:label="NavControllerFragment" />
+        android:label="NavControllerFragment" >
+        <action
+            android:id="@+id/action_NavControllerFragment_to_tripsFragment"
+            app:destination="@id/tripsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tripsFragment"
+        android:name="com.example.beaverairlines.home.childFragments.TripsFragment"
+        android:label="TripsFragment" />
 </navigation>

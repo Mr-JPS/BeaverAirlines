@@ -182,8 +182,7 @@
                 app:layout_constraintTop_toTopOf="@+id/iv_backgroundBttnSheet"
                 app:layout_constraintVertical_bias="0.0"
                 tools:itemCount="5"
-                tools:listitem="@layout/flightresult_item"
-                tools:visibility="visible" />
+                tools:listitem="@layout/flightresult_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

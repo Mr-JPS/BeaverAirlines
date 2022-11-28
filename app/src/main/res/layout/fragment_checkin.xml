@@ -16,17 +16,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_adTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="checkin"
-                android:textSize="34sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="334dp"
+                android:layout_height="217dp"
+                android:layout_marginTop="32dp"
+                android:visibility="gone"
+                app:cardCornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.354" />
+                tools:visibility="visible">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageView18"
+                        android:layout_width="333dp"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/_f4ca4d8132c4e2ebfda4b21dd799465_virgin_australia_east_west_2000_2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

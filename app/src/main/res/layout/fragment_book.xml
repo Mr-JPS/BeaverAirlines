@@ -33,8 +33,7 @@
 
                     <include
                         android:id="@+id/bigBookCard"
-                        layout="@layout/book3_card"
-                        tools:visibility="invisible" />
+                        layout="@layout/book3_card" />
 
                 </LinearLayout>
 
@@ -60,8 +59,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="invisible" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <include
                 android:id="@+id/payCard"
@@ -69,8 +67,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="invisible" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <include
                 android:id="@+id/passengerInputCard"
@@ -78,8 +75,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="invisible" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <include
                 android:id="@+id/paymentSummaryCard"
