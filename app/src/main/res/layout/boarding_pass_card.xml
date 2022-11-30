@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00101011"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/expandProfileCard"
+        android:layout_width="342dp"
+        android:layout_height="623dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/milehighbackground"
+        android:visibility="visible"
+        app:cardBackgroundColor="#00FFFFFF"
+        app:cardCornerRadius="13dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/boardingcard_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/boardingpass" />
+
+            <ImageView
+                android:id="@+id/boardingcard_logo"
+                android:layout_width="325dp"
+                android:layout_height="124dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="180dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/boardingcard_header1"
+                app:srcCompat="@drawable/logonobackground" />
+
+            <TextView
+                android:id="@+id/boardingcard_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="188dp"
+                android:layout_marginTop="255dp"
+                android:layout_marginBottom="48dp"
+                android:fontFamily="@font/mayathin"
+                android:rotation="-90"
+                android:text="LDN"
+                android:textColor="@color/white"
+                android:textSize="96sp"
+                app:layout_constraintBottom_toTopOf="@+id/boardingcard_arrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/boardingcard_barcode"
+                android:layout_width="255dp"
+                android:layout_height="73dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/barcode1" />
+
+            <ImageView
+                android:id="@+id/boardingcard_arrow"
+                android:layout_width="43dp"
+                android:layout_height="10dp"
+                android:layout_marginBottom="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toTopOf="@+id/boardingcard_boardingTime"
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_boardingTime"
+                app:layout_constraintStart_toStartOf="@+id/boardingcard_boardingTime"
+                app:srcCompat="@drawable/boardingarrow" />
+
+            <TextView
+                android:id="@+id/boardingcard_header1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/gotic"
+                android:text="BEAVER "
+                android:textColor="#CCFFFFFF"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/boardingcard_frame"
+                app:layout_constraintTop_toTopOf="@+id/boardingcard_background" />
+
+            <ImageView
+                android:id="@+id/boardingcard_header2"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/boardingcard_header1"
+                app:layout_constraintStart_toEndOf="@+id/boardingcard_header1"
+                app:layout_constraintTop_toTopOf="@+id/boardingcard_header1"
+                app:srcCompat="@drawable/ic_baseline_cloud_circle_24" />
+
+            <TextView
+                android:id="@+id/boardingcard_header3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:fontFamily="@font/gotic"
+                android:text="TICKET TO THE SKY"
+                android:textColor="#CCFFFFFF"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/boardingcard_header1"
+                app:layout_constraintStart_toEndOf="@+id/boardingcard_header2"
+                app:layout_constraintTop_toTopOf="@+id/boardingcard_header1" />
+
+            <ImageView
+                android:id="@+id/boardingcard_header4"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginEnd="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/boardingcard_header1"
+                app:layout_constraintEnd_toStartOf="@+id/boardingcard_header5"
+                app:layout_constraintTop_toTopOf="@+id/boardingcard_header1"
+                app:srcCompat="@drawable/ic_baseline_cloud_circle_24" />
+
+            <TextView
+                android:id="@+id/boardingcard_header5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotic"
+                android:text="BA5KCC.BA-3315"
+                android:textColor="#CCFFFFFF"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/boardingcard_header1"
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_gateNbr"
+                app:layout_constraintTop_toTopOf="@+id/boardingcard_header1"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
+                android:id="@+id/boardingcard_footer2"
+                android:layout_width="23dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="28dp"
+                app:layout_constraintBottom_toBottomOf="@+id/boardingcard_barcode"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/boardingcard_barcode"
+                app:srcCompat="@drawable/beaverlogoblue" />
+
+            <ImageView
+                android:id="@+id/boardingcard_frame"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="285dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/boardingcard_background"
+                app:srcCompat="@drawable/boardingpassframe" />
+
+            <TextView
+                android:id="@+id/boardingcard_seatNbr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mayaregular"
+                android:text="C13"
+                android:textColor="@color/white"
+                android:textSize="80sp"
+                app:layout_constraintBottom_toBottomOf="@+id/boardingcard_frame"
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_frame"
+                app:layout_constraintStart_toStartOf="@+id/boardingcard_frame"
+                app:layout_constraintTop_toTopOf="@+id/boardingcard_frame"
+                app:layout_constraintVertical_bias="0.37" />
+
+            <TextView
+                android:id="@+id/boardingcard_textSeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotic"
+                android:text="SEAT NO."
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_seatNbr"
+                app:layout_constraintStart_toStartOf="@+id/boardingcard_seatNbr"
+                app:layout_constraintTop_toBottomOf="@+id/boardingcard_seatNbr" />
+
+            <TextView
+                android:id="@+id/boardingcard_textGate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:fontFamily="@font/gotic"
+                android:text="GATE NO."
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_gateNbr"
+                app:layout_constraintStart_toStartOf="@+id/boardingcard_gateNbr"
+                app:layout_constraintTop_toBottomOf="@+id/boardingcard_gateNbr" />
+
+            <TextView
+                android:id="@+id/boardingcard_textBoarding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotic"
+                android:text="BOARDING"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/boardingcard_frame"
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_boardingTime"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/boardingcard_boardingTime" />
+
+            <TextView
+                android:id="@+id/boardingcard_pasFirstname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/mayaregular"
+                android:text="LUCA"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/boardingcard_qrCode"
+                app:layout_constraintTop_toTopOf="@+id/boardingcard_qrCode" />
+
+            <TextView
+                android:id="@+id/boardingcard_pasSurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mayaregular"
+                android:text="BEAVERHAUSEN"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/boardingcard_qrCode"
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_pasFirstname"
+                app:layout_constraintTop_toBottomOf="@+id/boardingcard_pasFirstname" />
+
+            <TextView
+                android:id="@+id/boardingcard_gateNbr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="28dp"
+                android:fontFamily="@font/mayaregular"
+                android:text="A13"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="48sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/boardingcard_logo" />
+
+            <TextView
+                android:id="@+id/boardingcard_boardingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-5dp"
+                android:fontFamily="@font/mayaregular"
+                android:text="15:03"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/boardingcard_textBoarding"
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_gateNbr"
+                app:layout_constraintStart_toStartOf="@+id/boardingcard_gateNbr" />
+
+            <TextView
+                android:id="@+id/boardingcard_footer1"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/gotic"
+                android:text="Thank you for choosing to fly Beaver Airlines - The world's most experienced airline. Fact is, we don't make the same mistake more then three times. Maybe four."
+                android:textColor="@color/red_700"
+                android:textSize="7.3sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_textBoarding"
+                app:layout_constraintStart_toStartOf="@+id/boardingcard_frame"
+                app:layout_constraintTop_toBottomOf="@+id/boardingcard_frame" />
+
+            <ImageView
+                android:id="@+id/boardingcard_qrCode"
+                android:layout_width="41dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toTopOf="@+id/boardingcard_frame"
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_frame"
+                app:srcCompat="@drawable/barcode2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

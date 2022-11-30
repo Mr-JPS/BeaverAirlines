@@ -20,7 +20,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
 
 
             <ImageView
@@ -348,12 +349,12 @@
 
             <Button
                 android:id="@+id/bttn_letsFly"
-                android:layout_width="118dp"
+                android:layout_width="wrap_content"
                 android:layout_height="43dp"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@color/red_700"
                 android:fontFamily="@font/mayaregular"
-                android:text="Let's Fly"
+                android:text="SELECT FLIGHT"
                 android:textColor="#FFFFFF"
                 android:textSize="10sp"
                 android:textStyle="bold"
@@ -587,6 +588,7 @@
                             android:textSize="10dp"
                             android:textStyle="bold"
                             android:visibility="visible"
+                            app:cornerRadius="10dp"
                             app:layout_constraintEnd_toEndOf="@+id/iv_whiteLineFlightResult"
                             app:layout_constraintStart_toStartOf="@+id/iv_whiteLineFlightResult"
                             app:layout_constraintTop_toBottomOf="@+id/iv_whiteLineFlightResult"

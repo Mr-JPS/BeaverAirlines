@@ -10,43 +10,248 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#BC448CC6"
         tools:context=".home.childFragments.CheckinFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
-                android:layout_width="334dp"
-                android:layout_height="217dp"
-                android:layout_marginTop="32dp"
-                android:visibility="gone"
-                app:cardCornerRadius="8dp"
+            <TextView
+                android:id="@+id/tv_checkin_header1"
+                android:layout_width="380dp"
+                android:layout_height="91dp"
+                android:layout_marginStart="8dp"
+                android:alpha="0.8"
+                android:fontFamily="@font/mayaregular"
+                android:text="Check-In"
+                android:textColor="#FFFFFF"
+                android:textSize="60sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_check_header2"
+                android:layout_width="493dp"
+                android:layout_height="178dp"
+                android:layout_marginStart="32dp"
+                android:alpha="0.8"
+                android:fontFamily="@font/mayaregular"
+                android:text="Check-In"
+                android:textColor="#33FFFFFF"
+                android:textSize="130sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="visible">
+                tools:ignore="SpeakableTextPresentCheck">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/imageView18"
-                        android:layout_width="333dp"
-                        android:layout_height="0dp"
-                        android:layout_marginEnd="1dp"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/_f4ca4d8132c4e2ebfda4b21dd799465_virgin_australia_east_west_2000_2" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/expandCheckinCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="#00FFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/CheckinConstraint1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="0.0">
+
+                                    <ImageView
+                                        android:id="@+id/imageView29"
+                                        android:layout_width="409dp"
+                                        android:layout_height="955dp"
+                                        android:adjustViewBounds="true"
+                                        android:scaleType="fitXY"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:srcCompat="@drawable/planewithbackground" />
+
+                                    <ImageView
+                                        android:id="@+id/imageView35"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="32dp"
+                                        android:layout_marginTop="190dp"
+                                        android:adjustViewBounds="true"
+                                        app:layout_constraintStart_toStartOf="@+id/imageView30"
+                                        app:layout_constraintTop_toTopOf="@+id/imageView30"
+                                        app:srcCompat="@drawable/clouds" />
+
+                                    <ImageView
+                                        android:id="@+id/imageView30"
+                                        android:layout_width="443dp"
+                                        android:layout_height="311dp"
+                                        android:layout_marginStart="190dp"
+                                        android:layout_marginTop="280dp"
+                                        android:adjustViewBounds="true"
+                                        android:scaleType="centerCrop"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:srcCompat="@drawable/seat1" />
+
+                                    <ImageView
+                                        android:id="@+id/imageView36"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="60dp"
+                                        android:layout_marginTop="230dp"
+                                        android:adjustViewBounds="true"
+                                        app:layout_constraintStart_toStartOf="@+id/imageView30"
+                                        app:layout_constraintTop_toTopOf="@+id/imageView30"
+                                        app:srcCompat="@drawable/clouds" />
+
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/CheckinConstraint2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="28dp"
+                                    android:layout_marginTop="280dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="0.0">
+
+                                    <TextView
+                                        android:id="@+id/tv_Checkin_services"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="24dp"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_marginTop="48dp"
+                                        android:fontFamily="@font/mayabold"
+                                        android:text="Services Aboard"
+                                        android:textColor="@color/red_700"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold"
+                                        app:layout_constraintBottom_toTopOf="@+id/tv_Checkin_services2"
+                                        app:layout_constraintStart_toEndOf="@+id/cardView2"
+                                        app:layout_constraintTop_toTopOf="@+id/cardView2" />
+
+                                    <TextView
+                                        android:id="@+id/tv_Checkin_services2"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="5dp"
+                                        android:fontFamily="@font/gotic"
+                                        android:text="Discover all additional extras that will make your journey an unforgettable experience"
+                                        android:textColor="@color/white"
+                                        android:textSize="09sp"
+                                        android:textStyle="normal"
+                                        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+                                        app:layout_constraintEnd_toEndOf="@+id/tv_Checkin_services"
+                                        app:layout_constraintStart_toStartOf="@+id/tv_Checkin_services" />
+
+                                    <ImageView
+                                        android:id="@+id/imageView34"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        app:layout_constraintBottom_toTopOf="@+id/tv_Checkin_services"
+                                        app:layout_constraintStart_toStartOf="@+id/tv_Checkin_services"
+                                        app:srcCompat="@drawable/ic_baseline_auto_awesome_24"
+                                        app:tint="@color/red_700" />
+
+                                    <include
+                                        android:id="@+id/checkin_Main"
+                                        layout="@layout/checkin_main_card"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintVertical_bias="0.0" />
+
+                                    <androidx.cardview.widget.CardView
+                                        android:id="@+id/cardView2"
+                                        android:layout_width="158dp"
+                                        android:layout_height="118dp"
+                                        android:layout_marginStart="3dp"
+                                        android:layout_marginTop="60dp"
+                                        android:visibility="gone"
+                                        app:cardCornerRadius="8dp"
+                                        app:layout_constraintStart_toStartOf="@+id/checkin_Main"
+                                        app:layout_constraintTop_toBottomOf="@+id/checkin_Main"
+                                        tools:visibility="visible">
+
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                            <ImageView
+                                                android:id="@+id/imageView18"
+                                                android:layout_width="0dp"
+                                                android:layout_height="0dp"
+                                                android:adjustViewBounds="true"
+                                                android:scaleType="centerCrop"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintHorizontal_bias="0.0"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent"
+                                                app:layout_constraintVertical_bias="1.0"
+                                                app:srcCompat="@drawable/_f4ca4d8132c4e2ebfda4b21dd799465_virgin_australia_east_west_2000_2" />
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                    </androidx.cardview.widget.CardView>
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/CheckinConstraint3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="60dp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/CheckinConstraint2">
+
+                                    <include
+                                        android:id="@+id/all_boardingpasses"
+                                        layout="@layout/boarding_pass_recycler"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </androidx.cardview.widget.CardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

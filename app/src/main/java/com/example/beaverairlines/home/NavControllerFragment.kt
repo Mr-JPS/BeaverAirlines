@@ -10,16 +10,14 @@ import android.view.animation.AnimationUtils
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.example.beaverairlines.AuthViewModel
-import com.example.beaverairlines.R
-import com.example.beaverairlines.SwipeControlTouchListener
-import com.example.beaverairlines.SwipeDirection
+import com.example.beaverairlines.*
 import com.example.beaverairlines.data.User
 import com.example.beaverairlines.databinding.FragmentNavControllerBinding
 import com.example.beaverairlines.home.childFragments.BookFragment
@@ -42,7 +40,8 @@ class NavControllerFragment: Fragment() {
 
 
 
-    private val viewModel: AuthViewModel by activityViewModels()
+    private val viewModel: ViewModel by activityViewModels()
+
    // private lateinit var transition : Transition
     private var isBttnClicked = true
 
@@ -59,6 +58,14 @@ class NavControllerFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.paymentCompleted.observe(
+            viewLifecycleOwner
+        ){
+            if (it){
+                binding.pager.currentItem = 3
+            }
+        }
 
 
         val slideInLeft = AnimationUtils.loadAnimation(

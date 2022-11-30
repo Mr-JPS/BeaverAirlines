@@ -2,6 +2,8 @@ package com.example.beaverairlines
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.beaverairlines.api.Repository
 import com.example.beaverairlines.data.FlightOffer
@@ -35,6 +37,8 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
     var flight2: FlightOffer? = null
     var bookingNbr2: String = ""
+
+    val paymentCompleted : MutableLiveData<Boolean> = MutableLiveData(false)
 
 /*
     fun readCsv(csv: Int): List<Iata> {

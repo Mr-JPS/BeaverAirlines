@@ -106,6 +106,7 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
+
     }
 
     override fun onCreateView(
@@ -123,7 +124,7 @@ class BookFragment : Fragment(), BookInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        flightViewModel.paymentCompleted.value = false
 
         val airportAdapter = AirportAdapter()
         //val departureAirport = binding.bigBookCard.cvBookField.tv_departCitySelect.setAdapter(airportAdapter)
@@ -2041,7 +2042,9 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
 
 
                         goToBookingBttn.setOnClickListener {
-                            findNavController().navigate(R.id.action_NavControllerFragment_to_tripsFragment)
+                           flightViewModel.paymentCompleted.value = true
+
+                            resetBooking()
                         }
 
                     }
@@ -2052,6 +2055,10 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
 
         }
 
+    }
+
+    private fun resetBooking() {
+        TODO("Not yet implemented")
     }
 
     private fun setUpRawVideo(paymentDoneVideo: VideoView) {
