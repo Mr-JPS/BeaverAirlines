@@ -31,6 +31,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.example.beaverairlines.AuthViewModel
+import com.example.beaverairlines.BookingViewModel
 
 import com.example.beaverairlines.R
 import com.example.beaverairlines.ViewModel
@@ -38,6 +39,7 @@ import com.example.beaverairlines.adapter.*
 import com.example.beaverairlines.data.FlightOffer
 import com.example.beaverairlines.data.Iata
 import com.example.beaverairlines.data.User
+import com.example.beaverairlines.data.model.Booking
 import com.example.beaverairlines.data.model.CabinClassSource
 import com.example.beaverairlines.databinding.FragmentBookBinding
 import com.example.beaverairlines.utils.BookInterface
@@ -100,6 +102,8 @@ class BookFragment : Fragment(), BookInterface {
     private var isReturnFlight = false
     private val flightViewModel: ViewModel by activityViewModels()
     private val authViewModel: AuthViewModel by activityViewModels()
+    private val bookingViewModel: BookingViewModel by activityViewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -2042,7 +2046,77 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
 
 
                         goToBookingBttn.setOnClickListener {
-                           flightViewModel.paymentCompleted.value = true
+
+                            val booking_ticketReservationNbr = ticketReservationNbr.text
+
+                            val booking_flight1_flightNbr = flightNbr1.text
+                            val booking_flight1_departDate = date1One.text
+                            val booking_flight1_departCity = flight1From.text
+                            val booking_flight1_departIATA = binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
+                            val booking_flight1_ariDate = date1Two.text
+                            val booking_flight1_ariCity = flight1To.text
+                            val booking_flight1_ariIATA = binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
+                            val booking_flight1_takeoffTime = time1One.text
+                            val booking_flight1_touchdownTime = time1Two.text
+                            val booking_flight1_duration = ""
+
+                            val booking_flight1_passFirstname = name.text
+                            val booking_flight1_passSurname = surname.text
+                            val booking_flight1_cabinclass = cabin1.text
+                            val booking_flight1_price = "EUR ${charge1CalcA.toString()}"
+
+
+
+                            val booking_flight2_flightNbr = flightNbr2.text
+                            val booking_flight2_departDate = date2One.text
+                            val booking_flight2_departCity = flight2From.text
+                            val booking_flight2_departIATA = binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
+                            val booking_flight2_ariDate = date2Two.text
+                            val booking_flight2_ariCity = flight2To.text
+                            val booking_flight2_ariIATA = binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
+                            val booking_flight2_takeoffTime = time2One.text
+                            val booking_flight2_touchdownTime = time2Two.text
+                            val booking_flight2_duration = ""
+
+                            val booking_flight2_passFirstname = name.text
+                            val booking_flight2_passSurname = surname.text
+                            val booking_flight2_cabinclass = cabin2.text
+                            val booking_flight2_price = "EUR ${charge1CalcB.toString()}"
+
+                            val newBooking = Booking(booking_ticketReservationNbr.toString(),
+                                booking_flight1_flightNbr.toString(),
+                                booking_flight1_departDate.toString(),
+                                booking_flight1_departCity.toString(),
+                                booking_flight1_departIATA.toString(),
+                                booking_flight1_ariDate.toString(),
+                                booking_flight1_ariCity.toString(),
+                                booking_flight1_ariIATA.toString(),
+                                booking_flight1_takeoffTime.toString(),
+                                booking_flight1_touchdownTime.toString(),
+                                booking_flight1_duration.toString(),
+                                booking_flight1_passFirstname.toString(),
+                                booking_flight1_passSurname.toString(),
+                                booking_flight1_cabinclass.toString(),
+                                booking_flight1_price.toString(),
+                                booking_flight2_flightNbr.toString(),
+                                booking_flight2_departDate.toString(),
+                                booking_flight2_departCity.toString(),
+                                booking_flight2_departIATA.toString(),
+                                booking_flight2_ariDate.toString(),
+                                booking_flight2_ariCity.toString(),
+                                booking_flight2_ariIATA.toString(),
+                                booking_flight2_takeoffTime.toString(),
+                                booking_flight2_touchdownTime.toString(),
+                                booking_flight2_duration.toString(),
+                                booking_flight2_passFirstname.toString(),
+                                booking_flight2_passSurname.toString(),
+                                booking_flight2_cabinclass.toString(),
+                                booking_flight2_price.toString()
+                            )
+
+                            bookingViewModel.insertBooking(newBooking)
+                            bookingViewModel.ticketReservationNbr = booking_ticketReservationNbr.toString()
+                            flightViewModel.paymentCompleted.value = true
 
                             resetBooking()
                         }
@@ -2056,6 +2130,8 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
         }
 
     }
+
+
 
     private fun resetBooking() {
         TODO("Not yet implemented")
