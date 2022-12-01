@@ -16,6 +16,8 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
     private val database = getDatabase(application)
     private val repository = BookingRepository(database)
 
+
+
     val bookingList = repository.bookingList
     val currentBooking = repository.currentBooking
     var reservationNbr: String = ""

@@ -39,6 +39,19 @@ class CheckinFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //val client: DuffelApiClient = ("duffel_test_VBLYDE4AS2Cg7SVBdEYFvrahFvhFqQo1HTygIv7FDje")
+
+        val bigPlane = binding.ivCheckinBigPlaneBG
+        val seats = binding.ivCheckinSeats
+        val cloud1 = binding.ivCheckinCloud1
+        val cloud2 = binding.ivCheckinCloud2
+
+        val fastCheckinCard = binding.checkinMain
+
+
+
+
+
+
     }
 
 }

@@ -2115,7 +2115,7 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
                             )
 
                             bookingViewModel.insertBooking(newBooking)
-                            bookingViewModel.ticketReservationNbr = booking_ticketReservationNbr.toString()
+                            bookingViewModel.reservationNbr = booking_ticketReservationNbr.toString()
                             flightViewModel.paymentCompleted.value = true
 
                             resetBooking()

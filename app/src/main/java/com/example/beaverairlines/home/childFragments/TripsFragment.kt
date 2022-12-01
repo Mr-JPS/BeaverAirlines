@@ -39,6 +39,9 @@ class TripsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //mh = MILE HIGH
+        //rb = RECENT BOOKINGS
+        //smh = MILE HIGH STATUS
         val ticketRes = bookingViewModel.reservationNbr
 
         val mhCard = binding.MHmemberCard
@@ -52,6 +55,12 @@ class TripsFragment: Fragment() {
 
         val rbCard = binding.recentBookings
         var rbRecycler = binding.recentBookings.rvRecentFlightRecycler
+
+        var smhFlightsCompleted = binding.tvMHstatusFlightsCompleted
+        var smhFlightsDone = binding.tvMHstatusDoneFlights
+        var smhMissingPoints = binding.tvMHstatusMissingPoints
+        var smhPoints = binding.tvMHstatusPoints
+
 
         bookingViewModel.bookingList.observe(
             viewLifecycleOwner,
