@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/BP_boardingPassPreviewCard"
         android:layout_width="90dp"
         android:layout_height="160dp"
         android:layout_marginStart="8dp"

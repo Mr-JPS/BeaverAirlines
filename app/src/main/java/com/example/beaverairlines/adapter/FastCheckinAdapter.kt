@@ -1,23 +1,26 @@
 package com.example.beaverairlines.adapter
 
 import android.animation.ObjectAnimator
-import android.os.Handler
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
+import com.example.beaverairlines.BookingViewModel
 import com.example.beaverairlines.R
+import com.example.beaverairlines.data.FinalBoardingPass
 import com.example.beaverairlines.data.model.Booking
+import com.example.beaverairlines.utils.BookInterface
 
 class FastCheckinAdapter(
-    private var datasetBookings: List<Booking>
+    private var datasetBookings: List<Booking>,
+    private val bookingViewModel: BookingViewModel,
+    private val bookInterface: BookInterface
 ) : RecyclerView.Adapter<FastCheckinAdapter.ItemViewHolder>() {
 
     private val lastPosition: Int = -1
@@ -52,6 +55,7 @@ class FastCheckinAdapter(
         return ItemViewHolder(adapterLayout)
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val booking = datasetBookings[position]
 
@@ -91,6 +95,9 @@ class FastCheckinAdapter(
                             holder.seatLetter.visibility = View.VISIBLE
                             holder.seatNbr.visibility = View.VISIBLE
                             holder.issueBoardingPass.visibility = View.VISIBLE
+
+//                            var assignedSeat = "${holder.seatLetter}${holder.seatNbr}"
+//                            bookInterface.saveSeatAssignment(assignedSeat)
                         }
 
 
@@ -117,6 +124,9 @@ class FastCheckinAdapter(
                             holder.seatLetter.visibility = View.VISIBLE
                             holder.seatNbr.visibility = View.VISIBLE
                             holder.issueBoardingPass.visibility = View.VISIBLE
+
+//                            var assignedSeat = "${holder.seatLetter}${holder.seatNbr}"
+//                            bookInterface.saveSeatAssignment(assignedSeat)
                         }
 
 
@@ -143,19 +153,52 @@ class FastCheckinAdapter(
                             holder.seatLetter.visibility = View.VISIBLE
                             holder.seatNbr.visibility = View.VISIBLE
                             holder.issueBoardingPass.visibility = View.VISIBLE
+
+//                            var assignedSeat = "${holder.seatLetter}${holder.seatNbr}"
+//                            bookInterface.saveSeatAssignment(assignedSeat)
                         }
                     }
 
             } else {
                 holder.seatAssignment.visibility = View.GONE
             }
+
+
+            //GGF FÜR DEN RÜCKFLUG AUCH NOCH EINEN ADAPTER MACHEN
+
+
+            holder.issueBoardingPass.setOnClickListener {
+                val passFirstName = booking.flight1_passFirstname
+                val passSurname = booking.flight1_passSurname
+                val destinationIata = booking.flight1_ariIATA
+                val boardingtime = booking.flight1_takeoffTime
+                val gate = gateGenerator()
+                val assignedSeat = "${holder.seatLetter}${holder.seatNbr}"
+
+                val newBP = FinalBoardingPass(passFirstName,passSurname,destinationIata,boardingtime, gate, assignedSeat)
+                bookingViewModel.saveIssuedBoardinPass(newBP)
+
+
+//                bookingViewModel.isBoardingPassIssued = true
+//                bookingViewModel.passFirstname = passFirstName
+//                bookingViewModel.passSurname = passSurname
+//                bookingViewModel.destinationIata = destinationIata
+//                bookingViewModel.boardingtime = boardingtime
+//                bookingViewModel.gate = gate
+//                bookingViewModel.assignedSeat = assignedSeat
+            }
         }
-
-        //SEAT IM INTERFACE SPEICHERN!
-
     }
 
+    private fun gateGenerator(): String {
 
+        val gateLetter = listOf("A", "B", "C", "D", "E", "F", "G")
+        val gateNbr = listOf(1..33)
+
+        val generatedGate = "${gateLetter.random()}${gateNbr.random()}"
+
+        return generatedGate
+    }
 
 
     override fun getItemCount(): Int {

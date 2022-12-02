@@ -5,6 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.beaverairlines.api.Repository
+import com.example.beaverairlines.data.FinalBoardingPass
+import com.example.beaverairlines.data.local.BoardingPassRepository
 import com.example.beaverairlines.data.local.BookingRepository
 import com.example.beaverairlines.data.local.getDatabase
 import com.example.beaverairlines.data.model.Booking
@@ -15,16 +18,51 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
 
     private val database = getDatabase(application)
     private val repository = BookingRepository(database)
-
+    private val boardingPassRepository: BoardingPassRepository = BoardingPassRepository()
+    val finalBoardingPass = boardingPassRepository.finalBP
 
 
     val bookingList = repository.bookingList
     val currentBooking = repository.currentBooking
     var reservationNbr: String = ""
 
+    //var isBoardingPassIssued: Boolean = false
+    var passFirstname: String = ""
+    var passSurname: String = ""
+    var destinationIata: String = ""
+    var boardingtime: String = ""
+    var gate: String = ""
+    var assignedSeat: String = ""
+
+    private val _isBoardingPassIssued = MutableLiveData<Boolean>()
+    val isBoardingPassIssued: LiveData<Boolean>
+        get() = _isBoardingPassIssued
+
+
+
     private val _complete = MutableLiveData<Boolean>()
     val complete: LiveData<Boolean>
         get() = _complete
+
+
+    private val _finalBP = MutableLiveData<FinalBoardingPass>()
+    val finalBP: LiveData<FinalBoardingPass>
+        get() = _finalBP
+
+
+    fun getFinalBP(boardingPass: FinalBoardingPass){
+        _finalBP.postValue(boardingPass)
+    }
+
+
+
+    fun saveIssuedBoardinPass(boardingPass: FinalBoardingPass){
+        viewModelScope.launch(Dispatchers.IO)  {
+            boardingPassRepository.getFinalBP(boardingPass)
+            //_finalBP.value = boardingPass
+            _isBoardingPassIssued.value = true
+        }
+    }
 
     fun insertBooking(booking: Booking) {
         viewModelScope.launch {
@@ -46,12 +84,7 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
         }
     }
 
-    fun deleteBooking(id: String) {
-        viewModelScope.launch {
-            repository.deleteBooking(id)
-            _complete.value = true
-        }
-    }
+
 
     // wird nach Beendigung der Navigation wieder auf false zurückgesetzt
     fun unsetComplete() {

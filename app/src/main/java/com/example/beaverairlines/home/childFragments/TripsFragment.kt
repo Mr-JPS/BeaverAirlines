@@ -12,6 +12,7 @@ import com.example.beaverairlines.BookingViewModel
 import com.example.beaverairlines.R
 import com.example.beaverairlines.ViewModel
 import com.example.beaverairlines.adapter.BookingsAdapter
+import com.example.beaverairlines.databinding.FragmentBookBinding
 import com.example.beaverairlines.databinding.FragmentTripsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -31,8 +32,8 @@ class TripsFragment: Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_trips, container, false)
-        return view
+        binding = FragmentTripsBinding.inflate(inflater)
+        return binding.root
 
     }
 

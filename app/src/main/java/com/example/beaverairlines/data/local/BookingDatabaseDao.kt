@@ -19,10 +19,6 @@ interface BookingDatabaseDao {
     @Query("SELECT * FROM Booking WHERE ticketReservationNbr = :id")
     fun getById(id: String): Booking
 
-    @Query("DELETE FROM Booking WHERE ticketReservationNbr = :id")
-    suspend fun deleteById(id: String)
 
-    @Query("DELETE from Booking")
-    suspend fun deleteAll()
 
 }

@@ -1441,6 +1441,9 @@ class BookFragment : Fragment(), BookInterface {
         }
     }
 
+
+
+
     private fun validatePasInput(
         name: EditText?,
         surname: EditText?,
@@ -2065,8 +2068,6 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
                             val booking_flight1_cabinclass = cabin1.text
                             val booking_flight1_price = "EUR ${charge1CalcA.toString()}"
 
-
-
                             val booking_flight2_flightNbr = flightNbr2.text
                             val booking_flight2_departDate = date2One.text
                             val booking_flight2_departCity = flight2From.text
@@ -2083,7 +2084,10 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
                             val booking_flight2_cabinclass = cabin2.text
                             val booking_flight2_price = "EUR ${charge1CalcB.toString()}"
 
-                            val newBooking = Booking(booking_ticketReservationNbr.toString(),
+
+
+                            val newBooking = Booking(
+                                booking_ticketReservationNbr.toString(),
                                 booking_flight1_flightNbr.toString(),
                                 booking_flight1_departDate.toString(),
                                 booking_flight1_departCity.toString(),
@@ -2134,7 +2138,7 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
 
 
     private fun resetBooking() {
-        TODO("Not yet implemented")
+
     }
 
     private fun setUpRawVideo(paymentDoneVideo: VideoView) {

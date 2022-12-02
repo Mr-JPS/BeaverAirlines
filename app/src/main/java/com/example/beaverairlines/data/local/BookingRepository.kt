@@ -31,13 +31,7 @@ class BookingRepository(private val  database: BookingDatabase) {
         }
     }
 
-    suspend fun deleteBooking(bookingNbr: String) {
-        try {
-            database.bookingDatabaseDao.deleteById(bookingNbr)
-        } catch (e: Exception) {
-            Log.e(TAG, "Error deleting $bookingNbr from database: $e")
-        }
-    }
+
 
     suspend fun updateBooking(booking: Booking) {
         try {

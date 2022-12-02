@@ -200,11 +200,9 @@
                                         android:layout_height="118dp"
                                         android:layout_marginStart="3dp"
                                         android:layout_marginTop="60dp"
-                                        android:visibility="gone"
                                         app:cardCornerRadius="8dp"
                                         app:layout_constraintStart_toStartOf="@+id/checkin_Main"
-                                        app:layout_constraintTop_toBottomOf="@+id/checkin_Main"
-                                        tools:visibility="visible">
+                                        app:layout_constraintTop_toBottomOf="@+id/checkin_Main">
 
                                         <androidx.constraintlayout.widget.ConstraintLayout
                                             android:layout_width="match_parent"
@@ -253,6 +251,21 @@
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/finalBoardingPass_Layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <include
+                android:id="@+id/finalBoardingPass"
+                layout="@layout/boarding_pass_card"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>
