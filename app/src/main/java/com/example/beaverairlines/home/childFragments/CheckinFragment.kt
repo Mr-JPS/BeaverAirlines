@@ -40,6 +40,8 @@ class CheckinFragment : Fragment(), BookInterface {
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
 
+    private var checkIn1: Boolean = false
+    private var checkIn2: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -109,13 +111,20 @@ class CheckinFragment : Fragment(), BookInterface {
 
 //        bookingViewModel.getBooking(reservationNbr)
 
-       bookingViewModel.getNextCheckin()
+       //bookingViewModel.getNextCheckin()
 
         bookingViewModel.nextCheckin.observe(
             viewLifecycleOwner,
             Observer {
-                val booking = it
+
+
                 if (it != null) {
+                    val booking = it
+                    checkIn1 = false
+                    checkIn2 = false
+
+                    cIFlight1.visibility = View.VISIBLE
+                    cIFlight2.visibility = View.VISIBLE
                     cINoAvl.visibility = View.GONE
 
                     cIFlight1_ticketNbr.text = it.flight1_flightNbr
@@ -254,8 +263,12 @@ class CheckinFragment : Fragment(), BookInterface {
                                     cIFlight1_gate,
                                     cIFlight1_assignedSeat)
                             bookingViewModel.saveIssuedBoardingPass(newBP)
-                            booking.isCheckedin = true
-                            bookingViewModel.updateBooking(booking)
+                            checkIn1 = true
+                            if(checkIn1 && checkIn2) {
+                                booking.isCheckedin = true
+                                bookingViewModel.updateBooking(booking)
+                                bookingViewModel.getNextCheckin()
+                            }
                         }
                     }
 
@@ -369,6 +382,12 @@ class CheckinFragment : Fragment(), BookInterface {
                                     cIFlight2_gate,
                                     cIFlight2_assignedSeat)
                             bookingViewModel.saveIssuedBoardingPass(newBP2)
+                            checkIn2 = true
+                            if(checkIn1 && checkIn2) {
+                                booking.isCheckedin = true
+                                bookingViewModel.updateBooking(booking)
+                                bookingViewModel.getNextCheckin()
+                            }
                         }
 
                     }
@@ -380,13 +399,6 @@ class CheckinFragment : Fragment(), BookInterface {
                 }
             }
         )
-
-//        bookingViewModel.currentBooking.observe(
-//            viewLifecycleOwner,
-//            Observer {
-//
-//            }
-//        )
 
 
 

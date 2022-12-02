@@ -87,9 +87,9 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
     }
 
     fun getNextCheckin(){
-
+        viewModelScope.launch(Dispatchers.IO) {
             repository.getNextCheckin()
-
+        }
     }
     fun updateBooking(booking: Booking) {
         viewModelScope.launch {

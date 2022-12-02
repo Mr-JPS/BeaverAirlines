@@ -41,6 +41,7 @@ class NavControllerFragment: Fragment() {
 
 
     private val viewModel: ViewModel by activityViewModels()
+    private val bookingViewModel: BookingViewModel by activityViewModels()
 
    // private lateinit var transition : Transition
     private var isBttnClicked = true
@@ -102,6 +103,8 @@ class NavControllerFragment: Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 binding.bubbleTabBar.setSelected(position)
+                if(position == 2)
+                    bookingViewModel.getNextCheckin()
             }
         })
 

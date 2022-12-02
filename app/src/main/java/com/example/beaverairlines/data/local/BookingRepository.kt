@@ -19,7 +19,7 @@ class BookingRepository(private val  database: BookingDatabase) {
 //    val nextCheckin: LiveData<Booking>
 //    get() = _nextCheckin
 
-     fun getNextCheckin(){
+     suspend fun getNextCheckin(){
         try {
         nextCheckin.postValue(database.bookingDatabaseDao.getNextCheckin())
         } catch (e: Exception) {
