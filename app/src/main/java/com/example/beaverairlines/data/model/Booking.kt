@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey
 data class Booking(
 
     @PrimaryKey
-    val ticketReservationNbr: String,
+    val reservationNbr: String,
+
 
     val flight1_flightNbr: String,
     val flight1_departDate: String,
@@ -43,4 +44,5 @@ data class Booking(
     val flight2_cabinclass: String,
     val flight2_price: String,
 
+    var isCheckedin : Boolean = false
 )

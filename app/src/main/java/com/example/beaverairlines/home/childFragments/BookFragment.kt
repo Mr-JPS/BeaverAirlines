@@ -1829,7 +1829,10 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
 //            passengerDetailCard.visibility = View.VISIBLE
             passengerDetailName.text = "${name.text} ${surname.text}"
             passengerDetailPassportNbr.text = passportNbr.text.toString()
-            ticketReservationNbr.text = "${flightOneBookingNbr}/${flightTwoBookingNbr.drop(3)}"
+
+            val reservationNbr =  "${flightOneBookingNbr}/${flightTwoBookingNbr.drop(3)}"
+            ticketReservationNbr.text = reservationNbr
+            bookingViewModel.reservationNbr = reservationNbr
 
             passengerDetailArrow1.setOnClickListener {
                 val arrowRotatorUP = ObjectAnimator.ofFloat(
@@ -2119,7 +2122,7 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
                             )
 
                             bookingViewModel.insertBooking(newBooking)
-                            bookingViewModel.reservationNbr = booking_ticketReservationNbr.toString()
+
                             flightViewModel.paymentCompleted.value = true
 
                             resetBooking()

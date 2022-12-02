@@ -76,7 +76,7 @@
                         android:layout_height="match_parent">
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/expandProfileCard"
+                            android:id="@+id/completeBoardingCard"
                             android:layout_width="410dp"
                             android:layout_height="wrap_content"
                             android:visibility="visible"

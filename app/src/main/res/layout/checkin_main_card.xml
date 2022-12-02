@@ -7,8 +7,8 @@
     android:background="#003F51B5">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/expandProfileCard"
-        android:layout_width="wrap_content"
+        android:id="@+id/completeBoardingCard"
+        android:layout_width="267dp"
         android:layout_height="wrap_content"
         android:visibility="visible"
         app:cardBackgroundColor="#80FFFFFF"
@@ -31,7 +31,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/mayabold"
-                android:text="Fast Check-In"
+                android:text="Ready to Check-In"
                 android:textColor="@color/red_700"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -45,10 +45,11 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="32dp"
                 android:fontFamily="@font/gotic"
-                android:text="READY FOR CHECK-IN"
+                android:text="NO CHECK-IN AVAILABLE"
                 android:textColor="@color/purple_700"
                 android:textSize="10sp"
                 android:textStyle="bold"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_fastCheckin_header"
                 app:layout_constraintTop_toBottomOf="@+id/iv_fastCheckin_header1"
@@ -56,7 +57,7 @@
 
             <ImageView
                 android:id="@+id/iv_fastCheckin_header1"
-                android:layout_width="209dp"
+                android:layout_width="235dp"
                 android:layout_height="13dp"
                 android:layout_marginStart="-3dp"
                 android:layout_marginTop="16dp"
@@ -73,29 +74,54 @@
                 android:layout_width="24dp"
                 android:layout_height="28dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="14dp"
+                android:layout_marginEnd="22dp"
                 android:rotation="45"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_fastCheckin_header1"
-                app:layout_constraintEnd_toEndOf="@+id/rv_recentFlights_recycler"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/iv_fastCheckin_header1"
                 app:srcCompat="@drawable/flugzeug2klein" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_recentFlights_recycler"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/readyForCI_flight1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="1dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="13dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_fastCheckin_header2"
-                app:layout_constraintVertical_bias="0.0"
-                tools:itemCount="2"
-                tools:listitem="@layout/checkin_main_card_item" />
+                tools:visibility="visible">
+
+                <include
+                    android:id="@+id/iv_recentFlights_flight1"
+                    layout="@layout/checkin_main_card_item"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/readyForCI_flight2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/readyForCI_flight1"
+                app:layout_constraintVertical_bias="0.0">
+
+                <include
+                    android:id="@+id/iv_recentFlights_flight2"
+                    layout="@layout/checkin_main_card_item"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

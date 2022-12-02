@@ -60,7 +60,7 @@ class FastCheckinAdapter(
         val booking = datasetBookings[position]
 
 
-        holder.ticketNbr.text = booking.ticketReservationNbr
+//        holder.ticketNbr.text = booking.ticketReservationNbr
         holder.cabinClass.text = booking.flight1_cabinclass
         holder.departCity.text = booking.flight1_departCity
         holder.ariCity.text = booking.flight1_ariCity
@@ -176,7 +176,7 @@ class FastCheckinAdapter(
                 val assignedSeat = "${holder.seatLetter}${holder.seatNbr}"
 
                 val newBP = FinalBoardingPass(passFirstName,passSurname,destinationIata,boardingtime, gate, assignedSeat)
-                bookingViewModel.saveIssuedBoardinPass(newBP)
+//                bookingViewModel.saveIssuedBoardinPass(newBP)
 
 
 //                bookingViewModel.isBoardingPassIssued = true

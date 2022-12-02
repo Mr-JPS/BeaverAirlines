@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/expandProfileCard"
+        android:id="@+id/completeBoardingCard"
         android:layout_width="342dp"
         android:layout_height="623dp"
         android:layout_marginTop="120dp"

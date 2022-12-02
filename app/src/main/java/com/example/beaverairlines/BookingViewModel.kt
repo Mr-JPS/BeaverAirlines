@@ -1,6 +1,7 @@
 package com.example.beaverairlines
 
 import android.app.Application
+import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,9 +19,12 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
 
     private val database = getDatabase(application)
     private val repository = BookingRepository(database)
-    private val boardingPassRepository: BoardingPassRepository = BoardingPassRepository()
-    val finalBoardingPass = boardingPassRepository.finalBP
 
+    private val boardingPassRepository: BoardingPassRepository = BoardingPassRepository(database)
+    val finalBoardingPass = boardingPassRepository.finalBP
+    val boardingpassList = boardingPassRepository.bPList
+
+    val nextCheckin = repository.nextCheckin
 
     val bookingList = repository.bookingList
     val currentBooking = repository.currentBooking
@@ -39,7 +43,6 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
         get() = _isBoardingPassIssued
 
 
-
     private val _complete = MutableLiveData<Boolean>()
     val complete: LiveData<Boolean>
         get() = _complete
@@ -50,15 +53,21 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
         get() = _finalBP
 
 
-    fun getFinalBP(boardingPass: FinalBoardingPass){
-        _finalBP.postValue(boardingPass)
+    private val _wasBPpreviewClicked = MutableLiveData<Boolean>()
+    val wasBPpreviewClicked: LiveData<Boolean>
+        get() = _wasBPpreviewClicked
+
+
+
+    fun loadBp(id: Int){
+        boardingPassRepository.getBoardingpass(id)
     }
 
-
-
-    fun saveIssuedBoardinPass(boardingPass: FinalBoardingPass){
+    fun saveIssuedBoardingPass(boardingPass: FinalBoardingPass){
         viewModelScope.launch(Dispatchers.IO)  {
-            boardingPassRepository.getFinalBP(boardingPass)
+            boardingPassRepository.finalBP.value = boardingPass
+            boardingPassRepository.insert(boardingPass)
+//            boardingPassRepository.getFinalBP(boardingPass)
             //_finalBP.value = boardingPass
             _isBoardingPassIssued.value = true
         }
@@ -77,6 +86,11 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
         }
     }
 
+    fun getNextCheckin(){
+
+            repository.getNextCheckin()
+
+    }
     fun updateBooking(booking: Booking) {
         viewModelScope.launch {
             repository.updateBooking(booking)

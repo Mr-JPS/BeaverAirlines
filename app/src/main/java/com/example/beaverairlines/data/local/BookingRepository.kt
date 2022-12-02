@@ -15,6 +15,18 @@ class BookingRepository(private val  database: BookingDatabase) {
     val currentBooking: LiveData<Booking>
         get() = _currentBooking
 
+    val nextCheckin =  MutableLiveData<Booking>()
+//    val nextCheckin: LiveData<Booking>
+//    get() = _nextCheckin
+
+     fun getNextCheckin(){
+        try {
+        nextCheckin.postValue(database.bookingDatabaseDao.getNextCheckin())
+        } catch (e: Exception) {
+            Log.e(TAG, "Error writing data in database: $e")
+        }
+    }
+
     suspend fun insert(booking: Booking) {
         try {
             database.bookingDatabaseDao.insert(booking)

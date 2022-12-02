@@ -50,13 +50,13 @@
                 app:srcCompat="@drawable/beaverlogoblue" />
 
             <TextView
-                android:id="@+id/BP_flightNbr"
+                android:id="@+id/BP_boardingTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/gotic"
-                android:text="BA-6490"
+                android:text="15:15"
                 android:textColor="@color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/BP_destination"
                 app:layout_constraintEnd_toEndOf="@+id/BP_destination" />

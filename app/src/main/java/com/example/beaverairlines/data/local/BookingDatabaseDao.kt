@@ -16,8 +16,12 @@ interface BookingDatabaseDao {
     @Query("SELECT * FROM Booking")
     fun getAll(): LiveData<List<Booking>>
 
-    @Query("SELECT * FROM Booking WHERE ticketReservationNbr = :id")
+    @Query("SELECT * FROM Booking WHERE reservationNbr = :id")
     fun getById(id: String): Booking
+
+    @Query("SELECT * FROM Booking WHERE isCheckedin = 0 LIMIT 1")
+    fun getNextCheckin(): Booking
+
 
 
 

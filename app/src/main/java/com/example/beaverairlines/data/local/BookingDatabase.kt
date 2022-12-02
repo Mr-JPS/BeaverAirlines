@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.beaverairlines.data.FinalBoardingPass
 import com.example.beaverairlines.data.model.Booking
 
-@Database(entities = [Booking::class], version = 1)
+@Database(entities = [Booking::class, FinalBoardingPass::class], version = 1)
 abstract class BookingDatabase: RoomDatabase() {
 
+    abstract val boardingPassDao : BoardingPassDatabaseDao
     abstract val bookingDatabaseDao : BookingDatabaseDao
 }
 

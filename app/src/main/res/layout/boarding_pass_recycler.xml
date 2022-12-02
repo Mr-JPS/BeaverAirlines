@@ -29,7 +29,7 @@
         app:srcCompat="@drawable/clouds" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/expandProfileCard"
+        android:id="@+id/completeBoardingCard"
         android:layout_width="288dp"
         android:layout_height="278dp"
         android:layout_marginTop="100dp"

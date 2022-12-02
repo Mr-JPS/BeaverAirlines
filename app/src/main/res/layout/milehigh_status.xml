@@ -7,7 +7,7 @@
     android:background="#00606893">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/expandProfileCard"
+        android:id="@+id/completeBoardingCard"
         android:layout_width="334dp"
         android:layout_height="235dp"
         android:layout_marginBottom="24dp"
