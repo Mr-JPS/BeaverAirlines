@@ -31,19 +31,34 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/completeBoardingCard"
         android:layout_width="288dp"
-        android:layout_height="278dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="32dp"
-        android:visibility="visible"
         app:cardBackgroundColor="#80FFFFFF"
         app:cardCornerRadius="8dp"
-        app:cardElevation="1dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/BP_recycler_header4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="@font/gotic"
+                android:text="NO SAVED BOARDING PASSES AVAILABLE"
+                android:textColor="@color/purple_700"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/BP_recycler_header1"
+                app:layout_constraintTop_toBottomOf="@+id/BP_recycler_header2"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/BP_recycler_header1"
@@ -90,6 +105,7 @@
                 android:layout_marginEnd="7dp"
                 android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

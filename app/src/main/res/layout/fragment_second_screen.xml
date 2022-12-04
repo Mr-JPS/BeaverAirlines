@@ -7,9 +7,21 @@
     tools:context=".onboarding.screens.Onboarding2">
 
 
+    <ImageView
+        android:id="@+id/imageView30"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.2"
+        android:scaleType="fitXY"
+        android:src="@drawable/cloudsbackground3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/OB_text2"
-        android:layout_width="280dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:fontFamily="@font/gotic"
@@ -17,6 +29,7 @@
         android:textAlignment="center"
         android:textColor="#462154"
         android:textSize="12sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/OB_bttn2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -30,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/mayaregular"
-        android:text="Easy Check-In"
+        android:text="Enjoy Our Easy Check-In"
         android:textAlignment="center"
         android:textColor="#AE313F"
         android:textSize="25sp"
@@ -44,7 +57,7 @@
         android:layout_width="315dp"
         android:layout_height="69dp"
         android:layout_marginStart="-13dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="150dp"
         android:adjustViewBounds="true"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="fitXY"
@@ -83,18 +96,16 @@
         android:id="@+id/tv_swipe2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="40dp"
         android:fontFamily="@font/gotic"
-        android:text="Please Swipe"
+        android:text="Please Swipe Or Click The Red Plane"
         android:textAlignment="center"
         android:textColor="#AE313F"
-        android:textSize="12sp"
+        android:textSize="8sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/OB_bttn2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/OB_bttn2" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

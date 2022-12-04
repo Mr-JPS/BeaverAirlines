@@ -68,13 +68,28 @@ class NavControllerFragment: Fragment() {
             }
         }
 
+        viewModel.clubCardClicked.observe(
+            viewLifecycleOwner
+        ){
+            if (it){
+                binding.pager.currentItem = 3
+            }
+        }
+
+        viewModel.dBFlightSearchClicked.observe(
+            viewLifecycleOwner
+        ){
+            if (it){
+                binding.pager.currentItem = 1
+            }
+        }
 
         val slideInLeft = AnimationUtils.loadAnimation(
             requireContext(),
             R.anim.plane_slide_in_right)
 
-      
 
+        binding.menuBttn.alpha = 0.5F
 
         binding.menuBttn.setOnClickListener {
 
@@ -174,20 +189,8 @@ class NavControllerFragment: Fragment() {
         }
 
         if (!clicked) {
-            animator!!.start()
-
-            val slideIn = AnimationUtils.loadAnimation(
-                requireContext(),
-                R.anim.bttn_slide_in)
-
-            binding.navBackGround.startAnimation(slideIn)
-            binding.bubbleTabBar.startAnimation(slideIn)
-            binding.navBackGround.visibility = View.VISIBLE
-            binding.bubbleTabBar.visibility = View.VISIBLE
-
-
-        } else {
             animator!!.reverse()
+            binding.menuBttn.alpha = 0.5F
 
             val slideOut = AnimationUtils.loadAnimation(
                 requireContext(),
@@ -201,6 +204,19 @@ class NavControllerFragment: Fragment() {
             binding.bubbleTabBar.startAnimation(slideOut)
             binding.navBackGround.visibility = View.INVISIBLE
             binding.bubbleTabBar.visibility = View.INVISIBLE
+
+        } else {
+            animator!!.start()
+            binding.menuBttn.alpha = 1F
+
+            val slideIn = AnimationUtils.loadAnimation(
+                requireContext(),
+                R.anim.bttn_slide_in)
+
+            binding.navBackGround.startAnimation(slideIn)
+            binding.bubbleTabBar.startAnimation(slideIn)
+            binding.navBackGround.visibility = View.VISIBLE
+            binding.bubbleTabBar.visibility = View.VISIBLE
 
 
         }

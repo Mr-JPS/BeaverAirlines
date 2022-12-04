@@ -83,11 +83,9 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         val nbr3 = (0..9).random()
         val nbr4 = (0..9).random()
         val nbr5 = (0..9).random()
-        val nbr6 = (0..9).random()
-        val nbr7 = (0..9).random()
-        val nbr8 = (0..9).random()
 
-        return "BMH$nbr1$nbr2$nbr3$nbr4$nbr5$nbr6$nbr7$nbr8-Y22"
+
+        return "BMH$nbr1$nbr2$nbr3$nbr4$nbr5-Y22"
 
     }
 

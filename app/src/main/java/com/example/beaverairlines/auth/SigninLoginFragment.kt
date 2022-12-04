@@ -196,8 +196,9 @@ class SigninLoginFragment : Fragment() {
 
                     val newUser = User(
                         userId = viewModel.userIdGenerator(),
-                        fullName = name,
-                        email = email
+                        firstName = name,
+                        email = email,
+                        mileHighClubNbr = viewModel.mileHighGenerator()
                     )
                     viewModel.setUser(newUser)
                     loginUser(email, password)
@@ -252,8 +253,8 @@ class SigninLoginFragment : Fragment() {
                         //viewModel.currentUser1 = auth.currentUser
                         viewModel.currentUser = auth.currentUser
                         //val currentUser = auth.currentUser
-                        Toast.makeText(getContext(), "You have successfully logged in!",
-                            Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(getContext(), "You have successfully logged in!",
+//                            Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_signinFragment_to_NavControllerFragment)
                     } else {
                         Toast.makeText(getContext(), "Login failed.",

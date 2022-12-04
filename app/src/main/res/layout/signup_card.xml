@@ -39,7 +39,9 @@
             app:layout_constraintEnd_toEndOf="@+id/signUp_redLine3_iv"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="@+id/signUp_redLine3_iv"
-            app:layout_constraintTop_toBottomOf="@+id/signUp_passwordInput_et" />
+            app:layout_constraintTop_toBottomOf="@+id/signUp_passwordInput_et"
+            app:strokeColor="@color/white"
+            app:strokeWidth="1dp" />
 
         <EditText
             android:id="@+id/signUp_nameInput_et"

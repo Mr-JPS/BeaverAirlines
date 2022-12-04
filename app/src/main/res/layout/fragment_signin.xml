@@ -76,10 +76,10 @@
 
             <FrameLayout
                 android:id="@+id/cardLayout"
-                android:transitionName="signUp_card"
-                android:layout_width="318dp"
+                android:layout_width="0dp"
                 android:layout_height="494dp"
                 android:layout_marginTop="110dp"
+                android:transitionName="signUp_card"
                 app:layout_constraintBottom_toTopOf="@+id/signUp_CardSwapFooter_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -130,6 +130,10 @@ class BookFragment : Fragment(), BookInterface {
 
         flightViewModel.paymentCompleted.value = false
 
+        val slideInRight = AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.slide_in_right)
+
         val airportAdapter = AirportAdapter()
         //val departureAirport = binding.bigBookCard.cvBookField.tv_departCitySelect.setAdapter(airportAdapter)
 
@@ -138,6 +142,30 @@ class BookFragment : Fragment(), BookInterface {
         val arrivalIata: TextView = view.findViewById(R.id.tv_IATAarrival)
         val departureIata: TextView = view.findViewById(R.id.tv_IATAdeparture)
 
+        flightViewModel.dBFlightSearchClicked.observe(
+            viewLifecycleOwner
+        ){
+            if (it){
+                selectDepartureCity.setText(flightViewModel.depCity2)
+                departureIata.setText(flightViewModel.depIata2)
+                selectArrivalCity.setText(flightViewModel.ariCity2)
+                arrivalIata.setText(flightViewModel.ariIata2)
+
+                Handler().postDelayed({
+                TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
+                expandConstraint1.visibility = View.VISIBLE
+                iv_planeIndicator.visibility = View.VISIBLE
+                iv_planeIndicator.startAnimation(slideInRight)
+                ib_arrow1.animate().setDuration(2).rotationBy(108f).start()
+                ib_arrow1.visibility = View.GONE
+                iv_redlineIndicator.visibility = View.VISIBLE
+                iv_redlineIndicator.startAnimation(slideInRight)
+                }, 1800)
+
+                flightViewModel.dBFlightSearchClicked.value = false
+
+            }
+        }
 
         tempIataArrayList = arrayListOf<Iata>()
 
@@ -335,9 +363,7 @@ class BookFragment : Fragment(), BookInterface {
         }
 
 
-        val slideInRight = AnimationUtils.loadAnimation(
-            requireContext(),
-            R.anim.slide_in_right)
+
 
 
         binding.bigBookCard.ibArrow1.setOnClickListener {

@@ -64,8 +64,8 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
     }
 
     fun saveIssuedBoardingPass(boardingPass: FinalBoardingPass){
-        viewModelScope.launch(Dispatchers.IO)  {
-            boardingPassRepository.finalBP.value = boardingPass
+        viewModelScope.launch(Dispatchers.IO) {
+            boardingPassRepository.finalBP.postValue(boardingPass)
             boardingPassRepository.insert(boardingPass)
 //            boardingPassRepository.getFinalBP(boardingPass)
             //_finalBP.value = boardingPass

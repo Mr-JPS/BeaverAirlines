@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#AB448CC6"
+        android:background="#00448CC6"
         tools:context=".home.childFragments.TripsFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -169,7 +169,7 @@
                                                 android:id="@+id/MHmemberOverview"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="0dp"
-                                                android:layout_marginStart="16dp"
+                                                android:layout_marginStart="13dp"
                                                 android:layout_marginEnd="16dp"
                                                 app:layout_constraintBottom_toBottomOf="@+id/mileHighCard"
                                                 app:layout_constraintEnd_toEndOf="parent"
@@ -208,7 +208,7 @@
                                                     android:text="123456789"
                                                     android:textColor="@color/white"
                                                     android:textSize="16sp"
-                                                    android:textStyle="bold"
+                                                    android:textStyle="normal"
                                                     app:layout_constraintBottom_toBottomOf="parent"
                                                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -314,10 +314,11 @@
 
                                     <androidx.constraintlayout.widget.ConstraintLayout
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent"/>
+                                        android:layout_height="match_parent" />
+
                                     <include
                                         android:id="@+id/recentBookings"
-                                        layout="@layout/recent_bookings"/>
+                                        layout="@layout/recent_bookings" />
 
                                 </androidx.cardview.widget.CardView>
 

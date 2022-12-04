@@ -110,7 +110,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/auth_card_iv"
                     app:layout_constraintTop_toTopOf="@+id/auth_card_iv"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp" />
 
                 <Button
                     android:id="@+id/auth_signup_bttn"
@@ -127,7 +129,9 @@
                     app:layout_constraintBottom_toBottomOf="@+id/auth_card_iv"
                     app:layout_constraintEnd_toEndOf="@+id/auth_card_iv"
                     app:layout_constraintTop_toTopOf="@+id/auth_card_iv"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

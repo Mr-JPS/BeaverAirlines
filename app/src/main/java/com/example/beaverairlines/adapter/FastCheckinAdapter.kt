@@ -43,7 +43,7 @@ class FastCheckinAdapter(
         val loadingBeaver: ImageView = view.findViewById(R.id.iv_checkin_RV_loading)
         val seatFrame: ImageView = view.findViewById(R.id.iv_checkin_RV_seatFrame)
         val seatLetter: TextView = view.findViewById(R.id.tv_checkin_RV_seatLetter)
-        val seatNbr: TextView = view.findViewById(R.id.tv_checkin_RV_seatNbr)
+//        val seatNbr: TextView = view.findViewById(R.id.tv_checkin_RV_seatNbr)
         val issueBoardingPass: Button = view.findViewById(R.id.bttn_checkin_RV_issueBoardingpass)
 
     }
@@ -89,11 +89,11 @@ class FastCheckinAdapter(
                             holder.seatLetter.text = aisleLetters.random()
 
                             val aisleRow = listOf(24..58)
-                            holder.seatNbr.text = aisleRow.random().toString()
+//                            holder.seatNbr.text = aisleRow.random().toString()
 
                             holder.seatFrame.visibility = View.VISIBLE
                             holder.seatLetter.visibility = View.VISIBLE
-                            holder.seatNbr.visibility = View.VISIBLE
+//                            holder.seatNbr.visibility = View.VISIBLE
                             holder.issueBoardingPass.visibility = View.VISIBLE
 
 //                            var assignedSeat = "${holder.seatLetter}${holder.seatNbr}"
@@ -118,11 +118,11 @@ class FastCheckinAdapter(
                             holder.seatLetter.text = middleLetters.random()
 
                             val middleRow = listOf(24..58)
-                            holder.seatNbr.text = middleRow.random().toString()
+//                            holder.seatNbr.text = middleRow.random().toString()
 
                             holder.seatFrame.visibility = View.VISIBLE
                             holder.seatLetter.visibility = View.VISIBLE
-                            holder.seatNbr.visibility = View.VISIBLE
+//                            holder.seatNbr.visibility = View.VISIBLE
                             holder.issueBoardingPass.visibility = View.VISIBLE
 
 //                            var assignedSeat = "${holder.seatLetter}${holder.seatNbr}"
@@ -147,11 +147,11 @@ class FastCheckinAdapter(
                             holder.seatLetter.text = windowLetters.random()
 
                             val windowRow = listOf(24..58)
-                            holder.seatNbr.text = windowRow.random().toString()
+//                            holder.seatNbr.text = windowRow.random().toString()
 
                             holder.seatFrame.visibility = View.VISIBLE
                             holder.seatLetter.visibility = View.VISIBLE
-                            holder.seatNbr.visibility = View.VISIBLE
+//                            holder.seatNbr.visibility = View.VISIBLE
                             holder.issueBoardingPass.visibility = View.VISIBLE
 
 //                            var assignedSeat = "${holder.seatLetter}${holder.seatNbr}"
@@ -173,7 +173,7 @@ class FastCheckinAdapter(
                 val destinationIata = booking.flight1_ariIATA
                 val boardingtime = booking.flight1_takeoffTime
                 val gate = gateGenerator()
-                val assignedSeat = "${holder.seatLetter}${holder.seatNbr}"
+                val assignedSeat = "${holder.seatLetter}"
 
                 val newBP = FinalBoardingPass(passFirstName,passSurname,destinationIata,boardingtime, gate, assignedSeat)
 //                bookingViewModel.saveIssuedBoardinPass(newBP)

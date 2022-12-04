@@ -83,7 +83,7 @@ class TripsFragment: Fragment() {
                 mhClubNbr.text = clubNbr
 
                 mhBigName.text = "${firstname} ${surname}"
-                mhBigClubNbr.text = "MILE HIGH CLUB ${clubNbr}"
+                mhBigClubNbr.text = "${clubNbr}"
             }
 
         mhCard.setOnClickListener {

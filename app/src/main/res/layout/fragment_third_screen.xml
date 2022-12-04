@@ -7,23 +7,21 @@
     tools:context=".onboarding.screens.Onboarding3">
 
 
-    <TextView
-        android:id="@+id/tv_getStarted"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/gotic"
-        android:text="Get Started"
-        android:textAlignment="center"
-        android:textColor="#AE313F"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/OB_bttn3"
-        app:layout_constraintStart_toEndOf="@+id/OB_bttn3"
-        app:layout_constraintTop_toTopOf="@+id/OB_bttn3" />
+    <ImageView
+        android:id="@+id/imageView35"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.2"
+        android:scaleType="fitXY"
+        android:src="@drawable/cloudsbackground3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/OB_text3"
-        android:layout_width="280dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:fontFamily="@font/gotic"
@@ -31,12 +29,11 @@
         android:textAlignment="center"
         android:textColor="#462154"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/OB_bttn3"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/OB_title3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/OB_title3" />
 
     <TextView
         android:id="@+id/OB_title3"
@@ -52,22 +49,6 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/OB_picBackground3" />
-
-    <ImageButton
-        android:id="@+id/OB_bttn3"
-        android:layout_width="315dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="-13dp"
-        android:layout_marginBottom="16dp"
-        android:adjustViewBounds="true"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitXY"
-        android:src="@drawable/redplane"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/OB_picBackground3"
@@ -96,5 +77,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/OB_picBackground3"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/OB_bttn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="150dp"
+        android:backgroundTint="@color/red_700"
+        android:fontFamily="@font/mayaregular"
+        android:text="LET'S FLY   "
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/ic_baseline_connecting_airports_24"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="#FFFFFF"
+        app:strokeWidth="1dp"
+        tools:ignore="TouchTargetSizeCheck"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

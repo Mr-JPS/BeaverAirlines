@@ -27,6 +27,7 @@ class BoardingPassAdapter(
 
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
+        val bp_header4: TextView = view.findViewById(R.id.BP_recycler_header4)
         val bp_boardingTime: TextView = view.findViewById(R.id.BP_boardingTime)
         val bp_passFullname: TextView = view.findViewById(R.id.BP_pasName)
         val bp_destination: TextView= view.findViewById(R.id.BP_destination)

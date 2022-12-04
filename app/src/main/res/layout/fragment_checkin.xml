@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#BC448CC6"
+        android:background="#00448CC6"
         tools:context=".home.childFragments.CheckinFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
