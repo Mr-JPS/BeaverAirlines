@@ -84,6 +84,14 @@ class NavControllerFragment: Fragment() {
             }
         }
 
+        viewModel.ciCardClicked.observe(
+            viewLifecycleOwner
+        ){
+            if (it){
+                binding.pager.currentItem = 2
+            }
+        }
+
         val slideInLeft = AnimationUtils.loadAnimation(
             requireContext(),
             R.anim.plane_slide_in_right)

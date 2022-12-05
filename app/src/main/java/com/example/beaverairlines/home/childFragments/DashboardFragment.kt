@@ -1,6 +1,5 @@
 package com.example.beaverairlines.home.childFragments
 
-import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,24 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.AutoCompleteTextView
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.core.widget.NestedScrollView
-import androidx.dynamicanimation.animation.DynamicAnimation.SCROLL_Y
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import com.example.beaverairlines.AuthViewModel
 import com.example.beaverairlines.R
 import com.example.beaverairlines.ViewModel
 import com.example.beaverairlines.adapter.AdvertisingAdapter
 import com.example.beaverairlines.adapter.DestinationAdapter
 import com.example.beaverairlines.adapter.IataArrayAdapter
-import com.example.beaverairlines.data.FlightOffer
 import com.example.beaverairlines.data.Iata
 import com.example.beaverairlines.data.model.AdSource
 import com.example.beaverairlines.data.model.DestinationSource
 import com.example.beaverairlines.databinding.FragmentDashboardBinding
-import com.example.beaverairlines.utils.BookInterface
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -147,13 +143,23 @@ class DashboardFragment : Fragment() {
 
 
         val destinations = DestinationSource().loadDestination()
-
         binding.destinationRecycler.adapter = DestinationAdapter(destinations)
         binding.destinationRecycler.setHasFixedSize(true)
+        val snapHelper: SnapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.destinationRecycler)
 
-        val advertisings = AdSource().loadAd()
-        binding.adRecycler.adapter = AdvertisingAdapter(advertisings)
+
+        val advertising = AdSource().loadAd()
+        binding.adRecycler.adapter = AdvertisingAdapter(advertising)
         binding.adRecycler.setHasFixedSize(true)
+        val snapHelper2: SnapHelper = PagerSnapHelper()
+        snapHelper2.attachToRecyclerView(binding.adRecycler)
+
+
+        val checkInCard = binding.cvCheckin.CIMainCard
+        checkInCard.setOnClickListener {
+            flightViewModel.ciCardClicked.value = true
+        }
 
 
 //        val snapHelper: SnapHelper = PagerSnapHelper()

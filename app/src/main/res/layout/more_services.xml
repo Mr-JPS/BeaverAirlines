@@ -8,7 +8,7 @@
     android:background="#003F51B5">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_services"
+        android:id="@+id/dest_mainCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -95,7 +95,7 @@
                 app:tint="#FFFFFF" />
 
             <TextView
-                android:id="@+id/tv_field1"
+                android:id="@+id/dest_tv_field1"
                 android:layout_width="50dp"
                 android:layout_height="34dp"
                 android:fontFamily="@font/mayabold"
@@ -235,9 +235,9 @@
         app:cardCornerRadius="5dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/cv_services"
-        app:layout_constraintStart_toStartOf="@+id/cv_services"
-        app:layout_constraintTop_toBottomOf="@+id/cv_services"
+        app:layout_constraintEnd_toEndOf="@+id/dest_mainCard"
+        app:layout_constraintStart_toStartOf="@+id/dest_mainCard"
+        app:layout_constraintTop_toBottomOf="@+id/dest_mainCard"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout

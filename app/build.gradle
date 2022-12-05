@@ -112,6 +112,10 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
 
 
+    implementation 'com.github.7449.BannerLayout:banner:release.version'
+    implementation 'com.github.7449.BannerLayout:banner-page:release.version'
+    implementation 'com.github.7449.BannerLayout:banner-shadow:release.version'
+    implementation 'com.github.7449.BannerLayout:banner-transformer:release.version'
 
 }
 

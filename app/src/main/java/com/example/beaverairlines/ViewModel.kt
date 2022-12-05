@@ -45,6 +45,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     val paymentCompleted : MutableLiveData<Boolean> = MutableLiveData(false)
     val clubCardClicked : MutableLiveData<Boolean> = MutableLiveData(false)
     val dBFlightSearchClicked : MutableLiveData<Boolean> = MutableLiveData(false)
+    val ciCardClicked : MutableLiveData<Boolean> = MutableLiveData(false)
 
 
 

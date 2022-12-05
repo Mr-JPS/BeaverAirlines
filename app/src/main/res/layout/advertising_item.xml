@@ -2,21 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:id="@+id/AD_mainCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#003F51B5">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/AD_bannerCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginEnd="8dp"
-        app:cardBackgroundColor="#00B05050"
+        app:cardBackgroundColor="#003F51B5"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,6 +56,91 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 tools:text="Meet your Crew" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/AD_detailCard"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-60dp"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="#80FFFFFF"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/AD_bannerCard"
+        app:layout_constraintStart_toStartOf="@+id/AD_bannerCard"
+        app:layout_constraintTop_toBottomOf="@+id/AD_bannerCard"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/AD_detailCard_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/mayabold"
+                android:text="Who you'll see onboard"
+                android:textColor="@color/red_700"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/AD_detailCard_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/gotic"
+                android:text="Our onboard heroes, keeping you safe, and delivering our famous service in style. On your journey, you'll meet Cabin Crew, Cabin Service Supervisors and Flight Service Managers - look out for a purple shirt or silver tie to spot who the manager is on your next flight with us. \n\nOur pilots have the best seat in the house, leading our operation every day and working hard to get you to your destination safely. You'll find two different ranks of pilot on board, and you can tell who's who by the stripes on the shoulders of their uniform - your Captain will have four stripes, and Senior First Officers will have three."
+                android:textColor="@color/purple_700"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/AD_detailCard_title"
+                app:layout_constraintTop_toBottomOf="@+id/AD_detailCard_pic"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/AD_detailCard_pic"
+                android:layout_width="0dp"
+                android:layout_height="158dp"
+                android:layout_marginTop="24dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="@+id/AD_detailCard_description"
+                app:layout_constraintStart_toStartOf="@+id/AD_detailCard_description"
+                app:layout_constraintTop_toBottomOf="@+id/AD_detailCard_title"
+                app:srcCompat="@drawable/image_2" />
+
+            <TextView
+                android:id="@+id/Ad_detailCard_closeBttn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/gotic"
+                android:text="CLOSE"
+                android:textAlignment="textEnd"
+                android:textColor="@color/red_700"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/AD_detailCard_description"
+                app:layout_constraintStart_toStartOf="@+id/AD_detailCard_description"
+                app:layout_constraintTop_toBottomOf="@+id/AD_detailCard_description" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

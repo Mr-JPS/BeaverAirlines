@@ -39,8 +39,7 @@
                         android:id="@+id/expandConstraint1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="gone"
-                        tools:visibility="visible">
+                        android:visibility="gone">
 
                         <ImageButton
                             android:id="@+id/ib_arrow2"
@@ -179,8 +178,7 @@
                         android:id="@+id/expandConstraint2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        tools:visibility="visible">
+                        android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/iv_cabinClassSeatIcon"
@@ -242,8 +240,7 @@
                         android:id="@+id/expandConstraint3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="gone"
-                        tools:visibility="visible">
+                        android:visibility="gone">
 
                         <ImageButton
                             android:id="@+id/ib_arrow4"
@@ -405,8 +402,7 @@
                         android:id="@+id/expandConstraint4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        tools:visibility="visible">
+                        android:visibility="gone">
 
                         <androidx.cardview.widget.CardView
                             android:id="@+id/cv_extras"
