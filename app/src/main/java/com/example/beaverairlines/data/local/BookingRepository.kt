@@ -16,8 +16,7 @@ class BookingRepository(private val  database: BookingDatabase) {
         get() = _currentBooking
 
     val nextCheckin =  MutableLiveData<Booking>()
-//    val nextCheckin: LiveData<Booking>
-//    get() = _nextCheckin
+
 
      suspend fun getNextCheckin(){
         try {

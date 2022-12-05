@@ -19,8 +19,8 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
 
     private val database = getDatabase(application)
     private val repository = BookingRepository(database)
-
     private val boardingPassRepository: BoardingPassRepository = BoardingPassRepository(database)
+
     val finalBoardingPass = boardingPassRepository.finalBP
     val boardingpassList = boardingPassRepository.bPList
 
@@ -38,7 +38,7 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
     var gate: String = ""
     var assignedSeat: String = ""
 
-    private val _isBoardingPassIssued = MutableLiveData<Boolean>()
+    private val _isBoardingPassIssued = MutableLiveData<Boolean>(false)
     val isBoardingPassIssued: LiveData<Boolean>
         get() = _isBoardingPassIssued
 
@@ -65,11 +65,12 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
 
     fun saveIssuedBoardingPass(boardingPass: FinalBoardingPass){
         viewModelScope.launch(Dispatchers.IO) {
-            boardingPassRepository.finalBP.postValue(boardingPass)
+
             boardingPassRepository.insert(boardingPass)
 //            boardingPassRepository.getFinalBP(boardingPass)
             //_finalBP.value = boardingPass
-            _isBoardingPassIssued.value = true
+            _isBoardingPassIssued.postValue(true)
+            boardingPassRepository.finalBP.postValue(boardingPass)
         }
     }
 

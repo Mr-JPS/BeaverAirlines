@@ -18,7 +18,6 @@ import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -27,18 +26,19 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.beaverairlines.AuthViewModel
 import com.example.beaverairlines.BookingViewModel
-
 import com.example.beaverairlines.R
 import com.example.beaverairlines.ViewModel
 import com.example.beaverairlines.adapter.*
 import com.example.beaverairlines.data.FlightOffer
 import com.example.beaverairlines.data.Iata
 import com.example.beaverairlines.data.User
+import com.example.beaverairlines.data.model.Ad2Source
 import com.example.beaverairlines.data.model.Booking
 import com.example.beaverairlines.data.model.CabinClassSource
 import com.example.beaverairlines.databinding.FragmentBookBinding
@@ -47,7 +47,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.book3_card.*
-import kotlinx.android.synthetic.main.book3_card.expandCard
 import kotlinx.android.synthetic.main.book3_card.view.*
 import kotlinx.android.synthetic.main.fragment_book.view.*
 import kotlinx.android.synthetic.main.passenger_input.view.*
@@ -76,7 +75,6 @@ import kotlinx.android.synthetic.main.select_flights.view.*
 import kotlinx.android.synthetic.main.select_flights.view.payCARDConstraint
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class BookFragment : Fragment(), BookInterface {
@@ -127,6 +125,33 @@ class BookFragment : Fragment(), BookInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val advertising2 = Ad2Source().loadAd()
+        val ad2Recycler = binding.ad2Card.BookFragmentRecycler
+        val ad2TimeInSec : Long = 4000
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        ad2Recycler.setLayoutManager(linearLayoutManager)
+
+        val ad2Adapter = Ad2Adapter(advertising2)
+        ad2Recycler.adapter = ad2Adapter
+        ad2Recycler.setHasFixedSize(true)
+        val snapHelper3: SnapHelper = PagerSnapHelper()
+        snapHelper3.attachToRecyclerView(ad2Recycler)
+
+        val timer: Timer = Timer()
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                if (linearLayoutManager.findLastCompletelyVisibleItemPosition() < ad2Adapter.getItemCount() - 1) {
+                    linearLayoutManager.smoothScrollToPosition(ad2Recycler,
+                        RecyclerView.State(),
+                        linearLayoutManager.findLastCompletelyVisibleItemPosition() + 1)
+                } else if (linearLayoutManager.findLastCompletelyVisibleItemPosition() === ad2Adapter.getItemCount() - 1) {
+                    linearLayoutManager.smoothScrollToPosition(ad2Recycler, RecyclerView.State(), 0)
+                }
+            }
+        }, 0, ad2TimeInSec)
+
+
 
         flightViewModel.paymentCompleted.value = false
 
@@ -369,6 +394,7 @@ class BookFragment : Fragment(), BookInterface {
         binding.bigBookCard.ibArrow1.setOnClickListener {
             if (expandConstraint1.visibility == View.GONE) {
                 TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
+                ad2Recycler.visibility = View.GONE
                 expandConstraint1.visibility = View.VISIBLE
                 iv_planeIndicator.visibility = View.VISIBLE
                 iv_planeIndicator.startAnimation(slideInRight)
@@ -378,6 +404,7 @@ class BookFragment : Fragment(), BookInterface {
                 iv_redlineIndicator.startAnimation(slideInRight)
             } else {
                 TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
+                ad2Recycler.visibility = View.VISIBLE
                 expandConstraint1.visibility = View.GONE
                 ib_arrow1.visibility = View.GONE
                 ib_arrow1.animate().setDuration(2).rotationBy(108f).start()
@@ -1478,7 +1505,7 @@ class BookFragment : Fragment(), BookInterface {
         nationality: EditText?,
         birthday: EditText?,
         birthCity: EditText?,
-        gender: EditText?
+        gender: EditText?,
     ): Boolean {
 
         return when {
@@ -1542,7 +1569,7 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SuspiciousIndentation")
     private fun openCheckout() {
 
         val flightOne = flightViewModel.flight1
@@ -2213,10 +2240,11 @@ HIER DIE LAYOUTS DIE RAUS SLIDEN MÜSSEN!!
         }
     }
 
-    private fun checkCCinput( ccBackCardNbr: EditText,
-                              ccBackCvv: EditText,
-                              ccBackHolder: EditText,
-                              ccBackValid: EditText
+    private fun checkCCinput(
+        ccBackCardNbr: EditText,
+        ccBackCvv: EditText,
+        ccBackHolder: EditText,
+        ccBackValid: EditText,
     ): Boolean {
 
         return when {

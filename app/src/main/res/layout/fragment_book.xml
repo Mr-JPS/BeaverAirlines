@@ -13,12 +13,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/tv_booking_header"
+                android:layout_width="380dp"
+                android:layout_height="91dp"
+                android:layout_marginStart="8dp"
+                android:alpha="0.3"
+                android:fontFamily="@font/mayaregular"
+                android:text="Booking"
+                android:textColor="#FFFFFF"
+                android:textSize="60sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_booking_header2"
+                android:layout_width="493dp"
+                android:layout_height="178dp"
+                android:layout_marginStart="32dp"
+                android:alpha="0.3"
+                android:fontFamily="@font/mayaregular"
+                android:text="Booking"
+                android:textColor="#33FFFFFF"
+                android:textSize="130sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nestedScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -34,6 +58,10 @@
                     <include
                         android:id="@+id/bigBookCard"
                         layout="@layout/book3_card" />
+
+                    <include
+                        android:id="@+id/ad2Card"
+                        layout="@layout/ad2_rv_layout" />
 
                 </LinearLayout>
 
@@ -51,7 +79,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/cloudsbackground3"
-                tools:visibility="visible" />
+                tools:visibility="gone" />
 
             <include
                 android:id="@+id/selectFlightsCard"
@@ -59,7 +87,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone" />
 
             <include
                 android:id="@+id/payCard"
@@ -67,7 +96,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone" />
 
             <include
                 android:id="@+id/passengerInputCard"
@@ -75,7 +105,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone" />
 
             <include
                 android:id="@+id/paymentSummaryCard"
@@ -83,7 +114,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

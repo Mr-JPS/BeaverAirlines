@@ -22,7 +22,7 @@
                 android:layout_width="380dp"
                 android:layout_height="91dp"
                 android:layout_marginStart="8dp"
-                android:alpha="0.8"
+                android:alpha="0.3"
                 android:fontFamily="@font/mayaregular"
                 android:text="Check-In"
                 android:textColor="#FFFFFF"
@@ -35,7 +35,7 @@
                 android:layout_width="493dp"
                 android:layout_height="178dp"
                 android:layout_marginStart="32dp"
-                android:alpha="0.8"
+                android:alpha="0.3"
                 android:fontFamily="@font/mayaregular"
                 android:text="Check-In"
                 android:textColor="#33FFFFFF"
@@ -96,7 +96,7 @@
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@drawable/planewithbackground" />
+                                        app:srcCompat="@drawable/newplane2" />
 
                                     <ImageView
                                         android:id="@+id/iv_Checkin_cloud2"
@@ -114,7 +114,7 @@
                                         android:layout_width="443dp"
                                         android:layout_height="311dp"
                                         android:layout_marginStart="190dp"
-                                        android:layout_marginTop="280dp"
+                                        android:layout_marginTop="250dp"
                                         android:adjustViewBounds="true"
                                         android:scaleType="centerCrop"
                                         app:layout_constraintEnd_toEndOf="parent"
@@ -141,49 +141,11 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="28dp"
-                                    android:layout_marginTop="280dp"
+                                    android:layout_marginTop="370dp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintVertical_bias="0.0">
-
-                                    <TextView
-                                        android:id="@+id/tv_Checkin_services"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="24dp"
-                                        android:layout_marginStart="10dp"
-                                        android:layout_marginTop="48dp"
-                                        android:fontFamily="@font/mayabold"
-                                        android:text="Services Aboard"
-                                        android:textColor="@color/red_700"
-                                        android:textSize="20sp"
-                                        android:textStyle="bold"
-                                        app:layout_constraintBottom_toTopOf="@+id/tv_Checkin_services2"
-                                        app:layout_constraintStart_toEndOf="@+id/cardView2"
-                                        app:layout_constraintTop_toTopOf="@+id/cardView2" />
-
-                                    <TextView
-                                        android:id="@+id/tv_Checkin_services2"
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="5dp"
-                                        android:fontFamily="@font/gotic"
-                                        android:text="Discover all additional extras that will make your journey an unforgettable experience"
-                                        android:textColor="@color/white"
-                                        android:textSize="09sp"
-                                        android:textStyle="normal"
-                                        app:layout_constraintBottom_toBottomOf="@+id/cardView2"
-                                        app:layout_constraintEnd_toEndOf="@+id/tv_Checkin_services"
-                                        app:layout_constraintStart_toStartOf="@+id/tv_Checkin_services" />
-
-                                    <ImageView
-                                        android:id="@+id/imageView34"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        app:layout_constraintBottom_toTopOf="@+id/tv_Checkin_services"
-                                        app:layout_constraintStart_toStartOf="@+id/tv_Checkin_services"
-                                        app:srcCompat="@drawable/ic_baseline_auto_awesome_24"
-                                        app:tint="@color/red_700" />
 
                                     <include
                                         android:id="@+id/checkin_Main"
@@ -194,36 +156,6 @@
                                         app:layout_constraintTop_toTopOf="parent"
                                         app:layout_constraintVertical_bias="0.0" />
 
-                                    <androidx.cardview.widget.CardView
-                                        android:id="@+id/cardView2"
-                                        android:layout_width="158dp"
-                                        android:layout_height="118dp"
-                                        android:layout_marginStart="3dp"
-                                        android:layout_marginTop="60dp"
-                                        app:cardCornerRadius="8dp"
-                                        app:layout_constraintStart_toStartOf="@+id/checkin_Main"
-                                        app:layout_constraintTop_toBottomOf="@+id/checkin_Main">
-
-                                        <androidx.constraintlayout.widget.ConstraintLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent">
-
-                                            <ImageView
-                                                android:id="@+id/imageView18"
-                                                android:layout_width="0dp"
-                                                android:layout_height="0dp"
-                                                android:adjustViewBounds="true"
-                                                android:scaleType="centerCrop"
-                                                app:layout_constraintBottom_toBottomOf="parent"
-                                                app:layout_constraintEnd_toEndOf="parent"
-                                                app:layout_constraintHorizontal_bias="0.0"
-                                                app:layout_constraintStart_toStartOf="parent"
-                                                app:layout_constraintTop_toTopOf="parent"
-                                                app:layout_constraintVertical_bias="1.0"
-                                                app:srcCompat="@drawable/_f4ca4d8132c4e2ebfda4b21dd799465_virgin_australia_east_west_2000_2" />
-                                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                                    </androidx.cardview.widget.CardView>
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                                 <androidx.constraintlayout.widget.ConstraintLayout

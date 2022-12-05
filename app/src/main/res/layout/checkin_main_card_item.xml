@@ -437,7 +437,7 @@
                             app:strokeColor="@color/white"
                             app:strokeWidth="1dp"
                             tools:ignore="TouchTargetSizeCheck,DuplicateClickableBoundsCheck"
-                            tools:visibility="gone" />
+                            tools:visibility="visible" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 

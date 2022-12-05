@@ -4,14 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8B19191A"
+    android:background="#CD19191A"
     android:orientation="vertical">
+
+    <Button
+        android:id="@+id/boardingcard_bttnSave"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/purple_700"
+        android:fontFamily="@font/mayaregular"
+        android:text="save to photo album"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        app:iconTint="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/completeBoardingCard"
+        app:layout_constraintStart_toStartOf="@+id/completeBoardingCard"
+        app:layout_constraintTop_toBottomOf="@+id/completeBoardingCard"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp"
+        tools:ignore="TouchTargetSizeCheck,DuplicateClickableBoundsCheck" />
+
+    <ImageButton
+        android:id="@+id/boardingcard_bttnClose"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="-10dp"
+        android:backgroundTint="#00FFFFFF"
+        android:rotation="-45"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/completeBoardingCard"
+        app:layout_constraintEnd_toEndOf="@+id/completeBoardingCard"
+        app:srcCompat="@drawable/add"
+        app:tint="@color/red_700"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/completeBoardingCard"
         android:layout_width="342dp"
         android:layout_height="623dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="75dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/milehighbackground"
         android:visibility="visible"
@@ -57,17 +91,15 @@
                 android:id="@+id/boardingcard_destination"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="188dp"
-                android:layout_marginTop="255dp"
-                android:layout_marginBottom="48dp"
+                android:layout_marginStart="200dp"
+                android:layout_marginBottom="42dp"
                 android:fontFamily="@font/mayathin"
                 android:rotation="-90"
                 android:text="LDN"
                 android:textColor="@color/white"
                 android:textSize="96sp"
                 app:layout_constraintBottom_toTopOf="@+id/boardingcard_arrow"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/boardingcard_barcode"
@@ -85,7 +117,7 @@
                 android:id="@+id/boardingcard_arrow"
                 android:layout_width="43dp"
                 android:layout_height="10dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="15dp"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toTopOf="@+id/boardingcard_boardingTime"
                 app:layout_constraintEnd_toEndOf="@+id/boardingcard_boardingTime"
@@ -144,6 +176,7 @@
                 android:id="@+id/boardingcard_header5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
                 android:fontFamily="@font/gotic"
                 android:text="BA5KCC.BA-3315"
                 android:textColor="#CCFFFFFF"
@@ -209,7 +242,7 @@
                 android:fontFamily="@font/gotic"
                 android:text="GATE NO."
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="@+id/boardingcard_gateNbr"
                 app:layout_constraintStart_toStartOf="@+id/boardingcard_gateNbr"
@@ -279,8 +312,7 @@
                 android:textSize="30sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toTopOf="@+id/boardingcard_textBoarding"
-                app:layout_constraintEnd_toEndOf="@+id/boardingcard_gateNbr"
-                app:layout_constraintStart_toStartOf="@+id/boardingcard_gateNbr" />
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_gateNbr" />
 
             <TextView
                 android:id="@+id/boardingcard_footer1"
