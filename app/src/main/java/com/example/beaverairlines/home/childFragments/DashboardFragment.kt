@@ -11,7 +11,9 @@ import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.example.beaverairlines.AuthViewModel
 import com.example.beaverairlines.R
@@ -25,6 +27,9 @@ import com.example.beaverairlines.data.model.DestinationSource
 import com.example.beaverairlines.databinding.FragmentDashboardBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_dashboard.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class DashboardFragment : Fragment() {
@@ -149,12 +154,30 @@ class DashboardFragment : Fragment() {
         snapHelper.attachToRecyclerView(binding.destinationRecycler)
 
 
-        val advertising = AdSource().loadAd()
-        binding.adRecycler.adapter = AdvertisingAdapter(advertising)
-        binding.adRecycler.setHasFixedSize(true)
-        val snapHelper2: SnapHelper = PagerSnapHelper()
-        snapHelper2.attachToRecyclerView(binding.adRecycler)
+        val advertising1 = AdSource().loadAd()
+        val ad1Recycler = binding.cvAdvertising.adRecycler
+        val ad1TimeInSec : Long = 4000
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        ad1Recycler.setLayoutManager(linearLayoutManager)
 
+        val ad1Adapter = AdvertisingAdapter(advertising1)
+        ad1Recycler.adapter = ad1Adapter
+        ad1Recycler.setHasFixedSize(true)
+        val snapHelper2: SnapHelper = PagerSnapHelper()
+        snapHelper2.attachToRecyclerView(ad1Recycler)
+
+        val timer: Timer = Timer()
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                if (linearLayoutManager.findLastCompletelyVisibleItemPosition() < ad1Adapter.getItemCount() - 1) {
+                    linearLayoutManager.smoothScrollToPosition(ad1Recycler,
+                        RecyclerView.State(),
+                        linearLayoutManager.findLastCompletelyVisibleItemPosition() + 1)
+                } else if (linearLayoutManager.findLastCompletelyVisibleItemPosition() === ad1Adapter.getItemCount() - 1) {
+                    linearLayoutManager.smoothScrollToPosition(ad1Recycler, RecyclerView.State(), 0)
+                }
+            }
+        }, 0, ad1TimeInSec)
 
         val checkInCard = binding.cvCheckin.CIMainCard
         checkInCard.setOnClickListener {

@@ -42,6 +42,7 @@ import com.example.beaverairlines.databinding.FragmentCheckinBinding
 import com.example.beaverairlines.utils.BookInterface
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.boarding_pass_recycler.view.*
 import kotlinx.android.synthetic.main.fragment_checkin.view.*
 import java.io.File
 import java.io.FileOutputStream
@@ -138,7 +139,7 @@ class CheckinFragment : Fragment(), BookInterface {
         val cIFlight2_makeSelec = binding.checkinMain.ivRecentFlightsFlight2.tvCheckinRVMakeSelc
 
         val allBoardingPassesCard = binding.allBoardingpasses
-        val allBoardingPassesHeader = binding.allBoardingpasses.BPRecyclerHeader4
+        val allBoardingPassesHeader = binding.allBoardingpasses.completeBoardingCard.BP_recycler_header4
         val allBoardingPassesRecycler = binding.allBoardingpasses.BPRecycler
 
         val finalBoardingPassLayout = binding.finalBoardingPassLayout
@@ -154,7 +155,13 @@ class CheckinFragment : Fragment(), BookInterface {
 
         val bpAdapter = BoardingPassAdapter(listOf(), bookingViewModel, this)
         allBoardingPassesRecycler.adapter = bpAdapter
-        allBoardingPassesHeader.visibility = View.VISIBLE
+
+        if (allBoardingPassesRecycler.visibility == View.GONE){
+            allBoardingPassesHeader.visibility = View.VISIBLE
+        } else {
+            allBoardingPassesHeader.visibility = View.GONE
+        }
+
 
 
 
@@ -201,7 +208,7 @@ class CheckinFragment : Fragment(), BookInterface {
                     cIFlight2.visibility = View.VISIBLE
                     cINoAvl.visibility = View.GONE
 
-                    cIFlight1_ticketNbr.text = it.flight1_flightNbr
+                    cIFlight1_ticketNbr.text = "BEAVER BOOKING No:  ${it.flight1_flightNbr}"
                     cIFlight1_cabinClass.text = it.flight1_cabinclass
                     cIFlight1_departCity.text = it.flight1_departCity
                     cIFlight1_ariCity.text = it.flight1_ariCity
@@ -209,7 +216,7 @@ class CheckinFragment : Fragment(), BookInterface {
                     cIFlight1_passFullname.text =
                         "${it.flight1_passFirstname} ${it.flight1_passSurname}"
 
-                    cIFlight2_ticketNbr.text = it.flight2_flightNbr
+                    cIFlight2_ticketNbr.text ="BEAVER BOOKING No:  ${it.flight2_flightNbr}"
                     cIFlight2_cabinClass.text = it.flight2_cabinclass
                     cIFlight2_departCity.text = it.flight2_departCity
                     cIFlight2_ariCity.text = it.flight2_ariCity
@@ -489,6 +496,7 @@ class CheckinFragment : Fragment(), BookInterface {
                             cIFlight2_bg.setCardBackgroundColor(resources.getColor(R.color.white))
                             cIFlight2_bg.startAnimation(fadeIN)
                         }
+
                         cIFlight2_issueBoardingPass.setOnClickListener {
                             val cIFlight2_gate = gateGenerator()
                             val cIFlight2_assignedSeat = cIFlight2_seat.text.toString()
@@ -526,6 +534,7 @@ class CheckinFragment : Fragment(), BookInterface {
                         }
                     }
                 }
+
                 else{
                     cINoAvl.visibility = View.VISIBLE
                     cIFlight1.visibility = View.GONE
@@ -583,6 +592,8 @@ class CheckinFragment : Fragment(), BookInterface {
             Observer {
                 if(it != null) {
                     bpAdapter.submitBoardingPassList(it)
+                    allBoardingPassesHeader.visibility = View.GONE
+                    allBoardingPassesRecycler.visibility = View.VISIBLE
                 }
             }
         )

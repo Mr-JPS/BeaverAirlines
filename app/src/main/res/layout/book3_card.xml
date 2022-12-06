@@ -521,7 +521,7 @@
             android:id="@+id/cv_bookField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="85dp"
             android:visibility="visible"
             app:cardBackgroundColor="#00FFFFFF"
             app:cardElevation="0dp"

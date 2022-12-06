@@ -129,7 +129,7 @@
                     android:id="@+id/tv_bookingDone1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="60dp"
                     android:fontFamily="@font/mayabold"
                     android:text="PAYMENT DONE"
                     android:textAlignment="viewStart"
@@ -186,10 +186,10 @@
                 <TextView
                     android:id="@+id/tv_bookingDone4"
                     android:layout_width="219dp"
-                    android:layout_height="36dp"
-                    android:layout_marginTop="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
                     android:fontFamily="@font/gotic"
-                    android:text="Fact is, we don't make the same mistake more then three times... \n\nMaybe four."
+                    android:text="Fact is, we don't make the same mistake more then three times... Maybe four."
                     android:textAlignment="center"
                     android:textColor="@color/purple_700"
                     android:textSize="10sp"
@@ -216,6 +216,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/tv_bookingDone4"
                     app:layout_constraintStart_toStartOf="@+id/tv_bookingDone4"
                     app:layout_constraintTop_toBottomOf="@+id/tv_bookingDone4"
+                    app:layout_constraintVertical_bias="0.0"
                     app:strokeColor="@color/white"
                     app:strokeWidth="1dp"
                     tools:ignore="TouchTargetSizeCheck,DuplicateClickableBoundsCheck" />
@@ -1030,8 +1031,7 @@
                                         app:layout_constraintStart_toStartOf="@+id/tv_header5"
                                         app:layout_constraintTop_toBottomOf="@+id/tv_header5"
                                         app:layout_constraintVertical_bias="0.0"
-                                        app:srcCompat="@drawable/ccfront"
-                                        tools:visibility="visible" />
+                                        app:srcCompat="@drawable/ccfront" />
 
                                     <ImageButton
                                         android:id="@+id/ib_pasDetailArrow2"
@@ -1093,15 +1093,14 @@
                                                 android:id="@+id/tv_ccHolderFront"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:layout_marginStart="28dp"
                                                 android:layout_marginBottom="24dp"
-                                                android:fontFamily="@font/ccfont"
+                                                android:fontFamily="@font/mayaregular"
                                                 android:text="LUCA BEAVERHAUSEN"
                                                 android:textColor="#C8C3C3"
                                                 android:textSize="10sp"
                                                 android:textStyle="normal"
                                                 app:layout_constraintBottom_toBottomOf="parent"
-                                                app:layout_constraintStart_toStartOf="parent" />
+                                                app:layout_constraintStart_toStartOf="@+id/tv_ccNbrFront" />
 
                                             <TextView
                                                 android:id="@+id/tv_ccValidFront"

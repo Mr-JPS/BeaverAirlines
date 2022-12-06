@@ -59,6 +59,7 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
 
 
 
+
     fun loadBp(id: Int){
         boardingPassRepository.getBoardingpass(id)
     }
@@ -81,11 +82,9 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
         }
     }
 
-    fun getBooking(id: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getBooking(id)
-        }
-    }
+//    fun setBoardingPass(id: String) {
+//        finalBoardingPass
+//    }
 
     fun getNextCheckin(){
         viewModelScope.launch(Dispatchers.IO) {

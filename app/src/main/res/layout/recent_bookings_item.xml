@@ -2,18 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#003F51B5">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/ProfileConstraint4"
         android:layout_width="wrap_content"
-        android:layout_height="106dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:visibility="visible"
-        app:cardBackgroundColor="#80FFFFFF"
+        app:cardBackgroundColor="#DFFFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,15 +23,15 @@
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tv_recentBookingItem_bookingNbr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/gotic"
                 android:text="BEAVER BOOKING No :   123456789"
                 android:textColor="@color/purple_700"
@@ -45,11 +45,11 @@
                 android:layout_width="45dp"
                 android:layout_height="67dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_recentBookingItem_bookingNbr"
                 app:layout_constraintTop_toBottomOf="@+id/tv_recentBookingItem_bookingNbr"
-                app:srcCompat="@drawable/flightresultwindow1" />
+                app:srcCompat="@drawable/arbframe" />
 
             <TextView
                 android:id="@+id/tv_recentBookingItem_class"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/gotic"
                 android:text="ECO"
-                android:textColor="@color/white"
+                android:textColor="@color/purple_700"
                 android:textSize="10sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_recentBookingItem_windowIcon"
@@ -175,26 +175,22 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="50dp"
                 android:scaleType="fitXY"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_recentBookingItem_windowIcon"
                 app:layout_constraintStart_toEndOf="@+id/tv_recentBookingItem_takeoffDate"
                 app:layout_constraintTop_toTopOf="@+id/recentBookingPlane1"
                 app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/dotline"
-                tools:visibility="visible" />
+                app:srcCompat="@drawable/dotline" />
 
             <ImageView
                 android:id="@+id/iv_recentBookingItem_passengerIcon"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginStart="8dp"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/recentBookingPlane1"
                 app:layout_constraintStart_toEndOf="@+id/iv_recentBookingItem_line"
                 app:layout_constraintTop_toTopOf="@+id/recentBookingPlane1"
                 app:srcCompat="@drawable/ic_baseline_airline_seat_recline_extra_24"
-                app:tint="@color/purple_700"
-                tools:visibility="visible" />
+                app:tint="@color/purple_700" />
 
             <TextView
                 android:id="@+id/tv_recentBookingItem_passName"
@@ -207,40 +203,37 @@
                 android:textColor="@color/purple_700"
                 android:textSize="8sp"
                 android:textStyle="bold"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_recentBookingItem_passengerIcon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/iv_recentBookingItem_passengerIcon"
-                app:layout_constraintTop_toTopOf="@+id/iv_recentBookingItem_passengerIcon"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toTopOf="@+id/iv_recentBookingItem_passengerIcon" />
 
             <ImageView
                 android:id="@+id/iv_recentBookingItem_serviceIcon"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginTop="2dp"
-                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/iv_recentBookingItem_passengerIcon"
                 app:layout_constraintTop_toBottomOf="@+id/iv_recentBookingItem_passengerIcon"
                 app:srcCompat="@drawable/ic_baseline_room_service_24"
-                app:tint="@color/purple_700"
-                tools:visibility="visible" />
+                app:tint="@color/purple_700" />
 
             <TextView
                 android:id="@+id/tv_recentBookingItem_service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="@font/gotic"
                 android:text="No extra services"
                 android:textColor="@color/purple_700"
                 android:textSize="8sp"
                 android:textStyle="bold"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_recentBookingItem_serviceIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/tv_recentBookingItem_passName"
-                app:layout_constraintTop_toBottomOf="@+id/iv_recentBookingItem_passengerIcon"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_recentBookingItem_passengerIcon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -30,6 +30,8 @@
         <action
             android:id="@+id/action_viewPagerFragment_to_authFragment"
             app:destination="@id/authFragment"
+            app:enterAnim="@anim/slide_in_left_splash"
+            app:exitAnim="@anim/slide_out_left_splash"
             app:popEnterAnim="@anim/slide_right_to_left"
             app:popUpTo="@id/viewPagerFragment" />
     </fragment>

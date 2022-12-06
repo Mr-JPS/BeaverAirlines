@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/mayaregular"
                 android:text="BER"
                 android:textColor="@color/red_700"
@@ -298,10 +298,10 @@
 
                     <ImageView
                         android:id="@+id/iv_background1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="232dp"
                         android:layout_height="wrap_content"
                         android:alpha="0.2"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitXY"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -450,7 +450,7 @@
 
                     <ImageView
                         android:id="@+id/iv_background2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="232dp"
                         android:layout_height="wrap_content"
                         android:alpha="0.2"
                         android:scaleType="centerCrop"

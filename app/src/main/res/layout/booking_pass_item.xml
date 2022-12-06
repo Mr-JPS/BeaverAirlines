@@ -28,14 +28,14 @@
                 android:layout_width="90dp"
                 android:layout_height="160dp"
                 android:adjustViewBounds="true"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/boardingpass" />
+                app:srcCompat="@drawable/newbppreview" />
 
             <ImageView
                 android:id="@+id/BP_logo"
@@ -64,12 +64,12 @@
             <TextView
                 android:id="@+id/BP_pasName"
                 android:layout_width="76dp"
-                android:layout_height="15dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="11dp"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/gotic"
-                android:text="Beaverhausen / Lu"
-                android:textColor="@color/purple_700"
+                android:text="Beaverhausen\n Lu"
+                android:textColor="@color/white"
                 android:textSize="8sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/BP_destination"

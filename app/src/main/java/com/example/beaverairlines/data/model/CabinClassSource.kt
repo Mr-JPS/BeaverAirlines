@@ -7,19 +7,19 @@ class CabinClassSource {
     fun loadCabinClass() : List<CabinClass>{
         return listOf(
             CabinClass(
-                R.drawable.img_8897,
-                "FIRST CLASS",
-                "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore"
+                R.drawable.img_8898,
+                "PREMIUM ECONOMY CLASS",
+                "- Large Leather\n- Standard legroom\n- Select Premium seat any time\n- 13.3 inch Entertainment Screen"
             ),
             CabinClass(
                 R.drawable.img_8896,
                 "BUSINESS CLASS",
-                "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore"
+                "- Extra large Leather\n- Extra legroom\n- Select Premium seat any time\n- 13.3 inch Entertainment Screen"
             ),
             CabinClass(
-                R.drawable.img_8898,
-                "PREMIUM ECO CLASS",
-                "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore"
+                R.drawable.img_8897,
+                "FIRST CLASS",
+                "- Fully flat bed\n- Extra legroom\n- Select Upper Class seat any time\n- Suite with Good Night Service"
             )
         )
     }

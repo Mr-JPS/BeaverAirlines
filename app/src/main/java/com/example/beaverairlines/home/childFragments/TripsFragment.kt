@@ -1,9 +1,11 @@
 package com.example.beaverairlines.home.childFragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -37,13 +39,37 @@ class TripsFragment: Fragment() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val fadeOUT = AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.fade_out_superfast)
+
+        val fadeIN = AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.fade_in_superfast)
 
         //mh = MILE HIGH
         //rb = RECENT BOOKINGS
         //smh = MILE HIGH STATUS
         val ticketRes = bookingViewModel.reservationNbr
+        val showPassport = binding.tvMHmemberPassport
+        val passPCard = binding.userSavedPassport.passportView
+        val passPCountry = binding.userSavedPassport.tvPasCountry
+        val passPNbr = binding.userSavedPassport.tvPasPassportNbr1
+        val passPSurname = binding.userSavedPassport.tvPasSurname
+        val passPFirstname = binding.userSavedPassport.tvPasName
+        val passPNationality = binding.userSavedPassport.tvPasNationality
+        val passPBday = binding.userSavedPassport.tvPasBirthday
+        val passPBcity = binding.userSavedPassport.tvPasBirthCity
+        val passPGender = binding.userSavedPassport.tvPasGender
+        val passPNbr2 = binding.userSavedPassport.tvPasPassportNbr2
+        val passPFooter = binding.userSavedPassport.tvPasPassportFoot
+        val passPCloseBttn = binding.userSavedPassport.PassBttnClose
+
+
 
         val mhCard = binding.MHmemberCard
         var mhFirstname = binding.tvMHmemberFirstname
@@ -56,6 +82,7 @@ class TripsFragment: Fragment() {
 
         val rbCard = binding.recentBookings
         var rbRecycler = binding.recentBookings.rvRecentFlightRecycler
+        val rBNoBookingAvail = binding.recentBookings.tvRecentFlightsNoBookings
 
         var smhFlightsCompleted = binding.tvMHstatusFlightsCompleted
         var smhFlightsDone = binding.tvMHstatusDoneFlights
@@ -63,12 +90,72 @@ class TripsFragment: Fragment() {
         var smhPoints = binding.tvMHstatusPoints
 
 
-        bookingViewModel.bookingList.observe(
+        flightViewModel.passportSaved.observe(
             viewLifecycleOwner,
             Observer {
-                rbRecycler.adapter = BookingsAdapter(it)
+                if (it){
+                    showPassport.visibility = View.VISIBLE
+
+                    showPassport.setOnClickListener {
+
+                        db.collection("user").document(auth.currentUser!!.uid)
+                            .get()
+                            .addOnSuccessListener {
+
+                                passPCountry.text = it.getString("country")
+                                passPNbr.text = it.getString("passportNbr")
+                                passPSurname.text = it.getString("lastName")
+                                passPFirstname.text =  it.getString("firstName")
+                                passPNationality.text = it.getString("nationality")
+                                passPBday.text = it.getString("birthDate")
+                                passPBcity.text = it.getString("birthPlace")
+                                passPGender.text = it.getString("gender")
+                                passPNbr2.text = it.getString("passportNbr")
+
+                                passPFooter.text = "***${passPNbr.text.toString()}***${passPSurname.text.toString()}***${passPFirstname.text.toString()}***" +
+                                        "***********************************************************************"
+                            }
+
+                        passPCard.visibility = View.VISIBLE
+                        passPCard.startAnimation(fadeIN)
+
+
+
+
+
+                        passPCloseBttn.setOnClickListener {
+                            passPCard.startAnimation(fadeOUT)
+                            passPCard.visibility = View.GONE
+                        }
+
+                    }
+
+                } else {
+                    showPassport.visibility = View.GONE
+                }
             }
         )
+
+        flightViewModel.paymentCompleted.observe(
+            viewLifecycleOwner,
+            Observer {
+                if (it){
+                    rBNoBookingAvail.visibility = View.GONE
+                    rbRecycler.visibility = View.VISIBLE
+
+                    bookingViewModel.bookingList.observe(
+                        viewLifecycleOwner,
+                        Observer {
+                            rbRecycler.adapter = BookingsAdapter(it)
+                        }
+                    )
+                } else {
+                    rBNoBookingAvail.visibility = View.VISIBLE
+                }
+
+            }
+        )
+
 
 
         db.collection("user").document(auth.currentUser!!.uid)
@@ -88,8 +175,10 @@ class TripsFragment: Fragment() {
 
         mhCard.setOnClickListener {
             mhCardBig.visibility = View.VISIBLE
+            mhCardBig.startAnimation(fadeIN)
 
             mhCardBig.setOnClickListener {
+                mhCardBig.startAnimation(fadeOUT)
                 mhCardBig.visibility = View.GONE
             }
         }

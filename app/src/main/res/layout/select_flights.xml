@@ -169,6 +169,22 @@
                 app:srcCompat="@drawable/flightresult_dialog_bg"
                 tools:visibility="visible" />
 
+            <TextView
+                android:id="@+id/tv_loadingSearchText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:fontFamily="@font/gotic"
+                android:text="PLEASE SELECT A FLIGHT TO CONTINUE"
+                android:textColor="@color/red_700"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_backgroundBttnSheet"
+                tools:visibility="visible" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_firstFlightResultsList"
                 android:layout_width="409dp"

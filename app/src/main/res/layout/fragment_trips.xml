@@ -148,10 +148,10 @@
 
                                     <androidx.cardview.widget.CardView
                                         android:id="@+id/MHmemberCard"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
+                                        android:layout_width="230dp"
+                                        android:layout_height="119dp"
                                         android:layout_marginTop="100dp"
-                                        app:cardBackgroundColor="#22FFFFFF"
+                                        app:cardBackgroundColor="#00FFFFFF"
                                         app:cardCornerRadius="8dp"
                                         app:cardElevation="0dp"
                                         app:layout_constraintBottom_toBottomOf="parent"
@@ -162,12 +162,12 @@
                                         app:layout_constraintVertical_bias="0.0">
 
                                         <androidx.constraintlayout.widget.ConstraintLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="match_parent">
+                                            android:layout_width="match_parent"
+                                            android:layout_height="120dp">
 
                                             <androidx.constraintlayout.widget.ConstraintLayout
                                                 android:id="@+id/MHmemberOverview"
-                                                android:layout_width="wrap_content"
+                                                android:layout_width="0dp"
                                                 android:layout_height="0dp"
                                                 android:layout_marginStart="13dp"
                                                 android:layout_marginEnd="16dp"
@@ -180,10 +180,11 @@
                                                     android:id="@+id/tv_MHmemberFirstname"
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
+                                                    android:layout_marginTop="2dp"
                                                     android:fontFamily="@font/mayabold"
                                                     android:text="Luca"
                                                     android:textColor="@color/red_700"
-                                                    android:textSize="16sp"
+                                                    android:textSize="24sp"
                                                     app:layout_constraintStart_toStartOf="parent"
                                                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -196,6 +197,7 @@
                                                     android:text="Beaverhausen"
                                                     android:textColor="@color/red_700"
                                                     android:textSize="16sp"
+                                                    android:visibility="invisible"
                                                     app:layout_constraintEnd_toEndOf="parent"
                                                     app:layout_constraintStart_toStartOf="@+id/tv_MHmemberFirstname"
                                                     app:layout_constraintTop_toBottomOf="@+id/tv_MHmemberFirstname" />
@@ -223,6 +225,20 @@
                                                     android:textStyle="bold"
                                                     app:layout_constraintBottom_toTopOf="@+id/tv_MHmemberClubnbr"
                                                     app:layout_constraintStart_toStartOf="@+id/tv_MHmemberClubnbr" />
+
+                                                <TextView
+                                                    android:id="@+id/tv_MHmemberPassport"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:fontFamily="@font/gotic"
+                                                    android:text="SEE PASSPORT"
+                                                    android:textColor="@color/red_700"
+                                                    android:textSize="8sp"
+                                                    android:textStyle="bold"
+                                                    android:visibility="gone"
+                                                    app:layout_constraintStart_toStartOf="@+id/tv_MHmemberFirstname"
+                                                    app:layout_constraintTop_toBottomOf="@+id/tv_MHmemberFirstname"
+                                                    tools:visibility="visible" />
 
                                             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -326,7 +342,7 @@
                                     android:id="@+id/ProfileConstraint3"
                                     android:layout_width="336dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="16dp"
+                                    android:layout_marginTop="40dp"
                                     app:cardBackgroundColor="#00FFFFFF"
                                     app:cardElevation="0dp"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -373,7 +389,8 @@
                                     android:id="@+id/ProfileConstraint4"
                                     android:layout_width="334dp"
                                     android:layout_height="235dp"
-                                    android:layout_marginBottom="32dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginBottom="110dp"
                                     app:cardBackgroundColor="#80FFFFFF"
                                     app:cardCornerRadius="8dp"
                                     app:cardElevation="0dp"
@@ -453,7 +470,7 @@
                                             android:id="@+id/tv_MHstatus_header"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginStart="8dp"
+                                            android:layout_marginStart="16dp"
                                             android:layout_marginTop="24dp"
                                             android:fontFamily="@font/mayabold"
                                             android:text="Progress to next status"
@@ -565,6 +582,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.75" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/PassportConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <include
+                    android:id="@+id/user_savedPassport"
+                    layout="@layout/passport_card"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.75" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

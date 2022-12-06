@@ -91,7 +91,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_fastCheckin_header2"
-                tools:visibility="gone">
+                tools:visibility="visible">
 
                 <include
                     android:id="@+id/iv_recentFlights_flight1"

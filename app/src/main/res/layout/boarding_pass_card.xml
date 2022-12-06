@@ -91,15 +91,17 @@
                 android:id="@+id/boardingcard_destination"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="200dp"
-                android:layout_marginBottom="42dp"
+                android:layout_marginStart="32dp"
                 android:fontFamily="@font/mayathin"
                 android:rotation="-90"
-                android:text="LDN"
+                android:text="MXP"
+                android:textAlignment="textStart"
                 android:textColor="@color/white"
-                android:textSize="96sp"
+                android:textSize="60sp"
                 app:layout_constraintBottom_toTopOf="@+id/boardingcard_arrow"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="@+id/boardingcard_gateNbr"
+                app:layout_constraintStart_toEndOf="@+id/boardingcard_frame"
+                app:layout_constraintTop_toTopOf="@+id/boardingcard_qrCode" />
 
             <ImageView
                 android:id="@+id/boardingcard_barcode"

@@ -42,8 +42,8 @@ class BookingsAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val booking = datasetBookings[position]
 
-        holder.bookingNbr.text = booking.reservationNbr
-        holder.cabinClass.text = booking.flight1_cabinclass
+        holder.bookingNbr.text = "BEAVER BOOKING No:   ${booking.reservationNbr}"
+        holder.cabinClass.text = "ECO"
         holder.departCity.text = booking.flight1_departCity
         holder.ariCity.text = booking.flight1_ariCity
         holder.departDate.text = booking.flight1_departDate

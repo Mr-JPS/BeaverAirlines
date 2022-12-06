@@ -18,6 +18,8 @@ class BoardingPassAdapter(
     private val bookInterface: BookInterface
 ) : RecyclerView.Adapter<BoardingPassAdapter.ItemViewHolder>() {
 
+
+
     fun submitBoardingPassList(list: List<FinalBoardingPass>){
         datasetBoardingPass = list
         notifyDataSetChanged()
@@ -27,7 +29,6 @@ class BoardingPassAdapter(
 
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        val bp_header4: TextView = view.findViewById(R.id.BP_recycler_header4)
         val bp_boardingTime: TextView = view.findViewById(R.id.BP_boardingTime)
         val bp_passFullname: TextView = view.findViewById(R.id.BP_pasName)
         val bp_destination: TextView= view.findViewById(R.id.BP_destination)
@@ -48,14 +49,18 @@ class BoardingPassAdapter(
         val boardingpass = datasetBoardingPass[position]
 
 
-        holder.bp_boardingTime.text = boardingpass.boardingtime
+        holder.bp_boardingTime.text = boardingpass.boardingtime.dropLast(3)
         holder.bp_destination.text = boardingpass.destinationIata
         holder.bp_passFullname.text =
-            "${boardingpass.passSurname} ${boardingpass.passFirstname}"
+            "${boardingpass.passSurname}\n${boardingpass.passFirstname}"
 
         holder.bp_previewCard.setOnClickListener {
 
-            bookingViewModel.loadBp(boardingpass.id)
+
+
+
+
+//            bookingViewModel.finalBoardingPass.value.id = boardingpass.id
 //            val passFirstname: String = boardingpass.flight1_passFirstname
 //            val passSurname: String = boardingpass.flight1_passSurname
 //            val destinationIata: String = boardingpass.flight1_ariIATA
