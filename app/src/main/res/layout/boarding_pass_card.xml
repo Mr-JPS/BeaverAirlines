@@ -91,7 +91,7 @@
                 android:id="@+id/boardingcard_destination"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="39dp"
                 android:fontFamily="@font/mayathin"
                 android:rotation="-90"
                 android:text="MXP"

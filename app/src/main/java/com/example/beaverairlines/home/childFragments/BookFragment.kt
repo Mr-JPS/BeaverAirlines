@@ -48,6 +48,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.book3_card.*
 import kotlinx.android.synthetic.main.book3_card.view.*
+import kotlinx.android.synthetic.main.fragment_book.*
 import kotlinx.android.synthetic.main.fragment_book.view.*
 import kotlinx.android.synthetic.main.passenger_input.view.*
 import kotlinx.android.synthetic.main.pay_flights.view.*
@@ -1588,7 +1589,7 @@ class BookFragment : Fragment(), BookInterface {
         time1One.text = flightOne?.departureTime
         date1Two.text = flightViewModel.departureDATE
         time1Two.text = flightOne?.arrivalTime
-        cabin1.text = "First Class"
+        cabin1.text = "ECO Class"
 
         flight2From.text = flightViewModel.ariCity
         flight2To.text = flightViewModel.depCity
@@ -1599,7 +1600,7 @@ class BookFragment : Fragment(), BookInterface {
         time2One.text = flightTwo?.arrivalTime
         date2Two.text = flightViewModel.arrivalDATE
         time2Two.text = flightTwo?.departureTime
-        cabin2.text = "First Class"
+        cabin2.text = "ECO Class"
 
         fun roundCharges (doubleNbr: Double): String {
             return "%.2f".format(doubleNbr)
@@ -2068,7 +2069,18 @@ class BookFragment : Fragment(), BookInterface {
 
                             flightViewModel.paymentCompleted.value = true
 
+                            binding.paymentSummaryCard.videoPreview.visibility = View.VISIBLE
+
+//                            binding.paymentSummaryCard.cvPayCARD.paymentMainCard.visibility = View.GONE
+//                            passengerInputCard.visibility = View.GONE
+//                            binding.payCard.PCConstraint.visibility = View.GONE
+//                            binding.selectFlightsCard.SFCard.visibility = View.GONE
+//                            binding.bttn2.visibility = View.GONE
+//                            binding.bigBookCard.expandCard.visibility = View.GONE
+
                             resetBooking()
+
+
                         }
 
                     }
@@ -2083,7 +2095,9 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
-    private fun resetBooking() {
+    private fun resetBooking(
+
+    ) {
 
     }
 

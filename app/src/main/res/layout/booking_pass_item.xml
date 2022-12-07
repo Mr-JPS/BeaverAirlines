@@ -53,26 +53,29 @@
                 android:id="@+id/BP_boardingTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="11dp"
                 android:fontFamily="@font/gotic"
                 android:text="15:15"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/BP_destination"
-                app:layout_constraintEnd_toEndOf="@+id/BP_destination" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/BP_pasName"
-                android:layout_width="76dp"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="11dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="11dp"
                 android:fontFamily="@font/gotic"
                 android:text="Beaverhausen\n Lu"
+                android:textAlignment="textEnd"
                 android:textColor="@color/white"
-                android:textSize="8sp"
+                android:textSize="6sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/BP_destination"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/BP_destination" />
 
@@ -80,26 +83,26 @@
                 android:id="@+id/BP_destination"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="11dp"
+                android:layout_marginTop="45dp"
                 android:fontFamily="@font/mayaregular"
                 android:text="LDN"
+                android:textAlignment="textEnd"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/BP_arrow"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/BP_arrow" />
+                app:layout_constraintEnd_toStartOf="@+id/BP_arrow"
+                app:layout_constraintTop_toBottomOf="@+id/BP_logo" />
 
             <ImageView
                 android:id="@+id/BP_arrow"
                 android:layout_width="19dp"
                 android:layout_height="9dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="50dp"
-                android:rotation="90"
+                android:layout_marginEnd="-5dp"
+                android:rotation="-90"
                 android:scaleType="fitXY"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/BP_logo"
+                app:layout_constraintBottom_toBottomOf="@+id/BP_destination"
+                app:layout_constraintEnd_toEndOf="@+id/BP_boardingTime"
+                app:layout_constraintTop_toTopOf="@+id/BP_destination"
                 app:srcCompat="@drawable/boardingarrow" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

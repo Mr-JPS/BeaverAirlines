@@ -54,7 +54,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.core.widget.NestedScrollView
+            <ScrollView
                 android:id="@+id/nestedScrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -209,7 +209,7 @@
                                                     android:fontFamily="@font/gotic"
                                                     android:text="123456789"
                                                     android:textColor="@color/white"
-                                                    android:textSize="16sp"
+                                                    android:textSize="14sp"
                                                     android:textStyle="normal"
                                                     app:layout_constraintBottom_toBottomOf="parent"
                                                     app:layout_constraintStart_toStartOf="parent" />
@@ -235,10 +235,9 @@
                                                     android:textColor="@color/red_700"
                                                     android:textSize="8sp"
                                                     android:textStyle="bold"
-                                                    android:visibility="gone"
+                                                    android:visibility="visible"
                                                     app:layout_constraintStart_toStartOf="@+id/tv_MHmemberFirstname"
-                                                    app:layout_constraintTop_toBottomOf="@+id/tv_MHmemberFirstname"
-                                                    tools:visibility="visible" />
+                                                    app:layout_constraintTop_toBottomOf="@+id/tv_MHmemberFirstname" />
 
                                             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -560,7 +559,7 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
-            </androidx.core.widget.NestedScrollView>
+            </ScrollView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ProfileConstraint5"

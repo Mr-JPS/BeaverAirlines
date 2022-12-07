@@ -53,13 +53,14 @@
 
             <TextView
                 android:id="@+id/tv_checkin_RV_class"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="26dp"
+                android:layout_height="17dp"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/gotic"
                 android:text="ECO"
+                android:textAlignment="center"
                 android:textColor="@color/purple_700"
-                android:textSize="8sp"
+                android:textSize="7sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_checkin_RV_windowIcon"
                 app:layout_constraintEnd_toEndOf="@+id/iv_checkin_RV_windowIcon"

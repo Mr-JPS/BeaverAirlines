@@ -89,72 +89,78 @@ class TripsFragment: Fragment() {
         var smhMissingPoints = binding.tvMHstatusMissingPoints
         var smhPoints = binding.tvMHstatusPoints
 
+        showPassport.setOnClickListener {
 
-        flightViewModel.passportSaved.observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it){
-                    showPassport.visibility = View.VISIBLE
+            db.collection("user").document(auth.currentUser!!.uid)
+                .get()
+                .addOnSuccessListener {
 
-                    showPassport.setOnClickListener {
+                    passPCountry.text = it.getString("country")
+                    passPNbr.text = it.getString("passportNbr")
+                    passPSurname.text = it.getString("lastName")
+                    passPFirstname.text =  it.getString("firstName")
+                    passPNationality.text = it.getString("nationality")
+                    passPBday.text = it.getString("birthDate")
+                    passPBcity.text = it.getString("birthPlace")
+                    passPGender.text = it.getString("gender")
+                    passPNbr2.text = it.getString("passportNbr")
 
-                        db.collection("user").document(auth.currentUser!!.uid)
-                            .get()
-                            .addOnSuccessListener {
+                    passPFooter.text = "***${passPNbr.text.toString()}***${passPSurname.text.toString()}***${passPFirstname.text.toString()}***" +
+                            "***********************************************************************"
 
-                                passPCountry.text = it.getString("country")
-                                passPNbr.text = it.getString("passportNbr")
-                                passPSurname.text = it.getString("lastName")
-                                passPFirstname.text =  it.getString("firstName")
-                                passPNationality.text = it.getString("nationality")
-                                passPBday.text = it.getString("birthDate")
-                                passPBcity.text = it.getString("birthPlace")
-                                passPGender.text = it.getString("gender")
-                                passPNbr2.text = it.getString("passportNbr")
-
-                                passPFooter.text = "***${passPNbr.text.toString()}***${passPSurname.text.toString()}***${passPFirstname.text.toString()}***" +
-                                        "***********************************************************************"
-                            }
-
-                        passPCard.visibility = View.VISIBLE
-                        passPCard.startAnimation(fadeIN)
-
-
-
-
-
-                        passPCloseBttn.setOnClickListener {
-                            passPCard.startAnimation(fadeOUT)
-                            passPCard.visibility = View.GONE
-                        }
-
-                    }
-
-                } else {
-                    showPassport.visibility = View.GONE
-                }
-            }
-        )
-
-        flightViewModel.paymentCompleted.observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it){
-                    rBNoBookingAvail.visibility = View.GONE
-                    rbRecycler.visibility = View.VISIBLE
-
-                    bookingViewModel.bookingList.observe(
-                        viewLifecycleOwner,
-                        Observer {
-                            rbRecycler.adapter = BookingsAdapter(it)
-                        }
-                    )
-                } else {
-                    rBNoBookingAvail.visibility = View.VISIBLE
+                    passPCard.visibility = View.VISIBLE
+                    passPCard.startAnimation(fadeIN)
                 }
 
+
+
+
+
+
+
+            passPCloseBttn.setOnClickListener {
+                passPCard.startAnimation(fadeOUT)
+                passPCard.visibility = View.GONE
+            }
+
+        }
+
+//        flightViewModel.passportSaved.observe(
+//            viewLifecycleOwner,
+//            Observer {
+//                if (it){
+//                    showPassport.visibility = View.VISIBLE
+//
+//
+//
+//                } else {
+//                    showPassport.visibility = View.GONE
+//                }
+//            }
+//        )
+
+        bookingViewModel.bookingList.observe(
+            viewLifecycleOwner,
+            Observer {
+                rbRecycler.adapter = BookingsAdapter(it)
+                rBNoBookingAvail.visibility = View.GONE
+                rbRecycler.visibility = View.VISIBLE
             }
         )
+//        flightViewModel.paymentCompleted.observe(
+//            viewLifecycleOwner,
+//            Observer {
+//                if (it){
+//                    rBNoBookingAvail.visibility = View.GONE
+//                    rbRecycler.visibility = View.VISIBLE
+//
+//
+//                } else {
+//                    rBNoBookingAvail.visibility = View.VISIBLE
+//                }
+//
+//            }
+//        )
 
 
 
