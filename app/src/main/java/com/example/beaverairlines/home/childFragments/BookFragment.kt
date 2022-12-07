@@ -1305,6 +1305,15 @@ class BookFragment : Fragment(), BookInterface {
 
 
                         savePassport.setOnCheckedChangeListener { _, isChecked ->
+
+                            db.collection("user").document(auth.currentUser!!.uid)
+                                .get()
+                                .addOnSuccessListener {
+
+                                   val currentUserEmail = it.getString("email")
+                                    val currentUserMileHigh = it.getString("mileHighClubNbr")
+
+
                             val updateUser = User(
                                 fullName = "${name.text} ${surname.text}",
                                 firstName = name.text.toString(),
@@ -1314,12 +1323,15 @@ class BookFragment : Fragment(), BookInterface {
                                 gender = gender.text.toString(),
                                 nationality = nationality.text.toString(),
                                 country = country.text.toString(),
-                                passportNbr = passportNbr.text.toString())
+                                passportNbr = passportNbr.text.toString(),
+                                email = currentUserEmail.toString(),
+                                mileHighClubNbr = currentUserMileHigh.toString())
+
 
                             authViewModel.updateUser(updateUser)
                             flightViewModel.passportSaved.value = true
                         }
-
+                    }
 
 
                         bttnProceedToCheckout.setOnClickListener {

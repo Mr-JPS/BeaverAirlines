@@ -13,6 +13,7 @@ import com.example.beaverairlines.data.local.BookingRepository
 import com.example.beaverairlines.data.local.getDatabase
 import com.example.beaverairlines.data.model.Booking
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class BookingViewModel (application: Application): AndroidViewModel(application) {
@@ -88,6 +89,7 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
 
     fun getNextCheckin(){
         viewModelScope.launch(Dispatchers.IO) {
+            delay(500)
             repository.getNextCheckin()
         }
     }
@@ -98,6 +100,9 @@ class BookingViewModel (application: Application): AndroidViewModel(application)
         }
     }
 
+    fun resetBP() {
+        boardingPassRepository.resetBP()
+    }
 
 
     // wird nach Beendigung der Navigation wieder auf false zurückgesetzt

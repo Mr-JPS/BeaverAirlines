@@ -60,7 +60,7 @@ class BoardingPassAdapter(
 
 
 
-//            bookingViewModel.finalBoardingPass.value.id = boardingpass.id
+           bookingViewModel.finalBoardingPass.value = boardingpass
 //            val passFirstname: String = boardingpass.flight1_passFirstname
 //            val passSurname: String = boardingpass.flight1_passSurname
 //            val destinationIata: String = boardingpass.flight1_ariIATA

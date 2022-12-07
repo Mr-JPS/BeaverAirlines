@@ -13,8 +13,8 @@ import com.example.beaverairlines.data.model.Booking
 
 class BoardingPassRepository (private val  database: BookingDatabase) {
 
-    private val _finalBP = MutableLiveData<FinalBoardingPass>()
-    val finalBP: MutableLiveData<FinalBoardingPass>
+    private val _finalBP = MutableLiveData<FinalBoardingPass?>()
+    val finalBP: MutableLiveData<FinalBoardingPass?>
         get() = _finalBP
 
 
@@ -35,6 +35,10 @@ class BoardingPassRepository (private val  database: BookingDatabase) {
         } catch (e: Exception) {
             Log.e(TAG, "Error finding in database: $e")
         }
+    }
+
+    fun resetBP(){
+        _finalBP.value = null
     }
 
 

@@ -51,7 +51,7 @@ import java.io.OutputStream
 
 class CheckinFragment : Fragment(), BookInterface {
 
-    private lateinit var binding : FragmentCheckinBinding
+    private lateinit var binding: FragmentCheckinBinding
     private val flightViewModel: ViewModel by activityViewModels()
     private val authViewModel: AuthViewModel by activityViewModels()
     private val bookingViewModel: BookingViewModel by activityViewModels()
@@ -88,7 +88,6 @@ class CheckinFragment : Fragment(), BookInterface {
             R.anim.fade_in_fast)
 
 
-
         // cI = Check-IN
         val bigPlane = binding.ivCheckinBigPlaneBG
         val seats = binding.ivCheckinSeats
@@ -115,7 +114,8 @@ class CheckinFragment : Fragment(), BookInterface {
         val cIFlight1_loadingBeaver = binding.checkinMain.ivRecentFlightsFlight1.ivCheckinRVLoading
         val cIFlight1_seatFrame = binding.checkinMain.ivRecentFlightsFlight1.ivCheckinRVSeatFrame
         val cIFlight1_seat = binding.checkinMain.ivRecentFlightsFlight1.tvCheckinRVSeatLetter
-        val cIFlight1_issueBoardingPass = binding.checkinMain.ivRecentFlightsFlight1.bttnCheckinRVIssueBoardingpass
+        val cIFlight1_issueBoardingPass =
+            binding.checkinMain.ivRecentFlightsFlight1.bttnCheckinRVIssueBoardingpass
         val cIFlight1_makeSelec = binding.checkinMain.ivRecentFlightsFlight1.tvCheckinRVMakeSelc
 
         val cIFlight2 = binding.checkinMain.readyForCIFlight2
@@ -135,11 +135,13 @@ class CheckinFragment : Fragment(), BookInterface {
         val cIFlight2_loadingBeaver = binding.checkinMain.ivRecentFlightsFlight2.ivCheckinRVLoading
         val cIFlight2_seatFrame = binding.checkinMain.ivRecentFlightsFlight2.ivCheckinRVSeatFrame
         val cIFlight2_seat = binding.checkinMain.ivRecentFlightsFlight2.tvCheckinRVSeatLetter
-        val cIFlight2_issueBoardingPass = binding.checkinMain.ivRecentFlightsFlight2.bttnCheckinRVIssueBoardingpass
+        val cIFlight2_issueBoardingPass =
+            binding.checkinMain.ivRecentFlightsFlight2.bttnCheckinRVIssueBoardingpass
         val cIFlight2_makeSelec = binding.checkinMain.ivRecentFlightsFlight2.tvCheckinRVMakeSelc
 
         val allBoardingPassesCard = binding.allBoardingpasses
-        val allBoardingPassesHeader = binding.allBoardingpasses.completeBoardingCard.BP_recycler_header4
+        val allBoardingPassesHeader =
+            binding.allBoardingpasses.completeBoardingCard.BP_recycler_header4
         val allBoardingPassesRecycler = binding.allBoardingpasses.BPRecycler
 
         val finalBoardingPassLayout = binding.finalBoardingPassLayout
@@ -156,14 +158,11 @@ class CheckinFragment : Fragment(), BookInterface {
         val bpAdapter = BoardingPassAdapter(listOf(), bookingViewModel, this)
         allBoardingPassesRecycler.adapter = bpAdapter
 
-        if (allBoardingPassesRecycler.visibility == View.GONE){
-            allBoardingPassesHeader.visibility = View.VISIBLE
-        } else {
-            allBoardingPassesHeader.visibility = View.GONE
-        }
-
-
-
+//        if (allBoardingPassesRecycler.visibility == View.GONE){
+//            allBoardingPassesHeader.visibility = View.VISIBLE
+//        } else {
+//            allBoardingPassesHeader.visibility = View.GONE
+//        }
 
 
 /*
@@ -192,7 +191,7 @@ class CheckinFragment : Fragment(), BookInterface {
 
 //        bookingViewModel.getBooking(reservationNbr)
 
-       //bookingViewModel.getNextCheckin()
+        //bookingViewModel.getNextCheckin()
 
         bookingViewModel.nextCheckin.observe(
             viewLifecycleOwner,
@@ -216,7 +215,7 @@ class CheckinFragment : Fragment(), BookInterface {
                     cIFlight1_passFullname.text =
                         "${it.flight1_passFirstname} ${it.flight1_passSurname}"
 
-                    cIFlight2_ticketNbr.text ="BEAVER BOOKING No:  ${it.flight2_flightNbr}"
+                    cIFlight2_ticketNbr.text = "BEAVER BOOKING No:  ${it.flight2_flightNbr}"
                     cIFlight2_cabinClass.text = it.flight2_cabinclass
                     cIFlight2_departCity.text = it.flight2_departCity
                     cIFlight2_ariCity.text = it.flight2_ariCity
@@ -525,17 +524,14 @@ class CheckinFragment : Fragment(), BookInterface {
                                 booking.isCheckedin = true
                                 bookingViewModel.updateBooking(booking)
                                 bookingViewModel.getNextCheckin()
-                                TransitionManager.beginDelayedTransition(cICard,AutoTransition())
+                                TransitionManager.beginDelayedTransition(cICard, AutoTransition())
                                 cINoAvl.visibility = View.VISIBLE
-
 
 
                             }
                         }
                     }
-                }
-
-                else{
+                } else {
                     cINoAvl.visibility = View.VISIBLE
                     cIFlight1.visibility = View.GONE
                     cIFlight2.visibility = View.GONE
@@ -549,48 +545,52 @@ class CheckinFragment : Fragment(), BookInterface {
         bookingViewModel.finalBoardingPass.observe(
             viewLifecycleOwner,
             Observer {
+                if (it != null) {
+                    ActivityCompat.requestPermissions(requireActivity(),
+                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        1)
+                    ActivityCompat.requestPermissions(requireActivity(),
+                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                        1)
 
-                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
-                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+                    val boardingPass = it
+                    var gate = boardingPass.gate.toString()
+                    var firstName = boardingPass.passFirstname
+                    var surname = boardingPass.passSurname
+                    var seat = boardingPass.assignedSeat
+                    var destination = boardingPass.destinationIata
+                    var boarding = boardingPass.boardingtime.dropLast(3)
 
-                val boardingPass = it
-                var gate = boardingPass.gate.toString()
-                var firstName = boardingPass.passFirstname
-                var surname = boardingPass.passSurname
-                var seat = boardingPass.assignedSeat
-                var destination = boardingPass.destinationIata
-                var boarding = boardingPass.boardingtime.dropLast(3)
-
-                finalBPgate.setText(gate)
-                finalBPpassFirstname.text = firstName
-                finalBPpassSurname.text = surname
-                finalBPseatNbr.text = seat
-                finalBPdestination.text = destination
-                finalBPboardingTime.text = boarding
+                    finalBPgate.setText(gate)
+                    finalBPpassFirstname.text = firstName
+                    finalBPpassSurname.text = surname
+                    finalBPseatNbr.text = seat
+                    finalBPdestination.text = destination
+                    finalBPboardingTime.text = boarding
 
 
-                finalBoardingPassLayout.startAnimation(fadeIN)
-                finalBoardingPassLayout.visibility = View.VISIBLE
+                    finalBoardingPassLayout.startAnimation(fadeIN)
+                    finalBoardingPassLayout.visibility = View.VISIBLE
 
 
-                finalBPcloseBttn.setOnClickListener {
-                    finalBoardingPassLayout.startAnimation(fadeOUT)
-                    finalBoardingPassLayout.visibility = View.GONE
+                    finalBPcloseBttn.setOnClickListener {
+                        finalBoardingPassLayout.startAnimation(fadeOUT)
+                        finalBoardingPassLayout.visibility = View.GONE
+                    }
+
+                    finalBPsaveBttn.setOnClickListener {
+                        saveBPtoAlbum()
+                        finalBoardingPassLayout.startAnimation(fadeOUT)
+                        finalBoardingPassLayout.visibility = View.GONE
+                    }
                 }
-
-                finalBPsaveBttn.setOnClickListener {
-                    saveBPtoAlbum()
-                    finalBoardingPassLayout.startAnimation(fadeOUT)
-                    finalBoardingPassLayout.visibility = View.GONE
-                }
-
             }
         )
 
         bookingViewModel.boardingpassList.observe(
             viewLifecycleOwner,
             Observer {
-                if(it != null) {
+                if (it != null) {
                     bpAdapter.submitBoardingPassList(it)
                     allBoardingPassesHeader.visibility = View.GONE
                     allBoardingPassesRecycler.visibility = View.VISIBLE
@@ -631,18 +631,12 @@ class CheckinFragment : Fragment(), BookInterface {
          */
 
 
-
-
-
-
-
 //        bookingViewModel.bookingList.observe(
 //            viewLifecycleOwner,
 //            Observer {
 //                fastCheckinRecycler.adapter = FastCheckinAdapter(it,  bookingViewModel, this)
 //            }
 //        )
-
 
 
 //        bookingViewModel.isBoardingPassIssued.
@@ -656,14 +650,13 @@ class CheckinFragment : Fragment(), BookInterface {
 //        }
 
 
-
     }
 
     private fun saveBPtoAlbum() {
-            val bitmap = getScreenShot(binding.finalBoardingPass.completeBoardingCard)
-            if (bitmap != null) {
-                saveMediaToStorage(bitmap)
-            }
+        val bitmap = getScreenShot(binding.finalBoardingPass.completeBoardingCard)
+        if (bitmap != null) {
+            saveMediaToStorage(bitmap)
+        }
     }
 
     private fun getScreenShot(view: View): Bitmap? {
@@ -671,7 +664,9 @@ class CheckinFragment : Fragment(), BookInterface {
         var targetBmp: Bitmap? = null
         var screenshot: Bitmap? = null
         try {
-            screenshot = Bitmap.createBitmap(view.measuredWidth, view.measuredHeight, Bitmap.Config.ARGB_8888)
+            screenshot = Bitmap.createBitmap(view.measuredWidth,
+                view.measuredHeight,
+                Bitmap.Config.ARGB_8888)
             targetBmp = screenshot.copy(Bitmap.Config.ARGB_8888, true)
             var canvas = Canvas(targetBmp)
 
@@ -698,27 +693,30 @@ class CheckinFragment : Fragment(), BookInterface {
                     put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
                     put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
                 }
-                val imageUri: Uri? = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+                val imageUri: Uri? =
+                    resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
                 fos = imageUri?.let { resolver.openOutputStream(it) }
             }
         } else {
-            val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            val imagesDir =
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
             val image = File(imagesDir, filename)
             fos = FileOutputStream(image)
         }
 
         fos?.use {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
-            Toast.makeText(requireContext() , "Boarding pass saved to your album" , Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),
+                "Boarding pass saved to your album",
+                Toast.LENGTH_SHORT).show()
         }
     }
-
 
 
     private fun aisleSeatGenerator(): String {
 
         val aisleLetters = listOf("C", "D")
-        val aisleRow = (24 .. 58)
+        val aisleRow = (24..58)
 
         val generatedAisleSeat = "${aisleLetters.random()}${aisleRow.random()}"
 
@@ -728,7 +726,7 @@ class CheckinFragment : Fragment(), BookInterface {
     private fun middleSeatGenerator(): String {
 
         val middleLetters = listOf("B", "E")
-        val middleRow = (24 .. 58)
+        val middleRow = (24..58)
 
         val generatedMiddleSeat = "${middleLetters.random()}${middleRow.random()}"
 
@@ -738,7 +736,7 @@ class CheckinFragment : Fragment(), BookInterface {
     private fun windowSeatGenerator(): String {
 
         val windowLetters = listOf("A", "F")
-        val windowRow = (24 .. 58)
+        val windowRow = (24..58)
 
         val generatedWindowSeat = "${windowLetters.random()}${windowRow.random()}"
 
@@ -773,6 +771,11 @@ class CheckinFragment : Fragment(), BookInterface {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        bookingViewModel.resetBP()
 
+    }
 
 }
+
