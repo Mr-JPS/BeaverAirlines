@@ -17,21 +17,27 @@ import androidx.navigation.fragment.findNavController
 import com.example.beaverairlines.R
 import com.example.beaverairlines.databinding.FragmentAuthBinding
 
+//THIS FRAGMENT IS PART OF THE LOGIN / SIGN IN PROCEDURE:
 
 class AuthWelcomeFragment : Fragment() {
 
     private lateinit var binding: FragmentAuthBinding
 
 
+
     fun Activity.hideKeyboard(view: View) {
         hideKeyboard(currentFocus ?: View(this))
     }
+
+
 
     fun Context.hideKeyboard(view: View) {
         val inputMethodManager =
             getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,10 +46,10 @@ class AuthWelcomeFragment : Fragment() {
 
         binding = FragmentAuthBinding.inflate(inflater, container, false)
         return binding.root
-
-
-
     }
+
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,10 +72,13 @@ class AuthWelcomeFragment : Fragment() {
         binding.authWelcomeTv.startAnimation(slideInLeft)
         binding.authAboardTv.startAnimation(slideInLeft)
 
+        //A DELAY FOR SHOWING THE ITEM AT TIME:
         Handler().postDelayed(Runnable {
             binding.authCardLayoutCl.visibility = View.VISIBLE
             binding.authCardLayoutCl.startAnimation(fadeIn)
         }, 1000)
+
+
 
         binding.authSignupBttn.setOnClickListener {
 
@@ -77,8 +86,8 @@ class AuthWelcomeFragment : Fragment() {
             findNavController().navigate(AuthWelcomeFragmentDirections.actionAuthFragmentToSigninFragment(false),
                 transition
             )
-
         }
+
 
 
         binding.authLoginBttn.setOnClickListener {
@@ -87,12 +96,7 @@ class AuthWelcomeFragment : Fragment() {
             findNavController().navigate(AuthWelcomeFragmentDirections.actionAuthFragmentToSigninFragment(true),
                 transition
             )
-
         }
-
-
-
-
 
 
     }

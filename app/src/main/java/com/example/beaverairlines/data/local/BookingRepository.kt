@@ -6,18 +6,25 @@ import androidx.lifecycle.MutableLiveData
 import com.example.beaverairlines.data.model.Booking
 
 
+//THIS REPO HANDLES THE STORAGE OF BOOKINGS:
+
 const val TAG = "BookingRepository"
 class BookingRepository(private val  database: BookingDatabase) {
 
+    //IS USED BY AN OBSERVER IN TRIPS FRAGMENT TO SHOW RECENT BOOKINGS:
     val bookingList: LiveData<List<Booking>> = database.bookingDatabaseDao.getAll()
+
 
     private val _currentBooking = MutableLiveData<Booking>()
     val currentBooking: LiveData<Booking>
         get() = _currentBooking
 
+
     val nextCheckin =  MutableLiveData<Booking>()
 
 
+
+    //IS USED TO DETERMINATE THE CHECK AVL CHECKIN:
      suspend fun getNextCheckin(){
         try {
         nextCheckin.postValue(database.bookingDatabaseDao.getNextCheckin())
@@ -26,6 +33,8 @@ class BookingRepository(private val  database: BookingDatabase) {
         }
     }
 
+
+    //INSERTING BOOKINGS:
     suspend fun insert(booking: Booking) {
         try {
             database.bookingDatabaseDao.insert(booking)
@@ -34,6 +43,8 @@ class BookingRepository(private val  database: BookingDatabase) {
         }
     }
 
+
+    //GETTING BOOKINGS:
     fun getBooking(bookingNbr: String) {
         try {
             _currentBooking.postValue(database.bookingDatabaseDao.getById(bookingNbr))
@@ -42,8 +53,7 @@ class BookingRepository(private val  database: BookingDatabase) {
         }
     }
 
-
-
+    //UPDATE BOOKINGS:
     suspend fun updateBooking(booking: Booking) {
         try {
             database.bookingDatabaseDao.update(booking)

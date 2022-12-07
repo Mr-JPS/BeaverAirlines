@@ -8,17 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.beaverairlines.R
 import com.example.beaverairlines.data.model.Booking
 
+
+// THIS ADAPTER MANAGES THE FUNCTIONALITIES FOR SHOWING THE RECENT BOOKING IN THE TRIP FRAGMENT
+
 class BookingsAdapter(
     private var datasetBookings: List<Booking>
-    //,private val reservationNbr: String
-
 ) : RecyclerView.Adapter<BookingsAdapter.ItemViewHolder>(){
 
+
     private val lastPosition: Int = -1
+
 
     fun submitBookingList(new: List<Booking>){
         datasetBookings = new
     }
+
 
 
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view){
@@ -29,8 +33,9 @@ class BookingsAdapter(
         val departDate: TextView = view.findViewById(R.id.tv_recentBookingItem_takeoffDate)
         val returnDate: TextView = view.findViewById(R.id.tv_recentBookingItem_returnDate)
         val passFullname: TextView = view.findViewById(R.id.tv_recentBookingItem_passName)
-
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
@@ -38,6 +43,8 @@ class BookingsAdapter(
 
         return ItemViewHolder(adapterLayout)
     }
+
+
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val booking = datasetBookings[position]
@@ -51,9 +58,9 @@ class BookingsAdapter(
         holder.passFullname.text = "${booking.flight1_passFirstname} ${booking.flight1_passSurname}"
     }
 
+
+
     override fun getItemCount(): Int {
       return datasetBookings.size
     }
-
-
 }

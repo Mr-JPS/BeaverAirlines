@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_splash.view.*
 
+//FRAGMENT FOR SPLASH SCREEN EVENT:
 
 class SplashFragment : Fragment() {
 
@@ -19,11 +20,12 @@ class SplashFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_splash, container, false)
-
         view.splash_image.animate().apply {
             duration = 1100
             rotationXBy(360f)
         }.start()
+
+
 
        Handler().postDelayed(
            {
@@ -35,11 +37,12 @@ class SplashFragment : Fragment() {
            },
            1800,
        )
-
-
     return view
     }
 
+
+
+    //METHOD TO CHECK IF ONBOARDING WAS FINISHED:
     private fun onBoardingFinished(): Boolean{
         val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
         return sharedPref.getBoolean("Finished", false)

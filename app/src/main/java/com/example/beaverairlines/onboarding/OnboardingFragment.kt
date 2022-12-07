@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.beaverairlines.R
+import com.example.beaverairlines.adapter.OnboardingAdapter
 import com.example.beaverairlines.onboarding.screens.Onboarding1
 import com.example.beaverairlines.onboarding.screens.Onboarding2
 import com.example.beaverairlines.onboarding.screens.Onboarding3
 import kotlinx.android.synthetic.main.fragment_onboarding.view.*
+
+//FRAGMENT FOR ONBOARDING LOGIC (VIA VIEW PAGER)
 
 class OnboardingFragment : Fragment() {
 

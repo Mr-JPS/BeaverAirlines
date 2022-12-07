@@ -1,9 +1,11 @@
-package com.example.beaverairlines.onboarding
+package com.example.beaverairlines.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+
+// THIS ADAPTER MANAGES THE FUNCTIONALITIES FOR THE ONBOARDING PROCESS:
 
 class OnboardingAdapter(
     list: ArrayList<Fragment>,
@@ -13,9 +15,11 @@ class OnboardingAdapter(
 
     private val fragmentList : ArrayList<Fragment> = list
 
+
     override fun getItemCount(): Int {
         return fragmentList.size
     }
+    
 
     override fun createFragment(position: Int): Fragment {
         return fragmentList[position]

@@ -3,6 +3,8 @@ package com.example.beaverairlines.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//DATA CLASS FOR BOOKING VALUES IN BOOKING PROCEDURE:
+
 @Entity
 data class Booking(
 

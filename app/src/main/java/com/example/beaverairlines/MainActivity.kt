@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mProgressDialog : Dialog
 
+
+    //KEYBOARD BEHAVIOUR
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         if (currentFocus != null) {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -25,35 +27,29 @@ class MainActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //supportActionBar?.hide()
 
-
-
-
-
+        //REMOVING ACTION BAR:
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.setDecorFitsSystemWindows(false)
         } else {
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-
             )
         }
     }
 
+
+    //SHOWING PROGRESS DIALOG. NOT IN USE.
     fun showProgressDialog(text : String) {
         mProgressDialog = Dialog(this)
-
         mProgressDialog.setContentView(R.layout.diaolog_progress)
-
-        //xml muss ich noch stylen!!!
-        //mProgressDialog.progress_text_tv.text = text
-
         mProgressDialog.show()
     }
 
@@ -62,11 +58,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-//    fun getCurrentUserID() : String {
-//        return FirebaseAuth.getInstance().currentUser!!.uid
-//    }
 
-
+    //METHOD TO SHOW TOAST MSG. NOT IN USE.
     fun showErrorSnackBar(message :String) {
         val snackbar = Snackbar.make(findViewById(android.R.id.content), message,
             Snackbar.LENGTH_LONG)

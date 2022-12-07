@@ -10,15 +10,14 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.beaverairlines.R
 import kotlinx.android.synthetic.main.fragment_second_screen.view.*
 
+//FRAGMENT FOR ONBOARDING (VIA VIEW PAGER)
 
 class Onboarding2 : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_second_screen, container, false)
 
         val slideInLeft = AnimationUtils.loadAnimation(
@@ -38,7 +37,6 @@ class Onboarding2 : Fragment() {
         view.OB_bttn2.setOnClickListener {
             viewPager?.currentItem = 2
         }
-
         return view
     }
 

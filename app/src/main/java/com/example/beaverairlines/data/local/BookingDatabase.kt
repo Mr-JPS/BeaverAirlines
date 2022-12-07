@@ -7,6 +7,8 @@ import androidx.room.RoomDatabase
 import com.example.beaverairlines.data.FinalBoardingPass
 import com.example.beaverairlines.data.model.Booking
 
+//THIS DATABASE HANDLES THE FUNCTINALITY OF FINAL BOARDING PASSES AND BOOKINGS:
+
 @Database(entities = [Booking::class, FinalBoardingPass::class], version = 1)
 abstract class BookingDatabase: RoomDatabase() {
 
@@ -16,6 +18,7 @@ abstract class BookingDatabase: RoomDatabase() {
 
 
 private lateinit var INSTANCE: BookingDatabase
+
 
 fun getDatabase (context: Context): BookingDatabase {
 
@@ -27,7 +30,6 @@ fun getDatabase (context: Context): BookingDatabase {
                 "booking_database"
             )
                 .build()
-
         }
     }
     return INSTANCE

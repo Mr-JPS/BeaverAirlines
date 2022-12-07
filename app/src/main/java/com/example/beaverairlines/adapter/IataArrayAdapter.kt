@@ -10,6 +10,8 @@ import android.widget.TextView
 import com.example.beaverairlines.R
 import com.example.beaverairlines.data.Iata
 
+// THIS ADAPTER MANAGES THE FUNCTIONALITIES FOR MATCHING AIRPORT WITH THEIR DEDICATED CODES:
+
 class IataArrayAdapter(
     private val mContext: Context,
     private val mLayoutResourceId: Int,
@@ -20,20 +22,23 @@ class IataArrayAdapter(
     private val iataCodes: MutableList<Iata> = ArrayList(iata)
     private var allIataCodes: List<Iata> = ArrayList(iata)
 
+
+
     override fun getCount(): Int {
         return iataCodes.size
-
     }
+
+
     override fun getItem(position: Int): Iata {
         return iataCodes[position]
-
     }
-//    override fun getItemId(position: Int): Long {
-//        return iataCodes[position].iata.toLong()
-//    }
+
+
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+
         var convertView = convertView
+
         if (convertView == null) {
             val inflater = (mContext as Activity).layoutInflater
             convertView = inflater.inflate(mLayoutResourceId, parent, false)
@@ -45,9 +50,13 @@ class IataArrayAdapter(
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
         return convertView!!
     }
 
+
+
+    // FILTERING THE IATA CODES FROM THE CSV LIST:
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun convertResultToString(resultValue: Any) :String {

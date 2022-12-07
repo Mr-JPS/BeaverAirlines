@@ -2,6 +2,8 @@ package com.example.beaverairlines.data.model
 
 import com.example.beaverairlines.R
 
+//REPO OF CABIN CLASSES:
+
 class CabinClassSource {
 
     fun loadCabinClass() : List<CabinClass>{

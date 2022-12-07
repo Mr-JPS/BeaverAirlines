@@ -2,6 +2,9 @@ package com.example.beaverairlines.data.model
 
 import com.example.beaverairlines.R
 
+
+//REPO FOR PROVIDING AD IMAGES IN BOOKING FRAGMENT
+
 class AdSource {
 
     fun loadAd() : List<Advertising>{

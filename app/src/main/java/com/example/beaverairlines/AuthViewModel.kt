@@ -23,10 +23,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.security.AccessController.getContext
 
+//VIEW MODEL FOR AUTHENTICATION
+
 const val TAG = "AuthViewModel"
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
-
 
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
@@ -44,6 +45,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
 //    }
 
 
+    //USER DEDICATED DATA REQUEST TO FIREBASE
     var currentUser: FirebaseUser? = null
        get() = auth.currentUser
 
@@ -64,6 +66,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                 }
         }
 
+
+    //GENERATOR FOR USER ID:
     fun userIdGenerator(): String {
         val nbr1 = (0..9).random()
         val nbr2 = (0..9).random()
@@ -77,6 +81,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         return "BA22-$nbr1$nbr2$nbr3$nbr4$nbr5$nbr6$nbr7$nbr8"
     }
 
+
+    //GENERATOR FOR CLUB NUMBER:
     fun mileHighGenerator(): String {
         val nbr1 = (0..9).random()
         val nbr2 = (0..9).random()
@@ -84,13 +90,13 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         val nbr4 = (0..9).random()
         val nbr5 = (0..9).random()
 
-
         return "BMH$nbr1$nbr2$nbr3$nbr4$nbr5-Y22"
 
     }
 
 
 
+    //UNUSED CODE FOR RETRIEVING FIREBASE DATA:
     fun getUserName() {
             db.collection("user").document(auth.currentUser!!.uid)
                 .get()

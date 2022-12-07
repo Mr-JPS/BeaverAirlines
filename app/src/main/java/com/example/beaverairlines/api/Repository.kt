@@ -8,23 +8,33 @@ import com.amadeus.Params
 import com.amadeus.resources.FlightOfferSearch
 import com.example.beaverairlines.data.FlightOffer
 
+//THIS REPO PARSES THE API REQUESTS FROM AMADEUS PROVIDER:
+
 class Repository() {
 
     private val amadeus: Amadeus = Amadeus
         .builder("tUPGrbmz5jnpKGmjCREKHejJs6QhyzJF", "IoXiiCPJ4FdSoePy")
         .build()
 
+
+
     private val _offersParsed = MutableLiveData<MutableList<FlightOffer>>()
     val offersParsed: LiveData<MutableList<FlightOffer>>
         get() = _offersParsed
+
+
 
     private val _status = MutableLiveData<Boolean>(false)
     val status: LiveData<Boolean>
         get() = _status
 
+
+
     private val _started = MutableLiveData<Boolean>(false)
     val started: LiveData<Boolean>
         get() = _started
+
+
 
     suspend fun getFlights(origin: String, destination: String, date: String, adults: Int) {
         _started.postValue(true)
@@ -41,6 +51,8 @@ class Repository() {
         _status.postValue(true)
     }
 
+
+
     private fun parseFlightOffers(offersRaw: List<FlightOfferSearch>){
         val flightOffersParsed: MutableList<FlightOffer> = mutableListOf()
 
@@ -56,6 +68,8 @@ class Repository() {
 
         _offersParsed.postValue(flightOffersParsed)
     }
+
+
 
     fun resetAllValues(){
         _status.value = false

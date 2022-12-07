@@ -5,6 +5,9 @@ import androidx.room.*
 import com.example.beaverairlines.data.FinalBoardingPass
 import com.example.beaverairlines.data.model.Booking
 
+
+//THIS DATABASE HANDLES THE STORAGE OF FINAL BOARDING PASSES:
+
 @Dao
 interface BoardingPassDatabaseDao {
 

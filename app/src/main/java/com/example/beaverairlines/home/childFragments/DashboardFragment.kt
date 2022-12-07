@@ -32,6 +32,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
+//FRAGMENT HANDLING THE COMPLETE DASHBOARD ACTIVITIES:
+
+
 class DashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentDashboardBinding
@@ -57,10 +60,14 @@ class DashboardFragment : Fragment() {
 
     }
 
+
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        //ANIMATION UTILS:
         val slideInRight = AnimationUtils.loadAnimation(
             requireContext(),
             R.anim.slide_in_right)
@@ -70,6 +77,7 @@ class DashboardFragment : Fragment() {
             R.anim.slide_out_right)
 
 
+        //METHOD TO RETRIEVE USER DATA FROM FIREBASE:
         getUserName()
 
         val dbMemberCard = binding.cvHello.DBMileHighCard
@@ -78,24 +86,8 @@ class DashboardFragment : Fragment() {
         val dashScrollview = binding.DashScrollView
         val plane = binding.cvBook.ivPlane2
 
-//        dbArrowBttn.setOnClickListener {
-//
-//            arrowAnimator = ObjectAnimator.ofInt(dbBookCard, View.SCROLL_Y, 0, 250)
-//
-//        }
 
-//        var wasPlanemoved = false
-//
-//        if (!wasPlanemoved){
-//        dashScrollview.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-//
-//             plane.startAnimation(slideInRight)
-//         }
-//        }
-//
-//         wasPlanemoved = true
-
-
+        //CLICK LISTENER TO BE DIRECTED TO TRIPS FRAGMENT TO SEE MEMBER CARD:
         dbMemberCard.setOnClickListener {
             flightViewModel.clubCardClicked.value = true
         }
@@ -103,7 +95,7 @@ class DashboardFragment : Fragment() {
 
         binding.cvBook.ivPlane2.startAnimation(slideInRight)
 
-
+        //VALUES FROM QUICK BOOK CARD FOR BEING HAND OVER TO BOOK FRAGMENT:
         val dBselectDepartureCity: AutoCompleteTextView = binding.cvBook.tvDepartCitySelect
         val dBselectArrivalCity: AutoCompleteTextView = binding.cvBook.tvArriveCitySelect
         val dBarrivalIata: TextView = binding.cvBook.tvIATAarrival
@@ -111,8 +103,9 @@ class DashboardFragment : Fragment() {
         val dBsearchFlightBttn = binding.cvBook.bttnSearch
 
 
-        dBtempIataArrayList = arrayListOf<Iata>()
 
+        //CODE FOR RETRIEVING IATA CODES, MATCHING THE SELECTED AIRPORTS:
+        dBtempIataArrayList = arrayListOf<Iata>()
         val dBiata = flightViewModel.iata
 
         context?.let { ctx ->
@@ -125,8 +118,8 @@ class DashboardFragment : Fragment() {
                 dBarrivalIata.setText(iata?.iata)
                 flightViewModel.ariIata2 = (iata?.iata.toString())
             }
-
         }
+
 
         context?.let { ctx ->
             val iataArrayAdapter2 = IataArrayAdapter(ctx, R.layout.iata_item, dBiata)
@@ -138,15 +131,16 @@ class DashboardFragment : Fragment() {
                 dBdepartureIata.setText(iata2?.iata)
                 flightViewModel.depIata2 = (iata2?.iata.toString())
             }
-
         }
+
 
         dBsearchFlightBttn.setOnClickListener {
             flightViewModel.dBFlightSearchClicked.value = true
-
         }
 
 
+
+        //CODE FOR SHOWING DESTINATION RECYCLERVIEW
         val destinations = DestinationSource().loadDestination()
         binding.destinationRecycler.adapter = DestinationAdapter(destinations)
         binding.destinationRecycler.setHasFixedSize(true)
@@ -154,6 +148,7 @@ class DashboardFragment : Fragment() {
         snapHelper.attachToRecyclerView(binding.destinationRecycler)
 
 
+        //CODE FOR SHOWING ADVERTISINGS RECYCLERVIEW WITH AUTOSCROLL
         val advertising1 = AdSource().loadAd()
         val ad1Recycler = binding.cvAdvertising.adRecycler
         val ad1TimeInSec : Long = 4000
@@ -163,6 +158,7 @@ class DashboardFragment : Fragment() {
         val ad1Adapter = AdvertisingAdapter(advertising1)
         ad1Recycler.adapter = ad1Adapter
         ad1Recycler.setHasFixedSize(true)
+
         val snapHelper2: SnapHelper = PagerSnapHelper()
         snapHelper2.attachToRecyclerView(ad1Recycler)
 
@@ -184,13 +180,10 @@ class DashboardFragment : Fragment() {
             flightViewModel.ciCardClicked.value = true
         }
 
-
-//        val snapHelper: SnapHelper = PagerSnapHelper()
-//        snapHelper.attachToRecyclerView(binding.destinationRecycler)
-
     }
 
 
+    //METHOD TO RETRIEVE USER DATA FROM FIREBASE:
     fun getUserName() {
         db.collection("user").document(auth.currentUser!!.uid)
             .get()
@@ -200,7 +193,6 @@ class DashboardFragment : Fragment() {
                 binding.cvHello.tvUserName.text = userName
             }
     }
-
 
 }
 

@@ -18,6 +18,7 @@ import com.example.beaverairlines.R
 import com.example.beaverairlines.data.model.Advertising
 import kotlinx.android.synthetic.main.book3_card.*
 
+// THIS ADAPTER MANAGES THE FUNCTIONALITIES FOR THE ADs IN THE DASHBOARD FRAGMENT
 
 class AdvertisingAdapter (
     private val dataset: List<Advertising>
@@ -35,12 +36,16 @@ class AdvertisingAdapter (
         val adMainCard: ConstraintLayout = view.findViewById(R.id.AD_mainCard)
     }
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.advertising_item, parent, false)
 
         return ItemViewHolder(adapterLayout)
     }
+
+
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
        val ad = dataset[position]
@@ -69,14 +74,15 @@ class AdvertisingAdapter (
             }
         }
 
+
         holder.detailCloseBttn.setOnClickListener {
             TransitionManager.beginDelayedTransition(holder.adMainCard, AutoTransition())
             adAnimatorOUT.start()
             holder.detailCard.visibility = View.GONE
         }
-
-
     }
+
+
 
     override fun getItemCount(): Int {
         return dataset.size

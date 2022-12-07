@@ -77,6 +77,7 @@ import kotlinx.android.synthetic.main.select_flights.view.payCARDConstraint
 import java.text.SimpleDateFormat
 import java.util.*
 
+//FRAGMENT HANDLING THE COMPLETE BOOKING PROCEDURE:
 
 class BookFragment : Fragment(), BookInterface {
 
@@ -92,7 +93,6 @@ class BookFragment : Fragment(), BookInterface {
 
     private lateinit var iataArrayList: ArrayList<Iata>
     private lateinit var tempIataArrayList: ArrayList<Iata>
-
     private lateinit var paymentCardTransition: Transition
 
     private val auth = FirebaseAuth.getInstance()
@@ -104,13 +104,12 @@ class BookFragment : Fragment(), BookInterface {
     private val bookingViewModel: BookingViewModel by activityViewModels()
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
-
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -120,13 +119,15 @@ class BookFragment : Fragment(), BookInterface {
         firstLoad = true
         binding = FragmentBookBinding.inflate(inflater)
         return binding.root
-
     }
+
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //ANIMATIONS TO BE USED:
         val fadeIN = AnimationUtils.loadAnimation(
             requireContext(),
             R.anim.fade_in_fast)
@@ -135,7 +136,12 @@ class BookFragment : Fragment(), BookInterface {
             requireContext(),
             R.anim.fade_out_fast)
 
+        val slideInRight = AnimationUtils.loadAnimation(
+            requireContext(),
+            R.anim.slide_in_right)
 
+
+        //ADVERTISING PART WITH AUTO SCROLL:
         val ad2Card = binding.ad2Card.AD2
         val advertising2 = Ad2Source().loadAd()
         val ad2Recycler = binding.ad2Card.BookFragmentRecycler
@@ -146,6 +152,7 @@ class BookFragment : Fragment(), BookInterface {
         val ad2Adapter = Ad2Adapter(advertising2)
         ad2Recycler.adapter = ad2Adapter
         ad2Recycler.setHasFixedSize(true)
+
         val snapHelper3: SnapHelper = PagerSnapHelper()
         snapHelper3.attachToRecyclerView(ad2Recycler)
 
@@ -164,20 +171,17 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
+
+        //PART 1 OF BOOKING PROCEDURE:
         flightViewModel.paymentCompleted.value = false
-
-        val slideInRight = AnimationUtils.loadAnimation(
-            requireContext(),
-            R.anim.slide_in_right)
-
-        val airportAdapter = AirportAdapter()
-        //val departureAirport = binding.bigBookCard.cvBookField.tv_departCitySelect.setAdapter(airportAdapter)
 
         val selectDepartureCity: AutoCompleteTextView = view.findViewById(R.id.tv_departCitySelect)
         val selectArrivalCity: AutoCompleteTextView = view.findViewById(R.id.tv_arriveCitySelect)
         val arrivalIata: TextView = view.findViewById(R.id.tv_IATAarrival)
         val departureIata: TextView = view.findViewById(R.id.tv_IATAdeparture)
 
+
+        //OBSERVING IF THE BOOKING REQUEST WAS MADE FROM THE DASHBOARD FRAGMENT:
         flightViewModel.dBFlightSearchClicked.observe(
             viewLifecycleOwner
         ){
@@ -186,6 +190,7 @@ class BookFragment : Fragment(), BookInterface {
                 departureIata.setText(flightViewModel.depIata2)
                 selectArrivalCity.setText(flightViewModel.ariCity2)
                 arrivalIata.setText(flightViewModel.ariIata2)
+
 
                 Handler().postDelayed({
                 TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
@@ -198,21 +203,18 @@ class BookFragment : Fragment(), BookInterface {
                 iv_redlineIndicator.startAnimation(slideInRight)
                 }, 1800)
 
-                flightViewModel.dBFlightSearchClicked.value = false
 
+                flightViewModel.dBFlightSearchClicked.value = false
             }
         }
 
+
+
+        //CODE FOR PARSING IATA CODES MATCHING TO USER INPUT:
         tempIataArrayList = arrayListOf<Iata>()
-
-
         val iata = flightViewModel.iata
-
         tempIataArrayList.addAll(iata)
 
-        //val iataAdapter = IataAdapter(iata)
-        //val iataAdapter2 = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, iata)
-        //selectArrivalCity.setAdapter(iataAdapter2)
 
         context?.let { ctx ->
             val iataArrayAdapter2 = IataArrayAdapter(ctx, R.layout.iata_item, iata)
@@ -223,8 +225,8 @@ class BookFragment : Fragment(), BookInterface {
                 flightViewModel.depCity = (iata2?.name.toString())
                 departureIata.setText(iata2?.iata)
             }
-
         }
+
 
         context?.let { ctx ->
             val iataArrayAdapter = IataArrayAdapter(ctx, R.layout.iata_item, iata)
@@ -235,13 +237,12 @@ class BookFragment : Fragment(), BookInterface {
                 flightViewModel.ariCity = (iata?.name.toString())
                 arrivalIata.setText(iata?.iata)
             }
-
         }
 
 
 
 
-
+        //CODE FOR GETTING ACCESS TO CALENDER VIA DATEPICKER:
         departureDate = view.findViewById(R.id.tv_depDateSelect)
         returnDate = view.findViewById(R.id.tv_arriveDateSelect)
         val calender = Calendar.getInstance()
@@ -260,14 +261,15 @@ class BookFragment : Fragment(), BookInterface {
             updatelabel2(calender)
         }
 
+
         departureDate.setOnClickListener {
             DatePickerDialog(requireContext(),
                 datePicker,
                 calender.get(Calendar.YEAR),
                 calender.get(Calendar.MONTH),
                 calender.get(Calendar.DAY_OF_MONTH)).show()
-
         }
+
 
         returnDate.setOnClickListener {
             DatePickerDialog(requireContext(),
@@ -278,6 +280,8 @@ class BookFragment : Fragment(), BookInterface {
         }
 
 
+
+        //CODE FOR CABIN CLASS SELECTION:
         val cabinClasses = CabinClassSource().loadCabinClass()
         val ccAdapter = CabinClassAdapter(cabinClasses)
         binding.bigBookCard.rvCabinClass.adapter = ccAdapter
@@ -288,22 +292,24 @@ class BookFragment : Fragment(), BookInterface {
         binding.bigBookCard.expandConstraint2.tv_cabinSelectedText.text =
             "Please select a Cabin Class"
 
-        //Hier wird der die vom ccAdapter übergebende "Cabin Class"- Unit aufgerufen:
+
+        //RECEIVING CABIN CLASS UNIT FROM ADAPTER:
         ccAdapter.setOnItemClickListener {
             binding.bigBookCard.expandConstraint2.tv_cabinSelectedText.text = it.title
         }
 
-
+        //VALUES AND CODE FOR PASSENGER COUNTER:
         adultPassengers = view.findViewById(R.id.tv_adultAmount)
         infantPassengers = view.findViewById(R.id.tv_infantAmount)
-
         adultPassengers.text = adultCounter.toString()
         infantPassengers.text = infantCounter.toString()
+
 
         binding.bigBookCard.expandConstraint3.bttn_adultPlus.setOnClickListener {
             adultCounter++
             adultPassengers.text = adultCounter.toString()
         }
+
 
         binding.bigBookCard.expandConstraint3.bttn_adultMinus.setOnClickListener {
             adultCounter--
@@ -313,10 +319,12 @@ class BookFragment : Fragment(), BookInterface {
             adultPassengers.text = adultCounter.toString()
         }
 
+
         binding.bigBookCard.expandConstraint3.bttn_infantPlus.setOnClickListener {
             infantCounter++
             infantPassengers.text = infantCounter.toString()
         }
+
 
         binding.bigBookCard.expandConstraint3.bttn_infantMinus.setOnClickListener {
             infantCounter--
@@ -329,11 +337,10 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
-
+        //CODE FOR ANIMATING CLICK EVENTS:
         binding.bigBookCard.ibArrow1.setOnClickListener {
             if (expandConstraint1.visibility == View.GONE) {
                 TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
-
                 expandConstraint1.visibility = View.VISIBLE
                 iv_planeIndicator.visibility = View.VISIBLE
                 iv_planeIndicator.startAnimation(slideInRight)
@@ -341,14 +348,16 @@ class BookFragment : Fragment(), BookInterface {
                 ib_arrow1.visibility = View.GONE
                 iv_redlineIndicator.visibility = View.VISIBLE
                 iv_redlineIndicator.startAnimation(slideInRight)
+
             } else {
                 TransitionManager.beginDelayedTransition(expandCard, AutoTransition())
                 expandConstraint1.visibility = View.GONE
                 ib_arrow1.visibility = View.GONE
                 ib_arrow1.animate().setDuration(2).rotationBy(108f).start()
-
             }
         }
+
+
 
         binding.bigBookCard.ibArrow2.setOnClickListener {
             if (expandConstraint2.visibility == View.GONE) {
@@ -366,9 +375,10 @@ class BookFragment : Fragment(), BookInterface {
                 expandConstraint2.visibility = View.GONE
                 ib_arrow2.visibility = View.GONE
                 ib_arrow2.animate().setDuration(2).rotationBy(108f).start()
-
             }
         }
+
+
 
         binding.bigBookCard.ibArrow3.setOnClickListener {
             if (expandConstraint3.visibility == View.GONE) {
@@ -385,9 +395,10 @@ class BookFragment : Fragment(), BookInterface {
                 expandConstraint3.visibility = View.GONE
                 ib_arrow3.visibility = View.GONE
                 ib_arrow3.animate().setDuration(2).rotationBy(108f).start()
-
             }
         }
+
+
 
         binding.bigBookCard.ibArrow4.setOnClickListener {
             if (expandConstraint4.visibility == View.GONE) {
@@ -407,7 +418,6 @@ class BookFragment : Fragment(), BookInterface {
                 //binding.constraintBigBookCard.bttn2.visibility = View.GONE
                 ib_arrow4.visibility = View.GONE
                 ib_arrow4.animate().setDuration(2).rotationBy(108f).start()
-
             }
         }
 
@@ -415,34 +425,28 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
-
+        //CODE FOR OPENING THE SEARCH DIALOG INCL. ANIMATIONS:
         binding.constraintBigBookCard.bttn_searchFlights.setOnClickListener {
 
             flightViewModel.depIata = binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
             flightViewModel.ariIata = binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
-
-
-
-
             binding.constraintBigBookCard.bttn2.visibility = View.VISIBLE
+
+
             val scaleBttnX = PropertyValuesHolder.ofFloat(View.SCALE_X, 10f)
             val scaleBttnY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 13f)
             val animatorBttn =
                 ObjectAnimator.ofPropertyValuesHolder(binding.constraintBigBookCard.bttn2,
-                    scaleBttnX,
-                    scaleBttnY)
+                    scaleBttnX, scaleBttnY)
             animatorBttn.duration = 200
-            //animatorS.repeatCount = 1
-            //animatorS.repeatMode = ObjectAnimator.REVERSE
-            //animatorS.interpolator = BounceInterpolator()
             animatorBttn.start()
 
 
+
+            //EARTH ANIMATION:
             val layoutIn = AnimationUtils.loadAnimation(
                 requireContext(),
                 R.anim.bttn_slide_in)
-//                binding.selectFlightsCard.visi
-//                binding.selectFlightsCard.startAnimation(layoutIn)
 
             binding.selectFlightsCard.loadingConstraint.visibility = View.VISIBLE
             binding.selectFlightsCard.loadingConstraint.startAnimation(layoutIn)
@@ -489,110 +493,73 @@ class BookFragment : Fragment(), BookInterface {
             set.start()
 
 
+
+            //DELAY FOR THE UPCOMING ANIMATION:
             Handler().postDelayed({
                 val textIN = AnimationUtils.loadAnimation(
                     requireContext(),
                     R.anim.text_slide_in)
                 textIN.duration = 1000
-
-
 
                 binding.selectFlightsCard.tvLoadingFrom.visibility = View.VISIBLE
                 binding.selectFlightsCard.tvLoadingFrom.startAnimation(textIN)
-
-
                 binding.selectFlightsCard.tvLoadingDep.text = binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString()
                 binding.selectFlightsCard.tvLoadingDep.visibility = View.VISIBLE
                 binding.selectFlightsCard.tvLoadingDep.startAnimation(textIN)
-
                 binding.selectFlightsCard.ivLoadingPlane.visibility = View.VISIBLE
                 binding.selectFlightsCard.ivLoadingPlane.startAnimation(textIN)
-
                 binding.selectFlightsCard.tvLoadingSearchText.visibility = View.VISIBLE
                 binding.selectFlightsCard.tvLoadingSearchText.startAnimation(textIN)
-
-
-
-/*
-            binding.tvLoadingTo.visibility = View.VISIBLE
-            binding.tvLoadingTo.startAnimation(textIN)
-
-            binding.tvLoadingAri.text = binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
-            binding.tvLoadingAri.visibility = View.VISIBLE
-            binding.tvLoadingAri.startAnimation(textIN)
-
-            binding.tvLoadingTo.visibility = View.VISIBLE
-            binding.tvLoadingTo.startAnimation(textIN)
-
-
-            binding.ivLoadingBeaver.visibility = View.VISIBLE
-            binding.ivLoadingBeaver.animate().apply {
-                duration = 1100
-                rotationXBy(360f)
-            }.start()
-
- */
             },800)
 
 
-
+            //DELAY FOR THE UPCOMING ANIMATION:
             Handler().postDelayed({
                 val textIN = AnimationUtils.loadAnimation(
                     requireContext(),
                     R.anim.text_slide_in)
                 textIN.duration = 1000
 
-
                 binding.selectFlightsCard.tvLoadingTo.visibility = View.VISIBLE
                 binding.selectFlightsCard.tvLoadingTo.startAnimation(textIN)
-
                 binding.selectFlightsCard.tvLoadingAri.text = binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString()
                 binding.selectFlightsCard.tvLoadingAri.visibility = View.VISIBLE
                 binding.selectFlightsCard.tvLoadingAri.startAnimation(textIN)
-
                 firstLoad = false
-
             },1000)
 
 
+            //DELAY FOR THE UPCOMING ANIMATION:
             Handler().postDelayed({
                 flightViewModel.status.observe(
                     viewLifecycleOwner,
                     androidx.lifecycle.Observer {
 
                         if (it) {
-
                             val beaverOut = AnimationUtils.loadAnimation(
                                 requireContext(),
                                 R.anim.fade_out)
-                            //beaverOut.duration = 300
-                            //binding.selectFlightsCard.ivLoadingBeaver.startAnimation(beaverOut)
-                            binding.selectFlightsCard.tvLoadingSearchText.startAnimation(beaverOut)
 
-                            //binding.selectFlightsCard.ivLoadingBeaver.visibility = View.GONE
+                            binding.selectFlightsCard.tvLoadingSearchText.startAnimation(beaverOut)
                             binding.selectFlightsCard.tvLoadingSearchText.visibility = View.GONE
 
                             val resultsIN = AnimationUtils.loadAnimation(
                                 requireContext(),
                                 R.anim.text_slide_in_from_bttm)
-                            //resultsIN.duration = 1000
+
                             binding.selectFlightsCard.cvResultsFirst.tv_loadingSearchText2.visibility = View.VISIBLE
                             binding.selectFlightsCard.cvResultsFirst.tv_loadingSearchText2.startAnimation(resultsIN)
                             binding.selectFlightsCard.cvResultsFirst.visibility = View.VISIBLE
-                            binding.selectFlightsCard.cvResultsFirst.startAnimation(
-                                resultsIN)
-                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.visibility =
-                                View.VISIBLE
-                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.startAnimation(
-                                resultsIN)
-
-
-
+                            binding.selectFlightsCard.cvResultsFirst.startAnimation(resultsIN)
+                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.visibility = View.VISIBLE
+                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.startAnimation(resultsIN)
                         }
                     }
                 )
             }, 800)
 
+
+            //OBSERVER FOR HANDLING PROPER UPCOMING ANIMATION:
             flightViewModel.started.observe(
                 viewLifecycleOwner,
                 androidx.lifecycle.Observer {
@@ -607,167 +574,118 @@ class BookFragment : Fragment(), BookInterface {
                                 requireContext(),
                                 R.anim.text_slide_in
                             )
+
+
                             textIN.duration = 1000
 
-
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(
-                                resultsOUT
-                            )
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility =
-                                View.INVISIBLE
-
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(
-                                resultsOUT
-                            )
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingAri.visibility =
-                                View.INVISIBLE
-
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.visibility =
-                                View.INVISIBLE
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.startAnimation(
-                                resultsOUT
-                            )
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(resultsOUT)
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility = View.INVISIBLE
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(resultsOUT)
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingAri.visibility = View.INVISIBLE
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.visibility = View.INVISIBLE
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.startAnimation(resultsOUT)
 
 
                             if (isReturnFlight) {
-                                binding.selectFlightsCard.loadingConstraint.tv_loadingDep.text =
-                                    flightViewModel.ariIata
-                                binding.selectFlightsCard.loadingConstraint.tv_loadingAri.text =
-                                    flightViewModel.depIata
+                                binding.selectFlightsCard.loadingConstraint.tv_loadingDep.text = flightViewModel.ariIata
+                                binding.selectFlightsCard.loadingConstraint.tv_loadingAri.text = flightViewModel.depIata
 
 
                             } else {
-                                binding.selectFlightsCard.loadingConstraint.tv_loadingDep.text =
-                                    flightViewModel.depIata
-                                binding.selectFlightsCard.loadingConstraint.tv_loadingAri.text =
-                                    flightViewModel.ariIata
+                                binding.selectFlightsCard.loadingConstraint.tv_loadingDep.text = flightViewModel.depIata
+                                binding.selectFlightsCard.loadingConstraint.tv_loadingAri.text = flightViewModel.ariIata
                             }
 
 
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingFrom.visibility =
-                                View.VISIBLE
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingFrom.startAnimation(
-                                textIN
-                            )
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingFrom.visibility = View.VISIBLE
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingFrom.startAnimation(textIN)
 
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility =
-                                View.VISIBLE
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(
-                                textIN
-                            )
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility = View.VISIBLE
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(textIN)
 
+                            binding.selectFlightsCard.loadingConstraint.iv_loadingPlane.visibility = View.VISIBLE
+                            binding.selectFlightsCard.loadingConstraint.iv_loadingPlane.startAnimation(textIN)
 
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingTo.visibility = View.VISIBLE
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingTo.startAnimation(textIN)
 
-                            binding.selectFlightsCard.loadingConstraint.iv_loadingPlane.visibility =
-                                View.VISIBLE
-                            binding.selectFlightsCard.loadingConstraint.iv_loadingPlane.startAnimation(
-                                textIN
-                            )
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingAri.visibility = View.VISIBLE
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(textIN)
 
-
-
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingTo.visibility =
-                                View.VISIBLE
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingTo.startAnimation(
-                                textIN
-                            )
-
-
-
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingAri.visibility =
-                                View.VISIBLE
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(
-                                textIN
-                            )
-
-
-                            //Handler().postDelayed({
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.visibility =
-                                View.VISIBLE
-                            binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.startAnimation(
-                                textIN
-                            )
-
-                            //}, 800)
-
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.visibility = View.VISIBLE
+                            binding.selectFlightsCard.loadingConstraint.tv_loadingSearchText.startAnimation(textIN)
 
                             binding.selectFlightsCard.cvResultsFirst.visibility = View.GONE
                             binding.selectFlightsCard.cvResultsFirst.startAnimation(resultsOUT)
 
-                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.visibility =
-                                View.GONE
-                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.startAnimation(
-                                resultsOUT
-                            )
+                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.visibility = View.GONE
+                            binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.startAnimation(resultsOUT)
                         }
                     }
                 }
             )
 
+
+            //OBSERVER FOR CHECKING IF FLIGHTS WERE PARSED:
             flightViewModel.offers.observe(
                 viewLifecycleOwner,
                 androidx.lifecycle.Observer {
                     if (it != null) {
+
                         if (isReturnFlight) {
                             val flightReturnAdapter: FlightReturnAdapter =
-                                FlightReturnAdapter(it,
-                                    flightViewModel.ariIata,
-                                    flightViewModel.depIata,
+                                FlightReturnAdapter(it, flightViewModel.ariIata,flightViewModel.depIata,
                                     this)
                             binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.adapter =
                                 flightReturnAdapter
+
                         } else {
                             val flightSerachAdapter: FlightOfferAdapter =
-                                FlightOfferAdapter(it,
-                                    flightViewModel.depIata,
-                                    flightViewModel.ariIata,
+                                FlightOfferAdapter(it, flightViewModel.depIata, flightViewModel.ariIata,
                                     this)
                             binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.adapter =
                                 flightSerachAdapter
                         }
-
-
                     }
                 }
             )
 
 
+            //METHOD FOR SHOWING FLIGHT RESULTS:
             openFlight()
-
-
-//            flightResultBttnSheetFragment.bttn_letsFly.setOnClickListener{
-//                if (flightResultBttnSheetFragment !=null){
-//                    flightResultBttnSheetFragment.dismiss()
-//                }
-//            }
-
-
         }
     }
 
+
+    //METHODS FOR KEYBOARD BEHAVIOUR:
     private fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
+
     private fun View.showKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
 
+
+
+    //METHOD TO FORMAT DATES:
     private fun updatelabel2(calender: Calendar) {
         val myFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
         returnDate.setText(sdf.format(calender.time))
-
     }
 
     private fun updatelabel(calender: Calendar) {
         val myFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(myFormat, Locale.GERMANY)
         departureDate.setText(sdf.format(calender.time))
-
     }
 
+
+
+    //METHOD FOR SHOWING FLIGHT RESULTS:
     override fun openFlight() {
 
         isReturnFlight = false
@@ -777,10 +695,6 @@ class BookFragment : Fragment(), BookInterface {
             requireContext(),
             R.anim.text_slide_in)
 
-
-
-       // val direct = flightViewModel.offers.value!!.filter { it.stops == 0 }
-
         flightViewModel.getFlights(
             binding.bigBookCard.cvBookField.tv_IATAdeparture.text.toString(),
             binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString(),
@@ -789,40 +703,19 @@ class BookFragment : Fragment(), BookInterface {
         )
 
 
+        //HAND OVER OF DEPARTURE DATE TO VIEWMODEL FOR LATER USAGE:
         flightViewModel.departureDATE = binding.bigBookCard.expandConstraint1.tv_depDateSelect.text.toString()
-
-
-
-
     }
 
+
+
+    //METHOD FOR SHOWING RETURN FLIGHT RESULTS:
     override fun openReturnFlight(flight: FlightOffer, bookingNbr: String) {
         flightViewModel.resetAllValues()
         isReturnFlight = true
 
         flightViewModel.flight1 = flight
         flightViewModel.bookingNbr1 = bookingNbr
-
-/*
-        Handler().postDelayed({
-
-
-        binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.startAnimation(
-            resultsOUT)
-        binding.selectFlightsCard.cvResultsFirst.rv_firstFlightResultsList.visibility =
-            View.GONE
-
-//        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.startAnimation(resultsOUT)
-//        binding.selectFlightsCard.loadingConstraint.tv_loadingDep.visibility = View.GONE
-//
-//        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.startAnimation(resultsOUT)
-//        binding.selectFlightsCard.loadingConstraint.tv_loadingAri.visibility = View.GONE
-        }, 3800)
-
- */
-
-
-
 
         flightViewModel.getFlights(
             binding.bigBookCard.cvBookField.tv_IATAarrival.text.toString(),
@@ -833,21 +726,11 @@ class BookFragment : Fragment(), BookInterface {
 
         flightViewModel.arrivalDATE = binding.bigBookCard.expandConstraint1.tv_arriveDateSelect.text.toString()
         flightViewModel.adultPassenger= adultCounter.toString()
-/*
-
-        val resultsOUT = AnimationUtils.loadAnimation(
-            requireContext(),
-            R.anim.slide_down)
-
-        binding.selectFlightsCard.cvResultsFirst.startAnimation(
-            resultsOUT)
-        binding.selectFlightsCard.cvResultsFirst.visibility =
-            View.GONE
-
- */
-
     }
 
+
+
+    //METHOD FOR PAYMENT PROCEDURE:
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun openPayment(depIata: String, ariIata: String, returnFlight: FlightOffer, returnBookingNbr: String) {
@@ -859,65 +742,58 @@ class BookFragment : Fragment(), BookInterface {
 
         binding.payCard.cvPayCARD.payCARDConstraint.tv_departIATA.text = ariIata
         binding.payCard.cvPayCARD.payCARDConstraint.tv_departCity.setText(flightViewModel.depCity.toString())
-
         binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalIATA1.text = depIata
         binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalCity1.text = flightViewModel.ariCity
-
         binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalIATA2.text = ariIata
         binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalCity2.text = flightViewModel.depCity
-
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_flightNbr1.text =
-            flightViewModel.bookingNbr1
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_adult1.text =
-            "${flightViewModel.adultPassenger} Adult"
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_flightNbr1.text = flightViewModel.bookingNbr1
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_adult1.text = "${flightViewModel.adultPassenger} Adult"
         binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_cabinClass1.text = "ECO Class"
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Date1.text =
-            flightViewModel.departureDATE
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Date1.text = flightViewModel.departureDATE
+
+
 
         if (flight1 != null) {
-            binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Time1.text =
-                flight1.departureTime.dropLast(3)
+            binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Time1.text = flight1.departureTime.dropLast(3)
         }
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Date2.text =
-            flightViewModel.departureDATE
+
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Date2.text = flightViewModel.departureDATE
+
         if (flight1 != null) {
-            binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Time2.text =
-                flight1.arrivalTime.dropLast(3)
+            binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.tv_Time2.text = flight1.arrivalTime.dropLast(3)
         }
+
         if (flight1 != null) {
             binding.payCard.cvPayCARD.payCARDConstraint.tv_price1.text = "EUR ${flight1.price}"
         }
 
+
+
         binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_flightNbr2.text = returnBookingNbr
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_adult2.text =
-            "${flightViewModel.adultPassenger} Adult"
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_adult2.text = "${flightViewModel.adultPassenger} Adult"
         binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_cabinClass2.text = "ECO Class"
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Date3.text =
-            flightViewModel.arrivalDATE
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Time3.text =
-            returnFlight.departureTime.dropLast(3)
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Date4.text =
-            flightViewModel.arrivalDATE
-        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Time4.text =
-            returnFlight.arrivalTime.dropLast(3)
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Date3.text = flightViewModel.arrivalDATE
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Time3.text = returnFlight.departureTime.dropLast(3)
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Date4.text = flightViewModel.arrivalDATE
+        binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.tv_Time4.text = returnFlight.arrivalTime.dropLast(3)
         binding.payCard.cvPayCARD.payCARDConstraint.tv_price2.text = "EUR ${returnFlight.price}"
 
 
-//        binding.payCard.cvPayCARD.payCARDConstraint.bttn_proceedPayment.visibility = View.GONE
+
         val resultsOUT = AnimationUtils.loadAnimation(
             requireContext(),
             R.anim.bttnbar_slide_out)
-//        resultsOUT.duration = 2000
+
 
         val resultsIN = AnimationUtils.loadAnimation(
             requireContext(),
             R.anim.text_slide_in)
-//        resultsIN.duration = 2000
+
 
         val backgroundIN = AnimationUtils.loadAnimation(
             requireContext(),
             R.anim.bttmsheet_slide_in)
-//        backgroundIN.duration = 2000
+
 
 
         binding.selectFlightsCard.cvResultsFirst.startAnimation(resultsOUT)
@@ -925,26 +801,19 @@ class BookFragment : Fragment(), BookInterface {
         binding.selectFlightsCard.loadingConstraint.startAnimation(resultsOUT)
         binding.selectFlightsCard.loadingConstraint.visibility = View.GONE
 
-
-
         binding.payCard.ivCabinCrew.visibility = View.VISIBLE
         binding.payCard.ivCabinCrewCloud.visibility = View.VISIBLE
-
         binding.payCard.ivCabinCrew.startAnimation(resultsIN)
         binding.payCard.ivCabinCrewCloud.startAnimation(resultsIN)
 
-
-
         binding.payCard.cvPayCARD.visibility = View.VISIBLE
         binding.payCard.cvPayCARD.startAnimation(backgroundIN)
-        binding.payCard.cvPayCARD.payCARDConstraint.iv_payFlight_backgroundBttnSheet.visibility =
-            View.VISIBLE
-        binding.payCard.cvPayCARD.payCARDConstraint.iv_payFlight_backgroundBttnSheet.startAnimation(
-            resultsIN)
+        binding.payCard.cvPayCARD.payCARDConstraint.iv_payFlight_backgroundBttnSheet.visibility = View.VISIBLE
+        binding.payCard.cvPayCARD.payCARDConstraint.iv_payFlight_backgroundBttnSheet.startAnimation(resultsIN)
 
 
 
-
+        //DELAY TO HANDLE PROPER ANIMATION ORDER:
         Handler().postDelayed({
             binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight.visibility = View.VISIBLE
             binding.payCard.cvPayCARD.payCARDConstraint.tv_checkYourFlight.startAnimation(resultsIN)
@@ -954,6 +823,7 @@ class BookFragment : Fragment(), BookInterface {
             binding.payCard.cvPayCARD.payCARDConstraint.iv_headerLogo1.startAnimation(resultsIN)
 
 
+            //ANIMATOR SET
             binding.payCard.cvPayCARD.payCARDConstraint.tv_departIATA.visibility = View.VISIBLE
             val cityAnimator1 = ObjectAnimator.ofFloat(
                 binding.payCard.cvPayCARD.payCARDConstraint.tv_departIATA,
@@ -971,12 +841,12 @@ class BookFragment : Fragment(), BookInterface {
             set.start()
 
 
-
             binding.payCard.cvPayCARD.payCARDConstraint.iv_dotLine1.startAnimation(resultsIN)
             binding.payCard.cvPayCARD.payCARDConstraint.iv_dotLine1.visibility = View.VISIBLE
-
-
             binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalIATA1.visibility = View.VISIBLE
+
+
+            //ANIMATOR SET
             val cityAnimator3 = ObjectAnimator.ofFloat(
                 binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalIATA1,
                 View.ROTATION_X,
@@ -999,28 +869,6 @@ class BookFragment : Fragment(), BookInterface {
             binding.payCard.cvPayCARD.payCARDConstraint.iv_dotPlane1.visibility = View.VISIBLE
             binding.payCard.cvPayCARD.payCARDConstraint.tv_price1.visibility = View.VISIBLE
 
-/*
-            binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1.visibility = View.VISIBLE
-            val flight1Rotator = ObjectAnimator.ofFloat(
-                binding.payCard.cvPayCARD.payCARDConstraint.cv_flight1,
-                View.ROTATION_X,
-                0f, 360f)
-            flight1Rotator.duration = 2000
-
-            binding.payCard.cvPayCARD.payCARDConstraint.iv_dotPlane1.visibility = View.VISIBLE
-            val plane1Animator = ObjectAnimator.ofFloat(
-                binding.payCard.cvPayCARD.payCARDConstraint.iv_dotPlane1,
-                View.ROTATION_X,
-                0f, 360f)
-            plane1Animator.duration = 2000
-
-
-            val set3 = AnimatorSet()
-            set3.playTogether(flight1Rotator, plane1Animator)
-            set3.start()
-
-
- */
 
         }, 1000)
 
@@ -1028,9 +876,11 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
-
+        //DELAY TO HANDLE PROPER ANIMATION ORDER IN PAYMENT PROCEDURE:
         Handler().postDelayed({
             binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalIATA2.visibility = View.VISIBLE
+
+            //ANIMATOR SET
             val cityAnimator5 = ObjectAnimator.ofFloat(
                 binding.payCard.cvPayCARD.payCARDConstraint.tv_arrivalIATA2,
                 View.ROTATION_X,
@@ -1049,44 +899,26 @@ class BookFragment : Fragment(), BookInterface {
 
             binding.payCard.cvPayCARD.payCARDConstraint.iv_dotLine2.startAnimation(resultsIN)
             binding.payCard.cvPayCARD.payCARDConstraint.iv_dotLine2.visibility = View.VISIBLE
-
             binding.payCard.cvPayCARD.payCARDConstraint.tv_price2.startAnimation(resultsIN)
             binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.startAnimation(resultsIN)
             binding.payCard.cvPayCARD.payCARDConstraint.iv_dotPlane2.startAnimation(resultsIN)
             binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.visibility = View.VISIBLE
             binding.payCard.cvPayCARD.payCARDConstraint.iv_dotPlane2.visibility = View.VISIBLE
             binding.payCard.cvPayCARD.payCARDConstraint.tv_price2.visibility = View.VISIBLE
-/*
-            binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2.visibility = View.VISIBLE
-            val flight2Rotator = ObjectAnimator.ofFloat(
-                binding.payCard.cvPayCARD.payCARDConstraint.cv_flight2,
-                View.ROTATION_X,
-                0f, 360f)
-            flight2Rotator.duration = 2000
-
-            binding.payCard.cvPayCARD.payCARDConstraint.iv_dotPlane2.visibility = View.VISIBLE
-            val plane2Animator = ObjectAnimator.ofFloat(
-                binding.payCard.cvPayCARD.payCARDConstraint.iv_dotPlane2,
-                View.ROTATION_X,
-                0f, 360f)
-            plane2Animator.duration = 2000
 
 
-            val set5 = AnimatorSet()
-            set5.playTogether(flight2Rotator, plane2Animator)
-            set5.start()
-
- */
-
+            //DELAY WITHIN A DELAY FOR PROPER ANIMATION ORDER:
             Handler().postDelayed({
                 binding.payCard.cvPayCARD.payCARDConstraint.bttn_proceedToPasDetails.startAnimation(resultsIN)
                 binding.payCard.cvPayCARD.payCARDConstraint.bttn_proceedToPasDetails.visibility =View.VISIBLE
-
             }, 800)
+
 
         }, 1800)
 
 
+
+        //CLICK LISTENER PROCESSING TO PASSENGER INPUT PART:
         binding.payCard.cvPayCARD.payCARDConstraint.bttn_proceedToPasDetails.setOnClickListener {
 
             val slideINFade = AnimationUtils.loadAnimation(
@@ -1161,14 +993,9 @@ class BookFragment : Fragment(), BookInterface {
             passportCover.startAnimation(slideINFade)
             pasAdult.visibility = View.VISIBLE
             pasAdult.startAnimation(slideINFade)
-
-//            val adultRotator = ObjectAnimator.ofFloat(
-//                pasAdult,
-//                View.ROTATION_Y,
-//                0f, 360f)
-//            adultRotator.duration = 2000
-
             pasArrow.visibility = View.VISIBLE
+
+            //ANIMATOR SET
             val arrowRotator = ObjectAnimator.ofFloat(
                 pasArrow,
                 View.ROTATION_Y,
@@ -1176,49 +1003,17 @@ class BookFragment : Fragment(), BookInterface {
             arrowRotator.duration = 2000
             arrowRotator.start()
 
-//            val adultArrorSet = AnimatorSet()
-//            adultArrorSet.playTogether(adultRotator, arrowRotator)
-//            adultArrorSet.start()
 
-
-
-
-
+            //CLICK LISTENER TO OPEN PASSPORT CARD:
             pasAdult.setOnClickListener {
 
                 val fadeOUT = AnimationUtils.loadAnimation(
                     requireContext(),
                     R.anim.fade_out_fast)
+
+
                 passportCover.startAnimation(fadeOUT)
                 passportCover.visibility = View.INVISIBLE
-
-/*
-                val passportAnimator1 = ObjectAnimator.ofFloat(passportCover,
-                    View.ROTATION,
-                    -90f)
-
-                val passportAnimator2 = ObjectAnimator.ofFloat(passportCover,
-                    View.TRANSLATION_X,
-                    30f)
-
-                val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 3f)
-                val scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 3f)
-
-                val passportAnimator3 =
-                    ObjectAnimator.ofPropertyValuesHolder(passportCover,
-                        scaleX,
-                        scaleY)
-
-
-                val passportCoverAnimset = AnimatorSet()
-                    passportCoverAnimset.playTogether(passportAnimator1,
-                    passportAnimator2,
-                    passportAnimator3)
-                    passportCoverAnimset.start()
-
-
- */
-
                 passportCard.visibility = View.VISIBLE
                 passportCard.startAnimation(resultsIN)
                 passportBackground.visibility = View.VISIBLE
@@ -1230,17 +1025,19 @@ class BookFragment : Fragment(), BookInterface {
                 pasArrow.visibility = View.INVISIBLE
                 pasHeader6.visibility = View.INVISIBLE
 
+
+                //DELAY FOR PROPER ANIMATION ORDER:
                 Handler().postDelayed({
-                val passportCardAnim = ObjectAnimator.ofFloat(passportCard, View.TRANSLATION_Y,
+                    val passportCardAnim = ObjectAnimator.ofFloat(passportCard, View.TRANSLATION_Y,
                     -640f)
-                passportCardAnim.duration = 800
-                passportCardAnim.start()
-                it.showKeyboard()
+                    passportCardAnim.duration = 800
+                    passportCardAnim.start()
+                    it.showKeyboard()
 
                 }, 800)
 
 
-
+                //CLICK LISTENER WHEN INPUT IS DONE:
                 bttnInputDone.setOnClickListener {
                     if (validatePasInput(name,
                             surname,
@@ -1252,24 +1049,21 @@ class BookFragment : Fragment(), BookInterface {
                             gender))
                     {
 
+                        //ANIMATOR SET FOR PASSPORT CARD MOVEMENT:
                         val passportCardAnim2 = ObjectAnimator.ofFloat(passportCard, View.TRANSLATION_Y,
                             -640f,0f)
+
                         passportCardAnim2.duration = 200
                         passportCardAnim2.start()
-
-
-
                         passportNbr2.text = passportNbr.text.toString()
                         passportNbr2.visibility = View.VISIBLE
-
-                        passportFooter.text =
-                            "***${passportNbr.text.toString()}***${surname.text.toString()}***${name.text.toString()}***" +
-                                    "***********************************************************************"
+                        passportFooter.text = "***${passportNbr.text.toString()}***${surname.text.toString()}***${name.text.toString()}***" +
+                                              "***********************************************************************"
                         passportFooter.visibility = View.VISIBLE
 
 
+                        //DELAY FOR PROPER ANIMATION OF STAMP:
                         Handler().postDelayed({
-
                             val fadeINfast = AnimationUtils.loadAnimation(
                                 requireContext(),
                                 R.anim.fade_in_fast)
@@ -1278,14 +1072,14 @@ class BookFragment : Fragment(), BookInterface {
                             visaStamp.startAnimation(fadeINfast)
                         }, 1000)
 
+
+
+                        //ANIMATOR WITHIN DELAY SET FOR PASSPORT CARD MOVEMENT AND VALUES
                         Handler().postDelayed({
-
-
                             passportCard.startAnimation(resultsOUT)
                             passportBackground.startAnimation(resultsOUT)
                             passportBackground.visibility = View.GONE
                             passportCard.visibility = View.GONE
-
                             passportCover.startAnimation(resultsIN)
                             passportCover.visibility = View.VISIBLE
                             pasHeader6.visibility = View.VISIBLE
@@ -1304,7 +1098,7 @@ class BookFragment : Fragment(), BookInterface {
                         }, 3800)
 
 
-
+                        //CHECKBOX TO SAVE PASSPORT INPUT TO FIREBASE AND MAKE IT ACCESSIBLE IN TRIPS FRAGMENT:
                         savePassport.setOnCheckedChangeListener { _, isChecked ->
 
                             db.collection("user").document(auth.currentUser!!.uid)
@@ -1312,9 +1106,10 @@ class BookFragment : Fragment(), BookInterface {
                                 .addOnSuccessListener {
 
                                    val currentUserEmail = it.getString("email")
-                                    val currentUserMileHigh = it.getString("mileHighClubNbr")
+                                   val currentUserMileHigh = it.getString("mileHighClubNbr")
 
 
+                            //UPDATING FIREBASE STORAGE WITH USER INPUT:
                             val updateUser = User(
                                 fullName = "${name.text} ${surname.text}",
                                 firstName = name.text.toString(),
@@ -1328,13 +1123,13 @@ class BookFragment : Fragment(), BookInterface {
                                 email = currentUserEmail.toString(),
                                 mileHighClubNbr = currentUserMileHigh.toString())
 
-
                             authViewModel.updateUser(updateUser)
                             flightViewModel.passportSaved.value = true
                         }
                     }
 
 
+                        //CLICK LISTENER TO PROCEED TO PAYMENT:
                         bttnProceedToCheckout.setOnClickListener {
                             pasBackground.startAnimation(resultsOUT)
                             pasHeader1.startAnimation(resultsOUT)
@@ -1366,9 +1161,7 @@ class BookFragment : Fragment(), BookInterface {
                             footer.visibility = View.GONE
 
 
-//                        passengerInputCard.visibility = View.GONE
-//                        passengerInputCard.startAnimation(resultsOUT)
-
+                            //METHOD TO HANDLE PAYMENT PROCEDURE:
                             openCheckout()
                         }
 
@@ -1382,7 +1175,7 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
-
+    //METHOD TO VALIDATE PASSPORT INPUT:
     private fun validatePasInput(
         name: EditText?,
         surname: EditText?,
@@ -1397,64 +1190,57 @@ class BookFragment : Fragment(), BookInterface {
         return when {
             TextUtils.isEmpty(name?.text.toString()) -> {
                 showErrorSnackBar("Please enter your first name")
-
                 false
             }
             TextUtils.isEmpty(surname?.text.toString()) -> {
                 showErrorSnackBar("Please enter your surname")
-
                 false
             }
             TextUtils.isEmpty(passportNbr?.text.toString()) -> {
                 showErrorSnackBar("Please enter your passport number ")
-
                 false
             }
             TextUtils.isEmpty(country?.text.toString()) -> {
                 showErrorSnackBar("Please enter your origin country")
-
                 false
             }
             TextUtils.isEmpty(nationality?.text.toString()) -> {
                 showErrorSnackBar("Please enter your nationality")
-
                 false
             }
             TextUtils.isEmpty(birthday?.text.toString()) -> {
                 showErrorSnackBar("Please enter your day of birth")
-
                 false
             }
             TextUtils.isEmpty(birthCity?.text.toString()) -> {
                 showErrorSnackBar("Please enter your city of birth")
-
                 false
             }
             TextUtils.isEmpty(gender?.text.toString()) -> {
                 showErrorSnackBar("Please enter your gender")
-
                 false
             }
             else -> {
                 true
             }
         }
-
     }
 
 
+
+    //METHOD TO SHOW POSSIBLE ERROR MSG
     private fun showErrorSnackBar(message: String) {
             val snackbar = Snackbar.make(requireActivity().findViewById(android.R.id.content), message,
                 Snackbar.LENGTH_LONG)
 
             val snackBarView = snackbar.view
             snackBarView.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.red_700))
-
             snackbar.show()
     }
 
 
 
+    //METHOD FOR FINAL PAYMENT:
     @SuppressLint("SetTextI18n", "SuspiciousIndentation")
     private fun openCheckout() {
 
@@ -1462,7 +1248,6 @@ class BookFragment : Fragment(), BookInterface {
         val flightOneBookingNbr = flightViewModel.bookingNbr1
         val flightTwo = flightViewModel.flight2
         val flightTwoBookingNbr = flightViewModel.bookingNbr2
-
 
 
         val fadeIN = AnimationUtils.loadAnimation(
@@ -1479,6 +1264,7 @@ class BookFragment : Fragment(), BookInterface {
             R.anim.bttnbar_slide_out)
 
 
+        //ASSIGNING VALUES:
         val surname = binding.passengerInputCard.passportCARD.tv_pasSurname
         val name = binding.passengerInputCard.passportCARD.tv_pasName
         val passportNbr = binding.passengerInputCard.passportCARD.tv_pasPassportNbr1
@@ -1575,10 +1361,10 @@ class BookFragment : Fragment(), BookInterface {
         val footer = binding.paymentSummaryCard.cvPayCARD.expandConstraint3Payment.tv_footerPayment
         val payNowBttn = binding.paymentSummaryCard.cvPayCARD.expandConstraint3Payment.bttn_finalPay
 
-
         val paymentDoneConstraint = binding.paymentSummaryCard.cvPayCARD.paymentDONEConstraint
         val paymentDoneVideo =  binding.paymentSummaryCard.cvPayCARD.paymentDONEConstraint.paymentDoneVideo
         val goToBookingBttn = binding.paymentSummaryCard.cvPayCARD.paymentDONEConstraint.bttn_goToMyBookings
+
 
         flight1From.text = flightViewModel.depCity
         flight1To.text = flightViewModel.ariCity
@@ -1602,32 +1388,32 @@ class BookFragment : Fragment(), BookInterface {
         time2Two.text = flightTwo?.departureTime
         cabin2.text = "ECO Class"
 
+
+        //FUNCTION TO DO SIMPLE MATH:
         fun roundCharges (doubleNbr: Double): String {
             return "%.2f".format(doubleNbr)
         }
+
+
+        //CODE TO CALCULATE FINAL PRICE:
         val charge1CalcA = (flightOne?.price)?.toDouble()
         val charge1CalcB = (flightTwo?.price)?.toDouble()
         val charge1CalcResult = (charge1CalcA!!.plus(charge1CalcB!!))
         charges1Price.text = "EUR ${roundCharges(charge1CalcResult)}"
-        //charges1Price.text = "EUR ${charge1CalcResult.toString()}"
 
         val charge2Calc = charge1CalcResult * 0.13
-
         charges2Price.text = "EUR ${roundCharges(charge2Calc)}"
-        //charges2Price.text = "EUR ${charge2Calc.toString()}"
 
         val totalCalc = charge1CalcResult + charge2Calc
-
         grandTotalPrice.text = "EUR ${roundCharges(totalCalc)}"
-        //grandTotalPrice.text = "EUR ${totalCalc.toString()}"
 
 
 
+        //SHOWING "RECEIPT" LAYOUT OF PAYMENT:
         background.visibility = View.VISIBLE
         background.startAnimation(resultsIN)
         paymentCard.visibility = View.VISIBLE
         paymentCard.startAnimation(resultsIN)
-
 
         header1.visibility = View.VISIBLE
         header1.startAnimation(resultsIN)
@@ -1640,6 +1426,7 @@ class BookFragment : Fragment(), BookInterface {
         price1.visibility = View.VISIBLE
         flight2.visibility = View.VISIBLE
         price2.visibility = View.VISIBLE
+
 
 
         val flight1Animator = ObjectAnimator.ofFloat(
@@ -1656,15 +1443,17 @@ class BookFragment : Fragment(), BookInterface {
         flight1Set.playSequentially(flight1Animator, price1Animator)
         flight1Set.start()
 
+
         flight1dep.visibility = View.VISIBLE
         flight1dep.startAnimation(resultsIN)
         arrow1.visibility = View.VISIBLE
         arrow1.startAnimation(resultsIN)
         flight1ari.visibility = View.VISIBLE
         flight1ari.startAnimation(resultsIN)
-
         flight2.visibility = View.VISIBLE
         price2.visibility = View.VISIBLE
+
+
 
         val flight2Animator = ObjectAnimator.ofFloat(
             flight2,
@@ -1680,74 +1469,69 @@ class BookFragment : Fragment(), BookInterface {
         flight2Set.playSequentially(flight2Animator, price2Animator)
         flight2Set.start()
 
+
         flight2dep.visibility = View.VISIBLE
         flight2dep.startAnimation(resultsIN)
         arrow2.visibility = View.VISIBLE
         arrow2.startAnimation(resultsIN)
         flight2ari.visibility = View.VISIBLE
         flight2ari.startAnimation(resultsIN)
-
         line1.visibility = View.VISIBLE
         line1.startAnimation(resultsIN)
-
         charges1.visibility = View.VISIBLE
         charges1.startAnimation(resultsIN)
         charges1Price.visibility = View.VISIBLE
         charges1Price.startAnimation(resultsIN)
-
         charges2.visibility = View.VISIBLE
         charges2.startAnimation(resultsIN)
         charges2Price.visibility = View.VISIBLE
         charges2Price.startAnimation(resultsIN)
-
         grandTotal.visibility = View.VISIBLE
         grandTotal.startAnimation(resultsIN)
         grandTotalPrice.visibility = View.VISIBLE
         grandTotalPrice.startAnimation(resultsIN)
-
         line2.visibility = View.VISIBLE
         line2.startAnimation(resultsIN)
-
         frame.visibility = View.VISIBLE
         frame.startAnimation(fadeIN)
         proceedBttn.visibility = View.VISIBLE
         proceedBttn.startAnimation(fadeIN)
 
 
+
+        //CLICK LISTENER TO PROCEED TO CREDIT CARD INPUT:
         proceedBttn.setOnClickListener {
             TransitionManager.beginDelayedTransition(pasExpand, AutoTransition())
             proceedBttn.visibility = View.GONE
             frame.visibility = View.GONE
-
             flight1From.visibility = View.GONE
             arrow1.visibility = View.GONE
             flight1To.visibility = View.GONE
             flight1.visibility = View.GONE
             price1.visibility = View.GONE
-
             flight2From.visibility = View.GONE
             arrow2.visibility = View.GONE
             flight2To.visibility = View.GONE
             flight2.visibility = View.GONE
             price2.visibility = View.GONE
 
+
             payExpand1.visibility = View.VISIBLE
-//            payExpand1.startAnimation(resultsIN)
             payExpand2.visibility = View.VISIBLE
-//            payExpand2.startAnimation(resultsIN)
 
-//            ccBack.visibility = View.GONE
-//            ccFront.visibility = View.GONE
-//            ccInputDone.visibility = View.GONE
 
-//            passengerDetailCard.visibility = View.VISIBLE
             passengerDetailName.text = "${name.text} ${surname.text}"
             passengerDetailPassportNbr.text = passportNbr.text.toString()
 
             val reservationNbr =  "${flightOneBookingNbr}/${flightTwoBookingNbr.drop(3)}"
             ticketReservationNbr.text = reservationNbr
+
+
+            //VIEW MODEL RECEIVES RESERVATION NBR:
             bookingViewModel.reservationNbr = reservationNbr
 
+
+            //ANIMATIONSET:
             passengerDetailArrow1.setOnClickListener {
                 val arrowRotatorUP = ObjectAnimator.ofFloat(
                     passengerDetailArrow1,
@@ -1771,7 +1555,7 @@ class BookFragment : Fragment(), BookInterface {
                     ccFront.visibility = View.GONE
                     ccInputDone.visibility = View.GONE
 
-            } else {
+                  } else {
                     TransitionManager.beginDelayedTransition(passengerDetailCard, AutoTransition())
                     passengerDetailPassportNbr.visibility = View.GONE
                     header4.visibility = View.GONE
@@ -1781,12 +1565,12 @@ class BookFragment : Fragment(), BookInterface {
              }
 
 
-
             passengerCCCard.visibility = View.VISIBLE
 //            header6.visibility = View.VISIBLE
 
 
 
+            //ANIMATIONSET FOR ROTATION OVERVIEW CARDS:
             passengerDetailArrow2.setOnClickListener {
                 val arrowRotatorUP2 = ObjectAnimator.ofFloat(
                     passengerDetailArrow2,
@@ -1806,56 +1590,26 @@ class BookFragment : Fragment(), BookInterface {
                     arrowRotatorUP2.start()
                     ccFront.visibility = View.VISIBLE
                     ccBack.visibility = View.VISIBLE
-//                    ccBack.visibility = View.VISIBLE
-//                    ccFront.visibility = View.VISIBLE
                     ccInputDone.visibility = View.VISIBLE
                     header4.visibility = View.GONE
                     passengerDetailPassportNbr.visibility = View.GONE
 
+
+
                     ccInputDone.setOnClickListener {
                         if (checkCCinput(ccBackCardNbr,ccBackCvv, ccBackHolder, ccBackValid)){
-//
-//                            var cardNbr1 = ccBackCardNbr.text.get(1)
-//                            var cardNbr2 = ccBackCardNbr.text.get(2)
-//                            var cardNbr3 = ccBackCardNbr.text.get(3)
-//                            var cardNbr4 = ccBackCardNbr.text.get(4)
-//                            var cardNbr5 = ccBackCardNbr.text.get(5)
-//                            var cardNbr6 = ccBackCardNbr.text.get(6)
-//                            var cardNbr7 = ccBackCardNbr.text.get(7)
-//                            var cardNbr8 = ccBackCardNbr.text.get(8)
-//                            var cardNbr9 = ccBackCardNbr.text.get(8)
-//                            var cardNbr10 = ccBackCardNbr.text.get(10)
-//                            var cardNbr11 = ccBackCardNbr.text.get(11)
-//                            var cardNbr12 = ccBackCardNbr.text.get(12)
-//                            var cardNbr13 = ccBackCardNbr.text.get(13)
-//                            var cardNbr14 = ccBackCardNbr.text.get(14)
-//                            var cardNbr15 = ccBackCardNbr.text.get(15)
-//                            var cardNbr16 = ccBackCardNbr.text.get(16)
-//
-//                            var cardBlock = "${cardNbr1}${cardNbr2}${cardNbr3}${cardNbr4}     " +
-//                                            "${cardNbr5}${cardNbr6}${cardNbr7}${cardNbr8}     " +
-//                                            "${cardNbr9}${cardNbr10}${cardNbr11}${cardNbr12}    " +
-//                                            "${cardNbr13}${cardNbr14}${cardNbr15}${cardNbr16}"
-//
-//                         }
-//                            if (cardBlock != null) {
-//
-//                            } else {ccFrontCardNbr.setText(ccBackCardNbr.text)
-//                            }
-
-
                             ccFrontCardNbr.setText(ccBackCardNbr.text)
-                            //HIER NOCH EINBAUEN DASS DIE ZAHLEN MIT ABSTAND ANGEZEIGT WERDEN!!
-
                             val cardHolderName = ccBackHolder.text
                             ccFrontHolder.setText(cardHolderName)
                             ccFrontValid.setText(ccBackValid.text)
 
 
+                            //ANIMATION OF CREDIT CARD:
                             var front_anim: AnimatorSet
                             var back_anim: AnimatorSet
                             var bttnFront_anim: AnimatorSet
                             var bttnBack_anim: AnimatorSet
+
                             var isFront = false
                             val scaleCam: Float = requireContext().resources.displayMetrics.density
 
@@ -1895,108 +1649,63 @@ class BookFragment : Fragment(), BookInterface {
                                     bttnFront_anim.start()
                                     ccInputContinue.visibility = View.VISIBLE
                                     isFront = true
-
                                 }
 
 
                             if (ccInputDone.text == "Change Credit Card"){
                                 TransitionManager.beginDelayedTransition(pasExpand, AutoTransition())
                                 payExpand3.visibility = View.VISIBLE
-//                                payExpand3.startAnimation(resultsIN)
+
                             } else {
-//                                payExpand3.startAnimation(resultsOUT)
                                 TransitionManager.beginDelayedTransition(pasExpand, AutoTransition())
                                 payExpand3.visibility = View.GONE
                             }
 
 
 
-                        }else {
+                        } else {
                             showErrorSnackBar("Please provide all fields to continue the payment procedure")
                         }
                     }
-
 
                 } else {
                     TransitionManager.beginDelayedTransition(passengerCCCard, AutoTransition())
                     arrowRotatorDOWN2.start()
                     ccFront.visibility = View.GONE
                     ccBack.visibility = View.GONE
-//                    ccBack.visibility = View.VISIBLE
-//                    ccFront.visibility = View.VISIBLE
                     ccInputDone.visibility = View.GONE
                     ccInputContinue.visibility = View.GONE
                     TransitionManager.beginDelayedTransition(passengerCCCard, AutoTransition())
                     payExpand3.visibility = View.GONE
-
                 }
 
-                ccInputContinue.setOnClickListener {
-                    TransitionManager.beginDelayedTransition(passengerCCCard, AutoTransition())
-                    arrowRotatorDOWN2.start()
+                    //CLICK LISTENER TO CONTINUE FINAL PAYMENT:
+                    ccInputContinue.setOnClickListener {
+                        TransitionManager.beginDelayedTransition(passengerCCCard, AutoTransition())
+                        arrowRotatorDOWN2.start()
 
-                    ccFront.visibility = View.GONE
-                    ccBack.visibility = View.GONE
-//                    ccBack.visibility = View.VISIBLE
-//                    ccFront.visibility = View.VISIBLE
-                    ccInputDone.visibility = View.GONE
-                    ccInputContinue.visibility = View.GONE
-
-                    ccFrontBackground2.visibility = View.VISIBLE
-
-
-
-//                    val params: LayoutParams = ccFrontBackground.getLayoutParams()
-//                    params.height = 50
-//                    params.width = 100
-//                    ccFrontBackground.setLayoutParams(params)
-
-//                    ccFrontBackground.getLayoutParams().height = 10
-//                    ccFrontBackground.getLayoutParams().width = 10
-//                    ccFrontBackground.requestLayout()
-//                    ccFrontBackground.setScaleType(ImageView.ScaleType.CENTER_INSIDE)
+                        ccFront.visibility = View.GONE
+                        ccBack.visibility = View.GONE
+                        ccInputDone.visibility = View.GONE
+                        ccInputContinue.visibility = View.GONE
+                        ccFrontBackground2.visibility = View.VISIBLE
+                        payExpand3.visibility = View.VISIBLE
 
 
 
-
-
-                    /*
-                    val scaleCardX = PropertyValuesHolder.ofFloat(View.SCALE_X, -5f)
-                    val scaleCardY = PropertyValuesHolder.ofFloat(View.SCALE_Y, -5f)
-                    val animatorCard =
-                        ObjectAnimator.ofPropertyValuesHolder(ccFront, scaleCardX, scaleCardY)
-                    animatorCard.duration = 200
-                    //animatorS.repeatCount = 1
-                    //animatorS.repeatMode = ObjectAnimator.REVERSE
-                    //animatorS.interpolator = BounceInterpolator()
-                    animatorCard.start()
-
-                     */
-
-
-
-//                    TransitionManager.beginDelayedTransition(pasExpand, AutoTransition())
-
-//                    ccFrontBackground.visibility = View.GONE
-//                    ccFrontCardNbr.visibility = View.GONE
-//                    ccFrontHolder.visibility = View.GONE
-//                    ccFrontValid.visibility = View.GONE
-                    payExpand3.visibility = View.VISIBLE
-
+                    //CLICK LISTENER TO CONTINUE FINAL PAYMENT:
                     payNowBttn.setOnClickListener {
                         TransitionManager.beginDelayedTransition(pasExpand, AutoTransition())
                         pasExpand.visibility = View.GONE
-
                         paymentDoneConstraint.visibility = View.VISIBLE
                         paymentDoneConstraint.startAnimation(resultsIN)
 
-
+                        //METHOD TO PLAY VIDEO CLIP:
                         setUpRawVideo(paymentDoneVideo)
 
 
-
+                        //CLICK LISTENER TO MOVE FROM BOOK FRAGMENT TO TRIPS FRAGMENT:
                         goToBookingBttn.setOnClickListener {
-
                             val booking_ticketReservationNbr = ticketReservationNbr.text
 
                             val booking_flight1_flightNbr = flightNbr1.text
@@ -2033,6 +1742,7 @@ class BookFragment : Fragment(), BookInterface {
 
 
 
+                            //CREATING A NEW BOOKING INSTANCE TO PASS VALUES TO VIEWMODEL:
                             val newBooking = Booking(
                                 booking_ticketReservationNbr.toString(),
                                 booking_flight1_flightNbr.toString(),
@@ -2066,18 +1776,12 @@ class BookFragment : Fragment(), BookInterface {
                             )
 
                             bookingViewModel.insertBooking(newBooking)
-
                             flightViewModel.paymentCompleted.value = true
-
                             binding.paymentSummaryCard.videoPreview.visibility = View.VISIBLE
 
-//                            binding.paymentSummaryCard.cvPayCARD.paymentMainCard.visibility = View.GONE
-//                            passengerInputCard.visibility = View.GONE
-//                            binding.payCard.PCConstraint.visibility = View.GONE
-//                            binding.selectFlightsCard.SFCard.visibility = View.GONE
-//                            binding.bttn2.visibility = View.GONE
-//                            binding.bigBookCard.expandCard.visibility = View.GONE
 
+
+                            //RESETTING BOOKING PROCEDURE:
                             resetBooking()
 
 
@@ -2094,13 +1798,13 @@ class BookFragment : Fragment(), BookInterface {
     }
 
 
-
-    private fun resetBooking(
-
-    ) {
-
+    //RESETTING BOOKING PROCEDURE:
+    private fun resetBooking() {
     }
 
+
+
+    //HANDLING VIDEO PLAYBACK:
     private fun setUpRawVideo(paymentDoneVideo: VideoView) {
         val mediaController = MediaController(requireContext())
         val videoContent : Uri = Uri.parse("android.resource://" + requireActivity().packageName + "/"+ R.raw.target_transfer)
@@ -2110,9 +1814,11 @@ class BookFragment : Fragment(), BookInterface {
         mediaController.setAnchorView(paymentDoneVideo)
         paymentDoneVideo.requestFocus()
         paymentDoneVideo.start()
-
     }
 
+
+
+    //HANDLING CREDIT CARD ANIMATION:
     private fun ccFlipAnim(ccFront: CardView, ccBack: CardView, ccInputDone: Button) {
         var front_anim: AnimatorSet
         var back_anim: AnimatorSet
@@ -2144,6 +1850,9 @@ class BookFragment : Fragment(), BookInterface {
         }
     }
 
+
+
+    //METHOD TO CHECK CREDIT CARD INFO:
     private fun checkCCinput(
         ccBackCardNbr: EditText,
         ccBackCvv: EditText,
@@ -2154,32 +1863,24 @@ class BookFragment : Fragment(), BookInterface {
         return when {
             TextUtils.isEmpty(ccBackCardNbr.text.toString()) -> {
                 showErrorSnackBar("Please enter a credit card number")
-
                 false
             }
             TextUtils.isEmpty(ccBackCvv.text.toString()) -> {
                 showErrorSnackBar("Please enter the credit card's CVV code")
-
                 false
             }
             TextUtils.isEmpty(ccBackHolder.text.toString()) -> {
                 showErrorSnackBar("Please enter the credit card's holder name")
-
                 false
             }
             TextUtils.isEmpty(ccBackValid.text.toString()) -> {
                 showErrorSnackBar("Please enter the credit card's expiration date")
-
                 false
             } else -> {
                 true
             }
         }
     }
-
-
-
-
 
 
 

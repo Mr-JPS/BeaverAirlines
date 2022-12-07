@@ -3,6 +3,8 @@ package com.example.beaverairlines.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//DATA CLASS FOR FINAL BOARDING PASSES IN CHECKIN PROCEDURE:
+
 @Entity
 data class FinalBoardingPass(
 

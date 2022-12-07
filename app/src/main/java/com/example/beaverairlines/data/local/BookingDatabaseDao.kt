@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.beaverairlines.data.model.Booking
 
+//THIS DATABASE HANDLES THE STORAGE OF BOOKINGS:
+
 @Dao
 interface BookingDatabaseDao {
 

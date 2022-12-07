@@ -17,6 +17,9 @@ import com.example.beaverairlines.data.FinalBoardingPass
 import com.example.beaverairlines.data.model.Booking
 import com.example.beaverairlines.utils.BookInterface
 
+// THIS ADAPTER MANAGES THE FUNCTIONALITIES ISSUING THE BOARDING PASSES IN THE BOOKING FRAGMENT
+//NOT IN USE AT THIS TIME
+
 class FastCheckinAdapter(
     private var datasetBookings: List<Booking>,
     private val bookingViewModel: BookingViewModel,
@@ -45,8 +48,9 @@ class FastCheckinAdapter(
         val seatLetter: TextView = view.findViewById(R.id.tv_checkin_RV_seatLetter)
 //        val seatNbr: TextView = view.findViewById(R.id.tv_checkin_RV_seatNbr)
         val issueBoardingPass: Button = view.findViewById(R.id.bttn_checkin_RV_issueBoardingpass)
-
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
@@ -55,12 +59,14 @@ class FastCheckinAdapter(
         return ItemViewHolder(adapterLayout)
     }
 
+
+
     @SuppressLint("SuspiciousIndentation")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val booking = datasetBookings[position]
 
 
-//        holder.ticketNbr.text = booking.ticketReservationNbr
+//      holder.ticketNbr.text = booking.ticketReservationNbr
         holder.cabinClass.text = booking.flight1_cabinclass
         holder.departCity.text = booking.flight1_departCity
         holder.ariCity.text = booking.flight1_ariCity

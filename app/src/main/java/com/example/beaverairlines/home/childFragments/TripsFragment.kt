@@ -14,11 +14,12 @@ import com.example.beaverairlines.BookingViewModel
 import com.example.beaverairlines.R
 import com.example.beaverairlines.ViewModel
 import com.example.beaverairlines.adapter.BookingsAdapter
-import com.example.beaverairlines.databinding.FragmentBookBinding
 import com.example.beaverairlines.databinding.FragmentTripsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_trips.view.*
+
+//FRAGMENT HANDLING TRIP DEDICATED ACTIVITIES:
 
 class TripsFragment: Fragment() {
 
@@ -36,8 +37,9 @@ class TripsFragment: Fragment() {
 
         binding = FragmentTripsBinding.inflate(inflater)
         return binding.root
-
     }
+
+
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,9 +53,7 @@ class TripsFragment: Fragment() {
             requireContext(),
             R.anim.fade_in_superfast)
 
-        //mh = MILE HIGH
-        //rb = RECENT BOOKINGS
-        //smh = MILE HIGH STATUS
+        //VALUES FOR PASSPORT DISPLAY
         val ticketRes = bookingViewModel.reservationNbr
         val showPassport = binding.tvMHmemberPassport
         val passPCard = binding.userSavedPassport.passportView
@@ -70,7 +70,7 @@ class TripsFragment: Fragment() {
         val passPCloseBttn = binding.userSavedPassport.PassBttnClose
 
 
-
+        //VALUES FOR MEMBER CARD DISPLAY
         val mhCard = binding.MHmemberCard
         var mhFirstname = binding.tvMHmemberFirstname
         var mhSurname = binding.tvMHmemberSurname
@@ -89,6 +89,8 @@ class TripsFragment: Fragment() {
         var smhMissingPoints = binding.tvMHstatusMissingPoints
         var smhPoints = binding.tvMHstatusPoints
 
+
+        //METHOD FOR PASSPORT DISPLAY
         showPassport.setOnClickListener {
 
             db.collection("user").document(auth.currentUser!!.uid)
@@ -112,33 +114,14 @@ class TripsFragment: Fragment() {
                     passPCard.startAnimation(fadeIN)
                 }
 
-
-
-
-
-
-
             passPCloseBttn.setOnClickListener {
                 passPCard.startAnimation(fadeOUT)
                 passPCard.visibility = View.GONE
             }
-
         }
 
-//        flightViewModel.passportSaved.observe(
-//            viewLifecycleOwner,
-//            Observer {
-//                if (it){
-//                    showPassport.visibility = View.VISIBLE
-//
-//
-//
-//                } else {
-//                    showPassport.visibility = View.GONE
-//                }
-//            }
-//        )
 
+        //OBSERVER TO WATCH CHANGES MADE IN VIEWMODELS BOOKING LIST:
         bookingViewModel.bookingList.observe(
             viewLifecycleOwner,
             Observer {
@@ -147,23 +130,10 @@ class TripsFragment: Fragment() {
                 rbRecycler.visibility = View.VISIBLE
             }
         )
-//        flightViewModel.paymentCompleted.observe(
-//            viewLifecycleOwner,
-//            Observer {
-//                if (it){
-//                    rBNoBookingAvail.visibility = View.GONE
-//                    rbRecycler.visibility = View.VISIBLE
-//
-//
-//                } else {
-//                    rBNoBookingAvail.visibility = View.VISIBLE
-//                }
-//
-//            }
-//        )
 
 
 
+        //CODE FOR RETRIEVING DATA FROM FIREBASE:
         db.collection("user").document(auth.currentUser!!.uid)
             .get()
             .addOnSuccessListener {
@@ -179,35 +149,20 @@ class TripsFragment: Fragment() {
                 mhBigClubNbr.text = "${clubNbr}"
             }
 
-        mhCard.setOnClickListener {
+            mhCard.setOnClickListener {
             mhCardBig.visibility = View.VISIBLE
             mhCardBig.startAnimation(fadeIN)
 
             mhCardBig.setOnClickListener {
-                mhCardBig.startAnimation(fadeOUT)
-                mhCardBig.visibility = View.GONE
+            mhCardBig.startAnimation(fadeOUT)
+            mhCardBig.visibility = View.GONE
             }
         }
-
-
-
-//        bookingViewModel.getBooking(ticketRes)
-//
-//        bookingViewModel.currentBooking.observe(
-//            viewLifecycleOwner,
-//            Observer {
-//                it.flight1_ariCity
-//
-//            }
-//        )
-
-
-
-
     }
 
-    private fun getUser() {
 
+    //UNUSED CODE
+    private fun getUser() {
     }
 
 }

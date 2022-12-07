@@ -1,5 +1,7 @@
 package com.example.beaverairlines.data.model
 
+//DATA CLASS FOR ADS IN DASHBOARD FRAGMENT:
+
 data class Advertising(
     val title: String,
     val image: Int,

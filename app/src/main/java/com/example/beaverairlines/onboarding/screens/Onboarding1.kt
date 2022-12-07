@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.beaverairlines.R
 import kotlinx.android.synthetic.main.fragment_first_screen.view.*
 
+//FRAGMENT FOR ONBOARDING (VIA VIEW PAGER)
 
 class Onboarding1 : Fragment() {
 
@@ -18,7 +19,6 @@ class Onboarding1 : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_first_screen, container, false)
-
 
         val slideInLeft = AnimationUtils.loadAnimation(
             requireContext(),
@@ -32,15 +32,11 @@ class Onboarding1 : Fragment() {
         view.OB_bttn1.startAnimation(slideInRight)
 
 
-
-
         val viewPager = activity?.findViewById<ViewPager2>(R.id.onboarding_viewPager)
 
         view.OB_bttn1.setOnClickListener {
             viewPager?.currentItem = 1
         }
-
-
         return view
     }
 

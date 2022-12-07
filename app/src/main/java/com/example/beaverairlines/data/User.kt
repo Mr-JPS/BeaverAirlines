@@ -2,6 +2,8 @@ package com.example.beaverairlines.data
 
 import com.google.firebase.firestore.DocumentId
 
+//DATA CLASS FOR USERS TO HAND OVER TO FIREBASE:
+
 data class User (
     @DocumentId
     val userId : String = " ",

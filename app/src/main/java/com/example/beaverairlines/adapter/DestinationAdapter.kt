@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.beaverairlines.R
 import com.example.beaverairlines.data.model.Destination
 
+// THIS ADAPTER MANAGES THE FUNCTIONALITIES FOR THE TRIP SUGGESTION ADs IN THE DASH BOARD FRAGMENT
+
 class DestinationAdapter(
     private val dataset: List<Destination>
 ): RecyclerView.Adapter<DestinationAdapter.ItemViewHolder>() {
@@ -27,9 +29,9 @@ class DestinationAdapter(
         val bttnClose: TextView = view.findViewById(R.id.dest_bttn_close)
         val mainCard: CardView = view.findViewById(R.id.dest_mainCard)
         val cloudPic: ImageView = view.findViewById(R.id.dest_iv_cloud)
-
-
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
@@ -37,6 +39,8 @@ class DestinationAdapter(
 
         return ItemViewHolder(adapterLayout)
     }
+
+
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
@@ -51,7 +55,7 @@ class DestinationAdapter(
         holder.bttnClose.text = "CLOSE"
         holder.cloudPic.setImageResource(cloud)
 
-
+        //DEFINING THE ANIMATION BEHAVIOUR WHEN CLICKING A CARD:
         holder.mainCard.setOnClickListener {
             if (holder.descripBig.visibility == View.GONE){
                 TransitionManager.beginDelayedTransition(holder.mainCard, AutoTransition())
@@ -81,6 +85,7 @@ class DestinationAdapter(
         }
 
 
+
         holder.bttnOpen.setOnClickListener {
                 TransitionManager.beginDelayedTransition(holder.mainCard, AutoTransition())
                 holder.descripBig.visibility = View.VISIBLE
@@ -92,8 +97,9 @@ class DestinationAdapter(
                 holder.city1.visibility = View.GONE
                 holder.country1.visibility = View.GONE
                 holder.bttnOpen.visibility = View.GONE
-
             }
+
+
 
         holder.bttnClose.setOnClickListener {
             holder.descripBig.visibility = View.GONE
@@ -108,10 +114,9 @@ class DestinationAdapter(
             holder.bttnOpen.visibility = View.VISIBLE
 
         }
-
-
-
     }
+
+
 
     override fun getItemCount(): Int {
         return dataset.size

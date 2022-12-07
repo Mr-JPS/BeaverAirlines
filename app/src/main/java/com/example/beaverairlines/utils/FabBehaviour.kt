@@ -1,4 +1,4 @@
-package com.example.beaverairlines
+package com.example.beaverairlines.utils
 
 import android.content.Context
 import android.os.Handler
@@ -10,6 +10,9 @@ import androidx.annotation.NonNull
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+
+//CODE FOR BTTN BEHAVIOUR LOGIC:
+//UNUSED AT THIS TIME
 
 class FabBehaviour : CoordinatorLayout.Behavior<FloatingActionButton?> {
     var mHandler: Handler? = null

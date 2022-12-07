@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.login_card.view.*
 import kotlinx.android.synthetic.main.signup_card.view.*
 import java.security.AccessController.getContext
 
+//THIS FRAGMENT IS PART OF THE LOGIN / SIGN IN PROCEDURE:
 
 class SigninLoginFragment : Fragment() {
 
@@ -37,19 +38,19 @@ class SigninLoginFragment : Fragment() {
     private lateinit var login_card: Scene
     private lateinit var currentScene: Scene
     private var wasLoginClicked: Boolean = true
-
     private lateinit var transitionSignup2Login: Transition
     private lateinit var transitionLogin2Signup: Transition
-
     private var auth = FirebaseAuth.getInstance()
     private val viewModel: AuthViewModel by activityViewModels()
-
     private lateinit var binding: FragmentSigninBinding
+
 
 
     fun Activity.hideKeyboard(view: View) {
         hideKeyboard(currentFocus ?: View(this))
     }
+
+
 
     fun Context.hideKeyboard(view: View) {
         val inputMethodManager =
@@ -57,9 +58,10 @@ class SigninLoginFragment : Fragment() {
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         val transitionAnim = TransitionInflater.from(requireContext()).inflateTransition(
             android.R.transition.move
@@ -68,8 +70,8 @@ class SigninLoginFragment : Fragment() {
         sharedElementEnterTransition = transitionAnim
         sharedElementReturnTransition = transitionAnim
 
-
     }
+
 
 
     override fun onCreateView(
@@ -80,9 +82,8 @@ class SigninLoginFragment : Fragment() {
         binding = FragmentSigninBinding.inflate(inflater, container, false)
 
         return binding.root
-
-
     }
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -91,12 +92,9 @@ class SigninLoginFragment : Fragment() {
 
         val wasLoginClicked = requireArguments().getBoolean("isLoginClicked", false)
 
-
-        signup_card =
-            Scene.getSceneForLayout(binding.cardLayout, R.layout.signup_card, requireActivity())
-        login_card =
-            Scene.getSceneForLayout(binding.cardLayout, R.layout.login_card, requireActivity())
-
+        //TO SWITCH BETWEEN LOGIN AND SIGN UP FRAMES, SCENES WERE USED:
+        signup_card = Scene.getSceneForLayout(binding.cardLayout, R.layout.signup_card, requireActivity())
+        login_card = Scene.getSceneForLayout(binding.cardLayout, R.layout.login_card, requireActivity())
 
 
         if (wasLoginClicked) {
@@ -111,8 +109,6 @@ class SigninLoginFragment : Fragment() {
                 val password: String =
                     binding.cardLayout.login_passwordInput_et.text.toString().trim { it <= ' ' }
                 loginUser(email, password)
-
-
             }
 
         } else {
@@ -135,7 +131,7 @@ class SigninLoginFragment : Fragment() {
 
 
 
-
+        //TRANSITIONS BETWEEN SCENES:
         transitionSignup2Login = TransitionInflater.from(requireActivity())
             .inflateTransition(R.transition.card_change_signup2login)
         transitionLogin2Signup = TransitionInflater.from(requireActivity())
@@ -159,9 +155,9 @@ class SigninLoginFragment : Fragment() {
                     loginUser(email, password)
                 }
 
-
                 binding.signUpCardSwapFooterTv.text = getString(R.string.new_to_beaver_airlines)
                 binding.signUpCardSwapBttn.text = getString(R.string.register)
+
             } else {
                 TransitionManager.go(signup_card, transitionLogin2Signup)
                 currentScene = signup_card
@@ -181,18 +177,17 @@ class SigninLoginFragment : Fragment() {
                 binding.signUpCardSwapBttn.text = getString(R.string.login)
             }
         }
-
     }
 
 
+    //FUNCTIONALITY FOR REGISTERING A NEW USER USING FIREBASE:
     private fun registerUser(name: String, email: String, password: String) {
 
         if (validateRegistration(name, email, password)) {
             Toast.makeText(getContext(), "Please wait...", Toast.LENGTH_SHORT).show()
+
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-//                      val firebaseUser: FirebaseUser = task.result!!.user!!
-//                    val registeredEmail = firebaseUser.email!!
 
                     val newUser = User(
                         userId = viewModel.userIdGenerator(),
@@ -200,41 +195,32 @@ class SigninLoginFragment : Fragment() {
                         email = email,
                         mileHighClubNbr = viewModel.mileHighGenerator()
                     )
+
                     viewModel.setUser(newUser)
                     loginUser(email, password)
-//                  viewModel.currentUser = firebaseAuth.currentUser
-
-//                    Toast.makeText(getContext(), "$name, you have successfully registered Your email $registeredEmail",
-//                        Toast.LENGTH_LONG).show()
-//                    findNavController().navigate(R.id.action_signinFragment_to_homeFragment)
-//
 
                 } else {
-                    Toast.makeText(getContext(), task.exception!!.message, Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(getContext(), task.exception!!.message, Toast.LENGTH_SHORT).show()
 
                 }
             }
         }
     }
 
-
+    //FUNCTIONALITY FOR VALIDATING USER INPUT:
     private fun validateRegistration(name: String, email: String, password: String): Boolean {
 
         return when {
             TextUtils.isEmpty(name) -> {
                 showErrorSnackBar("Please enter your name")
-                //Toast.makeText(getContext(), "Please enter your name", Toast.LENGTH_SHORT).show()
                 false
             }
             TextUtils.isEmpty(email) -> {
                 showErrorSnackBar("Please enter your email address")
-                //Toast.makeText(getContext(), "Please enter your email address", Toast.LENGTH_SHORT).show()
                 false
             }
             TextUtils.isEmpty(password) -> {
                 showErrorSnackBar("Please enter a password")
-                //Toast.makeText(getContext(), "Please enter a password", Toast.LENGTH_SHORT).show()
                 false
             }
             else -> {
@@ -243,18 +229,17 @@ class SigninLoginFragment : Fragment() {
         }
     }
 
+
+    //FUNCTIONALITY FOR LOGGING IN:
     private fun loginUser(email: String, password: String) {
 
         if (validateLogin(email, password)) {
             Toast.makeText(getContext(), "Please wait...", Toast.LENGTH_SHORT).show()
+
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        //viewModel.currentUser1 = auth.currentUser
                         viewModel.currentUser = auth.currentUser
-                        //val currentUser = auth.currentUser
-//                        Toast.makeText(getContext(), "You have successfully logged in!",
-//                            Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_signinFragment_to_NavControllerFragment)
                     } else {
                         Toast.makeText(getContext(), "Login failed.",
@@ -268,6 +253,7 @@ class SigninLoginFragment : Fragment() {
     }
 
 
+    //FUNCTIONALITY FOR VALIDATING LOGIN:
     private fun validateLogin(email: String, password: String): Boolean {
 
         return when {
@@ -288,11 +274,7 @@ class SigninLoginFragment : Fragment() {
     }
 
 
-//    fun getCurrentUserID() : String{
-//        return FirebaseAuth.getInstance().currentUser!!.uid
-//    }
-
-
+    //FUNCTIONALITY FOR SHOWING ERROR MSG WHEN F.E. INPUT WAS WRONG:
     fun showErrorSnackBar(message: String) {
         val snackbar = Snackbar.make(requireActivity().findViewById(android.R.id.content), message,
             Snackbar.LENGTH_LONG)

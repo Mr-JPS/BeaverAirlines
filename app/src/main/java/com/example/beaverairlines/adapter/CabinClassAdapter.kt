@@ -12,15 +12,19 @@ import com.example.beaverairlines.data.model.Advertising
 import com.example.beaverairlines.data.model.CabinClass
 import kotlinx.android.synthetic.main.book3_card.view.*
 
+// THIS ADAPTER MANAGES THE FUNCTIONALITIES FOR SHOWING THE AVL CABIN CLASSES WHILE BOOKING A FLIGHT IN THE BOOK FRAGMENT
+
 class CabinClassAdapter (
     private val dataset: List<CabinClass>
 ): RecyclerView.Adapter<CabinClassAdapter.ItemViewHolder>()  {
 
-    //Hiermit wird eine CabinClass Unit erstellt um dessen values weitergeben zu können:
+    //PROVIDING A CABIN CLASS UNIT FOR PASSING ITS VALUE:
     private var onItemClickListener: ((CabinClass)->Unit)? = null
     internal fun setOnItemClickListener(listener: (CabinClass)->Unit) {
         onItemClickListener = listener
     }
+
+
 
     class ItemViewHolder(private val view: View): RecyclerView.ViewHolder(view){
         val header : TextView = view.findViewById(R.id.tv_cabinHeader)
@@ -28,16 +32,18 @@ class CabinClassAdapter (
         var title: TextView = view.findViewById(R.id.tv_cabinTitle)
         val description: TextView = view.findViewById(R.id.tv_cabinDescription)
         val cabinSelectLayout : ConstraintLayout = view.findViewById(R.id.cabinClassLayout)
-//        val cabinSelection: TextView = view.findViewById(R.id.tv_cabinSelectedText)
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.cabin_class_card, parent, false)
 
-
         return ItemViewHolder(adapterLayout)
     }
+
+
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val currentCabin = dataset[position]
@@ -46,16 +52,13 @@ class CabinClassAdapter (
         holder.image.setImageResource(currentCabin.image)
         holder.title.text = currentCabin.title
         holder.description.text = currentCabin.description
-        //holder.cabinSelection.text = "select"
-
         holder.cabinSelectLayout.setOnClickListener {
-            //hier wird an den Listener die currentCabin mit den values an dessen position weitergegeben
+
+            //PASSING THE CURRENT CABIN AT THE GIVEN POSITION TO THE LISTENER:
             onItemClickListener?.let {
                 it(currentCabin)
             }
         }
-
-
     }
 
 

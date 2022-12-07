@@ -12,6 +12,9 @@ import com.example.beaverairlines.R
 import com.example.beaverairlines.data.FinalBoardingPass
 import com.example.beaverairlines.utils.BookInterface
 
+
+// THIS ADAPTER MANAGES THE FUNCTIONALITIES FOR THE FINAL BOARDING CARD
+
 class BoardingPassAdapter(
     private var datasetBoardingPass: List<FinalBoardingPass>,
     private val bookingViewModel: BookingViewModel,
@@ -24,7 +27,10 @@ class BoardingPassAdapter(
         datasetBoardingPass = list
         notifyDataSetChanged()
     }
+
+
     private val lastPosition: Int = -1
+
 
 
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
@@ -33,9 +39,9 @@ class BoardingPassAdapter(
         val bp_passFullname: TextView = view.findViewById(R.id.BP_pasName)
         val bp_destination: TextView= view.findViewById(R.id.BP_destination)
         val bp_previewCard: CardView = view.findViewById(R.id.BP_boardingPassPreviewCard)
-
-
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
@@ -44,6 +50,8 @@ class BoardingPassAdapter(
         return ItemViewHolder(adapterLayout)
     }
 
+
+
     @SuppressLint("SuspiciousIndentation")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val boardingpass = datasetBoardingPass[position]
@@ -51,28 +59,13 @@ class BoardingPassAdapter(
 
         holder.bp_boardingTime.text = boardingpass.boardingtime.dropLast(3)
         holder.bp_destination.text = boardingpass.destinationIata
-        holder.bp_passFullname.text =
-            "${boardingpass.passSurname}\n${boardingpass.passFirstname}"
-
+        holder.bp_passFullname.text = "${boardingpass.passSurname}\n${boardingpass.passFirstname}"
         holder.bp_previewCard.setOnClickListener {
 
-
-
-
-
-           bookingViewModel.finalBoardingPass.value = boardingpass
-//            val passFirstname: String = boardingpass.flight1_passFirstname
-//            val passSurname: String = boardingpass.flight1_passSurname
-//            val destinationIata: String = boardingpass.flight1_ariIATA
-//            val boardingtime: String = boardingpass.flight1_takeoffTime
-//            val gate: String
-//            val assignedSeat: String
-
-
+            //TO HAND OVER THE VALUES OF ACTUAL BOARDING PASS TO THE VIEWMODEL:
+            bookingViewModel.finalBoardingPass.value = boardingpass
         }
     }
-
-
 
 
     override fun getItemCount(): Int {

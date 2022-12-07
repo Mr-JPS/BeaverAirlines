@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.beaverairlines.R
 import com.example.beaverairlines.data.Iata
 
+//THIS ADAPTER MANAGES THE FUNCTIONALITIES FOR MATCHING THE AIRPORTS TO THE IATA CODES:
+//NOT IN USE RIGHT NOW
+
 class IataAdapter (
     private var dataset: List<Iata>
 ): RecyclerView.Adapter<IataAdapter.ItemViewHolder>() {

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.beaverairlines.R
 import kotlinx.android.synthetic.main.fragment_third_screen.view.*
 
+//FRAGMENT FOR ONBOARDING (VIA VIEW PAGER)
 
 class Onboarding3 : Fragment() {
 
@@ -20,11 +21,11 @@ class Onboarding3 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_third_screen, container, false)
-
         return view
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,6 +52,8 @@ class Onboarding3 : Fragment() {
             360f)
         bttnRotator.duration = 1000
 
+
+
         Handler().postDelayed({
         view.OB_pic3.startAnimation(slideUP)
         },800)
@@ -58,10 +61,12 @@ class Onboarding3 : Fragment() {
 
 
         Handler().postDelayed({
-            view.OB_bttn_start.visibility = View.VISIBLE
-//        view.OB_bttn_start.startAnimation(slideDown)
+        view.OB_bttn_start.visibility = View.VISIBLE
+//      view.OB_bttn_start.startAnimation(slideDown)
         bttnRotator.start()
         },2000)
+
+
 
         view.OB_bttn_start.setOnClickListener {
             findNavController().navigate(R.id.action_viewPagerFragment_to_authFragment)
@@ -69,6 +74,8 @@ class Onboarding3 : Fragment() {
         }
     }
 
+
+    //METHOD TO RECOGNIZE IF ONBOARDING WAS FINISHED:
     private fun onBoardingFinished() {
         val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
